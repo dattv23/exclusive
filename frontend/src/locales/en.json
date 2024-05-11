@@ -1,0 +1,9 @@
+{
+  "Index": {
+    "title": "Hello!"
+  },
+  "LocaleSwitcher": {
+    "label": "Change language",
+    "locale": "{locale, select, vi {Vietnamese} en {English} other {Unknown}}"
+  }
+}

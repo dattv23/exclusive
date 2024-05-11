@@ -1,0 +1,9 @@
+{
+  "Index": {
+    "title": "Xin chào!"
+  },
+  "LocaleSwitcher": {
+    "label": "Thay đổi ngôn ngữ",
+    "locale": "{locale, select, vi {Tiếng Việt} en {Tiếng Anh} other {Unknown}}"
+  }
+}
