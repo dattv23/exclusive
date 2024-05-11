@@ -1,4 +1,4 @@
-package com.backend.exclusive.repositories.Impl;
+package com.backend.exclusive.repositories.Implements;
 
 import com.backend.exclusive.models.User;
 import com.backend.exclusive.repositories.UserRepository;
