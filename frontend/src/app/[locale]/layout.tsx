@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import '@/styles/globals.css';
 import { Footer, Header } from '@/components';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
+import { i18n } from '@/config';
+import '@/styles/globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -10,6 +11,10 @@ export const metadata: Metadata = {
   title: 'Exclusive',
   description: 'A e-commerce website',
 };
+
+export async function generateStaticParams() {
+  return i18n.locales.map((locale) => ({ lang: locale }));
+}
 
 export default function RootLayout({
   children,
@@ -23,7 +28,7 @@ export default function RootLayout({
       <body className={inter.className} suppressHydrationWarning={true}>
         <AntdRegistry>
           <Header />
-          <main>{children}</main>
+          {children}
           <Footer />
         </AntdRegistry>
       </body>

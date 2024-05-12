@@ -16,6 +16,7 @@
     "@ant-design/nextjs-registry": "^1.0.0",
     "antd": "^5.17.0",
     "clsx": "^2.1.1",
+    "negotiator": "^0.6.3",
     "next": "14.2.3",
     "next-intl": "^3.12.0",
     "normalize.css": "^8.0.1",
@@ -26,6 +27,7 @@
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",
+    "@types/negotiator": "^0.6.3",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

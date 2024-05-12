@@ -9,6 +9,11 @@ export const showLogger = isLocal
 
 export const defaultLocale = 'en' as const;
 export const locales = ['en', 'vi'] as const;
+export type Locale = 'en' | 'vi';
+export const i18n = {
+  defaultLocale,
+  locales,
+} as const;
 
 export const pathnames = {
   '/': '/',
