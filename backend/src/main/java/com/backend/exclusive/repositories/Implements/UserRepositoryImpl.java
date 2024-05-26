@@ -25,13 +25,13 @@ import static com.mongodb.client.model.ReturnDocument.AFTER;
 
 @Repository
 public class UserRepositoryImpl implements UserRepository {
-     static final TransactionOptions txnOptions = TransactionOptions.builder()
+    static final TransactionOptions txnOptions = TransactionOptions.builder()
             .readPreference(ReadPreference.primary())
             .readConcern(ReadConcern.MAJORITY)
             .writeConcern(WriteConcern.MAJORITY)
             .build();
-     final MongoClient client;
-     MongoCollection<User> userCollection;
+    final MongoClient client;
+    MongoCollection<User> userCollection;
 
     public UserRepositoryImpl(MongoClient mongoClient) {
         this.client = mongoClient;
@@ -120,7 +120,7 @@ public class UserRepositoryImpl implements UserRepository {
         }
     }
 
-     List<ObjectId> mapToObjectIds(List<String> ids) {
+    List<ObjectId> mapToObjectIds(List<String> ids) {
         return ids.stream().map(ObjectId::new).toList();
     }
 }

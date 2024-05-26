@@ -5,9 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class ExclusiveApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(ExclusiveApplication.class, args);
-	}
-
+    public static void main(String[] args) {
+        SpringApplication.run(ExclusiveApplication.class, args);
+    }
 }

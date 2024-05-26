@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/v1/user")
 public class UserController {
-     final static Logger LOGGER = LoggerFactory.getLogger(UserController.class);
-     final UserService userService;
+    final static Logger LOGGER = LoggerFactory.getLogger(UserController.class);
+    private final UserService userService;
 
     @Autowired
     public UserController(UserService userService) {
@@ -27,7 +27,7 @@ public class UserController {
         return ResponseEntity.ok("Hello world!");
     }
 
-    @GetMapping("users")
+    @GetMapping("/users")
     public ResponseEntity<List<User>> getUsers() {
         List<User> users = userService.getAll();
         return ResponseEntity.ok(users);
