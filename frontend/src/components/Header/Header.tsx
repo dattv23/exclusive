@@ -1,21 +1,17 @@
 import React from 'react';
 import TopHeader from '../TopHeader';
 import Navbar from '../Navbar';
-import Search from '../Search';
-import WishList from '../WishList';
+import { Locale } from '@/config';
 
-const Header = () => {
+interface HeaderProps {
+  locale: Locale;
+}
+
+const Header: React.FC<HeaderProps> = ({ locale }) => {
   return (
     <header>
       <TopHeader />
-      <div>
-        <div>Exclusive</div>
-        <Navbar />
-        <Search />
-        <div>
-          <WishList />
-        </div>
-      </div>
+      <Navbar locale={locale} />
     </header>
   );
 };

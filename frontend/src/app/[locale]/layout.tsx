@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { Footer, Header } from '@/components';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
-import { i18n } from '@/config';
+import { i18n, Locale } from '@/config';
 import '@/styles/globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -21,13 +21,13 @@ export default function RootLayout({
   params: { locale },
 }: Readonly<{
   children: React.ReactNode;
-  params: { locale: string };
+  params: { locale: Locale };
 }>) {
   return (
     <html lang={locale}>
       <body className={inter.className} suppressHydrationWarning={true}>
         <AntdRegistry>
-          <Header />
+          <Header locale={locale} />
           {children}
           <Footer />
         </AntdRegistry>

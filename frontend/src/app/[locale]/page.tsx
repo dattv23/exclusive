@@ -5,7 +5,7 @@ const Home = () => {
   const t = useTranslations('Index');
   return (
     <div>
-      <p>{t('title')}</p>
+      <h1>{t('title')}</h1>
     </div>
   );
 };

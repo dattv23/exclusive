@@ -5,5 +5,17 @@
   "LocaleSwitcher": {
     "label": "Change language",
     "locale": "{locale, select, vi {Vietnamese} en {English} other {Unknown}}"
+  },
+  "Navbar": {
+    "Home": "Home",
+    "Contact": "Contact",
+    "About": "About",
+    "Sign Up": "Sign Up",
+    "Sign In": "Sign In",
+    "Manage My Account": "Manage My Account",
+    "My Order": "My Order",
+    "My Cancellations": "My Cancellations",
+    "My Reviews": "My Reviews",
+    "Logout": "Logout"
   }
 }

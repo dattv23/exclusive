@@ -5,5 +5,17 @@
   "LocaleSwitcher": {
     "label": "Thay đổi ngôn ngữ",
     "locale": "{locale, select, vi {Tiếng Việt} en {Tiếng Anh} other {Unknown}}"
+  },
+  "Navbar": {
+    "Home": "Trang chủ",
+    "Contact": "Liên hệ",
+    "About": "Giới thiệu",
+    "Sign Up": "Đăng ký",
+    "Sign In": "Đăng nhập",
+    "Manage My Account": "Quản lý tài khoản",
+    "My Order": "Đơn hàng của tôi",
+    "My Cancellations": "Đơn hủy của tôi",
+    "My Reviews": "Đánh giá của tôi",
+    "Logout": "Đăng xuất"
   }
 }
