@@ -7,3 +7,4 @@ export { default as WishList } from './WishList';
 export { default as LocaleSwitcher } from './LocaleSwitcher';
 export { default as LocaleSwitcherSelect } from './LocaleSwitcherSelect';
 export { default as Icon } from './Icon';
+export { default as AccountDropdown } from './AccountDropdown';

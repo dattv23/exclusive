@@ -5,6 +5,7 @@ import React from 'react';
 import Search from '../Search';
 import Icon from '../Icon';
 import { useTranslations } from 'next-intl';
+import AccountDropdown from '../AccountDropdown';
 
 interface NavbarProps {
   locale: Locale;
@@ -78,46 +79,7 @@ const Navbar: React.FC<NavbarProps> = ({ locale }) => {
             >
               <Icon src="icons/user.svg" alt="user-icon" />
             </button>
-
-            <div className="invisible absolute right-0 -mt-1 w-64 origin-top-left divide-y divide-gray-100 rounded-md bg-white opacity-0 shadow-lg transition duration-300 group-hover:visible group-hover:opacity-100">
-              <div className="py-1">
-                <Link
-                  href="#"
-                  className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                >
-                  <Icon src="icons/user.svg" alt="user-icon" />
-                  <span>{t('Manage My Account')}</span>
-                </Link>
-                <Link
-                  href="#"
-                  className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                >
-                  <Icon src="icons/shopping-bag.svg" alt="shopping-bag-icon" />
-                  <span>{t('My Order')}</span>
-                </Link>
-                <Link
-                  href="#"
-                  className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                >
-                  <Icon src="icons/cancel.svg" alt="cancel-icon" />
-                  <span>{t('My Cancellations')}</span>
-                </Link>
-                <Link
-                  href="#"
-                  className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                >
-                  <Icon src="icons/star-no-filled.svg" alt="star-icon" />
-                  <span>{t('My Reviews')}</span>
-                </Link>
-                <Link
-                  href="#"
-                  className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                >
-                  <Icon src="icons/logout.svg" alt="logout-icon" />
-                  <span>{t('Logout')}</span>
-                </Link>
-              </div>
-            </div>
+            <AccountDropdown locale={locale} />
           </div>
         </div>
       </div>
