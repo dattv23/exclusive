@@ -1,6 +1,13 @@
 import { QRCode } from 'antd';
 import Image from 'next/image';
 import React from 'react';
+import {
+  FacebookIcon,
+  InstagramIcon,
+  LinkedinIcon,
+  SendIcon,
+  TwitterIcon,
+} from '../Icons';
 
 const Footer = () => {
   return (
@@ -18,12 +25,7 @@ const Footer = () => {
                 className="w-full rounded-md border-2 border-white bg-transparent px-4 py-3"
               />
               <div className="my-auto -ml-8 h-full">
-                <Image
-                  src={'icons/send.svg'}
-                  alt="send-icon"
-                  width={24}
-                  height={24}
-                />
+                <SendIcon />
               </div>
             </div>
           </div>
@@ -62,7 +64,7 @@ const Footer = () => {
             <div className="h-40 w-40 bg-white">
               <QRCode value="https://www.google.com/" />
             </div>
-            <div>
+            <div className="flex flex-col gap-1">
               <Image
                 src={'/images/appstore.png'}
                 alt="Download with appstore"
@@ -78,30 +80,10 @@ const Footer = () => {
             </div>
           </div>
           <div className="mt-6 flex gap-6">
-            <Image
-              src={'icons/facebook.svg'}
-              width={24}
-              height={24}
-              alt="facebook icon"
-            />
-            <Image
-              src={'icons/twitter.svg'}
-              width={24}
-              height={24}
-              alt="twitter icon"
-            />
-            <Image
-              src={'icons/instagram.svg'}
-              width={24}
-              height={24}
-              alt="instagram icon"
-            />
-            <Image
-              src={'icons/linkedin.svg'}
-              width={24}
-              height={24}
-              alt="linkedin icon"
-            />
+            <FacebookIcon />
+            <TwitterIcon />
+            <InstagramIcon />
+            <LinkedinIcon />
           </div>
         </div>
       </div>
