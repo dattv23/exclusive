@@ -1,7 +1,14 @@
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import React from 'react';
-import Icon from '../Icon';
+
+import {
+  CancelIcon,
+  LogoutIcon,
+  ReviewIcon,
+  ShoppingBagIcon,
+  UserIcon,
+} from '../Icons';
 import { Locale } from '@/config';
 
 interface AccountDropdownProps {
@@ -22,32 +29,26 @@ const AccountDropdown: React.FC<AccountDropdownProps> = ({ locale }) => {
     {
       id: 1,
       href: `${locale}/account`,
-      icon: <Icon src="icons/user.svg" alt="user-icon" />,
+      icon: <UserIcon />,
       name: t('Manage My Account'),
     },
     {
       id: 2,
       href: `${locale}/orders`,
-      icon: <Icon src="icons/shopping-bag.svg" alt="shopping-bag-icon" />,
+      icon: <ShoppingBagIcon />,
       name: t('My Order'),
     },
     {
       id: 3,
       href: `${locale}/cancels`,
-      icon: <Icon src="icons/cancel.svg" alt="cancel-icon" />,
+      icon: <CancelIcon />,
       name: t('My Cancellations'),
     },
     {
       id: 4,
       href: `${locale}/reviews`,
-      icon: <Icon src="icons/star-no-filled.svg" alt="star-icon" />,
+      icon: <ReviewIcon />,
       name: t('My Reviews'),
-    },
-    {
-      id: 5,
-      href: `${locale}/account`,
-      icon: <Icon src="icons/user.svg" alt="user-icon" />,
-      name: t('Manage My Account'),
     },
   ];
 
@@ -60,12 +61,12 @@ const AccountDropdown: React.FC<AccountDropdownProps> = ({ locale }) => {
             href={item.href}
             className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
           >
-            {item.icon}
-            <span>{item.name}</span>
+            <span className="h-6 w-6">{item.icon}</span>
+            <span className="font-semibold">{item.name}</span>
           </Link>
         ))}
-        <button className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-          <Icon src="icons/logout.svg" alt="logout-icon" />
+        <button className="flex w-full items-center gap-2 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-100">
+          <LogoutIcon />
           <span>{t('Logout')}</span>
         </button>
       </div>

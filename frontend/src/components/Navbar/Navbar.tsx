@@ -3,9 +3,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import Search from '../Search';
-import Icon from '../Icon';
 import { useTranslations } from 'next-intl';
 import AccountDropdown from '../AccountDropdown';
+import { CartIcon, HeartSmallIcon, UserIcon } from '../Icons';
 
 interface NavbarProps {
   locale: Locale;
@@ -66,10 +66,10 @@ const Navbar: React.FC<NavbarProps> = ({ locale }) => {
       <Search />
       <div className="flex items-center">
         <Link href={`${locale}/wishlist`} className="px-4 py-2">
-          <Icon src="icons/heart-small.svg" alt="heart-small-icon" />
+          <HeartSmallIcon />
         </Link>
         <Link href={`${locale}/cart`} className="px-4 py-2">
-          <Icon src="icons/cart.svg" alt="cart-icon" />
+          <CartIcon />
         </Link>
         <div className="relative inline-flex text-left">
           <div className="group">
@@ -77,7 +77,7 @@ const Navbar: React.FC<NavbarProps> = ({ locale }) => {
               type="button"
               className="inline-flex w-full items-center justify-center px-4 py-2 text-sm font-medium text-white"
             >
-              <Icon src="icons/user.svg" alt="user-icon" />
+              <UserIcon />
             </button>
             <AccountDropdown locale={locale} />
           </div>
