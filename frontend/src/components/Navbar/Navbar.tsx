@@ -6,16 +6,11 @@ import Search from '../Search';
 import { useTranslations } from 'next-intl';
 import AccountDropdown from '../AccountDropdown';
 import { CartIcon, HeartSmallIcon, UserIcon } from '../Icons';
+import { NavItem } from '@/types';
 
 interface NavbarProps {
   locale: Locale;
 }
-
-type NavItem = {
-  id: number;
-  name: string;
-  link: string;
-};
 
 const Navbar: React.FC<NavbarProps> = ({ locale }) => {
   const t = useTranslations('Navbar');
@@ -48,7 +43,7 @@ const Navbar: React.FC<NavbarProps> = ({ locale }) => {
     },
   ];
   return (
-    <nav className="flex h-11 items-center justify-between px-[136px] py-4">
+    <nav className="flex h-16 items-center justify-between px-[136px] py-4">
       <Link href={'/'}>
         <Image src={'/images/logo.png'} alt="logo" width={118} height={24} />
       </Link>

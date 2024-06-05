@@ -1,13 +1,15 @@
-import { useTranslations } from 'next-intl';
+import { Locale } from '@/config';
+import HomePage from '@/containers/home-page';
+// import { useTranslations } from 'next-intl';
 import React from 'react';
 
-const Home = () => {
-  const t = useTranslations('Index');
-  return (
-    <div>
-      <h1>{t('title')}</h1>
-    </div>
-  );
+interface HomeProps {
+  params: { locale: Locale };
+}
+
+const Home: React.FC<HomeProps> = ({ params }) => {
+  const { locale } = params;
+  return <HomePage locale={locale} />;
 };
 
 export default Home;
