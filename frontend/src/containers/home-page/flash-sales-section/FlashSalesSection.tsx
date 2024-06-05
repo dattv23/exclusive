@@ -17,7 +17,7 @@ const FlashSalesSection: React.FC<FlashSalesSectionProps> = ({ data }) => {
         </div>
         <p>Today’s</p>
       </div>
-      <div className="flex gap-20">
+      <div className="mb-2 flex gap-20">
         <h3>Flash Sales</h3>
         <CountDown time={212270} />
       </div>
