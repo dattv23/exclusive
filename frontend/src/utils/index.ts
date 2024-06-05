@@ -37,3 +37,7 @@ export const replaceColor = (svgString: string, newColor: string) => {
   const replacement = `fill="var(${newColor})"`;
   return svgString.toString().replace(regex, replacement);
 };
+
+export const startScore = (rate: number) => {
+  return '⭐⭐⭐⭐⭐⚝⚝⚝⚝⚝'.slice(5 - rate, 10 - rate);
+};

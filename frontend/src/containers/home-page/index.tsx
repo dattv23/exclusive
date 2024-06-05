@@ -1,4 +1,5 @@
 import React from 'react';
+import { promises as fs } from 'fs';
 
 import { Locale } from '@/config';
 import BannerSection from './banner-section';
@@ -12,11 +13,17 @@ interface HomePageProps {
   locale: Locale;
 }
 
-const HomePage: React.FC<HomePageProps> = ({ locale }) => {
+const HomePage: React.FC<HomePageProps> = async ({ locale }) => {
+  const file = await fs.readFile(
+    process.cwd() + '/src/mocks/products.json',
+    'utf8',
+  );
+  const products = JSON.parse(file);
+
   return (
     <main>
       <BannerSection locale={locale} />
-      <FlashSalesSection />
+      <FlashSalesSection data={products.data} />
       <CategoriesSection />
       <BestSellerSection />
       <AdsSection />

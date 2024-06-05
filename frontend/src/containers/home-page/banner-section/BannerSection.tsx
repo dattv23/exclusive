@@ -58,7 +58,7 @@ const BannerSection: React.FC<BannerSectionProps> = ({ locale }) => {
   ];
 
   return (
-    <section className="flex border-t py-10">
+    <section className="flex justify-between border-t py-10">
       <div className="flex flex-[0.2] flex-col gap-4">
         {items.map((item) => (
           <Link key={item.id} href={item.link} className="hover:text-primary">
@@ -67,16 +67,14 @@ const BannerSection: React.FC<BannerSectionProps> = ({ locale }) => {
         ))}
       </div>
       <div className="flex-[0.8] border-l">
-        <div className="px-10">
-          <Carousel
-            images={[
-              '/images/banners/banner-1.jpg',
-              '/images/banners/banner-2.jpg',
-              '/images/banners/banner-3.jpg',
-              '/images/banners/banner-4.jpg',
-            ]}
-          />
-        </div>
+        <Carousel
+          images={[
+            '/images/banners/banner-1.jpg',
+            '/images/banners/banner-2.jpg',
+            '/images/banners/banner-3.jpg',
+            '/images/banners/banner-4.jpg',
+          ]}
+        />
       </div>
     </section>
   );
