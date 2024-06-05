@@ -30,3 +30,7 @@
     @apply font-semibold;
   }
 }
+
+main {
+  padding: 0px 135px;
+}

@@ -1,12 +1,19 @@
-import { useTranslations } from 'next-intl';
+import Banner from '@/components/Banner';
+import { Locale } from '@/config';
+// import { useTranslations } from 'next-intl';
 import React from 'react';
 
-const Home = () => {
-  const t = useTranslations('Index');
+interface HomeProps {
+  params: { locale: Locale };
+}
+
+const Home: React.FC<HomeProps> = ({ params }) => {
+  const { locale } = params;
+  // const t = useTranslations('Index');
   return (
-    <div>
-      <h1>{t('title')}</h1>
-    </div>
+    <main>
+      <Banner locale={locale} />
+    </main>
   );
 };
 
