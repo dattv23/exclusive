@@ -32,13 +32,13 @@ const Carousel: React.FC<CarouselProps> = ({ images }) => {
       >
         <ArrowLeftIcon />
       </button>
-      <div className="flex-1">
+      <div className="h-[344px] flex-1">
         <Image
           src={images[currentImg]}
           width={892}
           height={344}
           alt={`banner-${currentImg}`}
-          className="w-full"
+          className="h-[344px] w-full"
         />
       </div>
       <button

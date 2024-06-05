@@ -1,15 +1,14 @@
+import { Carousel } from '@/components';
+import { Locale } from '@/config';
+import { NavItem } from '@/types';
 import Link from 'next/link';
 import React from 'react';
 
-import { Locale } from '@/config';
-import { NavItem } from '@/types';
-import Carousel from '../Carousel';
-
-interface BannerProps {
+interface BannerSectionProps {
   locale: Locale;
 }
 
-const Banner: React.FC<BannerProps> = ({ locale }) => {
+const BannerSection: React.FC<BannerSectionProps> = ({ locale }) => {
   const items: NavItem[] = [
     {
       id: 1,
@@ -83,4 +82,4 @@ const Banner: React.FC<BannerProps> = ({ locale }) => {
   );
 };
 
-export default Banner;
+export default BannerSection;

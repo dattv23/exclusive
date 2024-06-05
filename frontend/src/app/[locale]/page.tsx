@@ -1,5 +1,5 @@
-import Banner from '@/components/Banner';
 import { Locale } from '@/config';
+import HomePage from '@/containers/home-page';
 // import { useTranslations } from 'next-intl';
 import React from 'react';
 
@@ -9,12 +9,7 @@ interface HomeProps {
 
 const Home: React.FC<HomeProps> = ({ params }) => {
   const { locale } = params;
-  // const t = useTranslations('Index');
-  return (
-    <main>
-      <Banner locale={locale} />
-    </main>
-  );
+  return <HomePage locale={locale} />;
 };
 
 export default Home;
