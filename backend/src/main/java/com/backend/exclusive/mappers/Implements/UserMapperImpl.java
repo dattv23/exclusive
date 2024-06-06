@@ -15,7 +15,6 @@ public class UserMapperImpl implements UserMapper {
 
         User user = new User();
         user.setEmail(userDTO.getEmail());
-        user.setUsername(userDTO.getUsername());
         user.setPassword(userDTO.getPassword()); // Make sure to encode password appropriately
         user.setFirstName(userDTO.getFirstName());
         user.setLastName(userDTO.getLastName());
@@ -34,7 +33,6 @@ public class UserMapperImpl implements UserMapper {
 
         UserDTO userDTO = new UserDTO();
         userDTO.setEmail(user.getEmail());
-        userDTO.setUsername(user.getUsername());
         userDTO.setFirstName(user.getFirstName());
         userDTO.setLastName(user.getLastName());
         userDTO.setPhoneNumber(user.getPhoneNumber());
