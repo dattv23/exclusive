@@ -8,7 +8,7 @@ import {
   ReviewIcon,
   ShoppingBagIcon,
   UserIcon,
-} from '../Icons';
+} from '../../Icons';
 import { Locale } from '@/config';
 
 interface AccountDropdownProps {

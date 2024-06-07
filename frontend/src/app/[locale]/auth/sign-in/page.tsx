@@ -1,9 +1,10 @@
+import SignInPage from '@/containers/auth-page/signin-page';
 import React from 'react';
 
 interface SignInProps {}
 
 const SignIn: React.FC<SignInProps> = () => {
-  return <main>SignIn</main>;
+  return <SignInPage />;
 };
 
 export default SignIn;

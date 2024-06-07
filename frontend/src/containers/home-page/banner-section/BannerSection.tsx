@@ -1,8 +1,9 @@
-import { Carousel } from '@/components';
-import { Locale } from '@/config';
-import { NavItem } from '@/types';
 import Link from 'next/link';
 import React from 'react';
+
+import { Locale } from '@/config';
+import { NavItem } from '@/types';
+import { BannerCarousel } from '@/components/Carousel';
 
 interface BannerSectionProps {
   locale: Locale;
@@ -67,7 +68,7 @@ const BannerSection: React.FC<BannerSectionProps> = ({ locale }) => {
         ))}
       </div>
       <div className="flex-[0.8] border-l">
-        <Carousel
+        <BannerCarousel
           images={[
             '/images/banners/banner-1.jpg',
             '/images/banners/banner-2.jpg',

@@ -2,11 +2,11 @@
 
 import React, { useState } from 'react';
 
-import { ProductCard } from '@/components';
 import { Product } from '@/types';
-import CountDown from './components/CountDown';
 import { ArrowLeftIcon, ArrowRightIcon } from '@/components/Icons';
 import { cn } from '@/utils';
+import { ProductCard } from '@/components/Card';
+import { CountDown } from '@/components';
 
 interface FlashSalesSectionProps {
   data: Product[];
