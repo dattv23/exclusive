@@ -1,7 +1,8 @@
 import React from 'react';
-import TopHeader from '../TopHeader';
-import Navbar from '../Navbar';
+
+import Navbar from './Navbar';
 import { Locale } from '@/config';
+import TopHeader from './TopHeader';
 
 interface HeaderProps {
   locale: Locale;

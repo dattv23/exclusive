@@ -3,13 +3,13 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 
-import { ArrowLeftIcon, ArrowRightIcon } from '../Icons';
+import { ArrowLeftIcon, ArrowRightIcon } from '../../Icons';
 
-interface CarouselProps {
+interface BannerCarouselProps {
   images: string[];
 }
 
-const Carousel: React.FC<CarouselProps> = ({ images }) => {
+const BannerCarousel: React.FC<BannerCarouselProps> = ({ images }) => {
   const [currentImg, setCurrentImg] = useState(0);
 
   useEffect(() => {
@@ -53,4 +53,4 @@ const Carousel: React.FC<CarouselProps> = ({ images }) => {
   );
 };
 
-export default Carousel;
+export default BannerCarousel;

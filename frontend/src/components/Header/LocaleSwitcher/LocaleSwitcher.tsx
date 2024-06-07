@@ -1,5 +1,5 @@
 import React from 'react';
-import LocaleSwitcherSelect from '../LocaleSwitcherSelect';
+import LocaleSwitcherSelect from '../../Select/LocaleSwitcherSelect';
 import { useLocale, useTranslations } from 'next-intl';
 import { locales } from '@/config';
 

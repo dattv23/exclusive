@@ -30,7 +30,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
       <div className="relative flex items-center justify-center bg-[#f5f5f5] px-10 py-9">
         <Image src={data.image} width={172} height={152} alt="product-image" />
         {isHovered && (
-          <button className="absolute bottom-0 left-0 right-0 bg-black py-1 text-center text-white">
+          <button className="absolute bottom-0 left-0 right-0 bg-black py-2 text-center text-white hover:text-primary">
             Add To Cart
           </button>
         )}

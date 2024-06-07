@@ -2,10 +2,10 @@ import { Locale } from '@/config';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import Search from '../Search';
+import Search from '../../Search';
 import { useTranslations } from 'next-intl';
-import AccountDropdown from '../AccountDropdown';
-import { CartIcon, HeartSmallIcon, UserIcon } from '../Icons';
+import AccountDropdown from '../../Dropdown/AccountDropdown';
+import { CartIcon, HeartSmallIcon, UserIcon } from '../../Icons';
 import { NavItem } from '@/types';
 
 interface NavbarProps {

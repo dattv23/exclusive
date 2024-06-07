@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import { Footer, Header } from '@/components';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
 import { i18n, Locale } from '@/config';
 import '@/styles/globals.css';
+import { Footer, Header } from '@/components';
 
 const inter = Inter({ subsets: ['latin'] });
 
