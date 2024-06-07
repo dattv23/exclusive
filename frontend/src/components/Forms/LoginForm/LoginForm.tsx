@@ -2,7 +2,6 @@
 
 import React from 'react';
 import dynamic from 'next/dynamic';
-import { FormikValues } from 'formik';
 
 import { Login as TLogin } from '@/types';
 const Form = dynamic(() => import('../Form'), {
