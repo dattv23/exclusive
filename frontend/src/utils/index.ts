@@ -1,3 +1,4 @@
+import { Error } from '@/types';
 import clsx, { ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -40,4 +41,12 @@ export const replaceColor = (svgString: string, newColor: string) => {
 
 export const startScore = (rate: number) => {
   return '⭐⭐⭐⭐⭐⚝⚝⚝⚝⚝'.slice(5 - rate, 10 - rate);
+};
+
+// Helper function to create a timeout promise
+export const promiseTimeout = (ms: number) =>
+  new Promise((resolve) => setTimeout(resolve, ms));
+
+export const getError = (errors: Error[], field: string) => {
+  return errors.find((item) => item.key == field);
 };

@@ -1,47 +1,30 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { Input as TInput } from '@/types';
 import React from 'react';
 
-interface FormikInputProps extends TInput {
-  value: any;
-  onChange: (e: React.ChangeEvent<any>) => void;
-  onBlur: (e: React.FocusEvent<any>) => void;
-  error?: string;
-  touched?: boolean;
+import { cn } from '@/utils';
+
+export interface InputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
+  label?: string;
 }
 
-const Input: React.FC<FormikInputProps> = ({
-  name,
-  type,
-  label,
-  placeholder,
-  value,
-  onChange,
-  onBlur,
-  error,
-  touched,
-}) => {
-  return (
-    <div className="mb-4">
-      <label htmlFor={name}>{label}</label>
-      <input
-        placeholder={placeholder}
-        type={type}
-        id={name}
-        name={name}
-        value={value}
-        onChange={onChange}
-        onBlur={onBlur}
-        className={`w-full rounded-lg border px-3 py-2 ${
-          error && touched ? 'border-red-600' : 'border-gray-300'
-        }`}
-      />
-      {error && touched ? (
-        <div className="mt-1 text-red-600">{error}</div>
-      ) : null}
-    </div>
-  );
-};
+const Input = React.forwardRef<HTMLInputElement, InputProps>(
+  ({ className, type, label, ...props }, ref) => {
+    return (
+      <div className="flex flex-col gap-2">
+        <label htmlFor={props.name}>{label}</label>
+        <input
+          type={type}
+          className={cn(
+            'border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',
+            className,
+          )}
+          ref={ref}
+          {...props}
+        />
+      </div>
+    );
+  },
+);
 
+Input.displayName = 'Input';
 export default Input;

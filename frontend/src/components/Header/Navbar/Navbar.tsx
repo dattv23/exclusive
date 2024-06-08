@@ -19,33 +19,39 @@ const Navbar: React.FC<NavbarProps> = ({ locale }) => {
     {
       id: 0,
       name: t('Home'),
-      link: `${locale}/home`,
+      link: `/${locale}/home`,
     },
     {
       id: 1,
       name: t('Contact'),
-      link: `${locale}/contact`,
+      link: `/${locale}/contact`,
     },
     {
       id: 3,
       name: t('About'),
-      link: `${locale}/about`,
+      link: `/${locale}/about`,
     },
     {
       id: 4,
       name: t('Sign Up'),
-      link: `${locale}/auth/sign-up`,
+      link: `/${locale}/auth/sign-up`,
     },
     {
       id: 5,
       name: t('Sign In'),
-      link: `${locale}/auth/sign-in`,
+      link: `/${locale}/auth/sign-in`,
     },
   ];
   return (
     <nav className="flex h-16 items-center justify-between px-[136px] py-4">
       <Link href={'/'}>
-        <Image src={'/images/logo.png'} alt="logo" width={118} height={24} />
+        <Image
+          src={'/images/logo.png'}
+          alt="logo"
+          width={118}
+          height={24}
+          className="h-auto w-full"
+        />
       </Link>
       <div className="flex h-11 items-center gap-12">
         {items.map((item) => (
