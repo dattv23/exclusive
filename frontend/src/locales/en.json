@@ -20,5 +20,9 @@
   },
   "Button": {
     "Log In": "Log In"
+  },
+  "LoginForm": {
+    "Email": "Email",
+    "Password": "Password"
   }
 }

@@ -66,16 +66,18 @@ const Footer = () => {
             </div>
             <div className="flex flex-col gap-1">
               <Image
-                src={'/images/appstore.png'}
-                alt="Download with appstore"
                 width={104}
                 height={34}
+                src={'/images/appstore.png'}
+                alt="Download with appstore"
+                className="h-auto w-full"
               />
               <Image
                 src={'/images/chplay.png'}
                 alt="Download with chplay"
                 width={104}
                 height={34}
+                className="h-auto w-full"
               />
             </div>
           </div>

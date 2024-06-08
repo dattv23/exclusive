@@ -20,5 +20,9 @@
   },
   "Button": {
     "Log In": "Đăng nhập"
+  },
+  "LoginForm": {
+    "Email": "Email",
+    "Password": "Mật khẩu"
   }
 }

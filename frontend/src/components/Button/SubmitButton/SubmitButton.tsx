@@ -18,9 +18,7 @@ const SubmitButton = (props: SubmitButtonProps) => {
 
   return (
     <Button type="submit" disabled={pending}>
-      <p>
-        {t(value)} {pending && <Spin />}
-      </p>
+      {!pending ? <p>{t(value)}</p> : <Spin />}
     </Button>
   );
 };

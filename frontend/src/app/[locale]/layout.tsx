@@ -7,6 +7,7 @@ import { Inter } from 'next/font/google';
 import { i18n, Locale } from '@/config';
 import { Footer, Header } from '@/components';
 import '@/styles/globals.css';
+import { Toaster } from 'react-hot-toast';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -37,6 +38,7 @@ export default async function RootLayout({
             <Footer />
           </NextIntlClientProvider>
         </AntdRegistry>
+        <Toaster position="top-right" />
       </body>
     </html>
   );

@@ -4,7 +4,7 @@ import { usePathname, useRouter } from '@/libs/navigation';
 import { cn } from '@/utils';
 import { useParams } from 'next/navigation';
 import React, { ChangeEvent, ReactNode, useTransition } from 'react';
-import Image from 'next/image';
+import { DropdownIcon } from '@/components/Icons';
 
 type Props = {
   children: ReactNode;
@@ -46,13 +46,7 @@ const LocaleSwitcherSelect: React.FC<Props> = ({
       >
         {children}
       </select>
-      <Image
-        src={`/icons/drop-down.svg`}
-        alt="icon-drop-down"
-        width={24}
-        height={24}
-        className="absolute right-2 pl-1"
-      />
+      <DropdownIcon width={24} height={24} className="absolute right-2 pl-1" />
     </label>
   );
 };
