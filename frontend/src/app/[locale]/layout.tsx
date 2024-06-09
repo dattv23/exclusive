@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
+import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
 import { Inter } from 'next/font/google';
 
 import { i18n, Locale } from '@/config';
@@ -27,6 +27,7 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { locale: Locale };
 }>) {
+  unstable_setRequestLocale(locale);
   const messages = await getMessages();
   return (
     <html lang={locale}>
