@@ -2,6 +2,7 @@ package com.backend.exclusive.controllers;
 
 import com.backend.exclusive.models.User;
 import com.backend.exclusive.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,8 +15,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/users")
 public class UserController {
+    @Autowired
     private final UserService userService;
 
+    @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
     }

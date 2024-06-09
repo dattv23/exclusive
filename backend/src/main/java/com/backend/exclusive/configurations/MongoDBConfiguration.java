@@ -1,4 +1,4 @@
-package com.backend.exclusive.config;
+package com.backend.exclusive.configurations;
 
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;

@@ -1,4 +1,4 @@
-package com.backend.exclusive.dtos;
+package com.backend.exclusive.security.dtos;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,12 +11,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @ToString
 @NoArgsConstructor
 @Document
-public class RegisterUserDto {
-    private String email;
+public class LoginResponse {
+    private String token;
 
-    private String password;
-
-    private String firstName;
-
-    private String lastName;
+    private long expiresIn;
 }
