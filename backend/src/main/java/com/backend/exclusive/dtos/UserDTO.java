@@ -3,7 +3,10 @@ package com.backend.exclusive.dtos;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
@@ -14,28 +17,26 @@ import java.util.Date;
 @NoArgsConstructor
 @Document
 public class UserDTO {
-    @NotBlank(message = "{email_not_blank}")
-    @Email(message = "{email_is_not_valid}")
+    @NotBlank(message = "Email is mandatory")
+    @Email(message = "Email should be valid")
     private String email;
 
-    @NotBlank(message = "{username_not_blank}")
+    @NotBlank(message = "Username is mandatory")
     private String username;
 
-    @NotBlank(message = "{password_not_blank}")
+    @NotBlank(message = "Password is mandatory")
     private String password;
 
-    @NotBlank(message = "{first_name_not_blank}")
+    @NotBlank(message = "First name is mandatory")
     private String firstName;
 
-    @NotBlank(message = "{last_name_not_blank}")
+    @NotBlank(message = "Last name is mandatory")
     private String lastName;
 
-    @Pattern(regexp = "^\\d{10}$", message = "{phone_number_invalid}")
+    @Pattern(regexp = "^\\d{10}$", message = "Phone number should be valid")
     private String phoneNumber;
 
     private String address;
-
     private boolean isDeleted = false;
-
     private Date createdAt = new Date();
 }
