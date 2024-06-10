@@ -31,6 +31,9 @@ export default async function RootLayout({
   const messages = await getMessages();
   return (
     <html lang={locale}>
+      <head>
+        <link rel="icon" href="/favicon.ico" />
+      </head>
       <body className={inter.className} suppressHydrationWarning={true}>
         <AntdRegistry>
           <NextIntlClientProvider messages={messages}>
