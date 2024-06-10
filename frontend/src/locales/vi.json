@@ -23,6 +23,11 @@
   },
   "LoginForm": {
     "Email": "Email",
-    "Password": "Mật khẩu"
+    "Password": "Mật khẩu",
+    "Forgot Password?": "Quên mật khẩu?"
+  },
+  "SignInPage": {
+    "Log in to Exclusive": "Đăng nhập tới Exclusive",
+    "Enter your details below": "Nhập thông tin chi tiết của bạn dưới đây"
   }
 }

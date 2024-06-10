@@ -1,9 +1,13 @@
-import SignInPage from '@/containers/auth-page/signin-page';
+import dynamic from 'next/dynamic';
 import React from 'react';
 
-interface SignInProps {}
+import LoadingPage from '@/containers/loading-page';
 
-const SignIn: React.FC<SignInProps> = () => {
+const SignInPage = dynamic(() => import('@/containers/auth-page/signin-page'), {
+  loading: () => <LoadingPage />,
+});
+
+const SignIn: React.FC = () => {
   return <SignInPage />;
 };
 

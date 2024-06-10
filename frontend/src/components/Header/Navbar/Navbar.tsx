@@ -1,45 +1,41 @@
-import { Locale } from '@/config';
 import Image from 'next/image';
-import Link from 'next/link';
 import React from 'react';
-import Search from '../../Search';
 import { useTranslations } from 'next-intl';
-import AccountDropdown from '../../Dropdown/AccountDropdown';
-import { CartIcon, HeartSmallIcon, UserIcon } from '../../Icons';
+
+import { CartIcon, HeartSmallIcon, UserIcon } from '@/components/Icons';
+import { SearchInput } from '@/components/Forms/Inputs';
+import { AccountDropdown } from '@/components/Dropdown';
+import { Link } from '@/navigation';
 import { NavItem } from '@/types';
 
-interface NavbarProps {
-  locale: Locale;
-}
-
-const Navbar: React.FC<NavbarProps> = ({ locale }) => {
+const Navbar: React.FC = () => {
   const t = useTranslations('Navbar');
 
   const items: NavItem[] = [
     {
       id: 0,
       name: t('Home'),
-      link: `/${locale}/home`,
+      link: `/`,
     },
     {
       id: 1,
       name: t('Contact'),
-      link: `/${locale}/contact`,
+      link: `/contact`,
     },
     {
       id: 3,
       name: t('About'),
-      link: `/${locale}/about`,
+      link: `/about`,
     },
     {
       id: 4,
       name: t('Sign Up'),
-      link: `/${locale}/auth/sign-up`,
+      link: `/auth/sign-up`,
     },
     {
       id: 5,
       name: t('Sign In'),
-      link: `/${locale}/auth/sign-in`,
+      link: `/auth/sign-in`,
     },
   ];
   return (
@@ -64,12 +60,12 @@ const Navbar: React.FC<NavbarProps> = ({ locale }) => {
           </Link>
         ))}
       </div>
-      <Search />
+      <SearchInput />
       <div className="flex items-center">
-        <Link href={`${locale}/wishlist`} className="px-4 py-2">
+        <Link href={`/wishlist`} className="px-4 py-2">
           <HeartSmallIcon />
         </Link>
-        <Link href={`${locale}/cart`} className="px-4 py-2">
+        <Link href={`/cart`} className="px-4 py-2">
           <CartIcon />
         </Link>
         <div className="relative inline-flex text-left">
@@ -80,7 +76,7 @@ const Navbar: React.FC<NavbarProps> = ({ locale }) => {
             >
               <UserIcon />
             </button>
-            <AccountDropdown locale={locale} />
+            <AccountDropdown />
           </div>
         </div>
       </div>

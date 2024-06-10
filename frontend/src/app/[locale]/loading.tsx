@@ -1,8 +1,7 @@
-import { Spin } from 'antd';
-import React from 'react';
+import LoadingPage from '@/containers/loading-page';
 
-const Loading = () => {
-  return <Spin size="large" />;
-};
+function loading() {
+  return <LoadingPage />;
+}
 
-export default Loading;
+export default loading;

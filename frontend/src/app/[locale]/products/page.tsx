@@ -1,10 +1,10 @@
-import ProductsPage from '@/containers/products-page';
+import dynamic from 'next/dynamic';
 import React from 'react';
 
-interface ProductsProps {}
+const ProductListPage = dynamic(() => import('@/containers/product-list-page'));
 
-const Products: React.FC<ProductsProps> = () => {
-  return <ProductsPage />;
+const ProductList: React.FC = () => {
+  return <ProductListPage />;
 };
 
-export default Products;
+export default ProductList;

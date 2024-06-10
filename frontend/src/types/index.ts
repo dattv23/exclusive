@@ -4,3 +4,4 @@ export * from './product.type';
 export * from './input.type';
 export * from './login.type';
 export * from './error.type';
+export * from './dropdownItem';

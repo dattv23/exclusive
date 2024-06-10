@@ -1,9 +1,14 @@
+import dynamic from 'next/dynamic';
 import React from 'react';
 
-interface SignUpProps {}
+import LoadingPage from '@/containers/loading-page';
 
-const SignUp: React.FC<SignUpProps> = () => {
-  return <main>SignUp</main>;
+const SignUpPage = dynamic(() => import('@/containers/auth-page/signup-page'), {
+  loading: () => <LoadingPage />,
+});
+
+const SignUp: React.FC = () => {
+  return <SignUpPage />;
 };
 
 export default SignUp;

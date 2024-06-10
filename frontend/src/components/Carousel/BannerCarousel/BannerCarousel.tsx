@@ -38,7 +38,8 @@ const BannerCarousel: React.FC<BannerCarouselProps> = ({ images }) => {
           width={892}
           height={344}
           alt={`banner-${currentImg}`}
-          className="h-[344px] w-full"
+          className="h-auto w-full"
+          priority
         />
       </div>
       <button

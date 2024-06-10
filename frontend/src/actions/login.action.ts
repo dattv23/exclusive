@@ -1,8 +1,9 @@
 'use server';
 
+import { redirect } from 'next/navigation';
+
 import { LoginSchema } from '@/types';
 import { promiseTimeout } from '@/utils';
-import { revalidatePath } from 'next/cache';
 
 export const loginAction = async (data: unknown) => {
   // server-side validation
@@ -17,9 +18,8 @@ export const loginAction = async (data: unknown) => {
       error: errorMessage,
     };
   }
+
   await promiseTimeout(3000);
-  console.log('====================================');
-  console.log(data);
-  console.log('====================================');
-  revalidatePath('/auth/sign-in');
+
+  redirect('/');
 };

@@ -1,9 +1,9 @@
-import CartPage from '@/containers/cart-page';
+import dynamic from 'next/dynamic';
 import React from 'react';
 
-interface CartProps {}
+const CartPage = dynamic(() => import('@/containers/cart-page'));
 
-const Cart: React.FC<CartProps> = () => {
+const Cart: React.FC = () => {
   return <CartPage />;
 };
 

@@ -1,5 +1,4 @@
 import { useTranslations } from 'next-intl';
-import Link from 'next/link';
 import React from 'react';
 
 import {
@@ -8,45 +7,36 @@ import {
   ReviewIcon,
   ShoppingBagIcon,
   UserIcon,
-} from '../../Icons';
-import { Locale } from '@/config';
+} from '@/components/Icons';
 
-interface AccountDropdownProps {
-  locale: Locale;
-}
+import { Link } from '@/navigation';
+import { DropdownItem } from '@/types';
 
-type DropdownItem = {
-  id: number;
-  href: string;
-  icon: React.ReactNode;
-  name: string;
-};
-
-const AccountDropdown: React.FC<AccountDropdownProps> = ({ locale }) => {
+const AccountDropdown: React.FC = () => {
   const t = useTranslations('Navbar');
 
   const items: DropdownItem[] = [
     {
       id: 1,
-      href: `${locale}/account`,
+      href: `/account`,
       icon: <UserIcon />,
       name: t('Manage My Account'),
     },
     {
       id: 2,
-      href: `${locale}/orders`,
+      href: `/orders`,
       icon: <ShoppingBagIcon />,
       name: t('My Order'),
     },
     {
       id: 3,
-      href: `${locale}/cancels`,
+      href: `/cancels`,
       icon: <CancelIcon />,
       name: t('My Cancellations'),
     },
     {
       id: 4,
-      href: `${locale}/reviews`,
+      href: `/reviews`,
       icon: <ReviewIcon />,
       name: t('My Reviews'),
     },

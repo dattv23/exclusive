@@ -1,14 +1,14 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Alert } from 'antd';
+import { useTranslations } from 'next-intl';
 
 import { Error } from '@/types';
 import Input from '../Inputs/Input';
 import { SubmitButton } from '@/components/Button';
 import { cn, getError } from '@/utils';
 import { loginFormAction } from './action';
-import { useTranslations } from 'next-intl';
+import { Link } from '@/navigation';
 
 const LoginForm = () => {
   const t = useTranslations('LoginForm');
@@ -23,10 +23,7 @@ const LoginForm = () => {
       action={(formData) =>
         loginFormAction({ formData, onChangeErrors: setErrors })
       }
-      className={cn(
-        'my-10 flex w-full flex-col gap-4 md:w-1/2',
-        errors && 'gap-2',
-      )}
+      className={cn('mb-10 flex w-full flex-col gap-4', errors && 'gap-2')}
     >
       <Input
         type="text"
@@ -34,29 +31,25 @@ const LoginForm = () => {
         id="email"
         label={t('Email')}
         onChange={(e) => handleChangeInput(e)}
+        error={getError(errors, 'email')}
       />
-      {getError(errors, 'email') && (
-        <Alert
-          type="error"
-          message={getError(errors, 'email')?.message}
-          showIcon
-        />
-      )}
       <Input
         type="password"
         name="password"
         id="password"
         label={t('Password')}
         onChange={(e) => handleChangeInput(e)}
+        error={getError(errors, 'password')}
       />
-      {getError(errors, 'password') && (
-        <Alert
-          type="error"
-          message={getError(errors, 'password')?.message}
-          showIcon
-        />
-      )}
-      <SubmitButton value="Log In" />
+      <div className="mt-4 flex items-center justify-between">
+        <SubmitButton value="Log In" />
+        <Link
+          href={'/auth/forgot-password'}
+          className="text-error hover:opacity-80"
+        >
+          {t('Forgot Password?')}
+        </Link>
+      </div>
     </form>
   );
 };

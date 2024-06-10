@@ -1,4 +1,4 @@
-import { QRCode } from 'antd';
+// import { QRCode } from 'antd';
 import Image from 'next/image';
 import React from 'react';
 import {
@@ -62,7 +62,7 @@ const Footer = () => {
           <p>Save $3 with App New User Only</p>
           <div className="mt-2 flex gap-2">
             <div className="h-40 w-40 bg-white">
-              <QRCode value="https://www.google.com/" />
+              {/* <QRCode value="https://www.google.com/" /> */}
             </div>
             <div className="flex flex-col gap-1">
               <Image

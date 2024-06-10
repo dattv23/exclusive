@@ -1,60 +1,60 @@
-import Link from 'next/link';
 import React from 'react';
 
-import { Locale } from '@/config';
 import { NavItem } from '@/types';
-import { BannerCarousel } from '@/components/Carousel';
+import { Link } from '@/navigation';
+import dynamic from 'next/dynamic';
 
-interface BannerSectionProps {
-  locale: Locale;
-}
+const BannerCarousel = dynamic(
+  () => import('@/components/Carousel/BannerCarousel'),
+  { ssr: false },
+);
 
-const BannerSection: React.FC<BannerSectionProps> = ({ locale }) => {
+const BannerSection: React.FC = () => {
   const items: NavItem[] = [
     {
       id: 1,
       name: 'Woman’s Fashion',
-      link: `/${locale}/category/1`,
+      link: `/category/1`,
     },
     {
       id: 2,
       name: 'Men’s Fashion',
-      link: `/${locale}/category/2`,
+      link: `/category/2`,
     },
     {
       id: 3,
       name: 'Electronics',
-      link: `/${locale}/category/3`,
+      link: `/category/3`,
     },
     {
       id: 4,
       name: 'Home & Lifestyle',
-      link: `/${locale}/category/4`,
+      link: `/category/4`,
     },
     {
       id: 5,
       name: 'Medicine',
-      link: `/${locale}/category/5`,
+      link: `/category/5`,
     },
     {
       id: 6,
       name: 'Sports & Outdoor',
-      link: `/${locale}/category/6`,
+      link: `/category/6`,
     },
     {
       id: 7,
       name: 'Baby’s & Toys',
-      link: `/${locale}/category/7`,
+      link: `/category/7`,
     },
     {
       id: 8,
       name: 'Groceries & Pets',
-      link: `/${locale}/category/8`,
+      link: `/category/8`,
     },
     {
       id: 9,
       name: 'Health & Beauty',
-      link: `/${locale}/category/9`,
+      link: `/category/9`,
     },
   ];
 

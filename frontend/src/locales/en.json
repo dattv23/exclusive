@@ -23,6 +23,11 @@
   },
   "LoginForm": {
     "Email": "Email",
-    "Password": "Password"
+    "Password": "Password",
+    "Forgot Password?": "Forgot Password?"
+  },
+  "SignInPage": {
+    "Log in to Exclusive": "Log in to Exclusive",
+    "Enter your details below": "Enter your details below"
   }
 }

@@ -1,7 +1,13 @@
 import React from 'react';
-import LocaleSwitcherSelect from '../../Select/LocaleSwitcherSelect';
 import { useLocale, useTranslations } from 'next-intl';
+
 import { locales } from '@/config';
+import dynamic from 'next/dynamic';
+
+const LocaleSwitcherSelect = dynamic(
+  () => import('@/components/Select/LocaleSwitcherSelect'),
+  { ssr: false },
+);
 
 const LocaleSwitcher = () => {
   const t = useTranslations('LocaleSwitcher');

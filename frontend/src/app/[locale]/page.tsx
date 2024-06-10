@@ -1,14 +1,10 @@
-import { Locale } from '@/config';
-import HomePage from '@/containers/home-page';
+import dynamic from 'next/dynamic';
 import React from 'react';
 
-interface HomeProps {
-  params: { locale: Locale };
-}
+const HomePage = dynamic(async () => await import('@/containers/home-page'));
 
-const Home: React.FC<HomeProps> = ({ params }) => {
-  const { locale } = params;
-  return <HomePage locale={locale} />;
+const Home: React.FC = () => {
+  return <HomePage />;
 };
 
 export default Home;

@@ -1,9 +1,9 @@
-import AboutPage from '@/containers/about-page';
+import dynamic from 'next/dynamic';
 import React from 'react';
 
-interface AboutProps {}
+const AboutPage = dynamic(() => import('@/containers/about-page'));
 
-const About: React.FC<AboutProps> = () => {
+const About: React.FC = () => {
   return <AboutPage />;
 };
 

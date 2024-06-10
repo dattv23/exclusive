@@ -3,7 +3,6 @@
 import { useTranslations } from 'next-intl';
 import React from 'react';
 import { useFormStatus } from 'react-dom';
-import { Spin } from 'antd';
 
 import Button from '../Button';
 
@@ -18,7 +17,9 @@ const SubmitButton = (props: SubmitButtonProps) => {
 
   return (
     <Button type="submit" disabled={pending}>
-      {!pending ? <p>{t(value)}</p> : <Spin />}
+      <p>
+        {t(value)} {pending && '...'}
+      </p>
     </Button>
   );
 };

@@ -1,9 +1,9 @@
-import ContactPage from '@/containers/contact-page';
+import dynamic from 'next/dynamic';
 import React from 'react';
 
-interface ContactProps {}
+const ContactPage = dynamic(() => import('@/containers/contact-page'));
 
-const Contact: React.FC<ContactProps> = () => {
+const Contact: React.FC = () => {
   return <ContactPage />;
 };
 

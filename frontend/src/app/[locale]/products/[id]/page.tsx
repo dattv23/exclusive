@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 
-interface DetailPageProps {
+type ProductDetailPageProps = {
   params: { id: string };
-}
+};
 
-const DetailPage: FC<DetailPageProps> = ({ params }) => {
+const ProductDetailPage: FC<ProductDetailPageProps> = ({ params }) => {
   return (
     <main>
       <h1 className="text-4xl font-bold text-black">{`Detail id:${params.id}`}</h1>
@@ -12,4 +12,4 @@ const DetailPage: FC<DetailPageProps> = ({ params }) => {
   );
 };
 
-export default DetailPage;
+export default ProductDetailPage;

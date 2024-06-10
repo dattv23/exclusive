@@ -1,19 +1,26 @@
+import dynamic from 'next/dynamic';
 import React from 'react';
 import { promises as fs } from 'fs';
 
-import { Locale } from '@/config';
-import BannerSection from './banner-section';
-import FlashSalesSection from './flash-sales-section';
-import CategoriesSection from './categories-section';
-import BestSellerSection from './best-seller-section/BestSellerSection';
-import AdsSection from './ads-section';
-import NewArrivalSection from './new-arrival-section';
+const BannerSection = dynamic(
+  () => import('@/containers/home-page/banner-section'),
+);
+const FlashSalesSection = dynamic(
+  () => import('@/containers/home-page/flash-sales-section'),
+  { ssr: false },
+);
+const CategoriesSection = dynamic(
+  () => import('@/containers/home-page/categories-section'),
+);
+const BestSellerSection = dynamic(
+  () => import('@/containers/home-page/best-seller-section'),
+);
+const AdsSection = dynamic(() => import('@/containers/home-page/ads-section'));
+const NewArrivalSection = dynamic(
+  () => import('@/containers/home-page/new-arrival-section'),
+);
 
-interface HomePageProps {
-  locale: Locale;
-}
-
-const HomePage: React.FC<HomePageProps> = async ({ locale }) => {
+const HomePage: React.FC = async () => {
   const file = await fs.readFile(
     process.cwd() + '/src/mocks/products.json',
     'utf8',
@@ -22,7 +29,7 @@ const HomePage: React.FC<HomePageProps> = async ({ locale }) => {
 
   return (
     <main>
-      <BannerSection locale={locale} />
+      <BannerSection />
       <FlashSalesSection data={products.data} />
       <CategoriesSection />
       <BestSellerSection />

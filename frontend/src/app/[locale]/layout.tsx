@@ -3,11 +3,11 @@ import { AntdRegistry } from '@ant-design/nextjs-registry';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
 import { Inter } from 'next/font/google';
+import { Toaster } from 'react-hot-toast';
 
 import { i18n, Locale } from '@/config';
-import { Footer, Header } from '@/components';
-import '@/styles/globals.css';
-import { Toaster } from 'react-hot-toast';
+import { Container, Footer, Header } from '@/components';
+import '@/styles/globals.scss';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -32,14 +32,14 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body className={inter.className} suppressHydrationWarning={true}>
+        <Header />
         <AntdRegistry>
           <NextIntlClientProvider messages={messages}>
-            <Header locale={locale} />
-            {children}
-            <Footer />
+            <Container>{children}</Container>
           </NextIntlClientProvider>
         </AntdRegistry>
         <Toaster position="top-right" />
+        <Footer />
       </body>
     </html>
   );

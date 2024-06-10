@@ -1,9 +1,9 @@
-import CheckoutPage from '@/containers/checkout-page';
+import dynamic from 'next/dynamic';
 import React from 'react';
 
-interface CheckoutProps {}
+const CheckoutPage = dynamic(() => import('@/containers/checkout-page'));
 
-const Checkout: React.FC<CheckoutProps> = () => {
+const Checkout: React.FC = () => {
   return <CheckoutPage />;
 };
 

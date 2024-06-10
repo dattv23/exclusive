@@ -1,14 +1,16 @@
+'use client';
+
 import toast from 'react-hot-toast';
 
 import { loginAction } from '@/actions';
 import { Error, LoginSchema } from '@/types';
 
-type Parameters = {
+type TParams = {
   formData: FormData;
   onChangeErrors: React.Dispatch<React.SetStateAction<Error[]>>;
 };
 
-export const loginFormAction = async (params: Parameters) => {
+export const loginFormAction = async (params: TParams) => {
   const { formData, onChangeErrors } = params;
 
   const data = {

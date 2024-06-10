@@ -1,9 +1,9 @@
-import AccountPage from '@/containers/account-page';
+import dynamic from 'next/dynamic';
 import React from 'react';
 
-interface AccountProps {}
+const AccountPage = dynamic(() => import('@/containers/account-page'));
 
-const Account: React.FC<AccountProps> = () => {
+const Account: React.FC = () => {
   return <AccountPage />;
 };
 

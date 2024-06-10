@@ -1,3 +1,5 @@
+@use 'config';
+
 @import 'normalize.css';
 
 @tailwind base;
@@ -29,8 +31,4 @@
     @apply text-sm;
     @apply font-semibold;
   }
-}
-
-main {
-  padding: 0px 135px;
 }

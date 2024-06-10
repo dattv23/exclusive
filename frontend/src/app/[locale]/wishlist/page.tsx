@@ -1,9 +1,9 @@
-import WishlistPage from '@/containers/wishlist-page';
+import dynamic from 'next/dynamic';
 import React from 'react';
 
-interface WishlistProps {}
+const WishlistPage = dynamic(() => import('@/containers/wishlist-page'));
 
-const Wishlist: React.FC<WishlistProps> = () => {
+const Wishlist: React.FC = () => {
   return <WishlistPage />;
 };
 
