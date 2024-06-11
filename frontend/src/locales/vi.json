@@ -19,7 +19,8 @@
     "Logout": "Đăng xuất"
   },
   "Button": {
-    "Log In": "Đăng nhập"
+    "Log In": "Đăng nhập",
+    "Create account": "Đăng kí tài khoản"
   },
   "LoginForm": {
     "Email": "Email",
@@ -28,6 +29,16 @@
   },
   "SignInPage": {
     "Log in to Exclusive": "Đăng nhập tới Exclusive",
+    "Enter your details below": "Nhập thông tin chi tiết của bạn dưới đây"
+  },
+  "RegisterForm": {
+    "Name": "Họ và tên",
+    "Email": "Email",
+    "Password": "Mật khẩu",
+    "Log in": "Đăng nhập"
+  },
+  "SignUpPage": {
+    "Create an account": "Tạo tài khoản",
     "Enter your details below": "Nhập thông tin chi tiết của bạn dưới đây"
   }
 }

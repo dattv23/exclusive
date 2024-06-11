@@ -19,15 +19,26 @@
     "Logout": "Logout"
   },
   "Button": {
-    "Log In": "Log In"
+    "Log In": "Log In",
+    "Create account": "Create account"
   },
   "LoginForm": {
     "Email": "Email",
     "Password": "Password",
     "Forgot Password?": "Forgot Password?"
   },
+  "RegisterForm": {
+    "Name": "Name",
+    "Email": "Email",
+    "Password": "Password",
+    "Log in": "Log in"
+  },
   "SignInPage": {
     "Log in to Exclusive": "Log in to Exclusive",
+    "Enter your details below": "Enter your details below"
+  },
+  "SignUpPage": {
+    "Create an account": "Create an Account",
     "Enter your details below": "Enter your details below"
   }
 }
