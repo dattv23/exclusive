@@ -2,7 +2,7 @@ import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import React from 'react';
 
-import {  RegisterForm } from '@/components/Forms';
+import { RegisterForm } from '@/components/Forms';
 
 interface SignUpPageProps {}
 

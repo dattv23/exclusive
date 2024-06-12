@@ -52,12 +52,9 @@ const RegisterForm = () => {
       <div className="mb-10 flex w-full flex-col gap-4">
         <SubmitButton value="Create account" />
       </div>
-      <div className="mt-5 flex items-right  justify-center">
-      <text>Already have account?</text>
-      <Link
-          href={'/auth/sign-in'}
-          className="text-error hover:opacity-80"
-        >
+      <div className=" mt-5 flex  justify-center">
+        <text>Already have account?</text>
+        <Link href={'/auth/sign-in'} className="text-error hover:opacity-80">
           {t('Log in')}
         </Link>
       </div>
