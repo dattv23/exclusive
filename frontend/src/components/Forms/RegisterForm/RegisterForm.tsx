@@ -15,7 +15,7 @@ const RegisterForm = () => {
   const [errors, setErrors] = useState<Error[]>([]);
 
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setErrors(errors.filter((error) => error.key != e.target.name));
+    setErrors(errors.filter((error) => error.key !== e.target.name));
   };
 
   return (
@@ -27,11 +27,19 @@ const RegisterForm = () => {
     >
       <Input
         type="text"
-        name="name"
-        id="name"
-        label={t('Name')}
+        name="firstName"
+        id="firstName"
+        label={t('FirstName')}
         onChange={(e) => handleChangeInput(e)}
-        error={getError(errors, 'name')}
+        error={getError(errors, 'firstName')}
+      />
+      <Input
+        type="text"
+        name="lastName"
+        id="lastName"
+        label={t('LastName')}
+        onChange={(e) => handleChangeInput(e)}
+        error={getError(errors, 'lastName')}
       />
       <Input
         type="text"
@@ -52,8 +60,8 @@ const RegisterForm = () => {
       <div className="mb-10 flex w-full flex-col gap-4">
         <SubmitButton value="Create account" />
       </div>
-      <div className=" mt-5 flex  justify-center">
-        <text>Already have account?</text>
+      <div className="flex justify-center">
+        <p className="mr-5">Already have an account?</p>
         <Link href={'/auth/sign-in'} className="text-error hover:opacity-80">
           {t('Log in')}
         </Link>

@@ -28,10 +28,12 @@
     "Forgot Password?": "Forgot Password?"
   },
   "RegisterForm": {
-    "Name": "Name",
+    "FirstName": "FirstName",
+    "LastName": "LastName",
     "Email": "Email",
     "Password": "Password",
-    "Log in": "Log in"
+    "Log in": "Log in",
+    "Already have an account?": "Already have an account?"
   },
   "SignInPage": {
     "Log in to Exclusive": "Log in to Exclusive",
@@ -40,5 +42,15 @@
   "SignUpPage": {
     "Create an account": "Create an Account",
     "Enter your details below": "Enter your details below"
+  },
+  "Errors": {
+    "Last name is required": "Last name is required",
+    "First name is required": "First name is required",
+    "First name must be 5 or more characters long": "First name must be 5 or more characters long",
+    "Last name must be 2 or more characters long": "Last name must be 2 or more characters long",
+    "Email is required":"Email is required",
+    "Invalid email": "Invalid email",
+    "Password is required": "Password is required",
+    "Password must be at least 8 characters long": "Password must be at least 8 characters long"
   }
 }

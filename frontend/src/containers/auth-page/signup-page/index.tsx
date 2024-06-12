@@ -15,10 +15,10 @@ const SignUpPage: React.FC<SignUpPageProps> = () => {
           src={'/images/shopping.jpg'}
           alt="shopping"
           width={919}
-          height={100}
+          height={756}
         />
       </div>
-      <div className="flex flex-1 flex-col gap-4 py-2 lg:flex-[0.4] lg:py-20">
+      <div className="flex flex-1 flex-col gap-4 py-2  lg:flex-[0.4] lg:py-20">
         <h3>{t('Create an account')}</h3>
         <p>{t('Enter your details below')}</p>
         <RegisterForm />

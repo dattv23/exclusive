@@ -3,6 +3,7 @@ import { Alert } from 'antd';
 
 import { cn } from '@/utils';
 import { Error } from '@/types';
+import { useTranslations } from 'next-intl';
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -12,6 +13,7 @@ export interface InputProps
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, label, error, ...props }, ref) => {
+    const t = useTranslations('Errors');
     return (
       <>
         <div className="flex flex-col gap-2">
@@ -26,7 +28,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             {...props}
           />
         </div>
-        {error && <Alert type="error" message={error.message} showIcon />}
+        {error && <Alert type="error" message={t(error.message)} showIcon />}
       </>
     );
   },
