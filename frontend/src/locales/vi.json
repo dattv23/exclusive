@@ -19,7 +19,8 @@
     "Logout": "Đăng xuất"
   },
   "Button": {
-    "Log In": "Đăng nhập"
+    "Log In": "Đăng nhập",
+    "Create account": "Đăng kí tài khoản"
   },
   "LoginForm": {
     "Email": "Email",
@@ -29,5 +30,27 @@
   "SignInPage": {
     "Log in to Exclusive": "Đăng nhập tới Exclusive",
     "Enter your details below": "Nhập thông tin chi tiết của bạn dưới đây"
+  },
+  "RegisterForm": {
+    "FirstName": "Họ và tên lót",
+    "LastName": "Tên",
+    "Email": "Email",
+    "Password": "Mật khẩu",
+    "Log in": "Đăng nhập",
+    "Already have an account?": "Đã có tài khoản?"
+  },
+  "SignUpPage": {
+    "Create an account": "Tạo tài khoản",
+    "Enter your details below": "Nhập thông tin chi tiết của bạn dưới đây"
+  },
+  "Errors": {
+    "Last name is required": "Tên không hợp lệ",
+    "First name is required": "Họ không hợp lê",
+    "First name must be 5 or more characters long": "Họ phải có nhiều hơn 5 kí tự",
+    "Last name must be 5 or more characters long": "Tên phải có nhiều hơn 5 ksi tự",
+    "Invalid email": "Email không hợp lệ",
+    "Email is required":"NHập Email",
+    "Password is required": "Nhập mật khẩu",
+    "Password must be at least 8 characters long": "Mật khẩu phải nhiều hơn 8 kí tự"
   }
 }
