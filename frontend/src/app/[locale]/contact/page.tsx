@@ -1,9 +1,22 @@
 import dynamic from 'next/dynamic';
 import React from 'react';
 
-const ContactPage = dynamic(() => import('@/containers/contact-page'));
+import LoadingPage from '@/containers/loading-page';
+import { Locale } from '@/config';
+import { unstable_setRequestLocale } from 'next-intl/server';
 
-const Contact: React.FC = () => {
+const ContactPage = dynamic(() => import('@/containers/contact-page'), {
+  loading: () => <LoadingPage />,
+});
+
+type ContactPageProps = {
+  params: {
+    locale: Locale;
+  };
+};
+
+const Contact: React.FC<ContactPageProps> = ({ params }) => {
+  unstable_setRequestLocale(params.locale);
   return <ContactPage />;
 };
 

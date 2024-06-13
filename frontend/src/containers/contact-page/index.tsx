@@ -34,7 +34,6 @@ const ContactPage: React.FC<ContactPageProps> = () => {
             </div>
           </div>
         </div>
-
         <div className="w-full rounded-lg border p-6 shadow-md md:w-1/2">
           <form>
             <div className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-3">
