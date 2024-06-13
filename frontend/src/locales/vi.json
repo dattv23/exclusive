@@ -52,5 +52,17 @@
     "Email is required":"NHập Email",
     "Password is required": "Nhập mật khẩu",
     "Password must be at least 8 characters long": "Mật khẩu phải nhiều hơn 8 kí tự"
+  },
+  "ContactPage":{
+    "Call To Us": "Liên hệ với chúng tôi",
+    "We are available 24/7, 7 days a week": "Chúng tôi luôn sẵn sàng 24/7, 7 ngày một tuần",
+    "Phone: +8801611112222": "SĐT: +8801611112222",
+    "Write To Us": "Viết thư cho chúng tôi",
+    "Fill out our form and we will contact you within 24 hours": "Chúng tôi sẽ liên hệ với bạn trong vòng 24 giờ",
+    "Your Name": "Tên của bạn",
+    "Your Email": "Email",
+    "Your Phone": "Số điện thoại",
+    "Your Message": "Thông báo",
+    "Send Message": "Gửi thông báo"
   }
 }
