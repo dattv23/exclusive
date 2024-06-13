@@ -1,7 +1,8 @@
-import { MailIcon, PhoneIcon } from '@/components/Icons';
-import React from 'react';
 import { useTranslations } from 'next-intl';
+import React from 'react';
 
+import { PhoneIcon } from '@/components/Icons';
+import { MailIcon } from '@/components/Icons';
 interface ContactPageProps {}
 
 const ContactPage: React.FC<ContactPageProps> = () => {

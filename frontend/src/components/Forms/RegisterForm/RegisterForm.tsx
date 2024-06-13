@@ -57,7 +57,7 @@ const RegisterForm = () => {
         onChange={(e) => handleChangeInput(e)}
         error={getError(errors, 'password')}
       />
-      <div className=" flex w-full flex-col gap-4">
+      <div className="flex w-full flex-col gap-4">
         <SubmitButton value="Create account" />
       </div>
       <div className="flex justify-center">
