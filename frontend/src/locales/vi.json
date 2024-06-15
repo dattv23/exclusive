@@ -74,7 +74,45 @@
     "Smart Watch": "Đồng hồ thông minh",
     "Camera": "Máy ảnh",
     "Game Pad": "Máy chơi game",
-    "Head Phone": "Tai nghe",
+    "Headphone": "Tai nghe chụp đầu",
     "Computer": "Máy tính"
+  },
+  "TopHeader": {
+    "Summer Sale For All Headphone And Free Express Delivery - OFF 50%!": "Giảm giá mùa hè cho tất cả tai nghe chụp đầu và giao hàng nhanh miễn phí - GIẢM GIÁ 50%!",
+    "Shop now": "Mua ngay"
+  },
+  "Search": {
+    "What are you looking for?": "Bạn đang tìm kiếm gì?"
+  },
+  "FlashSalesSection": {
+    "Today’s": "Hôm nay",
+    "Flash Sales": "Sự kiện giảm giá"
+  },
+  "Footer": {
+    "Subscribe": "Đăng ký",
+    "Get 10% off your first order": "Giảm 10% cho đơn hàng đầu tiên của bạn",
+    "Thu Duc, Ho Chi Minh City": "Thủ Đức, Thành phố Hồ Chí Minh",
+    "Account": "Tài khoản",
+    "My Account": "Tài khoản của tôi",
+    "Login": "Đăng nhập",
+    "Register": "Đăng ký",
+    "Cart": "Giỏ hàng",
+    "Wishlist": "Danh sách yêu thích",
+    "Shop": "Cửa hàng",
+    "Quick Link": "Liên kết nhanh",
+    "Privacy Policy": "Chính sách bảo mật",
+    "Terms Of Use": "Điều khoản sử dụng",
+    "Contact": "Liên hệ",
+    "Download App": "Tải ứng dụng",
+    "Save $3 with App New User Only": "Tiết kiệm $3 chỉ dành cho người dùng mới của ứng dụng"
+  },
+  "ProductCard": {
+    "Add To Cart": "Thêm giỏ hàng"
+  },
+  "CountDown": {
+    "Days": "Ngày",
+    "Hours": "Giờ",
+    "Minutes": "Phút",
+    "Seconds": "Giây"
   }
 }

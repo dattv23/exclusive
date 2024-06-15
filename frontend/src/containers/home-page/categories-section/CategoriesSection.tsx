@@ -28,7 +28,7 @@ const CategoriesSection: React.FC<CategoriesSectionProps> = () => {
     { id: 4, name: t('Game Pad'), slug: 'game-pad', icon: <GamepadIcon /> },
     {
       id: 5,
-      name: t('Head Phone'),
+      name: t('Headphone'),
       slug: 'head-phone',
       icon: <HeadphoneIcon />,
     },

@@ -74,7 +74,45 @@
     "Smart Watch": "Smart Watch",
     "Camera": "Camera",
     "Game Pad": "Game Pad",
-    "Head Phone": "Head Phone",
+    "Headphone": "Headphone",
     "Computer": "Computer"
+  },
+  "TopHeader": {
+    "Summer Sale For All Headphone And Free Express Delivery - OFF 50%!": "Summer Sale For All Headphone And Free Express Delivery - OFF 50%!",
+    "Shop now": "Shop now"
+  },
+  "Search": {
+    "What are you looking for?": "What are you looking for?"
+  },
+  "FlashSalesSection": {
+    "Today’s": "Today’s",
+    "Flash Sales": "Flash Sales"
+  },
+  "Footer": {
+    "Subscribe": "Subscribe",
+    "Get 10% off your first order": "Get 10% off your first order",
+    "Thu Duc, Ho Chi Minh City": "Thu Duc, Ho Chi Minh City",
+    "Account": "Account",
+    "My Account": "My Account",
+    "Login": "Login",
+    "Register": "Register",
+    "Cart": "Cart",
+    "Wishlist": "Wishlist",
+    "Shop": "Shop",
+    "Quick Link": "Quick Link",
+    "Privacy Policy": "Privacy Policy",
+    "Terms Of Use": "Terms Of Use",
+    "Contact": "Contact",
+    "Download App": "Download App",
+    "Save $3 with App New User Only": "Save $3 with App New User Only"
+  },
+  "ProductCard": {
+    "Add To Cart": "Add To Cart"
+  },
+  "CountDown": {
+    "Days": "Days",
+    "Hours": "Hours",
+    "Minutes": "Minutes",
+    "Seconds": "Seconds"
   }
 }

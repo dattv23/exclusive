@@ -1,10 +1,11 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 
 import { Product } from '@/types';
-import { ArrowLeftIcon, ArrowRightIcon } from '@/components/Icons';
 import { cn } from '@/utils';
+import { ArrowLeftIcon, ArrowRightIcon } from '@/components/Icons';
 import { ProductCard } from '@/components/Card';
 import { CountDown } from '@/components';
 
@@ -14,6 +15,7 @@ interface FlashSalesSectionProps {
 
 const FlashSalesSection: React.FC<FlashSalesSectionProps> = ({ data }) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const t = useTranslations('FlashSalesSection');
 
   return (
     <section className="my-10">
@@ -21,11 +23,11 @@ const FlashSalesSection: React.FC<FlashSalesSectionProps> = ({ data }) => {
         <div className="relative h-10 w-5">
           <div className="absolute left-0 top-0 h-10 w-5 rounded bg-secondary" />
         </div>
-        <p>Today’s</p>
+        <p>{t('Today’s')}</p>
       </div>
       <div className="mb-2 flex justify-between gap-20">
         <div className="flex gap-4">
-          <h3>Flash Sales</h3>
+          <h3>{t('Flash Sales')}</h3>
           <CountDown time={212270} />
         </div>
         <div className="flex gap-2">

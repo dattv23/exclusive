@@ -1,6 +1,7 @@
-// import { QRCode } from 'antd';
 import Image from 'next/image';
-import React from 'react';
+import { useTranslations } from 'next-intl';
+import { QRCode } from 'antd';
+
 import {
   FacebookIcon,
   InstagramIcon,
@@ -8,16 +9,20 @@ import {
   SendIcon,
   TwitterIcon,
 } from '../Icons';
+import { envClientConfig } from '@/libs/env';
+import { Link } from '@/navigation';
 
 const Footer = () => {
+  const t = useTranslations('Footer');
+
   return (
     <footer className="bottom-0 bg-black pb-6 pt-20 text-white">
-      <div className="flex justify-around px-32 pb-[60px]">
+      <div className="flex flex-wrap gap-5 px-32 pb-[60px]">
         <div>
           <h3 className="mb-6">Exclusive</h3>
-          <h4 className="mb-6">Subscribe</h4>
+          <h4 className="mb-2">{t('Subscribe')}</h4>
           <div className="flex flex-col gap-4">
-            <p>Get 10% off your first order</p>
+            <p>{t('Get 10% off your first order')}</p>
             <div className="flex">
               <input
                 type="text"
@@ -33,36 +38,60 @@ const Footer = () => {
         <div>
           <h4 className="mb-6">Support</h4>
           <div className="flex flex-col gap-4">
-            <p>111 Bijoy sarani, Dhaka, DH 1515, Bangladesh.</p>
+            <p>{t('Thu Duc, Ho Chi Minh City')}</p>
             <p>exclusive@gmail.com</p>
-            <p>+88015-88888-9999</p>
+            <p>+84836129815</p>
           </div>
         </div>
         <div>
-          <h4 className="mb-6">Account</h4>
+          <h4 className="mb-6">{t('Account')}</h4>
           <div className="flex flex-col gap-4">
-            <p>My Account</p>
-            <p>Login / Register</p>
-            <p>Cart</p>
-            <p>Wishlist</p>
-            <p>Shop</p>
+            <Link href={'/account'} className="hover:text-secondary">
+              {t('My Account')}
+            </Link>
+            <div>
+              <Link className="hover:text-secondary" href={'/auth/sign-in'}>
+                {t('Login')}
+              </Link>{' '}
+              /{' '}
+              <Link className="hover:text-secondary" href={'/auth/sign-up'}>
+                {t('Register')}
+              </Link>
+            </div>
+            <Link className="hover:text-secondary" href={'/cart'}>
+              {t('Cart')}
+            </Link>
+            <Link className="hover:text-secondary" href={'/wishlist'}>
+              {t('Wishlist')}
+            </Link>
+            <Link className="hover:text-secondary" href={'/products'}>
+              {t('Shop')}
+            </Link>
           </div>
         </div>
         <div>
-          <h4 className="mb-6">Quick Link</h4>
+          <h4 className="mb-6">{t('Quick Link')}</h4>
           <div className="flex flex-col gap-4">
-            <p>Privacy Policy</p>
-            <p>Terms Of Use</p>
-            <p>FAQ</p>
-            <p>Contact</p>
+            <Link className="hover:text-secondary" href={'/privacy-policy'}>
+              {t('Privacy Policy')}
+            </Link>
+            <Link className="hover:text-secondary" href={'/terms'}>
+              {t('Terms Of Use')}
+            </Link>
+            <Link className="hover:text-secondary" href={'/fag'}>
+              FAQ
+            </Link>
+            <Link className="hover:text-secondary" href={'/contact'}>
+              {t('Contact')}
+            </Link>
           </div>
         </div>
-        <div>
-          <h4 className="mb-6">Download App</h4>
-          <p>Save $3 with App New User Only</p>
+        <div className="w-[300px]">
+          <h4 className="mb-6">{t('Download App')}</h4>
+          <p>{t('Save $3 with App New User Only')}</p>
           <div className="mt-2 flex gap-2">
             <div className="h-40 w-40 bg-white">
-              {/* <QRCode value="https://www.google.com/" /> */}
+              <QRCode value={envClientConfig.NEXT_PUBLIC_APP_URL} />
             </div>
             <div className="flex flex-col gap-1">
               <Image
