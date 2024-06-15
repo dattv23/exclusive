@@ -1,54 +1,52 @@
-{
-  "data": [
-    {
-      "id": 1,
-      "name": "RGB liquid CPU Cooler",
-      "image": "/images/products/volume.png",
-      "price": 170,
-      "discount": 0,
-      "rate": 4.5,
-      "number_of_rate": 65,
-      "status": "available"
-    },
-    {
-      "id": 2,
-      "name": "HAVIT HV-G92 Gamepad",
-      "image": "/images/products/gamepad.png",
-      "price": 160,
-      "discount": 40,
-      "rate": 5,
-      "number_of_rate": 88,
-      "status": "available"
-    },
-    {
-      "id": 3,
-      "name": "AK-900 Wired Keyboard",
-      "image": "/images/products/keyboard.png",
-      "price": 1160,
-      "discount": 35,
-      "rate": 4,
-      "number_of_rate": 75,
-      "status": "available"
-    },
-    {
-      "id": 4,
-      "name": "IPS LCD Gaming Monitor",
-      "image": "/images/products/screen.png",
-      "price": 400,
-      "discount": 30,
-      "rate": 5,
-      "number_of_rate": 99,
-      "status": "available"
-    },
-    {
-      "id": 5,
-      "name": "AK-999 Wired Keyboard",
-      "image": "/images/products/keyboard.png",
-      "price": 1160,
-      "discount": 35,
-      "rate": 4,
-      "number_of_rate": 75,
-      "status": "available"
-    }
-  ]
-}
+[
+  {
+    "id": 1,
+    "name": "RGB liquid CPU Cooler",
+    "image": "/images/products/volume.png",
+    "price": 170,
+    "discount": 0,
+    "rate": 4.5,
+    "number_of_rate": 65,
+    "status": "available"
+  },
+  {
+    "id": 2,
+    "name": "HAVIT HV-G92 Gamepad",
+    "image": "/images/products/gamepad.png",
+    "price": 160,
+    "discount": 40,
+    "rate": 5,
+    "number_of_rate": 88,
+    "status": "available"
+  },
+  {
+    "id": 3,
+    "name": "AK-900 Wired Keyboard",
+    "image": "/images/products/keyboard.png",
+    "price": 1160,
+    "discount": 35,
+    "rate": 4,
+    "number_of_rate": 75,
+    "status": "available"
+  },
+  {
+    "id": 4,
+    "name": "IPS LCD Gaming Monitor",
+    "image": "/images/products/screen.png",
+    "price": 400,
+    "discount": 30,
+    "rate": 5,
+    "number_of_rate": 99,
+    "status": "available"
+  },
+  {
+    "id": 5,
+    "name": "AK-999 Wired Keyboard",
+    "image": "/images/products/keyboard.png",
+    "price": 1160,
+    "discount": 35,
+    "rate": 4,
+    "number_of_rate": 75,
+    "status": "available"
+  }
+]

@@ -49,8 +49,18 @@
     "First name must be 5 or more characters long": "Họ phải có nhiều hơn 5 kí tự",
     "Last name must be 5 or more characters long": "Tên phải có nhiều hơn 5 ksi tự",
     "Invalid email": "Email không hợp lệ",
-    "Email is required":"NHập Email",
+    "Email is required": "NHập Email",
     "Password is required": "Nhập mật khẩu",
     "Password must be at least 8 characters long": "Mật khẩu phải nhiều hơn 8 kí tự"
+  },
+  "CategorySection": {
+    "Categories": "Danh mục",
+    "Browse By Category": "Tìm kiếm theo danh mục",
+    "Phone": "Điện thoại",
+    "Smart Watch": "Đồng hồ thông minh",
+    "Camera": "Máy ảnh",
+    "Game Pad": "Máy chơi game",
+    "Head Phone": "Tai nghe",
+    "Computer": "Máy tính"
   }
 }

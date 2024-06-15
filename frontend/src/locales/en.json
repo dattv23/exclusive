@@ -48,9 +48,19 @@
     "First name is required": "First name is required",
     "First name must be 5 or more characters long": "First name must be 5 or more characters long",
     "Last name must be 2 or more characters long": "Last name must be 2 or more characters long",
-    "Email is required":"Email is required",
+    "Email is required": "Email is required",
     "Invalid email": "Invalid email",
     "Password is required": "Password is required",
     "Password must be at least 8 characters long": "Password must be at least 8 characters long"
+  },
+  "CategorySection": {
+    "Categories": "Categories",
+    "Browse By Category": "Browse By Category",
+    "Phone": "Phone",
+    "Smart Watch": "Smart Watch",
+    "Camera": "Camera",
+    "Game Pad": "Game Pad",
+    "Head Phone": "Head Phone",
+    "Computer": "Computer"
   }
 }
