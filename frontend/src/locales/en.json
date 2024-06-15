@@ -20,7 +20,8 @@
   },
   "Button": {
     "Log In": "Log In",
-    "Create account": "Create account"
+    "Create account": "Create account",
+    "Send Message": "Send Message"
   },
   "LoginForm": {
     "Email": "Email",
@@ -58,11 +59,12 @@
     "We are available 24/7, 7 days a week": "We are available 24/7, 7 days a week.",
     "Phone: +8801611112222": "Phone: +8801611112222",
     "Write To Us": "Write To Us",
-    "Fill out our form and we will contact you within 24 hours": "Fill out our form and we will contact you within 24 hours.",
-    "Your Name": "Your Name",
-    "Your Email": "Your Email",
-    "Your Phone": "Your Phone",
-    "Your Message": "Your Message",
-    "Send Message": "Send Message"
+    "Fill out our form and we will contact you within 24 hours": "Fill out our form and we will contact you within 24 hours."
+  },
+  "ContactForm":{
+    "YourName": "Your Name",
+    "YourEmail": "Your Email",
+    "YourPhone": "Your Phone",
+    "Message": "Your Message"
   }
 }

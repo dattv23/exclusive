@@ -3,6 +3,7 @@ import React from 'react';
 
 import { PhoneIcon } from '@/components/Icons';
 import { MailIcon } from '@/components/Icons';
+import { ContactForm } from '@/components';
 interface ContactPageProps {}
 
 const ContactPage: React.FC<ContactPageProps> = () => {
@@ -34,34 +35,7 @@ const ContactPage: React.FC<ContactPageProps> = () => {
             </div>
           </div>
         </div>
-        <div className="w-full rounded-lg border p-6 shadow-md md:w-1/2">
-          <form>
-            <div className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-3">
-              <input
-                type="text"
-                placeholder="Your Name *"
-                className="rounded border p-2"
-              />
-              <input
-                type="email"
-                placeholder="Your Email *"
-                className="rounded border p-2"
-              />
-              <input
-                type="text"
-                placeholder="Your Phone *"
-                className="rounded border p-2"
-              />
-            </div>
-            <textarea
-              placeholder="Your Message"
-              className="mb-4 h-32 w-full rounded border p-2"
-            ></textarea>
-            <button type="submit" className="rounded bg-red-500 p-2 text-white">
-              {t('Send Message')}
-            </button>
-          </form>
-        </div>
+        <ContactForm />
       </div>
     </main>
   );
