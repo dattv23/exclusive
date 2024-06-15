@@ -49,22 +49,70 @@
     "First name is required": "First name is required",
     "First name must be 5 or more characters long": "First name must be 5 or more characters long",
     "Last name must be 2 or more characters long": "Last name must be 2 or more characters long",
-    "Email is required":"Email is required",
+    "Email is required": "Email is required",
     "Invalid email": "Invalid email",
     "Password is required": "Password is required",
     "Password must be at least 8 characters long": "Password must be at least 8 characters long"
   },
-  "ContactPage":{
+  "ContactPage": {
     "Call To Us": "Call To Us",
     "We are available 24/7, 7 days a week": "We are available 24/7, 7 days a week.",
     "Phone: +8801611112222": "Phone: +8801611112222",
     "Write To Us": "Write To Us",
     "Fill out our form and we will contact you within 24 hours": "Fill out our form and we will contact you within 24 hours."
   },
-  "ContactForm":{
+  "ContactForm": {
     "YourName": "Your Name",
     "YourEmail": "Your Email",
     "YourPhone": "Your Phone",
     "Message": "Your Message"
+  },
+  "CategorySection": {
+    "Categories": "Categories",
+    "Browse By Category": "Browse By Category",
+    "Phone": "Phone",
+    "Smart Watch": "Smart Watch",
+    "Camera": "Camera",
+    "Game Pad": "Game Pad",
+    "Headphone": "Headphone",
+    "Computer": "Computer"
+  },
+  "TopHeader": {
+    "Summer Sale For All Headphone And Free Express Delivery - OFF 50%!": "Summer Sale For All Headphone And Free Express Delivery - OFF 50%!",
+    "Shop now": "Shop now"
+  },
+  "Search": {
+    "What are you looking for?": "What are you looking for?"
+  },
+  "FlashSalesSection": {
+    "Today’s": "Today’s",
+    "Flash Sales": "Flash Sales"
+  },
+  "Footer": {
+    "Subscribe": "Subscribe",
+    "Get 10% off your first order": "Get 10% off your first order",
+    "Thu Duc, Ho Chi Minh City": "Thu Duc, Ho Chi Minh City",
+    "Account": "Account",
+    "My Account": "My Account",
+    "Login": "Login",
+    "Register": "Register",
+    "Cart": "Cart",
+    "Wishlist": "Wishlist",
+    "Shop": "Shop",
+    "Quick Link": "Quick Link",
+    "Privacy Policy": "Privacy Policy",
+    "Terms Of Use": "Terms Of Use",
+    "Contact": "Contact",
+    "Download App": "Download App",
+    "Save $3 with App New User Only": "Save $3 with App New User Only"
+  },
+  "ProductCard": {
+    "Add To Cart": "Add To Cart"
+  },
+  "CountDown": {
+    "Days": "Days",
+    "Hours": "Hours",
+    "Minutes": "Minutes",
+    "Seconds": "Seconds"
   }
 }

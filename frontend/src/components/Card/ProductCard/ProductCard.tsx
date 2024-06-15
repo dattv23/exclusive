@@ -1,7 +1,8 @@
 'use client';
 
 import Image from 'next/image';
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 
 import { Product } from '@/types';
 import { startScore } from '@/utils';
@@ -11,6 +12,8 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
+  const t = useTranslations('ProductCard');
+
   const [isHovered, setIsHovered] = useState<boolean>(false);
 
   const handleMouseEnter = () => {
@@ -36,8 +39,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
           className="h-auto w-auto"
         />
         {isHovered && (
-          <button className="absolute bottom-0 left-0 right-0 bg-black py-2 text-center text-white hover:text-primary">
-            Add To Cart
+          <button className="absolute bottom-0 left-0 right-0 bg-black py-2 text-center text-white hover:text-secondary">
+            {t('Add To Cart')}
           </button>
         )}
       </div>
