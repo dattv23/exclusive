@@ -50,7 +50,7 @@
     "First name must be 5 or more characters long": "Họ phải có nhiều hơn 5 kí tự",
     "Last name must be 5 or more characters long": "Tên phải có nhiều hơn 5 ksi tự",
     "Invalid email": "Email không hợp lệ",
-    "Email is required": "NHập Email",
+    "Email is required": "Email là bắt buộc",
     "Password is required": "Nhập mật khẩu",
     "Password must be at least 8 characters long": "Mật khẩu phải nhiều hơn 8 kí tự"
   },
@@ -114,5 +114,41 @@
     "Hours": "Giờ",
     "Minutes": "Phút",
     "Seconds": "Giây"
+  },
+  "BestSellerSection": {
+    "This Month": "Tháng này",
+    "Best Selling Products": "Sản phẩm bán chạy nhất",
+    "View All": "Xem tất cả"
+  },
+  "AdsSection": {
+    "Categories": "Danh mục",
+    "Enhance Your Music Experience": "Nâng cao trải nghiệm âm nhạc của bạn",
+    "Buy Now!": "Mua ngay!"
+  },
+  "OurProductSection": {
+    "Our Products": "Sản phẩm của chúng tôi",
+    "Explore Our Products": "Khám phá sản phẩm của chúng tôi",
+    "View All Products": "Xem tất cả sản phẩm"
+  },
+  "NewArrivalSection": {
+    "Featured": "Nổi bật",
+    "New Arrival": "Hàng mới về",
+    "PlayStation 5": "PlayStation 5",
+    "Black and White version of the PS5 coming out on sale": "Phiên bản trắng đen của PS5 đang được bán.",
+    "Shop Now": "Mua ngay",
+    "Women’s Collections": "Bộ sưu tập nữ",
+    "Featured woman collections that give you another vibe": "Bộ sưu tập nữ nổi bật mang đến cho bạn một cảm giác khác.",
+    "Speakers": "Loa",
+    "Amazon wireless speakers": "Loa không dây Amazon",
+    "Perfume": "Nước hoa",
+    "GUCCI INTENSE OUD EDP": "GUCCI INTENSE OUD EDP"
+  },
+  "ServicesSection": {
+    "FREE AND FAST DELIVERY": "GIAO HÀNG NHANH VÀ MIỄN PHÍ",
+    "Free delivery for all orders over $140": "Giao hàng miễn phí cho tất cả các đơn hàng trên $140",
+    "24/7 CUSTOMER SERVICE": "DỊCH VỤ KHÁCH HÀNG 24/7",
+    "Friendly 24/7 customer support": "Hỗ trợ khách hàng thân thiện 24/7",
+    "MONEY BACK GUARANTEE": "ĐẢM BẢO HOÀN TIỀN",
+    "We return money within 30 days": "Chúng tôi hoàn tiền trong vòng 30 ngày"
   }
 }

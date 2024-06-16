@@ -26,7 +26,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
 
   return (
     <div
-      className="flex w-[350px] flex-col gap-4"
+      className="flex flex-col gap-4"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -36,7 +36,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
           width={172}
           height={152}
           alt="product-image"
-          className="h-auto w-auto"
+          className="h-[200px] w-auto"
         />
         {isHovered && (
           <button className="absolute bottom-0 left-0 right-0 bg-black py-2 text-center text-white hover:text-secondary">

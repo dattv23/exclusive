@@ -18,8 +18,14 @@ const BestSellerSection = dynamic(
   () => import('@/containers/home-page/best-seller-section'),
 );
 const AdsSection = dynamic(() => import('@/containers/home-page/ads-section'));
+const OurProductSection = dynamic(
+  () => import('@/containers/home-page/our-product-section'),
+);
 const NewArrivalSection = dynamic(
   () => import('@/containers/home-page/new-arrival-section'),
+);
+const ServicesSection = dynamic(
+  () => import('@/containers/home-page/services-section'),
 );
 
 const HomePage: React.FC = async () => {
@@ -36,9 +42,11 @@ const HomePage: React.FC = async () => {
       <hr />
       <CategoriesSection />
       <hr />
-      <BestSellerSection />
+      <BestSellerSection data={products.slice(0, 4)} />
       <AdsSection />
+      <OurProductSection data={products} />
       <NewArrivalSection />
+      <ServicesSection />
     </main>
   );
 };

@@ -36,19 +36,19 @@ const CategoriesSection: React.FC<CategoriesSectionProps> = () => {
   ];
 
   return (
-    <section className="my-10">
-      <div className="mb-6 flex items-center gap-2 text-secondary">
+    <section className="my-10 flex flex-col gap-6">
+      <div className="flex items-center gap-2 text-secondary">
         <div className="relative h-10 w-5">
-          <div className="absolute left-0 top-0 h-10 w-5 rounded bg-secondary" />
+          <div className="absolute left-0 top-0 h-10 w-5 rounded bg-secondary"></div>
         </div>
         <p>{t('Categories')}</p>
       </div>
-      <div className="mb-2 flex justify-between gap-20">
+      <div className="flex justify-between gap-20">
         <div className="flex gap-4">
           <h3>{t('Browse By Category')}</h3>
         </div>
       </div>
-      <div className="mt-12 flex gap-4">
+      <div className="flex gap-4">
         <CategoryList data={listCategory} />
       </div>
     </section>

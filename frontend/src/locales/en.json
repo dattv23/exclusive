@@ -114,5 +114,41 @@
     "Hours": "Hours",
     "Minutes": "Minutes",
     "Seconds": "Seconds"
+  },
+  "BestSellerSection": {
+    "This Month": "This Month",
+    "Best Selling Products": "Best Selling Products",
+    "View All": "View All"
+  },
+  "AdsSection": {
+    "Categories": "Categories",
+    "Enhance Your Music Experience": "Enhance Your Music Experience",
+    "Buy Now!": "Buy Now!"
+  },
+  "OurProductSection": {
+    "Our Products": "Our Products",
+    "Explore Our Products": "Explore Our Products",
+    "View All Products": "View All Products"
+  },
+  "NewArrivalSection": {
+    "Featured": "Featured",
+    "New Arrival": "New Arrival",
+    "PlayStation 5": "PlayStation 5",
+    "Black and White version of the PS5 coming out on sale": "Black and White version of the PS5 coming out on sale.",
+    "Shop Now": "Shop Now",
+    "Women’s Collections": "Women’s Collections",
+    "Featured woman collections that give you another vibe": "Featured woman collections that give you another vibe.",
+    "Speakers": "Speakers",
+    "Amazon wireless speakers": "Amazon wireless speakers",
+    "Perfume": "Perfume",
+    "GUCCI INTENSE OUD EDP": "GUCCI INTENSE OUD EDP"
+  },
+  "ServicesSection": {
+    "FREE AND FAST DELIVERY": "FREE AND FAST DELIVERY",
+    "Free delivery for all orders over $140": "Free delivery for all orders over $140",
+    "24/7 CUSTOMER SERVICE": "24/7 CUSTOMER SERVICE",
+    "Friendly 24/7 customer support": "Friendly 24/7 customer support",
+    "MONEY BACK GUARANTEE": "MONEY BACK GUARANTEE",
+    "We return money within 30 days": "We return money within 30 days"
   }
 }

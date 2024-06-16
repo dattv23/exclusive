@@ -48,5 +48,35 @@
     "rate": 4,
     "number_of_rate": 75,
     "status": "available"
+  },
+  {
+    "id": 6,
+    "name": "CANON EOS DSLR Camera",
+    "image": "/images/products/canon.png",
+    "price": 360,
+    "discount": 0,
+    "rate": 4,
+    "number_of_rate": 95,
+    "status": "available"
+  },
+  {
+    "id": 7,
+    "name": "ASUS FHD Gaming Laptop",
+    "image": "/images/products/asus.png",
+    "price": 700,
+    "discount": 0,
+    "rate": 5,
+    "number_of_rate": 325,
+    "status": "available"
+  },
+  {
+    "id": 8,
+    "name": "GP11 Shooter USB Gamepad",
+    "image": "/images/products/fantech.png",
+    "price": 660,
+    "discount": 0,
+    "rate": 4,
+    "number_of_rate": 55,
+    "status": "available"
   }
 ]

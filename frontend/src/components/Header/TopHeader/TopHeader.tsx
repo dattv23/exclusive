@@ -7,8 +7,8 @@ const TopHeader = () => {
   const t = useTranslations('TopHeader');
 
   return (
-    <div className="flex w-full items-center justify-between bg-black px-0 text-white lg:px-20">
-      <div className="flex w-full justify-center gap-2 font-light">
+    <div className="flex w-full flex-col items-end bg-black px-4 text-white md:flex-row md:items-center md:justify-between lg:px-36">
+      <div className="hidden w-full justify-center gap-2 font-light md:flex md:flex-row">
         <p>
           {t(
             'Summer Sale For All Headphone And Free Express Delivery - OFF 50%!',
