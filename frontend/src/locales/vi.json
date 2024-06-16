@@ -50,7 +50,7 @@
     "First name must be 5 or more characters long": "Họ phải có nhiều hơn 5 kí tự",
     "Last name must be 5 or more characters long": "Tên phải có nhiều hơn 5 ksi tự",
     "Invalid email": "Email không hợp lệ",
-    "Email is required": "NHập Email",
+    "Email is required": "Email là bắt buộc",
     "Password is required": "Nhập mật khẩu",
     "Password must be at least 8 characters long": "Mật khẩu phải nhiều hơn 8 kí tự"
   },
@@ -119,5 +119,10 @@
     "This Month": "Tháng này",
     "Best Selling Products": "Sản phẩm bán chạy nhất",
     "View All": "Xem tất cả"
+  },
+  "AdsSection": {
+    "Categories": "Danh mục",
+    "Enhance Your Music Experience": "Nâng cao trải nghiệm âm nhạc của bạn",
+    "Buy Now!": "Mua ngay!"
   }
 }
