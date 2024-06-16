@@ -114,5 +114,10 @@
     "Hours": "Hours",
     "Minutes": "Minutes",
     "Seconds": "Seconds"
+  },
+  "BestSellerSection": {
+    "This Month": "This Month",
+    "Best Selling Products": "Best Selling Products",
+    "View All": "View All"
   }
 }

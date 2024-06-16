@@ -114,5 +114,10 @@
     "Hours": "Giờ",
     "Minutes": "Phút",
     "Seconds": "Giây"
+  },
+  "BestSellerSection": {
+    "This Month": "Tháng này",
+    "Best Selling Products": "Sản phẩm bán chạy nhất",
+    "View All": "Xem tất cả"
   }
 }

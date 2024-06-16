@@ -17,7 +17,7 @@ const Footer = () => {
 
   return (
     <footer className="bottom-0 bg-black pb-6 pt-20 text-white">
-      <div className="flex flex-wrap gap-5 px-32 pb-[60px]">
+      <div className="flex flex-wrap gap-5 px-2 pb-[60px] lg:px-32">
         <div>
           <h3 className="mb-6">Exclusive</h3>
           <h4 className="mb-2">{t('Subscribe')}</h4>

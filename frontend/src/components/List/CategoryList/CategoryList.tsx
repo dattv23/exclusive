@@ -9,7 +9,7 @@ type CategoryListProps = {
 
 const CategoryList: React.FC<CategoryListProps> = ({ data }) => {
   return (
-    <div className="flex w-full gap-5">
+    <div className="grid w-full grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-6">
       {data.map((item) => (
         <CategoryCard data={item} key={item.id} />
       ))}
