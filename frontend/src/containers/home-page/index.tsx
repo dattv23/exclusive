@@ -18,6 +18,9 @@ const BestSellerSection = dynamic(
   () => import('@/containers/home-page/best-seller-section'),
 );
 const AdsSection = dynamic(() => import('@/containers/home-page/ads-section'));
+const OurProductSection = dynamic(
+  () => import('@/containers/home-page/our-product-section'),
+);
 const NewArrivalSection = dynamic(
   () => import('@/containers/home-page/new-arrival-section'),
 );
@@ -38,6 +41,7 @@ const HomePage: React.FC = async () => {
       <hr />
       <BestSellerSection data={products.slice(0, 4)} />
       <AdsSection />
+      <OurProductSection data={products} />
       <NewArrivalSection />
     </main>
   );
