@@ -24,6 +24,9 @@ const OurProductSection = dynamic(
 const NewArrivalSection = dynamic(
   () => import('@/containers/home-page/new-arrival-section'),
 );
+const ServicesSection = dynamic(
+  () => import('@/containers/home-page/services-section'),
+);
 
 const HomePage: React.FC = async () => {
   const fileDataProduct = await fs.readFile(
@@ -43,6 +46,7 @@ const HomePage: React.FC = async () => {
       <AdsSection />
       <OurProductSection data={products} />
       <NewArrivalSection />
+      <ServicesSection />
     </main>
   );
 };

@@ -1,6 +1,8 @@
 import { Icon } from '@/types';
 import React from 'react';
 
+export * from './SecureIcon';
+
 export const ArrowDownLeftIcon: React.FC<Icon> = ({
   width = 24,
   height = 24,
@@ -306,58 +308,60 @@ export const CartIcon: React.FC<Icon> = ({
   );
 };
 
-export const CustomerServiceIcon: React.FC<Icon> = ({
-  width = 24,
-  height = 24,
-  color = '#0000',
-  className,
-}) => {
+export const CustomerServiceIcon: React.FC<Icon> = ({ className }) => {
   return (
     <svg
-      className={className}
-      width={width}
-      height={height}
-      viewBox={`0 0 ${width} ${height}`}
-      fill={color}
+      width="80"
+      height="80"
+      viewBox="0 0 80 80"
+      fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className={className}
     >
-      <g id="Icon-Customer service" clipPath="url(#clip0_138_1545)">
+      <path
+        opacity="0.3"
+        d="M80 40C80 62.0914 62.0914 80 40 80C17.9086 80 0 62.0914 0 40C0 17.9086 17.9086 0 40 0C62.0914 0 80 17.9086 80 40ZM10.9071 40C10.9071 56.0675 23.9325 69.0929 40 69.0929C56.0675 69.0929 69.0929 56.0675 69.0929 40C69.0929 23.9325 56.0675 10.9071 40 10.9071C23.9325 10.9071 10.9071 23.9325 10.9071 40Z"
+        fill="#2F2E30"
+      />
+      <circle cx="40" cy="40" r="29" fill="black" />
+      <g clipPath="url(#clip0_1139_348)">
         <path
-          id="Vector"
-          d="M13.3333 25C13.3333 23.1591 11.8409 21.6667 9.99999 21.6667C8.15904 21.6667 6.66666 23.1591 6.66666 25V28.3334C6.66666 30.1743 8.15904 31.6667 9.99999 31.6667C11.8409 31.6667 13.3333 30.1743 13.3333 28.3334V25Z"
-          stroke="black"
+          d="M33.3334 44.9998C33.3334 43.1589 31.841 41.6665 30 41.6665C28.1591 41.6665 26.6667 43.1589 26.6667 44.9998V48.3332C26.6667 50.1741 28.1591 51.6665 30 51.6665C31.841 51.6665 33.3334 50.1741 33.3334 48.3332V44.9998Z"
+          stroke="white"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
-          id="Vector_2"
-          d="M33.3333 25C33.3333 23.1591 31.8409 21.6667 30 21.6667C28.159 21.6667 26.6667 23.1591 26.6667 25V28.3334C26.6667 30.1743 28.159 31.6667 30 31.6667C31.8409 31.6667 33.3333 30.1743 33.3333 28.3334V25Z"
-          stroke="black"
+          d="M53.3334 44.9998C53.3334 43.1589 51.841 41.6665 50 41.6665C48.1591 41.6665 46.6667 43.1589 46.6667 44.9998V48.3332C46.6667 50.1741 48.1591 51.6665 50 51.6665C51.841 51.6665 53.3334 50.1741 53.3334 48.3332V44.9998Z"
+          stroke="white"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
-          id="Vector_3"
-          d="M6.66666 25V20C6.66666 16.4638 8.07141 13.0724 10.5719 10.5719C13.0724 8.07145 16.4638 6.66669 20 6.66669C23.5362 6.66669 26.9276 8.07145 29.4281 10.5719C31.9286 13.0724 33.3333 16.4638 33.3333 20V25"
-          stroke="black"
+          d="M26.6667 44.9998V39.9998C26.6667 36.4636 28.0714 33.0722 30.5719 30.5717C33.0724 28.0713 36.4638 26.6665 40 26.6665C43.5362 26.6665 46.9276 28.0713 49.4281 30.5717C51.9286 33.0722 53.3334 36.4636 53.3334 39.9998V44.9998"
+          stroke="white"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
-          id="Vector_4"
-          d="M30 31.6667C30 32.9928 28.9464 34.2645 27.0711 35.2022C25.1957 36.1399 22.6522 36.6667 20 36.6667"
-          stroke="black"
+          d="M50 51.6665C50 52.9926 48.9464 54.2644 47.0711 55.202C45.1957 56.1397 42.6522 56.6665 40 56.6665"
+          stroke="white"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
       </g>
       <defs>
-        <clipPath id="clip0_138_1545">
-          <rect width="40" height="40" fill="white" />
+        <clipPath id="clip0_1139_348">
+          <rect
+            width="40"
+            height="40"
+            fill="white"
+            transform="translate(20 20)"
+          />
         </clipPath>
       </defs>
     </svg>
@@ -393,82 +397,81 @@ export const DeleteIcon: React.FC<Icon> = ({
   );
 };
 
-export const DeliveryIcon: React.FC<Icon> = ({
-  width = 24,
-  height = 24,
-  color = '#0000',
-  className,
-}) => {
+export const DeliveryIcon: React.FC<Icon> = ({ className }) => {
   return (
     <svg
-      className={className}
-      width={width}
-      height={height}
-      viewBox={`0 0 ${width} ${height}`}
-      fill={color}
+      width="81"
+      height="80"
+      viewBox="0 0 81 80"
+      fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className={className}
     >
-      <g id="icon-delivery" clipPath="url(#clip0_120_1374)">
+      <path
+        opacity="0.3"
+        d="M80.5 40C80.5 62.0914 62.5914 80 40.5 80C18.4086 80 0.5 62.0914 0.5 40C0.5 17.9086 18.4086 0 40.5 0C62.5914 0 80.5 17.9086 80.5 40ZM11.4071 40C11.4071 56.0675 24.4325 69.0929 40.5 69.0929C56.5675 69.0929 69.5929 56.0675 69.5929 40C69.5929 23.9325 56.5675 10.9071 40.5 10.9071C24.4325 10.9071 11.4071 23.9325 11.4071 40Z"
+        fill="#2F2E30"
+      />
+      <circle cx="40.5" cy="40" r="29" fill="black" />
+      <g clipPath="url(#clip0_1122_331)">
         <path
-          id="Vector"
-          d="M11.6667 31.6667C13.5076 31.6667 15 30.1743 15 28.3333C15 26.4924 13.5076 25 11.6667 25C9.82573 25 8.33334 26.4924 8.33334 28.3333C8.33334 30.1743 9.82573 31.6667 11.6667 31.6667Z"
-          stroke="black"
+          d="M32.1667 51.6667C34.0076 51.6667 35.5 50.1743 35.5 48.3333C35.5 46.4924 34.0076 45 32.1667 45C30.3257 45 28.8333 46.4924 28.8333 48.3333C28.8333 50.1743 30.3257 51.6667 32.1667 51.6667Z"
+          stroke="#FAFAFA"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
-          id="Vector_2"
-          d="M28.3333 31.6667C30.1743 31.6667 31.6667 30.1743 31.6667 28.3333C31.6667 26.4924 30.1743 25 28.3333 25C26.4924 25 25 26.4924 25 28.3333C25 30.1743 26.4924 31.6667 28.3333 31.6667Z"
-          stroke="black"
+          d="M48.8333 51.6667C50.6743 51.6667 52.1667 50.1743 52.1667 48.3333C52.1667 46.4924 50.6743 45 48.8333 45C46.9924 45 45.5 46.4924 45.5 48.3333C45.5 50.1743 46.9924 51.6667 48.8333 51.6667Z"
+          stroke="#FAFAFA"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
-          id="Vector_3"
-          d="M8.33331 28.3335H6.99998C5.89541 28.3335 4.99998 27.4381 4.99998 26.3335V21.6668M3.33331 8.3335H19.6666C20.7712 8.3335 21.6666 9.22893 21.6666 10.3335V28.3335M15 28.3335H25M31.6667 28.3335H33C34.1046 28.3335 35 27.4381 35 26.3335V18.3335M35 18.3335H21.6666M35 18.3335L30.5826 10.9712C30.2211 10.3688 29.5701 10.0002 28.8676 10.0002H21.6666"
-          stroke="black"
+          d="M28.8333 48.3335H27.5C26.3954 48.3335 25.5 47.4381 25.5 46.3335V41.6668M23.8333 28.3335H40.1666C41.2712 28.3335 42.1666 29.2289 42.1666 30.3335V48.3335M35.5 48.3335H45.5M52.1667 48.3335H53.5C54.6046 48.3335 55.5 47.4381 55.5 46.3335V38.3335M55.5 38.3335H42.1666M55.5 38.3335L51.0826 30.9712C50.7211 30.3688 50.0701 30.0002 49.3676 30.0002H42.1666"
+          stroke="#FAFAFA"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
-          id="Vector_4"
-          d="M8 28H6.66667C5.5621 28 4.66667 27.1046 4.66667 26V21.3333M3 8H19.3333C20.4379 8 21.3333 8.89543 21.3333 10V28M15 28H24.6667M32 28H32.6667C33.7712 28 34.6667 27.1046 34.6667 26V18M34.6667 18H21.3333M34.6667 18L30.2493 10.6377C29.8878 10.0353 29.2368 9.66667 28.5343 9.66667H21.3333"
-          stroke="black"
+          d="M28.5 48H27.1667C26.0621 48 25.1667 47.1046 25.1667 46V41.3333M23.5 28H39.8333C40.9379 28 41.8333 28.8954 41.8333 30V48M35.5 48H45.1667M52.5 48H53.1667C54.2712 48 55.1667 47.1046 55.1667 46V38M55.1667 38H41.8333M55.1667 38L50.7493 30.6377C50.3878 30.0353 49.7368 29.6667 49.0343 29.6667H41.8333"
+          stroke="#FAFAFA"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
-          id="Vector_5"
-          d="M5 11.8182H11.6667"
-          stroke="black"
+          d="M25.5 31.8184H32.1667"
+          stroke="#FAFAFA"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
-          id="Vector_6"
-          d="M1.81818 15.4545H8.48484"
-          stroke="black"
+          d="M22.3182 35.4546H28.9848"
+          stroke="#FAFAFA"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
-          id="Vector_7"
-          d="M5 19.0909H11.6667"
-          stroke="black"
+          d="M25.5 39.0908H32.1667"
+          stroke="#FAFAFA"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
       </g>
       <defs>
-        <clipPath id="clip0_120_1374">
-          <rect width="40" height="40" fill="white" />
+        <clipPath id="clip0_1122_331">
+          <rect
+            width="40"
+            height="40"
+            fill="white"
+            transform="translate(20.5 20)"
+          />
         </clipPath>
       </defs>
     </svg>
