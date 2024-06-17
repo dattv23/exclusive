@@ -1,5 +1,6 @@
 package com.backend.exclusive.models;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,6 +25,7 @@ public class Cart {
     private ObjectId id;
 
     @DBRef
+    @NotNull(message = "User is mandatory")
     private User user;
 
     @DBRef

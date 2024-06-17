@@ -9,7 +9,6 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
@@ -31,8 +30,7 @@ public class Category {
 
     private String description;
 
-    @DBRef
-    private List<Product> products;
+    private List<ObjectId> products;
 
     @CreatedDate
     @Builder.Default

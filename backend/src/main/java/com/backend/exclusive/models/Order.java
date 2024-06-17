@@ -1,5 +1,7 @@
 package com.backend.exclusive.models;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,10 +28,16 @@ public class Order {
     private String couponId;
 
     @DBRef
+    @NotNull(message = "User is mandatory")
     private User user;
 
+    @NotNull(message = "Order date is mandatory")
     private Date orderDate;
+
+    @NotNull(message = "Total amount is mandatory")
     private double totalAmount;
+
+    @Pattern(regexp = "^(Pending|Completed|Cancelled)$", message = "Invalid status")
     private String status;
 
     @DBRef
