@@ -74,7 +74,7 @@ public class SecurityConfiguration {
         CorsConfiguration configuration = new CorsConfiguration();
 
         // Set allowed origins (can be expanded as needed)
-        configuration.setAllowedOrigins(List.of("http://localhost:8080"));
+        configuration.setAllowedOrigins(List.of("http://localhost:8080", "http://localhost:3000"));
 
         // Set allowed HTTP methods
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
@@ -83,10 +83,10 @@ public class SecurityConfiguration {
         configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
 
         // Allow credentials (cookies, authorization headers, etc.)
-//        configuration.setAllowCredentials(true);
+        configuration.setAllowCredentials(true);
 
         // Expose specific headers in the response
-//        configuration.setExposedHeaders(List.of("Authorization"));
+        configuration.setExposedHeaders(List.of("Authorization"));
 
         // Register the CORS configuration for all paths
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
