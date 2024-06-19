@@ -7,7 +7,7 @@ import {
   LinkedinIcon,
   SendIcon,
   TwitterIcon,
-} from '../Icons';
+} from '@/components/Icons';
 import { Link } from '@/navigation';
 
 const Footer = () => {
