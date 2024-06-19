@@ -150,5 +150,9 @@
     "Friendly 24/7 customer support": "Friendly 24/7 customer support",
     "MONEY BACK GUARANTEE": "MONEY BACK GUARANTEE",
     "We return money within 30 days": "We return money within 30 days"
+  },
+  "NotFoundPage": {
+    "Description": "Your visited page not found. You may go home page.",
+    "Back to home page": "Back to home page"
   }
 }

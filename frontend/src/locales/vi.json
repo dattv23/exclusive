@@ -150,5 +150,9 @@
     "Friendly 24/7 customer support": "Hỗ trợ khách hàng thân thiện 24/7",
     "MONEY BACK GUARANTEE": "ĐẢM BẢO HOÀN TIỀN",
     "We return money within 30 days": "Chúng tôi hoàn tiền trong vòng 30 ngày"
+  },
+  "NotFoundPage": {
+    "Description": "Trang bạn truy cập không tồn tại. Bạn có thể về trang chủ.",
+    "Back to home page": "Quay lại trang chủ"
   }
 }
