@@ -107,7 +107,8 @@
     "Save $3 with App New User Only": "Save $3 with App New User Only"
   },
   "ProductCard": {
-    "Add To Cart": "Add To Cart"
+    "Add To Cart": "Add To Cart",
+    "NEW": "NEW"
   },
   "CountDown": {
     "Days": "Days",
@@ -154,5 +155,9 @@
   "NotFoundPage": {
     "Description": "Your visited page not found. You may go home page.",
     "Back to home page": "Back to home page"
+  },
+  "ProductDetailModal": {
+    "Price": "Price",
+    "Shop now": "Shop now"
   }
 }

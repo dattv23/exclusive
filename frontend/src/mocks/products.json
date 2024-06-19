@@ -7,7 +7,8 @@
     "discount": 0,
     "rate": 4.5,
     "number_of_rate": 65,
-    "status": "available"
+    "status": "new",
+    "description": "High-performance CPU cooler with customizable RGB lighting."
   },
   {
     "id": 2,
@@ -17,7 +18,8 @@
     "discount": 40,
     "rate": 5,
     "number_of_rate": 88,
-    "status": "available"
+    "status": "new",
+    "description": "Ergonomic gamepad with dual vibration feedback and precise controls."
   },
   {
     "id": 3,
@@ -27,7 +29,8 @@
     "discount": 35,
     "rate": 4,
     "number_of_rate": 75,
-    "status": "available"
+    "status": "available",
+    "description": "Durable wired keyboard with mechanical keys for a superior typing experience."
   },
   {
     "id": 4,
@@ -37,7 +40,8 @@
     "discount": 30,
     "rate": 5,
     "number_of_rate": 99,
-    "status": "available"
+    "status": "available",
+    "description": "27-inch IPS LCD monitor with a 144Hz refresh rate for smooth gaming visuals."
   },
   {
     "id": 5,
@@ -47,7 +51,8 @@
     "discount": 35,
     "rate": 4,
     "number_of_rate": 75,
-    "status": "available"
+    "status": "available",
+    "description": "Advanced wired keyboard with customizable RGB lighting and programmable keys."
   },
   {
     "id": 6,
@@ -57,7 +62,8 @@
     "discount": 0,
     "rate": 4,
     "number_of_rate": 95,
-    "status": "available"
+    "status": "available",
+    "description": "High-resolution DSLR camera with versatile shooting modes and Wi-Fi connectivity."
   },
   {
     "id": 7,
@@ -67,7 +73,8 @@
     "discount": 0,
     "rate": 5,
     "number_of_rate": 325,
-    "status": "available"
+    "status": "available",
+    "description": "Powerful gaming laptop with Full HD display and high-performance components."
   },
   {
     "id": 8,
@@ -77,6 +84,7 @@
     "discount": 0,
     "rate": 4,
     "number_of_rate": 55,
-    "status": "available"
+    "status": "available",
+    "description": "USB gamepad with precise controls and a comfortable grip for extended play sessions."
   }
 ]

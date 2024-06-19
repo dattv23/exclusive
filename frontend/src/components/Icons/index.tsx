@@ -39,3 +39,4 @@ export * from './SmartWatchIcon';
 export * from './CameraIcon';
 export * from './GamepadIcon';
 export * from './HeadphoneIcon';
+export * from './EyeIcon';

@@ -107,7 +107,8 @@
     "Save $3 with App New User Only": "Tiết kiệm $3 chỉ dành cho người dùng mới của ứng dụng"
   },
   "ProductCard": {
-    "Add To Cart": "Thêm giỏ hàng"
+    "Add To Cart": "Thêm giỏ hàng",
+    "NEW": "MỚI"
   },
   "CountDown": {
     "Days": "Ngày",
@@ -154,5 +155,9 @@
   "NotFoundPage": {
     "Description": "Trang bạn truy cập không tồn tại. Bạn có thể về trang chủ.",
     "Back to home page": "Quay lại trang chủ"
+  },
+  "ProductDetailModal": {
+    "Price": "Giá",
+    "Shop now": "Mua ngay"
   }
 }

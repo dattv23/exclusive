@@ -50,3 +50,10 @@ export const promiseTimeout = (ms: number) =>
 export const getError = (errors: Error[], field: string) => {
   return errors.find((item) => item.key == field);
 };
+
+export const calculateDiscountedPrice = (
+  price: number,
+  discount: number,
+): number => {
+  return price - price * (discount / 100);
+};
