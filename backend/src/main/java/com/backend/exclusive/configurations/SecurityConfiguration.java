@@ -29,6 +29,8 @@ public class SecurityConfiguration {
     // Define a list of URLs that should be accessible without authentication
     private static final String[] WHITE_LIST_URL = {
             "/api/v1/auth/**",
+            "/api/v1/products/all",
+            "/api/v1/products/{id}",
             "/v2/api-docs",
             "/v3/api-docs",
             "/v3/api-docs/**",
