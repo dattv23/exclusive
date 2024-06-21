@@ -43,9 +43,9 @@ public class JwtServiceImpl implements JwtService {
 
     // Generates a JWT token with extra claims for the given user details
     public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
-        extraClaims.put("role", "this is role");
         if (userDetails instanceof User) {
             User user = (User) userDetails;
+            extraClaims.put("role", user.getUserRole().toString());
             extraClaims.put("userId", user.getId().toString());  // Add user ID to claims
         }
         return buildToken(extraClaims, userDetails, jwtExpiration);
