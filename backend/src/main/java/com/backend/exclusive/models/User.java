@@ -15,6 +15,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -56,6 +58,9 @@ public class User implements UserDetails {
     @LastModifiedDate
     @Builder.Default
     private Date updatedAt = new Date();
+
+    @Enumerated(EnumType.STRING)
+    private UserRole userRole;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
