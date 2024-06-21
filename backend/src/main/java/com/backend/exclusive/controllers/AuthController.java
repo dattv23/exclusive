@@ -26,25 +26,29 @@ public class AuthController {
         this.authenticationService = authenticationService;
     }
 
-    // Endpoint to handle user registration
+    /**
+     * Endpoint to handle user registration.
+     *
+     * @param registerUserDto the user registration details.
+     * @return a ResponseEntity containing the registered user.
+     */
     @PostMapping("/signup")
     public ResponseEntity<User> register(@RequestBody RegisterUserDto registerUserDto) {
-        // Call the signup method in AuthenticationService to register the user
         User registeredUser = authenticationService.signup(registerUserDto);
-
         return ResponseEntity.ok(registeredUser);
     }
 
-    // Endpoint to handle user login
+    /**
+     * Endpoint to handle user login.
+     *
+     * @param loginUserDto the user login details.
+     * @return a ResponseEntity containing the login response with JWT token and expiration time.
+     */
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> authenticate(@RequestBody LoginUserDto loginUserDto) {
-        // Call the authenticate method in AuthenticationService to authenticate the user
         User authenticatedUser = authenticationService.authenticate(loginUserDto);
-
-        // Generate a JWT token for the authenticated user
         String jwtToken = jwtService.generateToken(authenticatedUser);
 
-        // Create a response object containing the token and its expiration time
         LoginResponse loginResponse = new LoginResponse();
         loginResponse.setToken(jwtToken);
         loginResponse.setExpiresIn(jwtService.getExpirationTime());
