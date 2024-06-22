@@ -4,11 +4,10 @@ import React, { useState } from 'react';
 import { useTranslations } from 'next-intl';
 
 import { Error } from '@/types';
-import Input from '../Inputs/Input';
 import { SubmitButton } from '@/components/Button';
 import { cn, getError } from '@/utils';
 import { contactFormAction } from './action';
-import TextArea from '../TextAreas/TextArea';
+import { Input, TextArea } from '@/components/Inputs';
 
 const ContactForm = () => {
   const t = useTranslations('Form');

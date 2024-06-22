@@ -5,8 +5,8 @@ import { useState } from 'react';
 import { Error } from '@/types';
 import { editProfileFormAction } from './action';
 import { cn, getError } from '@/utils';
-import Input from '../Inputs/Input';
-import { Button } from '@/components/Button';
+import { Button, SubmitButton } from '@/components/Button';
+import { Input } from '@/components/Inputs';
 
 const EditProfileForm = () => {
   const t = useTranslations('Form');
@@ -31,7 +31,7 @@ const EditProfileForm = () => {
           type="text"
           name="firstName"
           id="firstName"
-          label={t('First Name')}
+          label={t('fields.firstName')}
           onChange={(e) => handleChangeInput(e)}
           error={getError(errors, 'firstName')}
         />
@@ -39,7 +39,7 @@ const EditProfileForm = () => {
           type="text"
           name="lastName"
           id="lastName"
-          label={t('Last Name')}
+          label={t('fields.lastName')}
           onChange={(e) => handleChangeInput(e)}
           error={getError(errors, 'lastName')}
         />
@@ -49,7 +49,7 @@ const EditProfileForm = () => {
           type="text"
           name="email"
           id="email"
-          label={t('Email')}
+          label={t('fields.email')}
           onChange={(e) => handleChangeInput(e)}
           error={getError(errors, 'email')}
         />
@@ -57,7 +57,7 @@ const EditProfileForm = () => {
           type="text"
           name="address"
           id="address"
-          label={t('Address')}
+          label={t('fields.address')}
           onChange={(e) => handleChangeInput(e)}
           error={getError(errors, 'address')}
         />
@@ -67,7 +67,7 @@ const EditProfileForm = () => {
           type="password"
           name="currentPassword"
           id="currentPassword"
-          label={t('Current Password')}
+          label={t('fields.currentPassword')}
           onChange={(e) => handleChangeInput(e)}
           error={getError(errors, 'currentPassword"')}
         />
@@ -75,7 +75,7 @@ const EditProfileForm = () => {
           type="password"
           name="newPassword"
           id="newPassword"
-          label={t('New Password')}
+          label={t('fields.newPassword')}
           onChange={(e) => handleChangeInput(e)}
           error={getError(errors, 'newPassword"')}
         />
@@ -83,14 +83,14 @@ const EditProfileForm = () => {
           type="password"
           name="confirmNewPassword"
           id="confirmNewPassword"
-          label={t('Confirm New Password')}
+          label={t('fields.confirmNewPassword')}
           onChange={(e) => handleChangeInput(e)}
           error={getError(errors, 'confirmNewPassword"')}
         />
       </div>
       <div className="mt-2 flex justify-end gap-2">
-        <Button className="bg-white text-black">{t('Cancel')}</Button>
-        <Button>{t('Save Changes')}</Button>
+        <Button className="bg-white text-black">{t('buttons.cancel')}</Button>
+        <SubmitButton text={t('buttons.save')} />
       </div>
     </form>
   );

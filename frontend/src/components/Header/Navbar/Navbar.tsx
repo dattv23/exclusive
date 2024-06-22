@@ -3,7 +3,7 @@ import React from 'react';
 import { useTranslations } from 'next-intl';
 
 import { CartIcon, HeartSmallIcon, UserIcon } from '@/components/Icons';
-import { SearchInput } from '@/components/Forms/Inputs';
+import { SearchInput } from '@/components/Inputs';
 import { AccountDropdown } from '@/components/Dropdown';
 import { Link } from '@/navigation';
 import { NavItem } from '@/types';
