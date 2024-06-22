@@ -169,5 +169,19 @@
     "My Completed": "Danh sách hoàn thành",
     "My Returns": "Danh sách đổi trả",
     "My Cancellations": "Danh sách hủy bỏ"
+  },
+  "Form": {
+    "First Name": "Họ",
+    "Last Name": "Tên",
+    "Email": "Email",
+    "Address": "Địa chỉ",
+    "Current Password": "Mật khẩu hiện tại",
+    "New Password": "Mật khẩu mới",
+    "Confirm New Password": "Xác nhận mật khẩu mới",
+    "Cancel": "Hủy",
+    "Save Changes": "Lưu thay đổi"
+  },
+  "MyProfilePage": {
+    "Edit your profile": "Chỉnh sửa hồ sơ"
   }
 }

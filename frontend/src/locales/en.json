@@ -169,5 +169,19 @@
     "My Completed": "My Completed",
     "My Returns": "My Returns",
     "My Cancellations": "My Cancellations"
+  },
+  "Form": {
+    "First Name": "First Name",
+    "Last Name": "Last Name",
+    "Email": "Email",
+    "Address": "Address",
+    "Current Password": "Current Password",
+    "New Password": "New Password",
+    "Confirm New Password": "Confirm New Password",
+    "Cancel": "Cancel",
+    "Save Changes": "Save Changes"
+  },
+  "MyProfilePage": {
+    "Edit your profile": "Edit your profile"
   }
 }

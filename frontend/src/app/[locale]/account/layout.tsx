@@ -6,11 +6,11 @@ type AccountLayoutProps = {
 
 const AccountLayout: React.FC<AccountLayoutProps> = ({ children }) => {
   return (
-    <div className="flex gap-4 py-16">
-      <div className="w-80">
+    <div className="flex w-full gap-4 py-16">
+      <div className="w-1/3">
         <AccountNavbar />
       </div>
-      <main>{children}</main>
+      <main className="w-2/3">{children}</main>
     </div>
   );
 };
