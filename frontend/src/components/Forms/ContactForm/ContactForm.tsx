@@ -8,6 +8,7 @@ import Input from '../Inputs/Input';
 import { SubmitButton } from '@/components/Button';
 import { cn, getError } from '@/utils';
 import { contactFormAction } from './action';
+import TextArea from '../TextAreas/TextArea';
 
 const ContactForm = () => {
   const t = useTranslations('ContactForm');
@@ -16,9 +17,12 @@ const ContactForm = () => {
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setErrors(errors.filter((error) => error.key != e.target.name));
   };
+  const handleChangeTextArea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setErrors(errors.filter((error) => error.key != e.target.name));
+  };
 
   return (
-    <div className="w-full rounded-lg border p-6 shadow-md md:w-1/2">
+    <div className="w-full rounded-lg border p-6 shadow-md md:w-3/4">
       <form
         action={(formData) =>
           contactFormAction({ formData, onChangeErrors: setErrors })
@@ -50,12 +54,11 @@ const ContactForm = () => {
           error={getError(errors, 'yourPhone')}
         />
       </form>
-      <Input
-        type="message"
+      <TextArea
         name="message"
         id="message"
         label={t('Message')}
-        onChange={(e) => handleChangeInput(e)}
+        onChange={(e) => handleChangeTextArea(e)}
         error={getError(errors, 'message')}
       />
       <div className="mt-5 flex items-center justify-between">
