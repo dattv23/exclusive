@@ -3,7 +3,8 @@
 import toast from 'react-hot-toast';
 
 import { loginAction } from '@/actions';
-import { Error, LoginSchema } from '@/types';
+import { Error } from '@/types';
+import { loginSchema } from '@/schemas';
 
 type TParams = {
   formData: FormData;
@@ -19,7 +20,7 @@ export const loginFormAction = async (params: TParams) => {
   };
 
   // client-side validation
-  const result = LoginSchema.safeParse(data);
+  const result = loginSchema.safeParse(data);
   if (!result.success) {
     const newErrors: Error[] = result.error.issues.map((issue) => ({
       key: issue.path[0], // Use the path as the key

@@ -2,12 +2,12 @@
 
 import { redirect } from 'next/navigation';
 
-import { ContactSchema } from '@/types';
 import { promiseTimeout } from '@/utils';
+import { contactSchema } from '@/schemas';
 
 export const contactAction = async (data: unknown) => {
   // server-side validation
-  const result = ContactSchema.safeParse(data);
+  const result = contactSchema.safeParse(data);
   if (!result.success) {
     let errorMessage = '';
     result.error.issues.forEach((issue) => {

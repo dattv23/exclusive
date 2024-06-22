@@ -2,12 +2,12 @@
 
 import { redirect } from 'next/navigation';
 
-import { RegisterSchema } from '@/types';
 import { promiseTimeout } from '@/utils';
+import { registerSchema } from '@/schemas';
 
 export const registerAction = async (data: unknown) => {
   // server-side validation
-  const result = RegisterSchema.safeParse(data);
+  const result = registerSchema.safeParse(data);
   if (!result.success) {
     let errorMessage = '';
     result.error.issues.forEach((issue) => {

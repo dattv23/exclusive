@@ -34,7 +34,16 @@
     "Invalid email": "Email không hợp lệ",
     "Email is required": "Email là bắt buộc",
     "Password is required": "Nhập mật khẩu",
-    "Password must be at least 8 characters long": "Mật khẩu phải nhiều hơn 8 kí tự"
+    "Password must be at least 8 characters long": "Mật khẩu phải nhiều hơn 8 kí tự",
+    "Your name is required": "Tên của bạn là bắt buộc",
+    "Your name must be 5 or more characters long": "Tên của bạn phải có 5 ký tự trở lên",
+    "Your phone is required": "Số điện thoại của bạn là bắt buộc",
+    "Your phone must be 10 characters long": "Số điện thoại của bạn phải có 10 ký tự",
+    "Message is required": "Tin nhắn là bắt buộc",
+    "Message must be at least 8 characters long": "Tin nhắn phải có ít nhất 8 ký tự",
+    "Current password must be at least 8 characters long": "Mật khẩu hiện tại phải có ít nhất 8 ký tự",
+    "New password must be at least 8 characters long": "Mật khẩu mới phải có ít nhất 8 ký tự",
+    "Confirm password must be at least 8 characters long": "Xác nhận mật khẩu phải có ít nhất 8 ký tự"
   },
   "ContactPage": {
     "Call To Us": "Liên hệ với chúng tôi",
@@ -190,7 +199,7 @@
       "forgotPassword": "Quên mật khẩu"
     },
     "texts": {
-      "Already have an account": "Đã có tài khoản"
+      "questionLogin": "Đã có tài khoản"
     }
   },
   "MyProfilePage": {

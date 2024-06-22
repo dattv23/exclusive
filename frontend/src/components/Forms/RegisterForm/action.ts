@@ -3,7 +3,8 @@
 import toast from 'react-hot-toast';
 
 import { registerAction } from '@/actions';
-import { Error, RegisterSchema } from '@/types';
+import { Error } from '@/types';
+import { registerSchema } from '@/schemas';
 
 type TParams = {
   formData: FormData;
@@ -20,7 +21,7 @@ export const registerFormAction = async (params: TParams) => {
   };
 
   // client-side validation
-  const result = RegisterSchema.safeParse(data);
+  const result = registerSchema.safeParse(data);
   if (!result.success) {
     const newErrors: Error[] = result.error.issues.map((issue) => ({
       key: issue.path[0], // Use the path as the key

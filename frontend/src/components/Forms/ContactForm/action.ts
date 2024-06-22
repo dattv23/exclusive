@@ -3,7 +3,8 @@
 import toast from 'react-hot-toast';
 
 import { contactAction } from '@/actions';
-import { Error, ContactSchema } from '@/types';
+import { Error } from '@/types';
+import { contactSchema } from '@/schemas';
 
 type TParams = {
   formData: FormData;
@@ -25,7 +26,7 @@ export const contactFormAction = async (params: TParams) => {
   console.log('====================================');
 
   // client-side validation
-  const result = ContactSchema.safeParse(data);
+  const result = contactSchema.safeParse(data);
   if (!result.success) {
     const newErrors: Error[] = result.error.issues.map((issue) => ({
       key: issue.path[0], // Use the path as the key

@@ -2,12 +2,12 @@
 
 import { redirect } from 'next/navigation';
 
-import { LoginSchema } from '@/types';
 import { promiseTimeout } from '@/utils';
+import { loginSchema } from '@/schemas';
 
 export const loginAction = async (data: unknown) => {
   // server-side validation
-  const result = LoginSchema.safeParse(data);
+  const result = loginSchema.safeParse(data);
   if (!result.success) {
     let errorMessage = '';
     result.error.issues.forEach((issue) => {

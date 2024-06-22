@@ -34,7 +34,16 @@
     "Email is required": "Email is required",
     "Invalid email": "Invalid email",
     "Password is required": "Password is required",
-    "Password must be at least 8 characters long": "Password must be at least 8 characters long"
+    "Password must be at least 8 characters long": "Password must be at least 8 characters long",
+    "Your name is required": "Your name is required",
+    "Your name must be 5 or more characters long": "Your name must be 5 or more characters long",
+    "'Your phone is required": "'Your phone is required",
+    "Your phone must be 10 characters long": "Your phone must be 10 characters long",
+    "Message is required": "Message is required",
+    "Message must be at least 8 characters long": "Message must be at least 8 characters long",
+    "Current password must be at least 8 characters long": "Current password must be at least 8 characters long",
+    "New password must be at least 8 characters long": "New password must be at least 8 characters long",
+    "Confirm password must be at least 8 characters long": "Confirm password must be at least 8 characters long"
   },
   "ContactPage": {
     "Call To Us": "Call To Us",
