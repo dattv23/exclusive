@@ -22,9 +22,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getAll() {
         List<User> users = new ArrayList<>();
-
         userRepository.findAll().forEach(users::add);
-
         return users;
     }
 }
