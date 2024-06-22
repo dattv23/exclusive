@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
-import { QRCode } from 'antd';
 
 import {
   FacebookIcon,
@@ -8,8 +7,7 @@ import {
   LinkedinIcon,
   SendIcon,
   TwitterIcon,
-} from '../Icons';
-import { envClientConfig } from '@/libs/env';
+} from '@/components/Icons';
 import { Link } from '@/navigation';
 
 const Footer = () => {
@@ -17,7 +15,7 @@ const Footer = () => {
 
   return (
     <footer className="bottom-0 bg-black pb-6 pt-20 text-white">
-      <div className="flex flex-wrap justify-evenly gap-5 px-2 pb-[60px] lg:px-32">
+      <div className="flex flex-wrap justify-evenly gap-5 px-2 pb-[60px] lg:px-28">
         <div>
           <h3 className="mb-6">Exclusive</h3>
           <h4 className="mb-2">{t('Subscribe')}</h4>
@@ -89,24 +87,21 @@ const Footer = () => {
         <div className="w-[300px]">
           <h4 className="mb-6">{t('Download App')}</h4>
           <p>{t('Save $3 with App New User Only')}</p>
-          <div className="mt-2 flex gap-2">
-            <div className="h-40 w-40 bg-white">
-              <QRCode value={envClientConfig.NEXT_PUBLIC_APP_URL} />
-            </div>
-            <div className="flex flex-col gap-1">
+          <div className="mt-2">
+            <div className="flex gap-4">
               <Image
-                width={104}
-                height={34}
+                width={112}
+                height={36}
                 src={'/images/appstore.png'}
                 alt="Download with appstore"
-                className="h-auto w-full"
+                className="h-9 w-28"
               />
               <Image
                 src={'/images/chplay.png'}
                 alt="Download with chplay"
-                width={104}
-                height={34}
-                className="h-auto w-full"
+                width={112}
+                height={36}
+                className="h-9 w-28"
               />
             </div>
           </div>

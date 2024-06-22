@@ -4,14 +4,14 @@ import React, { useState } from 'react';
 import { useTranslations } from 'next-intl';
 
 import { Error } from '@/types';
-import Input from '../Inputs/Input';
+import Input from '../../Inputs/Input';
 import { SubmitButton } from '@/components/Button';
 import { cn, getError } from '@/utils';
 import { registerFormAction } from './action';
 import { Link } from '@/navigation';
 
 const RegisterForm = () => {
-  const t = useTranslations('RegisterForm');
+  const t = useTranslations('Form');
   const [errors, setErrors] = useState<Error[]>([]);
 
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,7 +29,7 @@ const RegisterForm = () => {
         type="text"
         name="firstName"
         id="firstName"
-        label={t('FirstName')}
+        label={t('fields.firstName')}
         onChange={(e) => handleChangeInput(e)}
         error={getError(errors, 'firstName')}
       />
@@ -37,7 +37,7 @@ const RegisterForm = () => {
         type="text"
         name="lastName"
         id="lastName"
-        label={t('LastName')}
+        label={t('fields.lastName')}
         onChange={(e) => handleChangeInput(e)}
         error={getError(errors, 'lastName')}
       />
@@ -45,7 +45,7 @@ const RegisterForm = () => {
         type="text"
         name="email"
         id="email"
-        label={t('Email')}
+        label={t('fields.email')}
         onChange={(e) => handleChangeInput(e)}
         error={getError(errors, 'email')}
       />
@@ -53,17 +53,17 @@ const RegisterForm = () => {
         type="password"
         name="password"
         id="password"
-        label={t('Password')}
+        label={t('fields.password')}
         onChange={(e) => handleChangeInput(e)}
         error={getError(errors, 'password')}
       />
       <div className="flex w-full flex-col gap-4">
-        <SubmitButton value="Create account" />
+        <SubmitButton text={t('buttons.createAccount')} />
       </div>
       <div className="flex justify-center">
-        <p className="mr-3">Already have an account?</p>
+        <p className="mr-3">{`${t('texts.questionLogin')}`}</p>
         <Link href={'/auth/sign-in'} className="text-error hover:opacity-80">
-          {t('Log in')}
+          {t('buttons.logIn')}
         </Link>
       </div>
     </form>

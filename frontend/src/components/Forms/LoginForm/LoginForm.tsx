@@ -4,14 +4,14 @@ import React, { useState } from 'react';
 import { useTranslations } from 'next-intl';
 
 import { Error } from '@/types';
-import Input from '../Inputs/Input';
+import Input from '../../Inputs/Input';
 import { SubmitButton } from '@/components/Button';
 import { cn, getError } from '@/utils';
 import { loginFormAction } from './action';
 import { Link } from '@/navigation';
 
 const LoginForm = () => {
-  const t = useTranslations('LoginForm');
+  const t = useTranslations('Form');
   const [errors, setErrors] = useState<Error[]>([]);
 
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,7 +29,7 @@ const LoginForm = () => {
         type="text"
         name="email"
         id="email"
-        label={t('Email')}
+        label={t('fields.email')}
         onChange={(e) => handleChangeInput(e)}
         error={getError(errors, 'email')}
       />
@@ -37,17 +37,17 @@ const LoginForm = () => {
         type="password"
         name="password"
         id="password"
-        label={t('Password')}
+        label={t('fields.password')}
         onChange={(e) => handleChangeInput(e)}
         error={getError(errors, 'password')}
       />
       <div className="mt-4 flex items-center justify-between">
-        <SubmitButton value="Log In" />
+        <SubmitButton text={t('buttons.logIn')} />
         <Link
           href={'/auth/forgot-password'}
           className="text-error hover:opacity-80"
         >
-          {t('Forgot Password?')}
+          {`${t('links.forgotPassword')}`}
         </Link>
       </div>
     </form>

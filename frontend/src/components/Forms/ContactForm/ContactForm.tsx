@@ -4,14 +4,13 @@ import React, { useState } from 'react';
 import { useTranslations } from 'next-intl';
 
 import { Error } from '@/types';
-import Input from '../Inputs/Input';
 import { SubmitButton } from '@/components/Button';
 import { cn, getError } from '@/utils';
 import { contactFormAction } from './action';
-import TextArea from '../TextAreas/TextArea';
+import { Input, TextArea } from '@/components/Inputs';
 
 const ContactForm = () => {
-  const t = useTranslations('ContactForm');
+  const t = useTranslations('Form');
   const [errors, setErrors] = useState<Error[]>([]);
 
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,43 +26,47 @@ const ContactForm = () => {
         action={(formData) =>
           contactFormAction({ formData, onChangeErrors: setErrors })
         }
-        className={cn('mb-4 grid grid-cols-1 gap-4 md:grid-cols-3')}
+        className={cn('flex flex-col gap-4')}
       >
-        <Input
-          type="text"
-          name="yourName"
-          id="yourName"
-          label={t('YourName')}
-          onChange={(e) => handleChangeInput(e)}
-          error={getError(errors, 'yourName')}
+        <div className="flex gap-4">
+          <Input
+            type="text"
+            name="name"
+            id="name"
+            label={t('fields.yourName')}
+            onChange={(e) => handleChangeInput(e)}
+            error={getError(errors, 'name')}
+          />
+          <Input
+            type="email"
+            name="email"
+            id="email"
+            label={t('fields.yourEmail')}
+            onChange={(e) => handleChangeInput(e)}
+            error={getError(errors, 'email')}
+          />
+          <Input
+            type="text"
+            name="phone"
+            id="phone"
+            label={t('fields.yourPhone')}
+            onChange={(e) => handleChangeInput(e)}
+            error={getError(errors, 'phone')}
+          />
+        </div>
+        <TextArea
+          name="message"
+          id="message"
+          label={t('fields.message')}
+          onChange={(e) => handleChangeTextArea(e)}
+          error={getError(errors, 'message')}
+          rows={8}
+          className=""
         />
-        <Input
-          type="yourEmail"
-          name="yourEmail"
-          id="yourEmail"
-          label={t('YourEmail')}
-          onChange={(e) => handleChangeInput(e)}
-          error={getError(errors, 'yourEmail')}
-        />
-        <Input
-          type="yourPhone"
-          name="yourPhone"
-          id="yourPhone"
-          label={t('YourPhone')}
-          onChange={(e) => handleChangeInput(e)}
-          error={getError(errors, 'yourPhone')}
-        />
+        <div className="flex items-center justify-end">
+          <SubmitButton text={t('buttons.sendMessage')} />
+        </div>
       </form>
-      <TextArea
-        name="message"
-        id="message"
-        label={t('Message')}
-        onChange={(e) => handleChangeTextArea(e)}
-        error={getError(errors, 'message')}
-      />
-      <div className="mt-5 flex items-center justify-between">
-        <SubmitButton value="Send Message" />
-      </div>
     </div>
   );
 };

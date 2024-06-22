@@ -13,20 +13,22 @@ const ContactPage: React.FC<ContactPageProps> = () => {
       <div className="flex flex-col gap-8 md:flex-row">
         <div className="w-full rounded-lg border p-6 shadow-md md:w-1/2">
           <div className="mb-4 items-start">
-            <PhoneIcon className="mr-4 items-start" />
-            <div>
+            <div className="flex items-center">
+              <PhoneIcon className="mr-4 items-start" />
               <h2 className="text-xl  font-semibold">{t('Call To Us')}</h2>
-              <p className="mt-1">
-                {t('We are available 24/7, 7 days a week')}
-              </p>
-              <p>{t('Phone: +8801611112222')}</p>
+            </div>
+            <div className="mt-2 flex flex-col gap-4">
+              <p className="mt-1">{t('Description')}</p>
+              <p>{t('Phone')}</p>
             </div>
           </div>
-          <hr className="my-9" />
+          <hr className="my-8" />
           <div className="mb-6 items-start">
-            <MailIcon className="mr-4" />
-            <div>
+            <div className="flex items-center">
+              <MailIcon className="mr-4" />
               <h2 className="text-xl font-semibold">{t('Write To Us')}</h2>
+            </div>
+            <div className="mt-2 flex flex-col gap-4">
               <p className="mt-1">
                 {t('Fill out our form we will contact you within 24 hours')}
               </p>
