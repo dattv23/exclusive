@@ -18,24 +18,6 @@
     "My Reviews": "My Reviews",
     "Logout": "Logout"
   },
-  "Button": {
-    "Log In": "Log In",
-    "Create account": "Create account",
-    "Send Message": "Send Message"
-  },
-  "LoginForm": {
-    "Email": "Email",
-    "Password": "Password",
-    "Forgot Password?": "Forgot Password?"
-  },
-  "RegisterForm": {
-    "FirstName": "FirstName",
-    "LastName": "LastName",
-    "Email": "Email",
-    "Password": "Password",
-    "Log in": "Log in",
-    "Already have an account?": "Already have an account?"
-  },
   "SignInPage": {
     "Log in to Exclusive": "Log in to Exclusive",
     "Enter your details below": "Enter your details below"
@@ -60,12 +42,6 @@
     "Phone": "Phone: +8801611112222",
     "Write To Us": "Write To Us",
     "Fill out our form we will contact you within 24 hours": "Fill out our form we will contact you within 24 hours."
-  },
-  "ContactForm": {
-    "YourName": "Your Name",
-    "YourEmail": "Your Email",
-    "YourPhone": "Your Phone",
-    "Message": "Your Message"
   },
   "CategorySection": {
     "Categories": "Categories",
@@ -189,15 +165,33 @@
     "My Cancellations": "My Cancellations"
   },
   "Form": {
-    "First Name": "First Name",
-    "Last Name": "Last Name",
-    "Email": "Email",
-    "Address": "Address",
-    "Current Password": "Current Password",
-    "New Password": "New Password",
-    "Confirm New Password": "Confirm New Password",
-    "Cancel": "Cancel",
-    "Save Changes": "Save Changes"
+    "fields": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "address": "Address",
+      "password": "Password",
+      "currentPassword": "Current Password",
+      "newPassword": "New Password",
+      "confirmNewPassword": "Confirm New Password",
+      "yourName": "Your Name",
+      "yourEmail": "Your Email",
+      "yourPhone": "Your Phone",
+      "message": "Your Message"
+    },
+    "buttons": {
+      "logIn": "Log In",
+      "createAccount": "Create Account",
+      "sendMessage": "Send Message",
+      "cancel": "Cancel",
+      "save": "Save Changes"
+    },
+    "links": {
+      "forgotPassword": "Forgot Password"
+    },
+    "texts": {
+      "questionLogin": "Already have an account"
+    }
   },
   "MyProfilePage": {
     "Edit your profile": "Edit your profile"

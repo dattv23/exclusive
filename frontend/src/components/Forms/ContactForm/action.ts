@@ -20,6 +20,10 @@ export const contactFormAction = async (params: TParams) => {
     message: formData.get('message'),
   };
 
+  console.log('====================================');
+  console.log(data);
+  console.log('====================================');
+
   // client-side validation
   const result = ContactSchema.safeParse(data);
   if (!result.success) {

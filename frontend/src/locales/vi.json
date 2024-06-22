@@ -18,27 +18,9 @@
     "My Reviews": "Đánh giá của tôi",
     "Logout": "Đăng xuất"
   },
-  "Button": {
-    "Log In": "Đăng nhập",
-    "Create account": "Đăng kí tài khoản",
-    "Send Message": "Gửi tin nhắn"
-  },
-  "LoginForm": {
-    "Email": "Email",
-    "Password": "Mật khẩu",
-    "Forgot Password?": "Quên mật khẩu?"
-  },
   "SignInPage": {
     "Log in to Exclusive": "Đăng nhập tới Exclusive",
     "Enter your details below": "Nhập thông tin chi tiết của bạn dưới đây"
-  },
-  "RegisterForm": {
-    "FirstName": "Họ và tên lót",
-    "LastName": "Tên",
-    "Email": "Email",
-    "Password": "Mật khẩu",
-    "Log in": "Đăng nhập",
-    "Already have an account?": "Đã có tài khoản?"
   },
   "SignUpPage": {
     "Create an account": "Tạo tài khoản",
@@ -60,12 +42,6 @@
     "Phone": "SĐT: +8801611112222",
     "Write To Us": "Viết thư cho chúng tôi",
     "Fill out our form we will contact you within 24 hours": "Chúng tôi sẽ liên hệ bạn trong 24 giờ"
-  },
-  "ContactForm": {
-    "YourName": "Tên của bạn",
-    "YourEmail": "Email",
-    "YourPhone": "Số điện thoại",
-    "Message": "Thông tin muốn gửi"
   },
   "CategorySection": {
     "Categories": "Danh mục",
@@ -189,15 +165,33 @@
     "My Cancellations": "Danh sách hủy bỏ"
   },
   "Form": {
-    "First Name": "Họ",
-    "Last Name": "Tên",
-    "Email": "Email",
-    "Address": "Địa chỉ",
-    "Current Password": "Mật khẩu hiện tại",
-    "New Password": "Mật khẩu mới",
-    "Confirm New Password": "Xác nhận mật khẩu mới",
-    "Cancel": "Hủy",
-    "Save Changes": "Lưu thay đổi"
+    "fields": {
+      "firstName": "Tên",
+      "lastName": "Họ",
+      "email": "Email",
+      "address": "Địa chỉ",
+      "password": "Mật khẩu",
+      "currentPassword": "Mật khẩu hiện tại",
+      "newPassword": "Mật khẩu mới",
+      "confirmNewPassword": "Xác nhận mật khẩu mới",
+      "yourName": "Tên của bạn",
+      "yourEmail": "Email của bạn",
+      "yourPhone": "Số điện thoại của bạn",
+      "message": "Tin nhắn của bạn"
+    },
+    "buttons": {
+      "logIn": "Đăng nhập",
+      "createAccount": "Tạo tài khoản",
+      "sendMessage": "Gởi tin nhắn",
+      "cancel": "Hủy",
+      "save": "Lưu thay đổi"
+    },
+    "links": {
+      "forgotPassword": "Quên mật khẩu"
+    },
+    "texts": {
+      "Already have an account": "Đã có tài khoản"
+    }
   },
   "MyProfilePage": {
     "Edit your profile": "Chỉnh sửa hồ sơ"
