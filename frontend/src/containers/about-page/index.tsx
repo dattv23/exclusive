@@ -1,16 +1,16 @@
 import { useTranslations } from 'next-intl';
-import React from 'react';
 import Image from 'next/image';
+
 import {
-  CustomerserviceIcon,
-  Delivery1Icon,
+  CustomerServiceIcon,
+  DeliveryIcon,
   GroupIcon,
   InstagramIcon,
   LinkedinIcon,
   SaleIcon,
   SecureIcon,
   ShopIcon,
-  ShoppingBag1Icon,
+  ShoppingBagIcon,
   TwitterIcon,
 } from '@/components/Icons';
 
@@ -55,7 +55,7 @@ const AboutPage: React.FC<AboutPageProps> = () => {
           <p>{t('Monthly Product Sale')}</p>
         </div>
         <div className="flex flex-col items-center rounded-lg border p-4">
-          <ShoppingBag1Icon />
+          <ShoppingBagIcon />
           <h2 className="text-xl font-bold">45.5k</h2>
           <p className="text-zinc-600">{t('Customer active in our site')}</p>
         </div>
@@ -114,16 +114,16 @@ const AboutPage: React.FC<AboutPageProps> = () => {
       </div>
       <div className="flex flex-col items-center justify-around border-t pt-4 text-center md:flex-row">
         <div className="mb-32 flex flex-col items-center md:mb-0">
-          <Delivery1Icon />
+          <DeliveryIcon />
           <p className="font-bold">{t('FREE AND FAST DELIVERY')}</p>
           <p className="text-zinc-600">
             {t('Free delivery for all orders over $140')}
           </p>
         </div>
         <div className="mb-32 flex flex-col items-center md:mb-0">
-          <CustomerserviceIcon />
-          <p className="font-bold">{t('24/7 CUSTOMER SERVICE')}</p>
-          <p className="text-zinc-600">{t('Friendly 24/7 customer support')}</p>
+          <CustomerServiceIcon />
+          <p className="font-bold">{t('CUSTOMER SERVICE')}</p>
+          <p className="text-zinc-600">{t('Friendly customer support')}</p>
         </div>
         <div className="flex flex-col items-center">
           <SecureIcon />
