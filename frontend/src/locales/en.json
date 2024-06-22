@@ -159,5 +159,15 @@
   "ProductDetailModal": {
     "Price": "Price",
     "Shop now": "Shop now"
+  },
+  "AccountNavbar": {
+    "Manage My Account": "Manage My Account",
+    "My Profile": "My Profile",
+    "Address Book": "Address Book",
+    "My Payment Options": "My Payment Options",
+    "My Order": "My Order",
+    "My Completed": "My Completed",
+    "My Returns": "My Returns",
+    "My Cancellations": "My Cancellations"
   }
 }

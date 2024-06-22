@@ -159,5 +159,15 @@
   "ProductDetailModal": {
     "Price": "Giá",
     "Shop now": "Mua ngay"
+  },
+  "AccountNavbar": {
+    "Manage My Account": "Quản lý tài khoản của tôi",
+    "My Profile": "Hồ sơ của tôi",
+    "Address Book": "Địa chỉ giao hàng",
+    "My Payment Options": "Các tùy chọn thanh toán của tôi",
+    "My Order": "Đơn hàng của tôi",
+    "My Completed": "Danh sách hoàn thành",
+    "My Returns": "Danh sách đổi trả",
+    "My Cancellations": "Danh sách hủy bỏ"
   }
 }
