@@ -6,4 +6,5 @@ export * from './login.type';
 export * from './register.type';
 export * from './error.type';
 export * from './dropdownItem';
+export * from './category.type';
 export * from './contact.type';

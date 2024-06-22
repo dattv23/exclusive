@@ -1,12 +1,15 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
+import { useEffect, useState } from 'react';
 
 interface CountDownProps {
   time: number; // 259200s
 }
 
 const CountDown: React.FC<CountDownProps> = ({ time }) => {
+  const t = useTranslations('CountDown');
+
   const [timeRemaining, setTimeRemaining] = useState<number>(time);
   const [days, setDays] = useState<number>(0);
   const [hours, setHours] = useState<number>(0);
@@ -34,21 +37,21 @@ const CountDown: React.FC<CountDownProps> = ({ time }) => {
   return (
     <div className="relative -my-2 h-16">
       <div className="absolute left-0 top-0 inline-flex flex-col items-start justify-start gap-1">
-        <p className="font-medium text-black">Days</p>
+        <p className="font-medium text-black">{t('Days')}</p>
         <p className="text-xl font-bold">{days.toString().padStart(2, '0')}</p>
       </div>
       <div className="absolute left-[84px] top-0 inline-flex flex-col items-start justify-start gap-1">
-        <p className="font-medium text-black">Hours</p>
+        <p className="font-medium text-black">{t('Hours')}</p>
         <p className="text-xl font-bold">{hours.toString().padStart(2, '0')}</p>
       </div>
       <div className="absolute left-[164px] top-0 inline-flex flex-col items-start justify-start gap-1">
-        <p className="font-medium text-black">Minutes</p>
+        <p className="font-medium text-black">{t('Minutes')}</p>
         <p className="text-xl font-bold">
           {minutes.toString().padStart(2, '0')}
         </p>
       </div>
       <div className="absolute left-[251px] top-0 inline-flex flex-col items-start justify-start gap-1">
-        <p className="font-medium text-black">Seconds</p>
+        <p className="font-medium text-black">{t('Seconds')}</p>
         <p className="text-xl font-bold">
           {seconds.toString().padStart(2, '0')}
         </p>

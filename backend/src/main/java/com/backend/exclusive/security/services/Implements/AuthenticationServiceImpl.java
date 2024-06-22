@@ -1,6 +1,7 @@
 package com.backend.exclusive.security.services.Implements;
 
 import com.backend.exclusive.models.User;
+import com.backend.exclusive.models.UserRole;
 import com.backend.exclusive.repositories.UserRepository;
 import com.backend.exclusive.security.dtos.LoginUserDto;
 import com.backend.exclusive.security.dtos.RegisterUserDto;
@@ -38,6 +39,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         user.setFirstName(input.getFirstName());
         user.setLastName(input.getLastName());
         user.setEmail(input.getEmail());
+        user.setUserRole(UserRole.USER);
         // Encode the user's password before saving
         user.setPassword(passwordEncoder.encode(input.getPassword()));
 

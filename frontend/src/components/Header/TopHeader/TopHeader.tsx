@@ -1,17 +1,21 @@
-import Link from 'next/link';
-import React from 'react';
+import { useTranslations } from 'next-intl';
 
 import LocaleSwitcher from '../LocaleSwitcher';
+import { Link } from '@/navigation';
 
 const TopHeader = () => {
+  const t = useTranslations('TopHeader');
+
   return (
-    <div className="flex w-full items-center justify-between bg-black px-0 text-white lg:px-20">
-      <div className="flex w-full justify-center gap-2 font-light">
+    <div className="flex w-full flex-col items-end bg-black px-4 text-white md:flex-row md:items-center md:justify-between lg:px-36">
+      <div className="hidden w-full justify-center gap-2 font-light md:flex md:flex-row">
         <p>
-          Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!
+          {t(
+            'Summer Sale For All Headphone And Free Express Delivery - OFF 50%!',
+          )}
         </p>
-        <Link href={'/'} className="font-semibold">
-          Shop now
+        <Link href={'/products'} className="font-semibold">
+          {t('Shop now')}
         </Link>
       </div>
       <LocaleSwitcher />

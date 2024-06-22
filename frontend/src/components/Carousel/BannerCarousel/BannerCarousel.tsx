@@ -1,9 +1,9 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 
-import { ArrowLeftIcon, ArrowRightIcon } from '../../Icons';
+import { ArrowLeftIcon, ArrowRightIcon } from '@/components/Icons';
 
 interface BannerCarouselProps {
   images: string[];
@@ -23,9 +23,9 @@ const BannerCarousel: React.FC<BannerCarouselProps> = ({ images }) => {
   }, [images.length]);
 
   return (
-    <div className="relative flex items-center">
+    <div className="relative flex w-full items-center">
       <button
-        className="absolute left-2 flex h-10 w-10 items-center justify-center rounded-full bg-[#ccc] p-2"
+        className="absolute left-2 flex h-10 w-10 items-center justify-center rounded-full bg-[#ccc] p-2 hover:bg-secondary"
         onClick={() =>
           setCurrentImg((pre) => (pre == 0 ? images.length - 1 : pre - 1))
         }
@@ -38,12 +38,12 @@ const BannerCarousel: React.FC<BannerCarouselProps> = ({ images }) => {
           width={892}
           height={344}
           alt={`banner-${currentImg}`}
-          className="h-auto w-full"
+          className="h-full w-full"
           priority
         />
       </div>
       <button
-        className="absolute right-2 flex h-10 w-10 items-center justify-center rounded-full bg-[#ccc] p-2"
+        className="absolute right-2 flex h-10 w-10 items-center justify-center rounded-full bg-[#ccc] p-2 hover:bg-secondary"
         onClick={() =>
           setCurrentImg((pre) => (pre == images.length - 1 ? 0 : pre + 1))
         }

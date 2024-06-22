@@ -50,29 +50,113 @@
     "First name must be 5 or more characters long": "Họ phải có nhiều hơn 5 kí tự",
     "Last name must be 5 or more characters long": "Tên phải có nhiều hơn 5 ksi tự",
     "Invalid email": "Email không hợp lệ",
-    "Email is required":"NHập Email",
+    "Email is required": "Email là bắt buộc",
     "Password is required": "Nhập mật khẩu",
     "Password must be at least 8 characters long": "Mật khẩu phải nhiều hơn 8 kí tự"
   },
-  "ContactPage":{
+  "ContactPage": {
     "Call To Us": "Liên hệ với chúng tôi",
     "We are available 24/7, 7 days a week": "Chúng tôi luôn sẵn sàng 24/7, 7 ngày một tuần",
     "Phone: +8801611112222": "SĐT: +8801611112222",
     "Write To Us": "Viết thư cho chúng tôi",
     "Fill out our form we will contact you within 24 hours": "Chúng tôi sẽ liên hệ bạn trong 24 giờ"
   },
-  "ContactForm":{
+  "ContactForm": {
     "YourName": "Tên của bạn",
     "YourEmail": "Email",
     "YourPhone": "Số điện thoại",
     "Message": "Thông tin muốn gửi"
   },
-  "AboutPage":{
+  "CategorySection": {
+    "Categories": "Danh mục",
+    "Browse By Category": "Tìm kiếm theo danh mục",
+    "Phone": "Điện thoại",
+    "Smart Watch": "Đồng hồ thông minh",
+    "Camera": "Máy ảnh",
+    "Game Pad": "Máy chơi game",
+    "Headphone": "Tai nghe chụp đầu",
+    "Computer": "Máy tính"
+  },
+  "TopHeader": {
+    "Summer Sale For All Headphone And Free Express Delivery - OFF 50%!": "Giảm giá mùa hè cho tất cả tai nghe chụp đầu và giao hàng nhanh miễn phí - GIẢM GIÁ 50%!",
+    "Shop now": "Mua ngay"
+  },
+  "Search": {
+    "What are you looking for?": "Bạn đang tìm kiếm gì?"
+  },
+  "FlashSalesSection": {
+    "Today’s": "Hôm nay",
+    "Flash Sales": "Sự kiện giảm giá"
+  },
+  "Footer": {
+    "Subscribe": "Đăng ký",
+    "Get 10% off your first order": "Giảm 10% cho đơn hàng đầu tiên của bạn",
+    "Thu Duc, Ho Chi Minh City": "Thủ Đức, Thành phố Hồ Chí Minh",
+    "Account": "Tài khoản",
+    "My Account": "Tài khoản của tôi",
+    "Login": "Đăng nhập",
+    "Register": "Đăng ký",
+    "Cart": "Giỏ hàng",
+    "Wishlist": "Danh sách yêu thích",
+    "Shop": "Cửa hàng",
+    "Quick Link": "Liên kết nhanh",
+    "Privacy Policy": "Chính sách bảo mật",
+    "Terms Of Use": "Điều khoản sử dụng",
+    "Contact": "Liên hệ",
+    "Download App": "Tải ứng dụng",
+    "Save $3 with App New User Only": "Tiết kiệm $3 chỉ dành cho người dùng mới của ứng dụng"
+  },
+  "ProductCard": {
+    "Add To Cart": "Thêm giỏ hàng"
+  },
+  "CountDown": {
+    "Days": "Ngày",
+    "Hours": "Giờ",
+    "Minutes": "Phút",
+    "Seconds": "Giây"
+  },
+  "BestSellerSection": {
+    "This Month": "Tháng này",
+    "Best Selling Products": "Sản phẩm bán chạy nhất",
+    "View All": "Xem tất cả"
+  },
+  "AdsSection": {
+    "Categories": "Danh mục",
+    "Enhance Your Music Experience": "Nâng cao trải nghiệm âm nhạc của bạn",
+    "Buy Now!": "Mua ngay!"
+  },
+  "OurProductSection": {
+    "Our Products": "Sản phẩm của chúng tôi",
+    "Explore Our Products": "Khám phá sản phẩm của chúng tôi",
+    "View All Products": "Xem tất cả sản phẩm"
+  },
+  "NewArrivalSection": {
+    "Featured": "Nổi bật",
+    "New Arrival": "Hàng mới về",
+    "PlayStation 5": "PlayStation 5",
+    "Black and White version of the PS5 coming out on sale": "Phiên bản trắng đen của PS5 đang được bán.",
+    "Shop Now": "Mua ngay",
+    "Women’s Collections": "Bộ sưu tập nữ",
+    "Featured woman collections that give you another vibe": "Bộ sưu tập nữ nổi bật mang đến cho bạn một cảm giác khác.",
+    "Speakers": "Loa",
+    "Amazon wireless speakers": "Loa không dây Amazon",
+    "Perfume": "Nước hoa",
+    "GUCCI INTENSE OUD EDP": "GUCCI INTENSE OUD EDP"
+  },
+  "ServicesSection": {
+    "FREE AND FAST DELIVERY": "GIAO HÀNG NHANH VÀ MIỄN PHÍ",
+    "Free delivery for all orders over $140": "Giao hàng miễn phí cho tất cả các đơn hàng trên $140",
+    "24/7 CUSTOMER SERVICE": "DỊCH VỤ KHÁCH HÀNG 24/7",
+    "Friendly 24/7 customer support": "Hỗ trợ khách hàng thân thiện 24/7",
+    "MONEY BACK GUARANTEE": "ĐẢM BẢO HOÀN TIỀN",
+    "We return money within 30 days": "Chúng tôi hoàn tiền trong vòng 30 ngày"
+  },
+  "AboutPage": {
     "Our Story": "Our Story",
     "Launced in 2015, Exclusive is South Asia premier online shopping makterplace with an active presense in Bangladesh. Supported by wide range of tailored marketing, data and service solutions, Exclusive has 10,500 sallers and 300 brands and serves 3 millioons customers across the region.": "Ra mắt vào năm 2015, Exclusive là nơi mua sắm trực tuyến hàng đầu Nam Á với sự hiện diện tích cực ở Bangladesh. Được hỗ trợ bởi nhiều giải pháp tiếp thị, dữ liệu và dịch vụ phù hợp, Exclusive có 10.500 đại lý và 300 thương hiệu và phục vụ 3 triệu khách hàng trên toàn khu vực.",
     "Exclusive has more than 1 Million products to offer, growing at a very fast. Exclusive offers a diverse assotment in categories ranging  from consumer.": "Exclusive có hơn 1 triệu sản phẩm để cung cấp, tốc độ tăng trưởng rất nhanh. Độc quyền cung cấp nhiều loại tài sản khác nhau, từ người tiêu dùng.",
     "Sellers active our site": "Người bán đang hoạt động trên trang web của chúng tôi",
-    "Monthly Product Sale": "Doanh số sản phẩm hàng tháng", 
+    "Monthly Product Sale": "Doanh số sản phẩm hàng tháng",
     "Customer active in our site": "Khách hàng đang hoạt động trên trang web của chúng tôi",
     "Annual gross sale in our site": "Tổng doanh thu hàng năm trên trang web của chúng tôi",
     "Founder & Chairman": "Người sáng lập & Chủ tịch",
