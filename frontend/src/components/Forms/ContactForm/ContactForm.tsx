@@ -31,27 +31,27 @@ const ContactForm = () => {
       >
         <Input
           type="text"
-          name="yourName"
-          id="yourName"
+          name="name"
+          id="name"
           label={t('YourName')}
           onChange={(e) => handleChangeInput(e)}
-          error={getError(errors, 'yourName')}
+          error={getError(errors, 'name')}
         />
         <Input
-          type="yourEmail"
-          name="yourEmail"
-          id="yourEmail"
+          type="email"
+          name="email"
+          id="email"
           label={t('YourEmail')}
           onChange={(e) => handleChangeInput(e)}
-          error={getError(errors, 'yourEmail')}
+          error={getError(errors, 'email')}
         />
         <Input
-          type="yourPhone"
-          name="yourPhone"
-          id="yourPhone"
+          type="text"
+          name="phone"
+          id="phone"
           label={t('YourPhone')}
           onChange={(e) => handleChangeInput(e)}
-          error={getError(errors, 'yourPhone')}
+          error={getError(errors, 'phone')}
         />
       </form>
       <TextArea
@@ -60,8 +60,9 @@ const ContactForm = () => {
         label={t('Message')}
         onChange={(e) => handleChangeTextArea(e)}
         error={getError(errors, 'message')}
+        rows={8}
       />
-      <div className="mt-5 flex items-center justify-between">
+      <div className="mt-5 flex items-center justify-end">
         <SubmitButton value="Send Message" />
       </div>
     </div>

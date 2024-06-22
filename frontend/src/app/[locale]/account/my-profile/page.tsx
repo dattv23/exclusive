@@ -1,10 +1,19 @@
+import { unstable_setRequestLocale } from 'next-intl/server';
 import dynamic from 'next/dynamic';
 
+import { Locale } from '@/config';
 const MyProfilePage = dynamic(
   () => import('@/containers/account-page/my-profile-page'),
 );
 
-const MyProfile: React.FC = () => {
+type MyProfileProps = {
+  params: {
+    locale: Locale;
+  };
+};
+
+const MyProfile: React.FC<MyProfileProps> = ({ params }) => {
+  unstable_setRequestLocale(params.locale);
   return <MyProfilePage />;
 };
 

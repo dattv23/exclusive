@@ -14,9 +14,9 @@ export const contactFormAction = async (params: TParams) => {
   const { formData, onChangeErrors } = params;
 
   const data = {
-    yourName: formData.get('yourName'),
-    yourEmail: formData.get('yourEmail'),
-    yourPhone: formData.get('yourPhone'),
+    name: formData.get('name'),
+    email: formData.get('email'),
+    phone: formData.get('phone'),
     message: formData.get('message'),
   };
 

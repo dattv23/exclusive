@@ -1,13 +1,13 @@
 import { z } from 'zod';
 
 export const ContactSchema = z.object({
-  yourName: z
+  name: z
     .string({ required_error: 'Your name is required' })
     .min(5, ' Your name must be 5 or more characters long'),
-  yourPhone: z
+  phone: z
     .string({ required_error: 'Your phone is required' })
     .min(10, 'Your phone must be 10 characters long'),
-  yourEmail: z
+  email: z
     .string({ required_error: 'Email is required' })
     .email('Invalid email'),
   message: z

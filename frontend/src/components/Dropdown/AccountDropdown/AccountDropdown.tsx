@@ -2,10 +2,10 @@ import { useTranslations } from 'next-intl';
 import React from 'react';
 
 import {
+  BoxIcon,
   CancelIcon,
   LogoutIcon,
   ReviewIcon,
-  ShoppingBagIcon,
   UserIcon,
 } from '@/components/Icons';
 
@@ -25,7 +25,7 @@ const AccountDropdown: React.FC = () => {
     {
       id: 2,
       href: `/orders`,
-      icon: <ShoppingBagIcon />,
+      icon: <BoxIcon />,
       name: t('My Order'),
     },
     {
