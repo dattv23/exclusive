@@ -8,7 +8,6 @@ import {
   ReviewIcon,
   UserIcon,
 } from '@/components/Icons';
-
 import { Link } from '@/navigation';
 import { DropdownItem } from '@/types';
 
@@ -18,19 +17,19 @@ const AccountDropdown: React.FC = () => {
   const items: DropdownItem[] = [
     {
       id: 1,
-      href: `/account`,
+      href: `/account/my-profile`,
       icon: <UserIcon />,
       name: t('Manage My Account'),
     },
     {
       id: 2,
-      href: `/orders`,
+      href: `/account/my-orders?list=completed`,
       icon: <BoxIcon />,
       name: t('My Order'),
     },
     {
       id: 3,
-      href: `/cancels`,
+      href: `/account/my-orders?list=cancellations`,
       icon: <CancelIcon />,
       name: t('My Cancellations'),
     },

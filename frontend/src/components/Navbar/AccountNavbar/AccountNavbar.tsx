@@ -20,11 +20,11 @@ const AccountNavbar = () => {
     {
       name: t('My Order'),
       items: [
-        { name: t('My Completed'), href: '/account/orders?list=completed' },
-        { name: t('My Returns'), href: '/account/orders?list=returns' },
+        { name: t('My Completed'), href: '/account/my-orders?list=completed' },
+        { name: t('My Returns'), href: '/account/my-orders?list=returns' },
         {
           name: t('My Cancellations'),
-          href: '/account/orders?list=cancellations',
+          href: '/account/my-orders?my-orders=cancellations',
         },
       ],
     },
