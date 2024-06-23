@@ -1,9 +1,19 @@
+import { unstable_setRequestLocale } from 'next-intl/server';
 import dynamic from 'next/dynamic';
 import React from 'react';
 
-const CartPage = dynamic(() => import('@/containers/cart-page'));
+import { Locale } from '@/config';
 
-const Cart: React.FC = () => {
+const CartPage = dynamic(async () => await import('@/containers/cart-page'));
+
+type CartProps = {
+  params: {
+    locale: Locale;
+  };
+};
+
+const Cart: React.FC<CartProps> = ({ params }) => {
+  unstable_setRequestLocale(params.locale);
   return <CartPage />;
 };
 
