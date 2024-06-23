@@ -1,10 +1,23 @@
 import dynamic from 'next/dynamic';
 import React from 'react';
+import { unstable_setRequestLocale } from 'next-intl/server';
 
-const CheckoutPage = dynamic(() => import('@/containers/checkout-page'));
+import LoadingPage from '@/containers/loading-page';
+import { Locale } from '@/config';
 
-const Checkout: React.FC = () => {
-  return <CheckoutPage />;
+const CheckOutPage = dynamic(() => import('@/containers/contact-page'), {
+  loading: () => <LoadingPage />,
+});
+
+type CheckOutPageProps = {
+  params: {
+    locale: Locale;
+  };
 };
 
-export default Checkout;
+const CheckOut: React.FC<CheckOutPageProps> = ({ params }) => {
+  unstable_setRequestLocale(params.locale);
+  return <CheckOutPage />;
+};
+
+export default CheckOut;

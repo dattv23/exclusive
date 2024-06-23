@@ -44,7 +44,15 @@
     "Current password must be at least 8 characters long": "Mật khẩu hiện tại phải có ít nhất 8 ký tự",
     "New password must be at least 8 characters long": "Mật khẩu mới phải có ít nhất 8 ký tự",
     "Confirm password must be at least 8 characters long": "Xác nhận mật khẩu phải có ít nhất 8 ký tự",
-    "Coupon code must be length 8 characters": "Mã phiếu giảm giá phải có độ dài 8 ký tự"
+    "Coupon code must be length 8 characters": "Mã phiếu giảm giá phải có độ dài 8 ký tự",
+    "Company Name is required": "Tên công ty là bắt buộc",
+    "Street Address is required": "Tên đường là bắt buộc",
+    "City is required": "Tên thành phố là bắt buộc",
+    "Apartment is required": "Tên căn hộ là bắt buộc",
+    "Company Name must be 5 or more characters long": "Tên công ty phải có 5 ký tự trở lên",
+    "Street Address must be 5 or more characters long": "Tên đường phải có 5 ký tự trở lên",
+    "City must be 5 or more characters long": "Tên thành phố phải có 5 ký tự trở lên",
+    "Apartment must be 5 or more characters long": "Tên căn hộ phải có 5 ký tự trở lên"
   },
   "ContactPage": {
     "Call To Us": "Liên hệ với chúng tôi",
@@ -188,7 +196,8 @@
       "yourEmail": "Email của bạn",
       "yourPhone": "Số điện thoại của bạn",
       "message": "Tin nhắn của bạn",
-      "couponCode": "Mã giảm giá"
+      "couponCode": "Mã giảm giá",
+      "PlaceOrder": "Đặt hàng"
     },
     "buttons": {
       "logIn": "Đăng nhập",
@@ -196,7 +205,8 @@
       "sendMessage": "Gởi tin nhắn",
       "cancel": "Hủy",
       "save": "Lưu thay đổi",
-      "applyCoupon": "Áp dụng mã"
+      "applyCoupon": "Áp dụng mã",
+      "PlaceOrder": "Đặt hàng"
     },
     "links": {
       "forgotPassword": "Quên mật khẩu"
@@ -222,5 +232,18 @@
     "Total": "Tổng cộng",
     "Process to checkout": "Tiến hành thanh toán",
     "Shipping": "Chi phí vận chuyển"
+  },
+  "CheckOutPage":{
+    "Billing Details": "Chi tiết hóa đơn"
+  },
+  "CheckOutForm": {
+    "FirstName": "Họ và tên lót",
+    "CompanyName": "Tên công ty",
+    "StreetAddress": "Địa chỉ",
+    "City": "Thành phố",
+    "Apartment": "Căn hộ",
+    "Email": "Email",
+    "PhoneNumber": "Số điện thoại",
+    "PlaceOrder": "Đặt hàng"
   }
 }

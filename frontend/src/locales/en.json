@@ -37,14 +37,22 @@
     "Password must be at least 8 characters long": "Password must be at least 8 characters long",
     "Your name is required": "Your name is required",
     "Your name must be 5 or more characters long": "Your name must be 5 or more characters long",
-    "'Your phone is required": "'Your phone is required",
+    "Your phone is required": "'Your phone is required",
     "Your phone must be 10 characters long": "Your phone must be 10 characters long",
     "Message is required": "Message is required",
     "Message must be at least 8 characters long": "Message must be at least 8 characters long",
     "Current password must be at least 8 characters long": "Current password must be at least 8 characters long",
     "New password must be at least 8 characters long": "New password must be at least 8 characters long",
     "Confirm password must be at least 8 characters long": "Confirm password must be at least 8 characters long",
-    "Coupon code must be length 8 characters": "Coupon code must be length 8 characters"
+    "Coupon code must be length 8 characters": "Coupon code must be length 8 characters",
+    "Company Name is required": "Company Name is required",
+    "Street Address is required": "Street Address is required",
+    "City is required": "City is required",
+    "Apartment is required": "Apartment is required",
+    "Company Name must be 5 or more characters long": "Company Name must be 5 or more characters long",
+    "Street Address must be 5 or more characters long": "Street Address must be 5 or more characters long",
+    "City must be 5 or more characters long": "City must be 5 or more characters long",
+    "Apartment must be 5 or more characters long": "Apartment must be 5 or more characters long"
   },
   "ContactPage": {
     "Call To Us": "Call To Us",
@@ -188,7 +196,8 @@
       "yourEmail": "Your Email",
       "yourPhone": "Your Phone",
       "message": "Your Message",
-      "couponCode": "Coupon Code"
+      "couponCode": "Coupon Code",
+      "PlaceOrder": "Place Order"
     },
     "buttons": {
       "logIn": "Log In",
@@ -222,5 +231,18 @@
     "Total": "Total",
     "Process to checkout": "Process to checkout",
     "Shipping": "Shipping"
+  },
+  "CheckOutPage":{
+    "Billing Details": "Billing Details"
+  },
+  "CheckOutForm": {
+    "FirstName": "First Name",
+    "CompanyName": "Company Name",
+    "StreetAddress": "Street Address",
+    "City": "City",
+    "Apartment": "Apartment",
+    "Email": "Email",
+    "PhoneNumber": "Phone Number",
+    "PlaceOrder": "Place Order"
   }
 }
