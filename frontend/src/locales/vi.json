@@ -43,7 +43,8 @@
     "Message must be at least 8 characters long": "Tin nhắn phải có ít nhất 8 ký tự",
     "Current password must be at least 8 characters long": "Mật khẩu hiện tại phải có ít nhất 8 ký tự",
     "New password must be at least 8 characters long": "Mật khẩu mới phải có ít nhất 8 ký tự",
-    "Confirm password must be at least 8 characters long": "Xác nhận mật khẩu phải có ít nhất 8 ký tự"
+    "Confirm password must be at least 8 characters long": "Xác nhận mật khẩu phải có ít nhất 8 ký tự",
+    "Coupon code must be length 8 characters": "Mã phiếu giảm giá phải có độ dài 8 ký tự"
   },
   "ContactPage": {
     "Call To Us": "Liên hệ với chúng tôi",
@@ -186,14 +187,16 @@
       "yourName": "Tên của bạn",
       "yourEmail": "Email của bạn",
       "yourPhone": "Số điện thoại của bạn",
-      "message": "Tin nhắn của bạn"
+      "message": "Tin nhắn của bạn",
+      "couponCode": "Mã giảm giá"
     },
     "buttons": {
       "logIn": "Đăng nhập",
       "createAccount": "Tạo tài khoản",
       "sendMessage": "Gởi tin nhắn",
       "cancel": "Hủy",
-      "save": "Lưu thay đổi"
+      "save": "Lưu thay đổi",
+      "applyCoupon": "Áp dụng mã"
     },
     "links": {
       "forgotPassword": "Quên mật khẩu"
@@ -204,5 +207,20 @@
   },
   "MyProfilePage": {
     "Edit your profile": "Chỉnh sửa hồ sơ"
+  },
+  "CartTable": {
+    "Product": "Sản phẩm",
+    "Price": "Giá",
+    "Quantity": "Số lượng",
+    "Subtotal": "Tạm tính",
+    "Return To Shop": "Quay lại mua sắm",
+    "Update Cart": "Cập nhật giỏ hàng"
+  },
+  "CartPage": {
+    "Cart Total": "Tổng giỏ hàng",
+    "Subtotal": "Tạm tính",
+    "Total": "Tổng cộng",
+    "Process to checkout": "Tiến hành thanh toán",
+    "Shipping": "Chi phí vận chuyển"
   }
 }

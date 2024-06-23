@@ -43,7 +43,8 @@
     "Message must be at least 8 characters long": "Message must be at least 8 characters long",
     "Current password must be at least 8 characters long": "Current password must be at least 8 characters long",
     "New password must be at least 8 characters long": "New password must be at least 8 characters long",
-    "Confirm password must be at least 8 characters long": "Confirm password must be at least 8 characters long"
+    "Confirm password must be at least 8 characters long": "Confirm password must be at least 8 characters long",
+    "Coupon code must be length 8 characters": "Coupon code must be length 8 characters"
   },
   "ContactPage": {
     "Call To Us": "Call To Us",
@@ -186,14 +187,16 @@
       "yourName": "Your Name",
       "yourEmail": "Your Email",
       "yourPhone": "Your Phone",
-      "message": "Your Message"
+      "message": "Your Message",
+      "couponCode": "Coupon Code"
     },
     "buttons": {
       "logIn": "Log In",
       "createAccount": "Create Account",
       "sendMessage": "Send Message",
       "cancel": "Cancel",
-      "save": "Save Changes"
+      "save": "Save Changes",
+      "applyCoupon": "Apply Coupon"
     },
     "links": {
       "forgotPassword": "Forgot Password"
@@ -204,5 +207,20 @@
   },
   "MyProfilePage": {
     "Edit your profile": "Edit your profile"
+  },
+  "CartTable": {
+    "Product": "Product",
+    "Price": "Price",
+    "Quantity": "Quantity",
+    "Subtotal": "Subtotal",
+    "Return To Shop": "Return To Shop",
+    "Update Cart": "Update Cart"
+  },
+  "CartPage": {
+    "Cart Total": "Cart Total",
+    "Subtotal": "Subtotal",
+    "Total": "Total",
+    "Process to checkout": "Process to checkout",
+    "Shipping": "Shipping"
   }
 }
