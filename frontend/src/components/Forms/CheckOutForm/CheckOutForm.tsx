@@ -21,7 +21,7 @@ const CheckOutForm = () => {
       action={(formData) =>
         checkoutFormAction({ formData, onChangeErrors: setErrors })
       }
-      className={cn('mb-10 flex w-full flex-col gap-4', errors && 'gap-2')}
+      className={cn('mb-14 flex w-full flex-col gap-4', errors && 'gap-5')}
     >
       <Input
         type="text"

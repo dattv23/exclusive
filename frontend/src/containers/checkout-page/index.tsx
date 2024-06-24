@@ -7,6 +7,7 @@ import { CheckOutForm } from '@/components';
 import { ApplyCouponForm } from '@/components';
 import { SubmitButton } from '@/components/Button';
 import { calculateDiscountedPrice } from '@/utils';
+import { CheckOutTable } from '@/components/Tables';
 
 const CheckOutPage: React.FC = async () => {
   const fileDataCart = await fs.readFile(
@@ -30,59 +31,62 @@ const CheckOutPage: React.FC = async () => {
         <div>
           <CheckOutForm />
         </div>
-        <div className="flex w-full justify-center ">
-          <div className="mt-3 flex w-full max-w-md flex-col space-y-4 py-20">
-            <div className="flex flex-col  gap-4">
-              <div className="flex justify-between">
-                <p>{t('Subtotal')}</p>
-                <p>{`${subtotal}$`}</p>
-              </div>
-              <hr />
-              <div className="flex justify-between">
-                <p>{t('Shipping')}</p>
-                <p>FREE</p>
-              </div>
-              <hr />
-              <div className="flex justify-between">
-                <p>{t('Total')}</p>
-                <p>{`${subtotal}$`}</p>
-              </div>
-            </div>
-            <div className="mt-8">
-              <div className="mt-5 space-y-6">
-                <div className="flex items-center">
-                  <input
-                    type="radio"
-                    id="bank"
-                    name="payment-method"
-                    className="h-4 w-4 border-zinc-300 text-red-600"
-                  />
-                  <label
-                    htmlFor="bank"
-                    className="ml-2 block text-sm text-zinc-900"
-                  >
-                    {t('Bank')}
-                  </label>
+        <div className="flex w-full justify-center">
+          <div className="flex w-full max-w-md flex-col space-y-4">
+            <CheckOutTable data={itemsList} />
+            <div className="mt-6 flex flex-col space-y-4">
+              <div className="flex flex-col gap-4">
+                <div className="flex justify-between">
+                  <p>{t('Subtotal')}</p>
+                  <p>{`${subtotal}$`}</p>
                 </div>
-                <div className="flex items-center">
-                  <input
-                    type="radio"
-                    id="cash-on-delivery"
-                    name="payment-method"
-                    className="h-4 w-4 border-zinc-300 text-red-600"
-                    defaultChecked
-                  />
-                  <label
-                    htmlFor="cash-on-delivery"
-                    className="ml-2 block text-sm text-zinc-900"
-                  >
-                    {t('Cash on delivery')}
-                  </label>
+                <hr />
+                <div className="flex justify-between">
+                  <p>{t('Shipping')}</p>
+                  <p>FREE</p>
+                </div>
+                <hr />
+                <div className="flex justify-between">
+                  <p>{t('Total')}</p>
+                  <p>{`${subtotal}$`}</p>
                 </div>
               </div>
+              <div className="mt-8">
+                <div className="mt-5 space-y-6">
+                  <div className="flex items-center">
+                    <input
+                      type="radio"
+                      id="bank"
+                      name="payment-method"
+                      className="h-4 w-4 border-zinc-300 text-red-600"
+                    />
+                    <label
+                      htmlFor="bank"
+                      className="ml-2 block text-sm text-zinc-900"
+                    >
+                      {t('Bank')}
+                    </label>
+                  </div>
+                  <div className="flex items-center">
+                    <input
+                      type="radio"
+                      id="cash-on-delivery"
+                      name="payment-method"
+                      className="h-4 w-4 border-zinc-300 text-red-600"
+                      defaultChecked
+                    />
+                    <label
+                      htmlFor="cash-on-delivery"
+                      className="ml-2 block text-sm text-zinc-900"
+                    >
+                      {t('Cash on delivery')}
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <ApplyCouponForm />
+              <SubmitButton text={t('PlaceOrder')} />
             </div>
-            <ApplyCouponForm />
-            <SubmitButton text={t('PlaceOrder')} />
           </div>
         </div>
       </div>
