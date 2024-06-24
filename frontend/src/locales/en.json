@@ -233,7 +233,13 @@
     "Shipping": "Shipping"
   },
   "CheckOutPage":{
-    "Billing Details": "Billing Details"
+    "Billing Details": "Billing Details",
+    "PlaceOrder": "Place Order",
+    "Subtotal": "Subtotal",
+    "Total": "Total",
+    "Shipping": "Shipping",
+    "Bank": "Bank",
+    "Cash on delivery": "Cash on delivery"
   },
   "CheckOutForm": {
     "FirstName": "First Name",
@@ -242,7 +248,7 @@
     "City": "City",
     "Apartment": "Apartment",
     "Email": "Email",
-    "PhoneNumber": "Phone Number",
-    "PlaceOrder": "Place Order"
+    "PhoneNumber": "Phone Number"
+
   }
 }

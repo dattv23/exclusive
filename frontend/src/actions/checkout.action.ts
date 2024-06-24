@@ -6,7 +6,6 @@ import { checkoutSchema } from '@/schemas';
 import { promiseTimeout } from '@/utils';
 
 export const checkoutAction = async (data: unknown) => {
-  // server-side validation
   const result = checkoutSchema.safeParse(data);
   if (!result.success) {
     let errorMessage = '';

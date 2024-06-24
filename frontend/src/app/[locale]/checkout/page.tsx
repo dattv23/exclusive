@@ -5,7 +5,7 @@ import { unstable_setRequestLocale } from 'next-intl/server';
 import LoadingPage from '@/containers/loading-page';
 import { Locale } from '@/config';
 
-const CheckOutPage = dynamic(() => import('@/containers/contact-page'), {
+const CheckOutPage = dynamic(() => import('@/containers/checkout-page'), {
   loading: () => <LoadingPage />,
 });
 

@@ -234,7 +234,13 @@
     "Shipping": "Chi phí vận chuyển"
   },
   "CheckOutPage":{
-    "Billing Details": "Chi tiết hóa đơn"
+    "Billing Details": "Chi tiết hóa đơn",
+    "PlaceOrder": "Đặt hàng",
+    "Subtotal": "Tạm tính",
+    "Total": "Tổng cộng",
+    "Shipping": "Chi phí vận chuyển",
+    "Bank": "Ngân hàng",
+    "Cash on delivery": "Thanh toán khi giao hàng"
   },
   "CheckOutForm": {
     "FirstName": "Họ và tên lót",
@@ -243,7 +249,6 @@
     "City": "Thành phố",
     "Apartment": "Căn hộ",
     "Email": "Email",
-    "PhoneNumber": "Số điện thoại",
-    "PlaceOrder": "Đặt hàng"
+    "PhoneNumber": "Số điện thoại"
   }
 }
