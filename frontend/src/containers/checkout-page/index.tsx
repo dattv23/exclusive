@@ -5,7 +5,6 @@ import { promises as fs } from 'fs';
 import { Cart } from '@/types';
 import { CheckOutForm } from '@/components';
 import { ApplyCouponForm } from '@/components';
-import { SubmitButton } from '@/components/Button';
 import { calculateDiscountedPrice } from '@/utils';
 import { CheckOutTable } from '@/components/Tables';
 
@@ -85,7 +84,6 @@ const CheckOutPage: React.FC = async () => {
                 </div>
               </div>
               <ApplyCouponForm />
-              <SubmitButton text={t('PlaceOrder')} />
             </div>
           </div>
         </div>

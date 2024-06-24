@@ -235,7 +235,6 @@
   },
   "CheckOutPage":{
     "Billing Details": "Chi tiết hóa đơn",
-    "PlaceOrder": "Đặt hàng",
     "Subtotal": "Tạm tính",
     "Total": "Tổng cộng",
     "Shipping": "Chi phí vận chuyển",
@@ -243,6 +242,7 @@
     "Cash on delivery": "Thanh toán khi giao hàng"
   },
   "CheckOutForm": {
+    "PlaceOrder": "Đặt hàng",
     "FirstName": "Họ và tên lót",
     "CompanyName": "Tên công ty",
     "StreetAddress": "Địa chỉ",

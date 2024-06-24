@@ -234,7 +234,6 @@
   },
   "CheckOutPage":{
     "Billing Details": "Billing Details",
-    "PlaceOrder": "Place Order",
     "Subtotal": "Subtotal",
     "Total": "Total",
     "Shipping": "Shipping",
@@ -242,6 +241,7 @@
     "Cash on delivery": "Cash on delivery"
   },
   "CheckOutForm": {
+    "PlaceOrder": "Place Order",
     "FirstName": "First Name",
     "CompanyName": "Company Name",
     "StreetAddress": "Street Address",
