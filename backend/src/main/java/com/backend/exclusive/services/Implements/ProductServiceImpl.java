@@ -20,7 +20,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> getAll() {
-        return productRepository.findAll();
+        return productRepository.findByIsDeletedFalse();
+    }
+
+    @Override
+    public List<Product> getAllDeleted() {
+        return productRepository.findByIsDeletedTrue();
     }
 
     @Override
@@ -29,30 +34,30 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product create(Product product) {
-        product.setId(ObjectId.get());
-        product.setCreatedAt(new Date());
-        product.setUpdatedAt(new Date());
-        return productRepository.save(product);
+    public Product create(ProductDTO product) {
+        Product newProduct = new Product();
+        newProduct.setCategory(product.getCategory());
+        newProduct.setName(product.getName());
+        newProduct.setRegularPrice(product.getRegularPrice());
+        newProduct.setStockQuantity(product.getStockQuantity());
+        newProduct.setDescription(product.getDescription());
+        newProduct.setShortDescription(product.getShortDescription());
+        newProduct.setUpdatedAt(new Date());
+        return productRepository.save(newProduct);
     }
 
     @Override
-    public Product update(ObjectId id, ProductDTO productDetails) {
-        Optional<Product> optionalProduct = productRepository.findById(id);
-        if (optionalProduct.isPresent()) {
-            Product product = optionalProduct.get();
+    public Optional<Product> update(ObjectId id, ProductDTO productDetails) {
+        return productRepository.findById(id).map(product -> {
             product.setCategory(productDetails.getCategory());
             product.setName(productDetails.getName());
             product.setRegularPrice(productDetails.getRegularPrice());
-            product.setDiscountPrice(productDetails.getDiscountPrice());
             product.setStockQuantity(productDetails.getStockQuantity());
             product.setDescription(productDetails.getDescription());
             product.setShortDescription(productDetails.getShortDescription());
             product.setUpdatedAt(new Date());
             return productRepository.save(product);
-        } else {
-            throw new RuntimeException("Product not found with id " + id);
-        }
+        });
     }
 
     @Override
