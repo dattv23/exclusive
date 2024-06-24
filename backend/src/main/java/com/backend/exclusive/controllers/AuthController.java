@@ -6,6 +6,7 @@ import com.backend.exclusive.security.dtos.LoginUserDto;
 import com.backend.exclusive.security.dtos.RegisterUserDto;
 import com.backend.exclusive.security.services.AuthenticationService;
 import com.backend.exclusive.security.services.JwtService;
+import com.backend.exclusive.services.EmailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -20,10 +21,16 @@ public class AuthController {
     private static final Logger log = LoggerFactory.getLogger(AuthController.class);
     private final JwtService jwtService;
     private final AuthenticationService authenticationService;
+    private final EmailService emailService;
 
-    public AuthController(JwtService jwtService, AuthenticationService authenticationService) {
+    public AuthController(
+            JwtService jwtService,
+            AuthenticationService authenticationService,
+            EmailService emailService
+    ) {
         this.jwtService = jwtService;
         this.authenticationService = authenticationService;
+        this.emailService = emailService;
     }
 
     /**
@@ -35,6 +42,11 @@ public class AuthController {
     @PostMapping("/signup")
     public ResponseEntity<User> register(@RequestBody RegisterUserDto registerUserDto) {
         User registeredUser = authenticationService.signup(registerUserDto);
+
+        // Send welcome email
+        String toEmail = registeredUser.getEmail();
+        emailService.sendSignupSuccessEmail(toEmail);
+
         return ResponseEntity.ok(registeredUser);
     }
 
