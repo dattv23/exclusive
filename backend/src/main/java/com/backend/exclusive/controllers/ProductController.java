@@ -28,13 +28,24 @@ public class ProductController {
     }
 
     /**
-     * Get all products.
+     * Get all products(expect deleted products).
      *
      * @return a ResponseEntity containing a list of all products.
      */
     @GetMapping("/all")
     public ResponseEntity<List<Product>> allProducts() {
         List<Product> products = productService.getAll();
+        return ResponseEntity.ok(products);
+    }
+
+    /**
+     * Get all deleted products.
+     *
+     * @return a ResponseEntity containing a list of all products.
+     */
+    @GetMapping("/deleted")
+    public ResponseEntity<List<Product>> allDeletedCategories() {
+        List<Product> products = productService.getAllDeleted();
         return ResponseEntity.ok(products);
     }
 
@@ -59,7 +70,7 @@ public class ProductController {
      */
     @PostMapping("/add")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Product> createProduct(@Validated @RequestBody Product product) {
+    public ResponseEntity<Product> createProduct(@Validated @RequestBody ProductDTO product) {
         Product createdProduct = productService.create(product);
         return ResponseEntity.ok(createdProduct);
     }
@@ -74,8 +85,8 @@ public class ProductController {
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Product> updateProduct(@PathVariable String id, @Validated @RequestBody ProductDTO productDetails) {
-        Product updatedProduct = productService.update(new ObjectId(id), productDetails);
-        return ResponseEntity.ok(updatedProduct);
+        Optional<Product> updatedProduct = productService.update(new ObjectId(id), productDetails);
+        return updatedProduct.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     /**
