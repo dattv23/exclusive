@@ -25,22 +25,23 @@ public class UserController {
         this.userService = userService;
     }
 
-    @Autowired
-    private MessageSource messageSource;
-
+    // Handles GET requests to the "/me" endpoint, returning the authenticated user's details
     @GetMapping("/me")
     public ResponseEntity<User> authenticatedUser() {
+        // Retrieve the current authentication information from the security context
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
+        // Get the current authenticated user from the authentication principal
         User currentUser = (User) authentication.getPrincipal();
-
+        // Return the current user wrapped in a ResponseEntity with an HTTP status of OK (200)
         return ResponseEntity.ok(currentUser);
     }
 
+    // Handles GET requests to the root endpoint "/", returning a list of all users
     @GetMapping("/")
     public ResponseEntity<List<User>> allUsers() {
+        // Retrieve the list of all users from the user service
         List<User> users = userService.getAll();
-
+        // Return the list of users wrapped in a ResponseEntity with an HTTP status of OK (200)
         return ResponseEntity.ok(users);
     }
 
