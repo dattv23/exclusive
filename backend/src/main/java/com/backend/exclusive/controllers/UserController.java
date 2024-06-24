@@ -45,8 +45,5 @@ public class UserController {
         return ResponseEntity.ok(users);
     }
 
-    public String userNotFound() {
-        // Sử dụng messageSource để lấy thông điệp dựa trên ngôn ngữ hiện tại
-        return messageSource.getMessage("user.not.found", null, LocaleContextHolder.getLocale());
-    }
+
 }
