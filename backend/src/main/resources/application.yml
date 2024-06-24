@@ -1,0 +1,4 @@
+spring:
+  messages:
+    basename: messages/exception/ExceptionMessages,messages/general/GeneralMessages,messages/validation/ValidationMessages
+    encoding: UTF-8
