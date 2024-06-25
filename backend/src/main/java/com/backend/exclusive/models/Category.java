@@ -30,8 +30,6 @@ public class Category {
 
     private String description;
 
-    private List<ObjectId> products;
-
     @CreatedDate
     @Builder.Default
     private Date createdAt = new Date();
@@ -41,5 +39,5 @@ public class Category {
     private Date updatedAt = new Date();
 
     @Builder.Default
-    private boolean destroy = false;
+    private boolean isDeleted = false;
 }

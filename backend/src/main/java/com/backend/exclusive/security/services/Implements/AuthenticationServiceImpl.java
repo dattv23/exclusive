@@ -39,7 +39,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         user.setFirstName(input.getFirstName());
         user.setLastName(input.getLastName());
         user.setEmail(input.getEmail());
-        user.setUserRole(UserRole.USER);
+        user.setRole(UserRole.USER);
         // Encode the user's password before saving
         user.setPassword(passwordEncoder.encode(input.getPassword()));
 

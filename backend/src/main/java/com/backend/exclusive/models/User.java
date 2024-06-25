@@ -60,7 +60,7 @@ public class User implements UserDetails {
     private Date updatedAt = new Date();
 
     @Enumerated(EnumType.STRING)
-    private UserRole userRole;
+    private UserRole role;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
