@@ -1,15 +1,12 @@
-package com.backend.exclusive.models;
+package com.backend.exclusive.dtos;
 
+import com.backend.exclusive.models.Order;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.bson.types.ObjectId;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -19,11 +16,8 @@ import java.util.Date;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "payments")
-public class Payment {
-    @Id
-    private ObjectId id;
-
+@Document
+public class PaymentDTO {
     @DBRef
     @NotNull(message = "Order is mandatory")
     private Order order;
@@ -38,12 +32,4 @@ public class Payment {
     private Date dateOfPay;
 
     private boolean isDeleted;
-
-    @CreatedDate
-    @Builder.Default
-    private Date createdAt = new Date();
-
-    @LastModifiedDate
-    @Builder.Default
-    private Date updatedAt = new Date();
 }
