@@ -42,6 +42,7 @@ public class Product {
     private int stockQuantity;
 
     private String description;
+
     private String shortDescription;
 
     @Builder.Default

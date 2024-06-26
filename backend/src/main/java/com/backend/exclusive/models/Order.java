@@ -1,5 +1,6 @@
 package com.backend.exclusive.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
@@ -41,6 +42,7 @@ public class Order {
     private String status;
 
     @DBRef
+    @JsonManagedReference
     private List<OrderItem> orderItems;
 
     @DBRef

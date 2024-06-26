@@ -1,5 +1,6 @@
 package com.backend.exclusive.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -22,6 +23,7 @@ public class OrderItem {
 
     @DBRef
     @NotNull(message = "Order is mandatory")
+    @JsonBackReference
     private Order order;
 
     private String shippingId;
