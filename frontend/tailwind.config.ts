@@ -2,9 +2,12 @@ import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/containers/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/containers/**/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/containers/**/**/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
@@ -15,7 +18,7 @@ const config: Config = {
       },
       colors: {
         primary: '#5F2EEA',
-        secondary: '#1CC8EE',
+        secondary: '#DB4444',
         error: '#ED2E7E',
         success: '#00BA88',
         warning: '#F4B740',

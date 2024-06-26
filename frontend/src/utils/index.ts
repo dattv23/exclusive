@@ -1,3 +1,4 @@
+import { Error } from '@/types';
 import clsx, { ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -15,7 +16,7 @@ export const getBaseUrl = () => {
     return `https://${process.env.VERCEL_URL}`;
   }
 
-  return 'http://localhost:3000';
+  return 'http://127.0.0.1:3000';
 };
 
 export function getFromLocalStorage(key: string): string | null {
@@ -36,4 +37,23 @@ export const replaceColor = (svgString: string, newColor: string) => {
   const regex = /fill="#[A-Fa-f0-9]{6}"/g;
   const replacement = `fill="var(${newColor})"`;
   return svgString.toString().replace(regex, replacement);
+};
+
+export const startScore = (rate: number) => {
+  return '⭐⭐⭐⭐⭐⚝⚝⚝⚝⚝'.slice(5 - rate, 10 - rate);
+};
+
+// Helper function to create a timeout promise
+export const promiseTimeout = (ms: number) =>
+  new Promise((resolve) => setTimeout(resolve, ms));
+
+export const getError = (errors: Error[], field: string) => {
+  return errors.find((item) => item.key == field);
+};
+
+export const calculateDiscountedPrice = (
+  price: number,
+  discount: number,
+): number => {
+  return price - price * (discount / 100);
 };

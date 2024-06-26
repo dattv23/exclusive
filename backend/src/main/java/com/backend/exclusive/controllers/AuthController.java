@@ -1,5 +1,7 @@
 package com.backend.exclusive.controllers;
 
+import com.backend.exclusive.common.ApiResponse;
+import com.backend.exclusive.common.ResponseUtil;
 import com.backend.exclusive.models.User;
 import com.backend.exclusive.security.dtos.LoginResponse;
 import com.backend.exclusive.security.dtos.LoginUserDto;
@@ -48,7 +50,7 @@ public class AuthController {
 //        String toEmail = registeredUser.getEmail();
 //        emailService.sendSignupSuccessEmail(toEmail);
 
-        return ResponseEntity.ok(registeredUser);
+        return ResponseUtil.success(registeredUser);
     }
 
     /**
@@ -66,6 +68,6 @@ public class AuthController {
         loginResponse.setToken(jwtToken);
         loginResponse.setExpiresIn(jwtService.getExpirationTime());
 
-        return ResponseEntity.ok(loginResponse);
+        return ResponseUtil.success(loginResponse);
     }
 }

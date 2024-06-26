@@ -1,13 +1,10 @@
-import { useTranslations } from 'next-intl';
+import dynamic from 'next/dynamic';
 import React from 'react';
 
-const Home = () => {
-  const t = useTranslations('Index');
-  return (
-    <div>
-      <p>{t('title')}</p>
-    </div>
-  );
+const HomePage = dynamic(async () => await import('@/containers/home-page'));
+
+const Home: React.FC = () => {
+  return <HomePage />;
 };
 
 export default Home;
