@@ -1,12 +1,14 @@
 package com.backend.exclusive.controllers;
 
+import com.backend.exclusive.common.ApiResponse;
+import com.backend.exclusive.common.ResponseUtil;
+import com.backend.exclusive.dtos.UserDTO;
+import com.backend.exclusive.mappers.UserMapper;
 import com.backend.exclusive.models.User;
 import com.backend.exclusive.models.UserRole;
 import com.backend.exclusive.services.UserService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -14,43 +16,37 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/users")
 public class UserController {
-    @Autowired
+
     private final UserService userService;
+    private final UserMapper userMapper;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, UserMapper userMapper) {
         this.userService = userService;
+        this.userMapper = userMapper;
     }
 
-    /**
-     * Get the authenticated user's details.
-     *
-     * @return a ResponseEntity containing the authenticated user's details.
-     */
     @GetMapping("/me")
-    public ResponseEntity<User> authenticatedUser() {
+    public ResponseEntity<ApiResponse<UserDTO>> authenticatedUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User currentUser = (User) authentication.getPrincipal();
-        return ResponseEntity.ok(currentUser);
+        UserDTO userDTO = userMapper.convertToUserDto(currentUser);
+        return ResponseUtil.success(userDTO);
     }
 
-    // TODO: add request 'update basic info of user'
-
-    /**
-     * Get a list of all users.
-     * This endpoint is restricted to users with the 'ADMIN' role.
-     *
-     * @return a ResponseEntity containing a list of all users.
-     */
     @GetMapping("/all")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<List<User>> allUsers() {
+    public ResponseEntity<ApiResponse<List<UserDTO>>> allUsers() {
         List<User> users = userService.getAll();
-        return ResponseEntity.ok(users);
+        List<UserDTO> userDTOs = users.stream()
+                .map(userMapper::convertToUserDto)
+                .collect(Collectors.toList());
+        return ResponseUtil.success(userDTOs);
     }
 
     /**
@@ -63,8 +59,8 @@ public class UserController {
      */
     @PutMapping("/{id}/role")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Void> assignRole(@PathVariable String id, @RequestBody UserRole role) {
+    public ResponseEntity<ApiResponse<Void>> assignRole(@PathVariable String id, @RequestBody UserRole role) {
         userService.assignRole(new ObjectId(id), role);
-        return ResponseEntity.ok().build();
+        return ResponseUtil.success(null);
     }
 }
