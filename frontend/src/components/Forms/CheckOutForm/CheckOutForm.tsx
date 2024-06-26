@@ -3,86 +3,160 @@
 import React, { useState } from 'react';
 import { useTranslations } from 'next-intl';
 
-import { Error } from '@/types';
+import { Cart, Error } from '@/types';
 import { SubmitButton } from '@/components/Button';
 import { Input } from '@/components/Inputs';
 import { cn, getError } from '@/utils';
 import { checkoutFormAction } from './action';
+import { CheckOutTable } from '@/components/Tables';
+import { ApplyCouponForm } from '@/components';
+import { calculateDiscountedPrice } from '@/utils';
 
-const CheckOutForm = () => {
+type CheckOutFormProps = {
+  data: Cart[];
+};
+
+const CheckOutForm: React.FC<CheckOutFormProps> = ({ data }) => {
   const t = useTranslations('CheckOutForm');
   const [errors, setErrors] = useState<Error[]>([]);
 
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setErrors(errors.filter((error) => error.key != e.target.name));
   };
-
+  const subtotal = data.reduce(
+    (pre, cur) =>
+      pre +
+      calculateDiscountedPrice(cur.product.price, cur.product.discount) *
+        cur.quantity,
+    0,
+  );
   return (
     <div className="w-full rounded-lg p-6 ">
       <form
         action={(formData) =>
           checkoutFormAction({ formData, onChangeErrors: setErrors })
         }
-        className={cn('mb-14 flex w-full flex-col gap-4', errors && 'gap-5')}
+        className={cn('flex w-full flex-col gap-2', errors && 'gap-3')}
       >
-        <Input
-          type="text"
-          name="firstName"
-          id="firstName"
-          label={t('FirstName')}
-          onChange={(e) => handleChangeInput(e)}
-          error={getError(errors, 'firstName')}
-        />
-        <Input
-          type="text"
-          name="companyName"
-          id="companyName"
-          label={t('CompanyName')}
-          onChange={(e) => handleChangeInput(e)}
-          error={getError(errors, 'companyName')}
-        />
-        <Input
-          type="text"
-          name="streetAddress"
-          id="streetAddress"
-          label={t('StreetAddress')}
-          onChange={(e) => handleChangeInput(e)}
-          error={getError(errors, 'streetAddress')}
-        />
-        <Input
-          type="text"
-          name="city"
-          id="city"
-          label={t('City')}
-          onChange={(e) => handleChangeInput(e)}
-          error={getError(errors, 'city')}
-        />
-        <Input
-          type="text"
-          name="apartment"
-          id="apartment"
-          label={t('Apartment')}
-          onChange={(e) => handleChangeInput(e)}
-          error={getError(errors, 'apartment')}
-        />
-        <Input
-          type="text"
-          name="email"
-          id="email"
-          label={t('Email')}
-          onChange={(e) => handleChangeInput(e)}
-          error={getError(errors, 'email')}
-        />
-        <Input
-          type="text"
-          name="yourPhone"
-          id="yourPhone"
-          label={t('PhoneNumber')}
-          onChange={(e) => handleChangeInput(e)}
-          error={getError(errors, 'yourPhone')}
-        />
-        <SubmitButton text={t('PlaceOrder')} />
+        <div className="flex justify-between ">
+          <div className="w-full max-w-md space-y-4">
+            <Input
+              type="text"
+              name="firstName"
+              id="firstName"
+              label={t('FirstName')}
+              onChange={(e) => handleChangeInput(e)}
+              error={getError(errors, 'firstName')}
+            />
+            <Input
+              type="text"
+              name="lastName"
+              id="lastName"
+              label={t('LastName')}
+              onChange={(e) => handleChangeInput(e)}
+              error={getError(errors, 'lastName')}
+            />
+            <Input
+              type="text"
+              name="streetAddress"
+              id="streetAddress"
+              label={t('StreetAddress')}
+              onChange={(e) => handleChangeInput(e)}
+              error={getError(errors, 'streetAddress')}
+            />
+            <Input
+              type="text"
+              name="city"
+              id="city"
+              label={t('City')}
+              onChange={(e) => handleChangeInput(e)}
+              error={getError(errors, 'city')}
+            />
+            <Input
+              type="text"
+              name="apartment"
+              id="apartment"
+              label={t('Apartment')}
+              onChange={(e) => handleChangeInput(e)}
+              error={getError(errors, 'apartment')}
+            />
+            <Input
+              type="text"
+              name="email"
+              id="email"
+              label={t('Email')}
+              onChange={(e) => handleChangeInput(e)}
+              error={getError(errors, 'email')}
+            />
+            <Input
+              type="text"
+              name="yourPhone"
+              id="yourPhone"
+              label={t('PhoneNumber')}
+              onChange={(e) => handleChangeInput(e)}
+              error={getError(errors, 'yourPhone')}
+            />
+          </div>
+          <div className="w-full max-w-md">
+            <CheckOutTable data={data} />
+            <div className="mt-6">
+              <div className=" flex flex-col gap-4">
+                <div className="flex justify-between">
+                  <p>{t('Subtotal')}</p>
+                  <p>{`${subtotal}$`}</p>
+                </div>
+                <hr />
+                <div className="flex justify-between">
+                  <p>{t('Shipping')}</p>
+                  <p>FREE</p>
+                </div>
+                <hr />
+                <div className="flex justify-between">
+                  <p>{t('Total')}</p>
+                  <p>{`${subtotal}$`}</p>
+                </div>
+              </div>
+              <div className="mt-8">
+                <div className="mt-4 space-y-6">
+                  <div className="flex items-center">
+                    <input
+                      type="radio"
+                      id="bank"
+                      name="payment-method"
+                      className="h-4 w-4 border-zinc-300 text-red-600"
+                    />
+                    <label
+                      htmlFor="bank"
+                      className="ml-2 block text-sm text-zinc-900"
+                    >
+                      {t('Bank')}
+                    </label>
+                  </div>
+                  <div className="flex items-center">
+                    <input
+                      type="radio"
+                      id="cash-on-delivery"
+                      name="payment-method"
+                      className="h-4 w-4 border-zinc-300 text-red-600"
+                      defaultChecked
+                    />
+                    <label
+                      htmlFor="cash-on-delivery"
+                      className="ml-2 block text-sm text-zinc-900"
+                    >
+                      {t('Cash on delivery')}
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <SubmitButton className="my-12" text={t('PlaceOrder')} />
+            </div>
+          </div>
+        </div>
       </form>
+      <div className="w-full max-w-md">
+        <ApplyCouponForm />
+      </div>
     </div>
   );
 };

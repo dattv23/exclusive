@@ -3,7 +3,7 @@ import { z } from 'zod';
 export const registerSchema = z.object({
   firstName: z
     .string({ required_error: 'First name is required' })
-    .min(5, ' First name must be 5 or more characters long'),
+    .min(3, ' First name must be 3 or more characters long'),
   lastName: z
     .string({ required_error: 'Last name is required' })
     .min(2, 'Last name must be 2 or more characters long'),

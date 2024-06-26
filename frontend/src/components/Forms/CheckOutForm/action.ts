@@ -15,8 +15,8 @@ export const checkoutFormAction = async (params: TParams) => {
   const { formData, onChangeErrors } = params;
 
   const data = {
-    firtName: formData.get('FirstName'),
-    companyName: formData.get('companyName'),
+    firstName: formData.get('firstName'),
+    lastName: formData.get('lastName'),
     streetAddress: formData.get('streetAddress'),
     city: formData.get('city'),
     apartment: formData.get('apartment'),
@@ -37,4 +37,5 @@ export const checkoutFormAction = async (params: TParams) => {
   if (res?.error) {
     toast.error(res.error);
   }
+  toast.success('Place order successful');
 };

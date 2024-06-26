@@ -29,8 +29,8 @@
   "Errors": {
     "Last name is required": "Tên không hợp lệ",
     "First name is required": "Họ không hợp lê",
-    "First name must be 5 or more characters long": "Họ phải có nhiều hơn 5 kí tự",
-    "Last name must be 5 or more characters long": "Tên phải có nhiều hơn 5 ksi tự",
+    "First name must be 3 or more characters long": "Họ phải có nhiều hơn 3 kí tự",
+    "Last name must be 2 or more characters long": "Tên phải có nhiều hơn 2 kí tự",
     "Invalid email": "Email không hợp lệ",
     "Email is required": "Email là bắt buộc",
     "Password is required": "Nhập mật khẩu",
@@ -45,11 +45,9 @@
     "New password must be at least 8 characters long": "Mật khẩu mới phải có ít nhất 8 ký tự",
     "Confirm password must be at least 8 characters long": "Xác nhận mật khẩu phải có ít nhất 8 ký tự",
     "Coupon code must be length 8 characters": "Mã phiếu giảm giá phải có độ dài 8 ký tự",
-    "Company Name is required": "Tên công ty là bắt buộc",
     "Street Address is required": "Tên đường là bắt buộc",
     "City is required": "Tên thành phố là bắt buộc",
     "Apartment is required": "Tên căn hộ là bắt buộc",
-    "Company Name must be 5 or more characters long": "Tên công ty phải có 5 ký tự trở lên",
     "Street Address must be 5 or more characters long": "Tên đường phải có 5 ký tự trở lên",
     "City must be 5 or more characters long": "Tên thành phố phải có 5 ký tự trở lên",
     "Apartment must be 5 or more characters long": "Tên căn hộ phải có 5 ký tự trở lên"
@@ -234,21 +232,22 @@
     "Shipping": "Chi phí vận chuyển"
   },
   "CheckOutPage":{
-    "Billing Details": "Chi tiết hóa đơn",
+    "Billing Details": "Chi tiết hóa đơn"
+  },
+  "CheckOutForm": {
+    "PlaceOrder": "Đặt hàng",
     "Subtotal": "Tạm tính",
     "Total": "Tổng cộng",
     "Shipping": "Chi phí vận chuyển",
     "Bank": "Ngân hàng",
-    "Cash on delivery": "Thanh toán khi giao hàng"
-  },
-  "CheckOutForm": {
-    "PlaceOrder": "Đặt hàng",
+    "Cash on delivery": "Thanh toán khi giao hàng",
     "FirstName": "Họ và tên lót",
-    "CompanyName": "Tên công ty",
+    "LastName": "Tên ",
     "StreetAddress": "Địa chỉ",
     "City": "Thành phố",
     "Apartment": "Căn hộ",
     "Email": "Email",
-    "PhoneNumber": "Số điện thoại"
+    "PhoneNumber": "Số điện thoại",
+    "OrderPlacedSuccessfully": "Đặt hàng thành công"
   }
 }

@@ -29,7 +29,7 @@
   "Errors": {
     "Last name is required": "Last name is required",
     "First name is required": "First name is required",
-    "First name must be 5 or more characters long": "First name must be 5 or more characters long",
+    "First name must be 3 or more characters long": "First name must be 3 or more characters long",
     "Last name must be 2 or more characters long": "Last name must be 2 or more characters long",
     "Email is required": "Email is required",
     "Invalid email": "Invalid email",
@@ -45,11 +45,9 @@
     "New password must be at least 8 characters long": "New password must be at least 8 characters long",
     "Confirm password must be at least 8 characters long": "Confirm password must be at least 8 characters long",
     "Coupon code must be length 8 characters": "Coupon code must be length 8 characters",
-    "Company Name is required": "Company Name is required",
     "Street Address is required": "Street Address is required",
     "City is required": "City is required",
     "Apartment is required": "Apartment is required",
-    "Company Name must be 5 or more characters long": "Company Name must be 5 or more characters long",
     "Street Address must be 5 or more characters long": "Street Address must be 5 or more characters long",
     "City must be 5 or more characters long": "City must be 5 or more characters long",
     "Apartment must be 5 or more characters long": "Apartment must be 5 or more characters long"
@@ -233,22 +231,22 @@
     "Shipping": "Shipping"
   },
   "CheckOutPage":{
-    "Billing Details": "Billing Details",
+    "Billing Details": "Billing Details"
+  },
+  "CheckOutForm": {
+    "PlaceOrder": "Place Order",
     "Subtotal": "Subtotal",
     "Total": "Total",
     "Shipping": "Shipping",
     "Bank": "Bank",
-    "Cash on delivery": "Cash on delivery"
-  },
-  "CheckOutForm": {
-    "PlaceOrder": "Place Order",
+    "Cash on delivery": "Cash on delivery",
     "FirstName": "First Name",
-    "CompanyName": "Company Name",
+    "LastName": "Last Name",
     "StreetAddress": "Street Address",
     "City": "City",
     "Apartment": "Apartment",
     "Email": "Email",
-    "PhoneNumber": "Phone Number"
-
+    "PhoneNumber": "Phone Number",
+    "OrderPlacedSuccessfully": "OrderPlacedSuccessfully"
   }
 }

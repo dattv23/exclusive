@@ -3,10 +3,10 @@ import { z } from 'zod';
 export const checkoutSchema = z.object({
   firstName: z
     .string({ required_error: 'First name is required' })
-    .min(5, 'First name must be 5 or more characters long'),
-  companyName: z
-    .string({ required_error: 'Company Name is required' })
-    .min(4, 'Company Name must be 5 or more characters long'),
+    .min(3, 'First name must be 3 or more characters long'),
+  lastName: z
+    .string({ required_error: 'Last Name is required' })
+    .min(2, 'Last name must be 2 or more characters long'),
   streetAddress: z
     .string({ required_error: 'Street Address is required' })
     .min(4, 'Street Address must be 5 or more characters long'),
