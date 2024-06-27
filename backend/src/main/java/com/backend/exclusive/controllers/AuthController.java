@@ -9,7 +9,6 @@ import com.backend.exclusive.security.dtos.RegisterUserDto;
 import com.backend.exclusive.security.services.AuthenticationService;
 import com.backend.exclusive.security.services.JwtService;
 import com.backend.exclusive.services.EmailService;
-import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -43,12 +42,12 @@ public class AuthController {
      * @return a ResponseEntity containing the registered user.
      */
     @PostMapping("/signup")
-    public ResponseEntity<User> register(@Valid @RequestBody RegisterUserDto registerUserDto) {
+    public ResponseEntity<ApiResponse<User>> register(@RequestBody RegisterUserDto registerUserDto) {
         User registeredUser = authenticationService.signup(registerUserDto);
 
         // Send welcome email
-//        String toEmail = registeredUser.getEmail();
-//        emailService.sendSignupSuccessEmail(toEmail);
+        String toEmail = registeredUser.getEmail();
+        emailService.sendSignupSuccessEmail(toEmail);
 
         return ResponseUtil.success(registeredUser);
     }
@@ -60,7 +59,7 @@ public class AuthController {
      * @return a ResponseEntity containing the login response with JWT token and expiration time.
      */
     @PostMapping("/login")
-    public ResponseEntity<LoginResponse> authenticate(@Valid @RequestBody LoginUserDto loginUserDto) {
+    public ResponseEntity<ApiResponse<LoginResponse>> authenticate(@RequestBody LoginUserDto loginUserDto) {
         User authenticatedUser = authenticationService.authenticate(loginUserDto);
         String jwtToken = jwtService.generateToken(authenticatedUser);
 
