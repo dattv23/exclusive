@@ -1,8 +1,8 @@
-FROM maven:3.9.4-openjdk-22.ea-b17 AS build
+FROM jelastic/maven:3.9.4-openjdk-22.ea-b17 AS build
 COPY . .
 RUN mvn clean package -DskipTests
 
 FROM openjdk:22-jdk
-COPY --form=build /target/Exclusive-0.0.1-SNAPSHOT.jar Exclusive.jar
+COPY --from=build /target/exclusive-0.0.1-SNAPSHOT.jar exclusive.jar
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "Exclusive.jar"]
+ENTRYPOINT ["java", "-jar", "exclusive.jar"]
