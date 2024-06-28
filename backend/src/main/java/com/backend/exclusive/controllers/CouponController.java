@@ -1,17 +1,20 @@
 package com.backend.exclusive.controllers;
 
+import com.backend.exclusive.common.ApiResponse;
+import com.backend.exclusive.common.ResponseUtil;
 import com.backend.exclusive.dtos.CouponDTO;
+import com.backend.exclusive.mappers.CouponMapper;
 import com.backend.exclusive.models.Coupon;
 import com.backend.exclusive.services.CouponService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * REST controller for managing coupons.
@@ -20,12 +23,11 @@ import java.util.Optional;
 @RequestMapping("/api/v1/coupons")
 public class CouponController {
 
-    private final CouponService couponService;
+    @Autowired
+    private CouponService couponService;
 
     @Autowired
-    public CouponController(CouponService couponService) {
-        this.couponService = couponService;
-    }
+    private CouponMapper couponMapper;
 
     /**
      * Get all coupons.
@@ -33,9 +35,11 @@ public class CouponController {
      * @return a ResponseEntity containing a list of all coupons.
      */
     @GetMapping("/all")
-    public ResponseEntity<List<Coupon>> allCoupons() {
+    public ResponseEntity<ApiResponse<List<CouponDTO>>> allCoupons() {
         List<Coupon> coupons = couponService.getAllCoupons();
-        return ResponseEntity.ok(coupons);
+        List<CouponDTO> couponDTOS = coupons.stream()
+                .map(couponMapper::toCouponDTO).collect(Collectors.toList());
+        return ResponseUtil.success(couponDTOS);
     }
 
     /**
@@ -45,10 +49,14 @@ public class CouponController {
      * @return a ResponseEntity containing the coupon, or a 404 status if not found.
      */
     @GetMapping("/{id}")
-    public ResponseEntity<Coupon> getCouponById(@PathVariable String id) {
+    public ResponseEntity<ApiResponse<CouponDTO>> getCouponById(@PathVariable String id) {
         Optional<Coupon> coupon = couponService.getCouponById(new ObjectId(id));
-        return coupon.map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+        if (coupon.isPresent()) {
+            CouponDTO couponDTO = couponMapper.toCouponDTO(coupon.get());
+            return ResponseUtil.success(couponDTO);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     /**
@@ -58,24 +66,22 @@ public class CouponController {
      * @return a ResponseEntity containing the created coupon.
      */
     @PostMapping("/add")
-    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Coupon> createCoupon(@Validated @RequestBody CouponDTO couponDTO) {
+    public ResponseEntity<ApiResponse<CouponDTO>> createCoupon(@Validated @RequestBody CouponDTO couponDTO) {
         Coupon createdCoupon = couponService.createCoupon(couponDTO);
-        return ResponseEntity.ok(createdCoupon);
+        return ResponseUtil.success(couponMapper.toCouponDTO(createdCoupon));
     }
 
     /**
      * Update an existing coupon.
      *
-     * @param id          the ID of the coupon to update.
+     * @param id        the ID of the coupon to update.
      * @param couponDTO the new details for the coupon.
      * @return a ResponseEntity containing the updated coupon.
      */
     @PutMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Coupon> updateCoupon(@PathVariable String id, @Validated @RequestBody CouponDTO couponDTO) {
+    public ResponseEntity<ApiResponse<CouponDTO>> updateCoupon(@PathVariable String id, @Validated @RequestBody CouponDTO couponDTO) {
         Coupon updatedCoupon = couponService.updateCoupon(new ObjectId(id), couponDTO);
-        return ResponseEntity.ok(updatedCoupon);
+        return ResponseUtil.success(couponMapper.toCouponDTO(updatedCoupon));
     }
 
     /**
@@ -85,7 +91,6 @@ public class CouponController {
      * @return a ResponseEntity with no content status.
      */
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> deleteCoupon(@PathVariable String id) {
         couponService.deleteCoupon(new ObjectId(id));
         return ResponseEntity.noContent().build();
