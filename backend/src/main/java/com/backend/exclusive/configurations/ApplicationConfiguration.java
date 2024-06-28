@@ -71,8 +71,13 @@ public class ApplicationConfiguration {
     }
 
     @Bean
-    PaymentMethodMapper paymentMethodMapper(){
+    PaymentMethodMapper paymentMethodMapper() {
         return new PaymentMethodMapperImpl();
+    }
+
+    @Bean
+    CouponMapper couponMapper() {
+        return new CouponMapperImpl();
     }
 
     // Bean to provide the authentication manager
