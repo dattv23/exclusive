@@ -194,8 +194,7 @@
       "yourEmail": "Email của bạn",
       "yourPhone": "Số điện thoại của bạn",
       "message": "Tin nhắn của bạn",
-      "couponCode": "Mã giảm giá",
-      "PlaceOrder": "Đặt hàng"
+      "couponCode": "Mã giảm giá"
     },
     "buttons": {
       "logIn": "Đăng nhập",
@@ -203,8 +202,7 @@
       "sendMessage": "Gởi tin nhắn",
       "cancel": "Hủy",
       "save": "Lưu thay đổi",
-      "applyCoupon": "Áp dụng mã",
-      "PlaceOrder": "Đặt hàng"
+      "applyCoupon": "Áp dụng mã"
     },
     "links": {
       "forgotPassword": "Quên mật khẩu"
@@ -249,5 +247,17 @@
     "Email": "Email",
     "PhoneNumber": "Số điện thoại",
     "OrderPlacedSuccessfully": "Đặt hàng thành công"
+  },
+  "ProductDetailForm": {
+    "In Stock": "Còn hàng",
+    "Description": "Vỏ bọc tay cầm PlayStation 5 Chất liệu vinyl chất lượng cao với keo dính có kênh không khí giúp lắp đặt dễ dàng không bong bóng và tháo gỡ không để lại vết. Nhạy cảm với áp lực.",
+    "Colours": "Màu sắc",
+    "Size": "Kích thước",
+    "Free Delivery": "Giao hàng miễn phí",
+    "Enter your postal code for Delivery Availability": "Nhập mã bưu điện của bạn để kiểm tra tình trạng giao hàng",
+    "Return Delivery": "Hoàn trả hàng",
+    "Free 30 Days Delivery Returns Details": "Miễn phí hoàn trả trong vòng 30 ngày. Chi tiết",
+    "Related Item": "Sản phẩm liên quan",
+    "buyNow": "Mua ngay"
   }
 }

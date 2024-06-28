@@ -1,15 +1,26 @@
-import React, { FC } from 'react';
+import dynamic from 'next/dynamic';
+import React from 'react';
+import { unstable_setRequestLocale } from 'next-intl/server';
+
+import LoadingPage from '@/containers/product-details-page';
+import { Locale } from '@/config';
+
+const ProductDetailPage = dynamic(
+  () => import('@/containers/product-details-page'),
+  {
+    loading: () => <LoadingPage />,
+  },
+);
 
 type ProductDetailPageProps = {
-  params: { id: string };
+  params: {
+    locale: Locale;
+  };
 };
 
-const ProductDetailPage: FC<ProductDetailPageProps> = ({ params }) => {
-  return (
-    <main>
-      <h1 className="text-4xl font-bold text-black">{`Detail id:${params.id}`}</h1>
-    </main>
-  );
+const ProductDetail: React.FC<ProductDetailPageProps> = ({ params }) => {
+  unstable_setRequestLocale(params.locale);
+  return <ProductDetailPage />;
 };
 
-export default ProductDetailPage;
+export default ProductDetail;
