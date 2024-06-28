@@ -60,6 +60,31 @@ public class ApplicationConfiguration {
         return new CartItemMapperImpl();
     }
 
+    @Bean
+    OrderMapper orderMapper() {
+        return new OrderMapperImpl();
+    }
+
+    @Bean
+    OrderItemMapper orderItemMapper() {
+        return new OrderItemMapperImpl();
+    }
+
+    @Bean
+    PaymentMethodMapper paymentMethodMapper() {
+        return new PaymentMethodMapperImpl();
+    }
+
+    @Bean
+    CouponMapper couponMapper() {
+        return new CouponMapperImpl();
+    }
+
+    @Bean
+    CategoryMapper categoryMapper() {
+        return new CategoryMapperImpl();
+    }
+
     // Bean to provide the authentication manager
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {

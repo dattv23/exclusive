@@ -6,10 +6,12 @@ import com.backend.exclusive.repositories.PaymentMethodRepository;
 import com.backend.exclusive.services.PaymentMethodService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class PaymentMethodServiceImpl implements PaymentMethodService {
 
     @Autowired
@@ -39,14 +41,14 @@ public class PaymentMethodServiceImpl implements PaymentMethodService {
 
     @Override
     public Optional<PaymentMethod> getPaymentMethodById(ObjectId id) {
-        return paymentMethodRepository.findById(id).filter(paymentMethod -> !paymentMethod.isDeleted());
+        return paymentMethodRepository.findById(id)
+                .filter(paymentMethod -> !paymentMethod.isDeleted());
     }
 
     @Override
     public Optional<PaymentMethod> updatePaymentMethod(ObjectId id, PaymentMethodDTO paymentMethodDTO) {
         return paymentMethodRepository.findById(id).map(existingMethod -> {
             existingMethod.setName(paymentMethodDTO.getName());
-            existingMethod.setDeleted(paymentMethodDTO.isDeleted());
             return paymentMethodRepository.save(existingMethod);
         });
     }
