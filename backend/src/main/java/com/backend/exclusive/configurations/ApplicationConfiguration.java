@@ -80,6 +80,11 @@ public class ApplicationConfiguration {
         return new CouponMapperImpl();
     }
 
+    @Bean
+    CategoryMapper categoryMapper() {
+        return new CategoryMapperImpl();
+    }
+
     // Bean to provide the authentication manager
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {

@@ -13,6 +13,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @AllArgsConstructor
 @Document
 public class CategoryDTO {
+    private String id;
+
     private String parentId;
 
     @NotBlank(message = "Name is mandatory")
