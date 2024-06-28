@@ -19,7 +19,7 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public Payment createPayment(PaymentDTO paymentDTO) {
         Payment payment = new Payment();
-        payment.setOrder(paymentDTO.getOrder());
+//        payment.setOrder(paymentDTO.getOrder());
         payment.setMethodPayId(paymentDTO.getMethodPayId());
         payment.setAmount(paymentDTO.getAmount());
         payment.setStatus(paymentDTO.getStatus());
@@ -52,7 +52,7 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public Optional<Payment> updatePayment(ObjectId id, PaymentDTO paymentDTO) {
         return paymentRepository.findById(id).map(existingPayment -> {
-            existingPayment.setOrder(paymentDTO.getOrder());
+//            existingPayment.setOrder(paymentDTO.getOrder());
             existingPayment.setMethodPayId(paymentDTO.getMethodPayId());
             existingPayment.setAmount(paymentDTO.getAmount());
             existingPayment.setStatus(paymentDTO.getStatus());

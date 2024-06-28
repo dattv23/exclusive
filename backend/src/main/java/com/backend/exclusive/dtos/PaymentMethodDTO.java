@@ -13,8 +13,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @AllArgsConstructor
 @Document
 public class PaymentMethodDTO {
+    private String id;
+
     @NotBlank(message = "Name is mandatory")
     private String name;
-
-    private boolean isDeleted;
 }

@@ -26,8 +26,6 @@ public class OrderItem {
     @JsonBackReference
     private Order order;
 
-    private String shippingId;
-
     @DBRef
     @NotNull(message = "Product is mandatory")
     private Product product;
