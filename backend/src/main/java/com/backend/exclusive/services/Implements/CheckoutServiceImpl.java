@@ -19,8 +19,9 @@ public class CheckoutServiceImpl implements CheckoutService {
     private PaymentService paymentService;
 
     @Override
-    public String processOrder(OrderDTO orderDTO, String paymentMethodId) {
+    public Order processOrder(OrderDTO orderDTO, String paymentMethodId) {
         // Validate order
+        // Save order to database
         Order newOrder = orderService.createOrder(orderDTO);
         // Process payment
         PaymentDTO paymentDTO = new PaymentDTO();
@@ -29,10 +30,7 @@ public class CheckoutServiceImpl implements CheckoutService {
         paymentDTO.setAmount(newOrder.getTotalAmount());
         paymentDTO.setStatus("Pending");
         paymentService.createPayment(paymentDTO);
-        // Save order to database
         // Return order confirmation
-
-        // For simplicity, we're just returning a confirmation message
-        return "Order processed successfully for customer: " + orderDTO.getUserId();
+        return newOrder;
     }
 }

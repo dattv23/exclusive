@@ -153,4 +153,10 @@ public class OrderController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @PostMapping("/order/{id}/status")
+    public ResponseEntity<ApiResponse<OrderDTO>> updateStatusOrder(@PathVariable String id, @RequestBody String status) {
+        Order order = orderService.updateStatus(new ObjectId(id), status);
+        return ResponseUtil.success(orderMapper.toOrderDTO(order));
+    }
 }
