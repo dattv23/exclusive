@@ -248,16 +248,18 @@
     "PhoneNumber": "Số điện thoại",
     "OrderPlacedSuccessfully": "Đặt hàng thành công"
   },
-  "ProductDetailForm": {
+  "ProductDetailPage": {
     "In Stock": "Còn hàng",
-    "Description": "Vỏ bọc tay cầm PlayStation 5 Chất liệu vinyl chất lượng cao với keo dính có kênh không khí giúp lắp đặt dễ dàng không bong bóng và tháo gỡ không để lại vết. Nhạy cảm với áp lực.",
+    "Description": "Vỏ bọc tay cầm PlayStation 5 Chất liệu vinyl chất lượng cao với keo dính có kênh không khí giúp lắp đặt dễ dàng không bong bóng và tháo gỡ không để lại vết. Nhạy cảm với áp lực.",   
+    "Related Item": "Sản phẩm liên quan",
     "Colours": "Màu sắc",
     "Size": "Kích thước",
+    "buyNow": "Mua ngay"
+  },
+  "ProductDetailSection": {
     "Free Delivery": "Giao hàng miễn phí",
     "Enter your postal code for Delivery Availability": "Nhập mã bưu điện của bạn để kiểm tra tình trạng giao hàng",
     "Return Delivery": "Hoàn trả hàng",
-    "Free 30 Days Delivery Returns Details": "Miễn phí hoàn trả trong vòng 30 ngày. Chi tiết",
-    "Related Item": "Sản phẩm liên quan",
-    "buyNow": "Mua ngay"
+    "Free 30 Days Delivery Returns Details": "Miễn phí hoàn trả trong vòng 30 ngày. Chi tiết"
   }
 }
