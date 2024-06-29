@@ -1,6 +1,7 @@
 package com.backend.exclusive.services.Implements;
 
 import com.backend.exclusive.dtos.ProductDTO;
+import com.backend.exclusive.mappers.ProductMapper;
 import com.backend.exclusive.models.Product;
 import com.backend.exclusive.repositories.ProductRepository;
 import com.backend.exclusive.services.ProductService;
@@ -18,6 +19,9 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private ProductMapper productMapper;
+
     @Override
     public List<Product> getAll() {
         return productRepository.findByIsDeletedFalse();
@@ -34,27 +38,37 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product create(ProductDTO product) {
+    public Product create(ProductDTO product, String imageUrl) {
         Product newProduct = new Product();
-        newProduct.setCategory(product.getCategory());
-        newProduct.setName(product.getName());
-        newProduct.setRegularPrice(product.getRegularPrice());
-        newProduct.setStockQuantity(product.getStockQuantity());
-        newProduct.setDescription(product.getDescription());
-        newProduct.setShortDescription(product.getShortDescription());
-        newProduct.setUpdatedAt(new Date());
+        productMapper.toProduct(product);
+//        newProduct.setCategory(product.getCategoryId());
+//        newProduct.setName(product.getName());
+//        newProduct.setRegularPrice(product.getRegularPrice());
+//        newProduct.setStockQuantity(product.getStockQuantity());
+//        newProduct.setDescription(product.getDescription());
+//        newProduct.setShortDescription(product.getShortDescription());
+//        newProduct.setImageUrls(imageUrls);
+        newProduct.setId(new ObjectId());
+
+        newProduct.setImageUrl(imageUrl);
+
+        newProduct.setDeleted(false);
+        newProduct.setCreatedAt(new Date());
+        System.out.println("Product DTO: " + product);
+        System.out.println("New Product: " + newProduct);
         return productRepository.save(newProduct);
     }
 
     @Override
     public Optional<Product> update(ObjectId id, ProductDTO productDetails) {
         return productRepository.findById(id).map(product -> {
-            product.setCategory(productDetails.getCategory());
-            product.setName(productDetails.getName());
-            product.setRegularPrice(productDetails.getRegularPrice());
-            product.setStockQuantity(productDetails.getStockQuantity());
-            product.setDescription(productDetails.getDescription());
-            product.setShortDescription(productDetails.getShortDescription());
+//            product.setCategory(productDetails.getCategoryId());
+//            product.setName(productDetails.getName());
+//            product.setRegularPrice(productDetails.getRegularPrice());
+//            product.setStockQuantity(productDetails.getStockQuantity());
+//            product.setDescription(productDetails.getDescription());
+//            product.setShortDescription(productDetails.getShortDescription());
+            product = productMapper.toProduct(productDetails);
             product.setUpdatedAt(new Date());
             return productRepository.save(product);
         });

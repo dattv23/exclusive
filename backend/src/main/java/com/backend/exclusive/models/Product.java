@@ -15,6 +15,7 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Builder
@@ -44,6 +45,8 @@ public class Product {
     private String description;
 
     private String shortDescription;
+
+    private String imageUrl;
 
     @Builder.Default
     private boolean isDeleted = false;

@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class OrderServiceImpl implements OrderService {
+
     @Autowired
     private OrderRepository orderRepository;
 
@@ -92,5 +93,12 @@ public class OrderServiceImpl implements OrderService {
     public Optional<Order> getOrderByUserId(ObjectId userId) {
         return orderRepository.findAll().stream()
                 .filter(order -> order.getUser().getId().equals(userId)).findFirst();
+    }
+
+    @Override
+    public Order updateStatus(ObjectId id, String status) {
+        Order order = orderRepository.findById(id).filter(item -> !item.isDeleted()).get();
+        order.setStatus(status);
+        return orderRepository.save(order);
     }
 }

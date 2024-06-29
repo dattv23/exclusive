@@ -85,6 +85,11 @@ public class ApplicationConfiguration {
         return new CategoryMapperImpl();
     }
 
+    @Bean
+    ProductMapper productMapper() {
+        return new ProductMapperImpl();
+    }
+
     // Bean to provide the authentication manager
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
