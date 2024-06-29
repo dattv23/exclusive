@@ -1,5 +1,6 @@
 package com.backend.exclusive.security.dtos;
 
+import com.backend.exclusive.models.UserRole;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,4 +16,6 @@ public class LoginResponse {
     private String token;
 
     private long expiresIn;
+
+    private UserRole role;
 }
