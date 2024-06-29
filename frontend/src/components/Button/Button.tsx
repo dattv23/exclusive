@@ -1,7 +1,7 @@
 import React from 'react';
 import { cva, VariantProps } from 'class-variance-authority';
 
-import { cn } from '@/utils';
+import { cn } from '@/lib/utils';
 
 const buttonVariants = cva(
   'inline-flex items-center justify-center rounded text-base font-medium hover:opacity-80',

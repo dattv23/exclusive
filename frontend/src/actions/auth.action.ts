@@ -1,11 +1,11 @@
 'use server';
 
+import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
-import { loginSchema, TLoginResponse } from '@/schemas';
-import { envServerConfig } from '@/libs/env';
-import { cookies } from 'next/headers';
 import { Role } from '@/config';
+import { envServerConfig } from '@/lib/env';
+import { loginSchema, registerSchema, TLoginResponse } from '@/schemas';
 
 export const loginAction = async (data: unknown) => {
   // server-side validation
@@ -46,5 +46,22 @@ export const loginAction = async (data: unknown) => {
   if (role === Role.ADMIN) {
     redirect('/admin');
   }
+  redirect('/');
+};
+
+export const registerAction = async (data: unknown) => {
+  // server-side validation
+  const result = registerSchema.safeParse(data);
+  if (!result.success) {
+    let errorMessage = '';
+    result.error.issues.forEach((issue) => {
+      errorMessage =
+        errorMessage + ': ' + issue.path + ': ' + issue.message + '.';
+    });
+    return {
+      error: errorMessage,
+    };
+  }
+
   redirect('/');
 };

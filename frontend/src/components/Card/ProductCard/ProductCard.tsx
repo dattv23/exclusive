@@ -4,11 +4,11 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 
-import { PRODUCT_STATUS, Product } from '@/types';
-import { calculateDiscountedPrice, cn, startScore } from '@/utils';
 import { Button } from '@/components/Button';
-import { EyeIcon, HeartSmallIcon } from '@/components/Icons';
+import { PRODUCT_STATUS, Product } from '@/types';
 import { ProductDetailModal } from '@/components/Modal';
+import { EyeIcon, HeartSmallIcon } from '@/components/Icons';
+import { calculateDiscountedPrice, cn, startScore } from '@/lib/utils';
 
 interface ProductCardProps {
   data: Product;

@@ -4,11 +4,11 @@ import React, { useState } from 'react';
 import { useTranslations } from 'next-intl';
 
 import { Error } from '@/types';
-import Input from '../../Inputs/Input';
-import { SubmitButton } from '@/components/Button';
-import { cn, getError } from '@/utils';
-import { registerFormAction } from './action';
 import { Link } from '@/navigation';
+import { cn, getError } from '@/lib/utils';
+import { registerFormAction } from './action';
+import { Input } from '@/components/Inputs';
+import { SubmitButton } from '@/components/Button';
 
 const RegisterForm = () => {
   const t = useTranslations('Form');

@@ -2,7 +2,6 @@
 
 import { redirect } from 'next/navigation';
 
-import { promiseTimeout } from '@/utils';
 import { couponSchema } from '@/schemas';
 
 export const applyCouponAction = async (data: unknown) => {
@@ -18,8 +17,6 @@ export const applyCouponAction = async (data: unknown) => {
       error: errorMessage,
     };
   }
-
-  await promiseTimeout(3000);
 
   redirect('/cart');
 };
