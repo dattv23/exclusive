@@ -2,8 +2,10 @@
 
 import { redirect } from 'next/navigation';
 
-import { promiseTimeout } from '@/utils';
-import { loginSchema } from '@/schemas';
+import { loginSchema, TLoginResponse } from '@/schemas';
+import { envServerConfig } from '@/libs/env';
+import { cookies } from 'next/headers';
+import { Role } from '@/config';
 
 export const loginAction = async (data: unknown) => {
   // server-side validation
@@ -19,7 +21,30 @@ export const loginAction = async (data: unknown) => {
     };
   }
 
-  await promiseTimeout(3000);
-
+  const res = await fetch(`${envServerConfig.DOMAIN}/api/auth/login`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(result.data),
+  });
+  const loginRes = await res.json();
+  if (loginRes.status !== 200) {
+    return {
+      error: 'Login failed',
+    };
+  }
+  const { token, role, expiresIn } = loginRes.data as TLoginResponse;
+  const cookieStore = cookies();
+  cookieStore.set('accessToken', token, {
+    path: '/',
+    httpOnly: true,
+    sameSite: 'lax',
+    secure: true,
+    expires: expiresIn,
+  });
+  if (role === Role.ADMIN) {
+    redirect('/admin');
+  }
   redirect('/');
 };

@@ -10,3 +10,11 @@ export const loginSchema = z.object({
 });
 
 export type TLogin = z.infer<typeof loginSchema>;
+
+export const loginResponseSchema = z.object({
+  token: z.string(),
+  expiresIn: z.number(),
+  role: z.enum(['ADMIN', 'USER']),
+});
+
+export type TLoginResponse = z.infer<typeof loginResponseSchema>;

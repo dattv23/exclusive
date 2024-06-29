@@ -38,6 +38,11 @@ const nextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
+  experimental: {
+    serverActions: {
+      allowedOrigins: ['localhost:8080', 'https://exclusive-brbv.onrender.com'],
+    },
+  },
 };
 
 export default withNextIntl(nextConfig);
