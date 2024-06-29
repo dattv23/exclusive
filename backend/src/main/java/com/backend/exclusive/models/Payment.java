@@ -33,7 +33,7 @@ public class Payment {
     @Min(value = 0, message = "Amount must be positive")
     private double amount;
 
-    @Pattern(regexp = "^(Success|Failed)$", message = "Invalid status")
+    @Pattern(regexp = "^(Success|Pending|Failed)$", message = "Invalid status")
     private String status;
 
     private Date dateOfPay;

@@ -14,7 +14,7 @@ public interface ProductService {
 
     Optional<Product> getById(ObjectId id);
 
-    Product create(ProductDTO product);
+    Product create(ProductDTO product, String imageUrl);
 
     Optional<Product> update(ObjectId id, ProductDTO productDetails);
 
