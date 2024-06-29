@@ -40,7 +40,14 @@ public class SecurityConfiguration {
             "/configuration/security",
             "/swagger-ui/**",
             "/webjars/**",
-            "/swagger-ui.html"};
+            "/swagger-ui.html",
+            "/admin/**",
+            "/vendor/**",
+            "/scss/**",
+            "/css/**",
+            "/img/**",
+            "/js/**",
+    };
 
     // Configure the security filter chain
     @Bean

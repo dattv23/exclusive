@@ -1,16 +1,20 @@
 package com.backend.exclusive.security.services.Implements;
 
+import com.backend.exclusive.dtos.CartDTO;
 import com.backend.exclusive.models.User;
 import com.backend.exclusive.models.UserRole;
 import com.backend.exclusive.repositories.UserRepository;
 import com.backend.exclusive.security.dtos.LoginUserDto;
 import com.backend.exclusive.security.dtos.RegisterUserDto;
 import com.backend.exclusive.security.services.AuthenticationService;
+import com.backend.exclusive.services.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService {
@@ -21,15 +25,20 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
+    private final CartService cartService;
+
+    @Autowired
     private final AuthenticationManager authenticationManager;
 
     @Autowired
     public AuthenticationServiceImpl(UserRepository userRepository,
                                      AuthenticationManager authenticationManager,
-                                     PasswordEncoder passwordEncoder) {
+                                     PasswordEncoder passwordEncoder, CartService cartService
+    ) {
         this.authenticationManager = authenticationManager;
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.cartService = cartService;
     }
 
     // Method to handle user signup
@@ -42,9 +51,14 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         user.setRole(UserRole.USER);
         // Encode the user's password before saving
         user.setPassword(passwordEncoder.encode(input.getPassword()));
-
         // Save the user to the repository and return the saved user
-        return userRepository.save(user);
+        userRepository.save(user);
+        // Create user's cart
+        CartDTO cartDTO = new CartDTO();
+        cartDTO.setUserId(user.getId().toString());
+        cartDTO.setCartItems(new ArrayList<>());
+        cartService.createCart(cartDTO);
+        return user;
     }
 
     // Method to authenticate a user during login

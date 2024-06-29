@@ -1,5 +1,6 @@
 package com.backend.exclusive.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
@@ -25,15 +26,18 @@ public class Order {
     @Id
     private ObjectId id;
 
-    private String couponId;
-
     @DBRef
     @NotNull(message = "User is mandatory")
     private User user;
 
+    @DBRef
+    private Coupon coupon;
+
+    // Calculate this value
     @NotNull(message = "Order date is mandatory")
     private Date orderDate;
 
+    // Calculate this value
     @NotNull(message = "Total amount is mandatory")
     private double totalAmount;
 
@@ -41,10 +45,8 @@ public class Order {
     private String status;
 
     @DBRef
+    @JsonManagedReference
     private List<OrderItem> orderItems;
-
-    @DBRef
-    private Payment payment;
 
     @Builder.Default
     private boolean isDeleted = false;

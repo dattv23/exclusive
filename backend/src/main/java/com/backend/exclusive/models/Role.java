@@ -1,5 +1,6 @@
 package com.backend.exclusive.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import org.bson.types.ObjectId;
@@ -27,6 +28,7 @@ public class Role implements GrantedAuthority {
     private String description;
 
     @ToString.Exclude
+    @JsonManagedReference
     private Set<User> users = new HashSet<>();
 
     @Override
