@@ -18,5 +18,7 @@ public interface ProductService {
 
     Optional<Product> update(ObjectId id, ProductDTO productDetails);
 
+    Optional<Product> update(ObjectId id, ProductDTO productDetails, String imageUrl);
+
     void delete(ObjectId id);
 }

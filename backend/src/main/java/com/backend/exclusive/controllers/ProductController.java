@@ -111,12 +111,20 @@ public class ProductController {
      * @param productDetails the new details for the product.
      * @return a ResponseEntity containing the updated product.
      */
-    @PutMapping("/{id}")
+    @PutMapping(value = "/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Product> updateProduct(@PathVariable String id,
-                                                 @Validated @RequestBody ProductDTO productDetails) {
-        Optional<Product> updatedProduct = productService.update(new ObjectId(id), productDetails);
-        return updatedProduct.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    public ResponseEntity<ApiResponse<ProductDTO>> updateProduct(@PathVariable String id,
+                                                                 @Validated @ModelAttribute ProductDTO productDetails,
+                                                                 @RequestParam("image") MultipartFile image) throws IOException {
+        String imageUrl = null;
+        Optional<Product> updatedProduct = Optional.empty();
+        if (image != null && !image.isEmpty()) {
+            imageUrl = cloudinaryService.uploadImage(image);
+            productService.update(new ObjectId(id), productDetails, imageUrl);
+        } else {
+            productService.update(new ObjectId(id), productDetails);
+        }
+        return ResponseUtil.success(productMapper.toProductDTO(updatedProduct.get()));
     }
 
     /**
