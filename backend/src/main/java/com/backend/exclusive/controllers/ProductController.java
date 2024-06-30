@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * REST controller for managing products.
@@ -46,9 +47,10 @@ public class ProductController {
      * @return a ResponseEntity containing a list of all products.
      */
     @GetMapping("/all")
-    public ResponseEntity<List<Product>> allProducts() {
+    public ResponseEntity<ApiResponse<List<ProductDTO>>> allProducts() {
         List<Product> products = productService.getAll();
-        return ResponseEntity.ok(products);
+        List<ProductDTO> productDTOList = products.stream().map(productMapper::toProductDTO).collect(Collectors.toList());
+        return ResponseUtil.success(productDTOList);
     }
 
     /**
@@ -57,9 +59,10 @@ public class ProductController {
      * @return a ResponseEntity containing a list of all products.
      */
     @GetMapping("/deleted")
-    public ResponseEntity<List<Product>> allDeletedCategories() {
+    public ResponseEntity<ApiResponse<List<ProductDTO>>> allDeletedCategories() {
         List<Product> products = productService.getAllDeleted();
-        return ResponseEntity.ok(products);
+        List<ProductDTO> productDTOList = products.stream().map(productMapper::toProductDTO).collect(Collectors.toList());
+        return ResponseUtil.success(productDTOList);
     }
 
     /**
@@ -69,10 +72,22 @@ public class ProductController {
      * @return a ResponseEntity containing the product, or a 404 status if not found.
      */
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable String id) {
+    public ResponseEntity<ApiResponse<ProductDTO>> getProductById(@PathVariable String id) {
         Optional<Product> product = productService.getById(new ObjectId(id));
-        return product.map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+        return ResponseUtil.success(productMapper.toProductDTO(product.get()));
+    }
+
+    /**
+     * Get a product by its Category id.
+     *
+     * @param id the Category id of the product to retrieve.
+     * @return a ResponseEntity containing the product, or a 404 status if not found.
+     */
+    @GetMapping("/getByCategory/{id}")
+    public ResponseEntity<ApiResponse<List<ProductDTO>>> getProductsByCategoryId(@PathVariable String id) {
+        List<Product> products = productService.getProductsByCategoryId(new ObjectId(id));
+        List<ProductDTO> productDTOList = products.stream().map(productMapper::toProductDTO).collect(Collectors.toList());
+        return ResponseUtil.success(productDTOList);
     }
 
     /**
@@ -111,12 +126,20 @@ public class ProductController {
      * @param productDetails the new details for the product.
      * @return a ResponseEntity containing the updated product.
      */
-    @PutMapping("/{id}")
+    @PutMapping(value = "/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Product> updateProduct(@PathVariable String id,
-                                                 @Validated @RequestBody ProductDTO productDetails) {
-        Optional<Product> updatedProduct = productService.update(new ObjectId(id), productDetails);
-        return updatedProduct.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    public ResponseEntity<ApiResponse<ProductDTO>> updateProduct(@PathVariable String id,
+                                                                 @Validated @ModelAttribute ProductDTO productDetails,
+                                                                 @RequestParam("image") MultipartFile image) throws IOException {
+        String imageUrl = null;
+        Optional<Product> updatedProduct = Optional.empty();
+        if (image != null && !image.isEmpty()) {
+            imageUrl = cloudinaryService.uploadImage(image);
+            productService.update(new ObjectId(id), productDetails, imageUrl);
+        } else {
+            productService.update(new ObjectId(id), productDetails);
+        }
+        return ResponseUtil.success(productMapper.toProductDTO(updatedProduct.get()));
     }
 
     /**
@@ -130,5 +153,12 @@ public class ProductController {
     public ResponseEntity<Void> deleteProduct(@PathVariable String id) {
         productService.delete(new ObjectId(id));
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<ApiResponse<List<ProductDTO>>> searchProductsByName(@RequestParam String name) {
+        List<Product> products = productService.searchProductsByName(name);
+        List<ProductDTO> productDTOList = products.stream().map(productMapper::toProductDTO).collect(Collectors.toList());
+        return ResponseUtil.success(productDTOList);
     }
 }

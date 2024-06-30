@@ -4,6 +4,7 @@ import com.backend.exclusive.dtos.ProductDTO;
 import com.backend.exclusive.mappers.ProductMapper;
 import com.backend.exclusive.models.Product;
 import com.backend.exclusive.repositories.ProductRepository;
+import com.backend.exclusive.services.CategoryService;
 import com.backend.exclusive.services.ProductService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,15 +13,18 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImpl implements ProductService {
-
     @Autowired
     private ProductRepository productRepository;
 
     @Autowired
     private ProductMapper productMapper;
+
+    @Autowired
+    private CategoryService categoryService;
 
     @Override
     public List<Product> getAll() {
@@ -34,27 +38,38 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Optional<Product> getById(ObjectId id) {
-        return productRepository.findById(id);
+        return productRepository.findById(id)
+                .filter(product -> !product.isDeleted());
+    }
+
+    @Override
+    public List<Product> getProductsByCategoryId(ObjectId id) {
+        return productRepository.findAll()
+                .stream()
+                .filter(product -> product.getCategory().getId().equals(id))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Product> searchProductsByName(String name) {
+        return productRepository.findByNameContainingIgnoreCaseAndIsDeletedFalse(name);
     }
 
     @Override
     public Product create(ProductDTO product, String imageUrl) {
         Product newProduct = new Product();
-        productMapper.toProduct(product);
-//        newProduct.setCategory(product.getCategoryId());
-//        newProduct.setName(product.getName());
-//        newProduct.setRegularPrice(product.getRegularPrice());
-//        newProduct.setStockQuantity(product.getStockQuantity());
-//        newProduct.setDescription(product.getDescription());
-//        newProduct.setShortDescription(product.getShortDescription());
-//        newProduct.setImageUrls(imageUrls);
+
         newProduct.setId(new ObjectId());
-
+        newProduct.setCategory(categoryService.getCategoryById(new ObjectId(product.getCategoryId())).get());
+        newProduct.setName(product.getName());
+        newProduct.setRegularPrice(product.getRegularPrice());
+        newProduct.setStockQuantity(product.getStockQuantity());
+        newProduct.setDescription(product.getDescription());
+        newProduct.setShortDescription(product.getShortDescription());
         newProduct.setImageUrl(imageUrl);
-
         newProduct.setDeleted(false);
         newProduct.setCreatedAt(new Date());
-        System.out.println("Product DTO: " + product);
+
         System.out.println("New Product: " + newProduct);
         return productRepository.save(newProduct);
     }
@@ -71,6 +86,30 @@ public class ProductServiceImpl implements ProductService {
             product = productMapper.toProduct(productDetails);
             product.setUpdatedAt(new Date());
             return productRepository.save(product);
+        });
+    }
+
+    @Override
+    public Optional<Product> update(ObjectId id, ProductDTO productDetails, String imageUrl) {
+        return productRepository.findById(id).map(product -> {
+//            product.setCategory(productDetails.getCategoryId());
+//            product.setName(productDetails.getName());
+//            product.setRegularPrice(productDetails.getRegularPrice());
+//            product.setStockQuantity(productDetails.getStockQuantity());
+//            product.setDescription(productDetails.getDescription());
+//            product.setShortDescription(productDetails.getShortDescription());
+            product = productMapper.toProduct(productDetails);
+            product.setUpdatedAt(new Date());
+            return productRepository.save(product);
+        });
+    }
+
+    @Override
+    public void updateProductQuantity(ObjectId id, int quantityChange) {
+        productRepository.findById(id).ifPresent(product -> {
+            product.setStockQuantity(product.getStockQuantity() + quantityChange);
+            System.out.println("ProductServiceImpl-updateProductQuantity: " + product.getStockQuantity());
+            productRepository.save(product);
         });
     }
 

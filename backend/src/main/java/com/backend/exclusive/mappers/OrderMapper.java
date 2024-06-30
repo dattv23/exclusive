@@ -14,10 +14,12 @@ public interface OrderMapper {
 
     @Mapping(source = "user.id", target = "userId", qualifiedByName = "objectIdToString")
     @Mapping(source = "coupon.id", target = "couponId", qualifiedByName = "objectIdToString")
+    @Mapping(source = "orderItems", target = "orderItems")
     OrderDTO toOrderDTO(Order order);
 
     @Mapping(source = "userId", target = "user.id", qualifiedByName = "stringToObjectId")
     @Mapping(source = "couponId", target = "coupon.id", qualifiedByName = "stringToObjectId")
+    @Mapping(source = "orderItems", target = "orderItems")
     Order toOrder(OrderDTO orderDTO);
 
     @Named("objectIdToString")
