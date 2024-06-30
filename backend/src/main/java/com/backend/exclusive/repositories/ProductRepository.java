@@ -11,4 +11,6 @@ public interface ProductRepository extends MongoRepository<Product, ObjectId> {
     List<Product> findByIsDeletedFalse();
 
     List<Product> findByIsDeletedTrue();
+
+    List<Product> findByNameContainingIgnoreCaseAndIsDeletedFalse(String name);
 }

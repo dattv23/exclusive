@@ -72,6 +72,7 @@ public class OrderController {
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse<OrderDTO>> getOrderById(@PathVariable String id) {
         Optional<Order> order = orderService.getOrderById(new ObjectId(id));
+        System.out.println(order);
         if (order.isPresent()) {
             OrderDTO orderDTO = orderMapper.toOrderDTO(order.get());
             return ResponseUtil.success(orderDTO);
@@ -154,9 +155,19 @@ public class OrderController {
         }
     }
 
-    @PostMapping("/order/{id}/status")
+    /**
+     * Update status of an order
+     *
+     * @param id     the order ID
+     * @param status the new status
+     * @return a ResponseEntity containing the Order
+     */
+    @PutMapping("/{id}/status")
     public ResponseEntity<ApiResponse<OrderDTO>> updateStatusOrder(@PathVariable String id, @RequestBody String status) {
         Order order = orderService.updateStatus(new ObjectId(id), status);
-        return ResponseUtil.success(orderMapper.toOrderDTO(order));
+        OrderDTO orderDTO = orderMapper.toOrderDTO(order);
+        System.out.println("OrderController-updateStatusOrder: " + order);
+        System.out.println("OrderController-updateStatusOrder: " + orderDTO);
+        return ResponseUtil.success(orderDTO);
     }
 }
