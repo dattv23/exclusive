@@ -105,6 +105,15 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public void updateProductQuantity(ObjectId id, int quantityChange) {
+        productRepository.findById(id).ifPresent(product -> {
+            product.setStockQuantity(product.getStockQuantity() + quantityChange);
+            System.out.println("ProductServiceImpl-updateProductQuantity: " + product.getStockQuantity());
+            productRepository.save(product);
+        });
+    }
+
+    @Override
     public void delete(ObjectId id) {
         Optional<Product> optionalProduct = productRepository.findById(id);
         if (optionalProduct.isPresent()) {

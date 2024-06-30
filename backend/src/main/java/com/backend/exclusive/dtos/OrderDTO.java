@@ -26,9 +26,9 @@ public class OrderDTO {
 
     private double totalAmount;
 
-    @Pattern(regexp = "^(Pending|Completed|Cancelled)$", message = "Invalid status")
+    @Pattern(regexp = "^(Pending|Delivering|Completed|Cancelled)$", message = "Invalid status")
     @NotNull(message = "Status is mandatory")
-    private String status;
+    private String status = "Pending";
 
     private List<OrderItemDTO> orderItems;
 }

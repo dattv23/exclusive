@@ -5,7 +5,10 @@ import com.backend.exclusive.mappers.OrderItemMapper;
 import com.backend.exclusive.mappers.OrderMapper;
 import com.backend.exclusive.models.Order;
 import com.backend.exclusive.models.OrderItem;
+import com.backend.exclusive.models.Product;
+import com.backend.exclusive.repositories.OrderItemRepository;
 import com.backend.exclusive.repositories.OrderRepository;
+import com.backend.exclusive.repositories.ProductRepository;
 import com.backend.exclusive.services.OrderService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +25,16 @@ public class OrderServiceImpl implements OrderService {
     private OrderRepository orderRepository;
 
     @Autowired
+    private OrderItemRepository orderItemRepository;
+
+    @Autowired
     private OrderMapper orderMapper;
 
     @Autowired
     private OrderItemMapper orderItemMapper;
+
+    @Autowired
+    private ProductRepository productRepository;
 
     @Override
     public Order createOrder(OrderDTO orderDTO) {
@@ -36,7 +45,8 @@ public class OrderServiceImpl implements OrderService {
         List<OrderItem> orderItems = orderDTO.getOrderItems().stream().map(orderItemDTO -> {
             OrderItem orderItem = orderItemMapper.toOrderItem(orderItemDTO);
             orderItem.setId(new ObjectId()); // Set a new ID for each OrderItem
-            orderItem.setOrder(newOrder); // Set the reference to the new order
+//            orderItem.setOrder(newOrder); // Set the reference to the new order
+            orderItemRepository.save(orderItem);
             return orderItem;
         }).collect(Collectors.toList());
 
@@ -47,22 +57,19 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> getAllOrders() {
-        return orderRepository.findAll().stream()
-                .filter(order -> !order.isDeleted())
-                .toList();
+        return orderRepository.findAll().stream().filter(order -> !order.isDeleted()).toList();
     }
 
     @Override
     public List<Order> getDeletedOrders() {
-        return orderRepository.findAll().stream()
-                .filter(Order::isDeleted)
-                .toList();
+        return orderRepository.findAll().stream().filter(Order::isDeleted).toList();
     }
 
     @Override
     public Optional<Order> getOrderById(ObjectId id) {
-        return orderRepository.findById(id)
-                .filter(order -> !order.isDeleted());
+        Optional<Order> orderOptional = orderRepository.findById(id).filter(order -> !order.isDeleted());
+        System.out.println(orderOptional);
+        return orderOptional;
     }
 
     @Override
@@ -91,13 +98,28 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Optional<Order> getOrderByUserId(ObjectId userId) {
-        return orderRepository.findAll().stream()
-                .filter(order -> order.getUser().getId().equals(userId)).findFirst();
+        return orderRepository.findAll().stream().filter(order -> order.getUser().getId().equals(userId)).findFirst();
     }
 
     @Override
     public Order updateStatus(ObjectId id, String status) {
-        Order order = orderRepository.findById(id).filter(item -> !item.isDeleted()).get();
+        Order order = orderRepository.findById(id).filter(item -> !item.isDeleted()).orElseThrow(() -> new RuntimeException("Order not found"));
+
+        // Update product quantities based on status
+        if ("Delivering".equals(status)) {
+            order.getOrderItems().forEach(orderItem -> {
+                Product product = orderItem.getProduct();
+                product.setStockQuantity(product.getStockQuantity() - orderItem.getQuantity());
+                productRepository.save(product);
+            });
+        } else if ("Cancelled".equals(status) && !"Cancelled".equals(order.getStatus())) {
+            order.getOrderItems().forEach(orderItem -> {
+                Product product = orderItem.getProduct();
+                product.setStockQuantity(product.getStockQuantity() + orderItem.getQuantity());
+                productRepository.save(product);
+            });
+        }
+
         order.setStatus(status);
         return orderRepository.save(order);
     }

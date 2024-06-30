@@ -41,8 +41,8 @@ public class Order {
     @NotNull(message = "Total amount is mandatory")
     private double totalAmount;
 
-    @Pattern(regexp = "^(Pending|Completed|Cancelled)$", message = "Invalid status")
-    private String status;
+    @Pattern(regexp = "^(Pending|Delivering|Completed|Cancelled)$", message = "Invalid status")
+    private String status = "Pending";
 
     @DBRef
     @JsonManagedReference
