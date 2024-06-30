@@ -16,6 +16,8 @@ public interface ProductService {
 
     List<Product> getProductsByCategoryId(ObjectId id);
 
+    List<Product> searchProductsByName(String name);
+
     Product create(ProductDTO product, String imageUrl);
 
     Optional<Product> update(ObjectId id, ProductDTO productDetails);

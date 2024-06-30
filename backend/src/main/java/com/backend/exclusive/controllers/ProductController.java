@@ -154,4 +154,11 @@ public class ProductController {
         productService.delete(new ObjectId(id));
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<ApiResponse<List<ProductDTO>>> searchProductsByName(@RequestParam String name) {
+        List<Product> products = productService.searchProductsByName(name);
+        List<ProductDTO> productDTOList = products.stream().map(productMapper::toProductDTO).collect(Collectors.toList());
+        return ResponseUtil.success(productDTOList);
+    }
 }

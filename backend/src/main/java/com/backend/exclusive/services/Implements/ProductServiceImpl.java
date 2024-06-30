@@ -51,6 +51,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<Product> searchProductsByName(String name) {
+        return productRepository.findByNameContainingIgnoreCaseAndIsDeletedFalse(name);
+    }
+
+    @Override
     public Product create(ProductDTO product, String imageUrl) {
         Product newProduct = new Product();
 
