@@ -15,7 +15,8 @@ export const registerFormAction = async (params: TParams) => {
   const { formData, onChangeErrors } = params;
 
   const data = {
-    name: formData.get('name'),
+    firstName: formData.get('firstName'),
+    lastName: formData.get('lastName'),
     email: formData.get('email'),
     password: formData.get('password'),
   };
