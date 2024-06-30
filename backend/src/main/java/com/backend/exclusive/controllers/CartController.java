@@ -11,6 +11,7 @@ import com.backend.exclusive.models.CartItem;
 import com.backend.exclusive.services.CartService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -95,5 +96,11 @@ public class CartController {
         Cart updatedCart = cartService.removeItemFromCart(new ObjectId(cartId), cartItemDTO);
         CartDTO cartDTO = cartMapper.toCartDTO(updatedCart);
         return ResponseUtil.success(cartDTO);
+    }
+
+    @PutMapping("/removeAll/{id}")
+    public ResponseEntity<ApiResponse<CartDTO>> removeAllItemsInCart(@PathVariable String id) {
+        cartService.removeAllItems(new ObjectId(id));
+        return ResponseUtil.success(HttpStatus.OK, "Completed remove all items in cart", null);
     }
 }

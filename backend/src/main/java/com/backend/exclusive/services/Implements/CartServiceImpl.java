@@ -86,8 +86,7 @@ public class CartServiceImpl implements CartService {
         List<CartItem> cartItems = cart.getCartItems();
 
         // Check if the item is already in the cart
-        Optional<CartItem> existingItemOpt = cartItems.stream()
-                .filter(item -> item.getProduct().getId().equals(product.getId())).findFirst();
+        Optional<CartItem> existingItemOpt = cartItems.stream().filter(item -> item.getProduct().getId().equals(product.getId())).findFirst();
 
         if (existingItemOpt.isPresent()) {
             CartItem existingItem = existingItemOpt.get();
@@ -192,5 +191,30 @@ public class CartServiceImpl implements CartService {
     @Override
     public Optional<Cart> getCartByUserId(ObjectId userId) {
         return cartRepository.findAll().stream().filter(item -> item.getUser().getId().equals(userId)).findFirst();
+    }
+
+    @Override
+    public void removeAllItems(ObjectId id) {
+        // Fetch the cart by its ID
+        Optional<Cart> cartOpt = cartRepository.findById(id);
+
+        // Check if the cart exists
+        if (cartOpt.isEmpty()) {
+            throw new RuntimeException("Invalid Cart");
+        }
+
+        Cart cart = cartOpt.get();
+
+        // Clear all items from the cart
+        List<CartItem> cartItems = cart.getCartItems();
+        for (var item : cartItems) {
+            cartItemRepository.deleteById(item.getId());
+        }
+        cartItems.clear();
+
+        // Save the updated cart to the repository
+        cart.setCartItems(cartItems);
+        cartRepository.save(cart);
+        System.out.println(cart);
     }
 }

@@ -28,4 +28,6 @@ public interface CartService {
     Cart addItemToCart(ObjectId cartId, CartItemDTO item);
 
     Cart removeItemFromCart(ObjectId cartId, CartItemDTO item);
+
+    void removeAllItems(ObjectId id);
 }
