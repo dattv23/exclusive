@@ -8,6 +8,7 @@ import { Toaster } from 'react-hot-toast';
 import { i18n, Locale } from '@/config';
 import { Container, Footer, Header } from '@/components';
 import '@/styles/globals.scss';
+import { AuthProvider } from '@/context/AuthContext';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -32,14 +33,16 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body className={inter.className} suppressHydrationWarning={true}>
-        <Header />
-        <AntdRegistry>
-          <NextIntlClientProvider messages={messages}>
-            <Container>{children}</Container>
-          </NextIntlClientProvider>
-        </AntdRegistry>
-        <Toaster position="top-right" />
-        <Footer />
+        <NextIntlClientProvider messages={messages}>
+          <AuthProvider>
+            <Header />
+            <AntdRegistry>
+              <Container>{children}</Container>
+            </AntdRegistry>
+            <Toaster position="top-right" />
+            <Footer />
+          </AuthProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );
