@@ -3,7 +3,6 @@
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
-import { Role } from '@/config';
 import { envServerConfig } from '@/lib/env';
 import { loginSchema, registerSchema, TLoginResponse } from '@/schemas';
 
@@ -34,7 +33,8 @@ export const loginAction = async (data: unknown) => {
       error: 'Login failed',
     };
   }
-  const { token, role, expiresIn } = loginRes.data as TLoginResponse;
+
+  const { token, expiresIn } = loginRes.data as TLoginResponse;
   const cookieStore = cookies();
   cookieStore.set('accessToken', token, {
     path: '/',
@@ -43,10 +43,8 @@ export const loginAction = async (data: unknown) => {
     secure: true,
     expires: expiresIn,
   });
-  if (role === Role.ADMIN) {
-    redirect('/admin');
-  }
-  redirect('/');
+
+  return loginRes.data;
 };
 
 export const registerAction = async (data: unknown) => {
