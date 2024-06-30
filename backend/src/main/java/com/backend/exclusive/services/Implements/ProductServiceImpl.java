@@ -13,11 +13,10 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImpl implements ProductService {
-
-
     @Autowired
     private ProductRepository productRepository;
 
@@ -39,7 +38,16 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Optional<Product> getById(ObjectId id) {
-        return productRepository.findById(id);
+        return productRepository.findById(id)
+                .filter(product -> !product.isDeleted());
+    }
+
+    @Override
+    public List<Product> getProductsByCategoryId(ObjectId id) {
+        return productRepository.findAll()
+                .stream()
+                .filter(product -> product.getCategory().getId().equals(id))
+                .collect(Collectors.toList());
     }
 
     @Override
