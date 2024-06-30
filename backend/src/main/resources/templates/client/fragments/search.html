@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="search" class="header-search" th:data-selected-category="${selectedCategory}">
+    <form th:action="@{/search}" method="get" id="searchForm">
+        <select class="input-select" name="category" id="categorySelect">
+            <option value="0">All Categories</option>
+            <!-- Categories will be dynamically populated here -->
+        </select>
+        <input class="input" name="query" placeholder="Search here" th:value="${param.query}">
+        <button class="search-btn" type="submit">Search</button>
+    </form>
+</div>
+
+<script th:inline="javascript">
+    $(document).ready(function() {
+        var searchDiv = $('.header-search');
+        var selectedCategory = searchDiv.data('selected-category');
+
+        function loadCategories() {
+            $.ajax({
+                url: '/api/categories',
+                type: 'GET',
+                dataType: 'json',
+                success: function(categories) {
+                    var select = $('#categorySelect');
+                    $.each(categories, function(i, category) {
+                        var option = $('<option></option>')
+                            .attr('value', category.id)
+                            .text(category.name);
+                        if (category.id.toString() === selectedCategory) {
+                            option.attr('selected', 'selected');
+                        }
+                        select.append(option);
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error loading categories:', error);
+                }
+            });
+        }
+
+        loadCategories();
+    });
+</script>
+</body>
+</html>
