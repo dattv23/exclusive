@@ -31,6 +31,8 @@ public class SecurityConfiguration {
             "/api/v1/auth/**",
             "/api/v1/products/all",
             "/api/v1/products/{id}",
+            "/api/v1/categories/all",
+            "/api/v1/categories/{id}",
             "/v2/api-docs",
             "/v3/api-docs",
             "/v3/api-docs/**",

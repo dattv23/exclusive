@@ -21,6 +21,8 @@
     <!-- Custom styles for this template-->
     <link th:href="@{/admin/css/sb-admin-2.min.css}" rel="stylesheet">
 
+    <!-- Custom styles for datatable-->
+    <link th:href="@{/admin/vendor/datatables/dataTables.bootstrap4.min.css}" rel="stylesheet">
 </head>
 <body id="page-top">
 
@@ -53,103 +55,37 @@
 
         <!-- Heading -->
         <div class="sidebar-heading">
-            Interface
+            Management
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-               aria-expanded="true" aria-controls="collapseTwo">
+            <a class="nav-link" th:href="@{/api/v1/admin/product}">
                 <i class="fas fa-fw fa-cog"></i>
-                <span>Components</span>
+                <span>Product</span>
             </a>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Custom Components:</h6>
-                    <a class="collapse-item" href="temp/buttons.html">Buttons</a>
-                    <a class="collapse-item" href="temp/cards.html">Cards</a>
-                </div>
-            </div>
         </li>
 
-        <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-               aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fas fa-fw fa-wrench"></i>
-                <span>Utilities</span>
+            <a class="nav-link" th:href="@{/api/v1/admin/category}">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Category</span>
             </a>
-            <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                 data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Custom Utilities:</h6>
-                    <a class="collapse-item" href="temp/utilities-color.html">Colors</a>
-                    <a class="collapse-item" href="temp/utilities-border.html">Borders</a>
-                    <a class="collapse-item" href="temp/utilities-animation.html">Animations</a>
-                    <a class="collapse-item" href="temp/utilities-other.html">Other</a>
-                </div>
-            </div>
         </li>
 
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            Addons
-        </div>
-
-        <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-               aria-expanded="true" aria-controls="collapsePages">
-                <i class="fas fa-fw fa-folder"></i>
-                <span>Pages</span>
+            <a class="nav-link" th:href="@{/api/v1/admin/user}">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>User</span>
             </a>
-            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Login Screens:</h6>
-                    <a class="collapse-item" href="temp/login.html">Login</a>
-                    <a class="collapse-item" href="temp/register.html">Register</a>
-                    <a class="collapse-item" href="temp/forgot-password.html">Forgot Password</a>
-                    <div class="collapse-divider"></div>
-                    <h6 class="collapse-header">Other Pages:</h6>
-                    <a class="collapse-item" href="temp/404.html">404 Page</a>
-                    <a class="collapse-item" href="temp/blank.html">Blank Page</a>
-                </div>
-            </div>
         </li>
 
-        <!-- Nav Item - Charts -->
         <li class="nav-item">
-            <a class="nav-link" href="temp/charts.html">
-                <i class="fas fa-fw fa-chart-area"></i>
-                <span>Charts</span></a>
+            <a class="nav-link" th:href="@{/api/v1/admin/order}">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Order</span>
+            </a>
         </li>
-
-        <!-- Nav Item - Tables -->
-        <li class="nav-item">
-            <a class="nav-link" href="temp/tables.html">
-                <i class="fas fa-fw fa-table"></i>
-                <span>Tables</span></a>
-        </li>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider d-none d-md-block">
-
-        <!-- Sidebar Toggler (Sidebar) -->
-        <div class="text-center d-none d-md-inline">
-            <button class="rounded-circle border-0" id="sidebarToggle"></button>
-        </div>
-
-        <!-- Sidebar Message -->
-        <div class="sidebar-card d-none d-lg-flex">
-            <img class="sidebar-card-illustration mb-2" th:src="@{/admin/img/undraw_rocket.svg}" alt="...">
-            <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and
-                more!</p>
-            <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
-        </div>
-
     </ul>
     <!-- End of Sidebar -->
 
@@ -315,7 +251,7 @@
                             <a class="dropdown-item d-flex align-items-center" href="#">
                                 <div class="dropdown-list-image mr-3">
                                     <img class="rounded-circle"
-                                         th:src="@{/admin/https://source.unsplash.com/Mv9hjnEUHR4/60x60}"
+                                         src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
                                          alt="...">
                                     <div class="status-indicator bg-success"></div>
                                 </div>
@@ -437,4 +373,13 @@
 <!-- Page level custom scripts -->
 <script th:src="@{/admin/js/demo/chart-area-demo.js}"></script>
 <script th:src="@{/admin/js/demo/chart-pie-demo.js}"></script>
+
+<!-- Page level plugins -->
+<script th:src="@{/admin/vendor/datatables/jquery.dataTables.min.js}"></script>
+<script th:src="@{/admin/vendor/datatables/dataTables.bootstrap4.min.js}"></script>
+
+<!-- Page level custom scripts -->
+<script th:src="@{/admin/js/demo/datatables-demo.js}"></script>
+
+<script th:src="@{/admin/js/productList.js}"></script>
 </html>
