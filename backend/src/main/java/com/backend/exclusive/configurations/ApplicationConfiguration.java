@@ -1,7 +1,6 @@
 package com.backend.exclusive.configurations;
 
 import com.backend.exclusive.mappers.*;
-import com.backend.exclusive.mappers.Implements.UserMapperImpl;
 import com.backend.exclusive.repositories.UserRepository;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
@@ -89,7 +88,7 @@ public class ApplicationConfiguration {
     ProductMapper productMapper() {
         return new ProductMapperImpl();
     }
-
+    
     // Bean to provide the authentication manager
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {

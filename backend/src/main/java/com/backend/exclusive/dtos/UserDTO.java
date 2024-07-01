@@ -7,16 +7,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.util.Date;
 
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
-@Document
 public class UserDTO {
+    private String id;
+
     @NotBlank(message = "Email is mandatory")
     @Email(message = "Email should be valid")
     private String email;
@@ -37,6 +35,4 @@ public class UserDTO {
     private String phoneNumber;
 
     private String address;
-    private boolean isDeleted = false;
-    private Date createdAt = new Date();
 }
