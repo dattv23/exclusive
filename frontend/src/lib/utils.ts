@@ -57,3 +57,29 @@ export const calculateDiscountedPrice = (
 ): number => {
   return price - price * (discount / 100);
 };
+
+export const formatPrice = (num: number) => {
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+};
+
+export const VND = new Intl.NumberFormat('vi-VN', {
+  style: 'currency',
+  currency: 'VND',
+  maximumFractionDigits: 0,
+});
+
+export const USDollar = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+});
+
+// Conversion functions
+export function usdToVnd(usdAmount: number, exchangeRate: number) {
+  const vndAmount = usdAmount * exchangeRate;
+  return VND.format(Math.round(vndAmount));
+}
+
+export function vndToUsd(vndAmount: number, exchangeRate: number) {
+  const usdAmount = vndAmount / exchangeRate;
+  return USDollar.format(usdAmount);
+}

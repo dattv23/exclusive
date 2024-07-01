@@ -7,19 +7,26 @@ import { useTranslations } from 'next-intl';
 import { CartIcon, HeartSmallIcon, UserIcon } from '@/components/Icons';
 import { SearchInput } from '@/components/Inputs';
 import { AccountDropdown } from '@/components/Dropdown';
-import { Link } from '@/navigation';
+import { Link, usePathname } from '@/navigation';
 import { NavItem } from '@/types';
 import { useAuthStore } from '@/store';
+import { cn } from '@/lib/utils';
 
 const Navbar: React.FC = () => {
   const t = useTranslations('Navbar');
   const { isAuth } = useAuthStore();
+  const pathName = usePathname();
 
   const items: NavItem[] = [
     {
       id: 0,
       name: t('Home'),
       link: `/`,
+    },
+    {
+      id: 0,
+      name: t('Product'),
+      link: `/products`,
     },
     {
       id: 1,
@@ -49,7 +56,10 @@ const Navbar: React.FC = () => {
           <Link
             key={item.id}
             href={item.link}
-            className="hover:border-b-2 hover:border-[#727272]"
+            className={cn(
+              'hover:border-b-2 hover:border-[#727272]',
+              pathName === item.link && 'text-secondary hover:border-secondary',
+            )}
           >
             {item.name}
           </Link>
@@ -58,13 +68,21 @@ const Navbar: React.FC = () => {
           <>
             <Link
               href="/auth/sign-up"
-              className="hover:border-b-2 hover:border-[#727272]"
+              className={cn(
+                'hover:border-b-2 hover:border-[#727272]',
+                pathName === '/auth/sign-up' &&
+                  'text-secondary hover:border-secondary',
+              )}
             >
               {t('Sign Up')}
             </Link>
             <Link
               href="/auth/sign-in"
-              className="hover:border-b-2 hover:border-[#727272]"
+              className={cn(
+                'hover:border-b-2 hover:border-[#727272]',
+                pathName === '/auth/sign-in' &&
+                  'text-secondary hover:border-secondary',
+              )}
             >
               {t('Sign In')}
             </Link>

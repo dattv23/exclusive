@@ -59,7 +59,10 @@ const AccountDropdown: React.FC = () => {
           </Link>
         ))}
         <button
-          onClick={logout}
+          onClick={() => {
+            localStorage.removeItem('accessToken');
+            logout();
+          }}
           className="flex w-full items-center gap-2 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-100"
         >
           <LogoutIcon />
