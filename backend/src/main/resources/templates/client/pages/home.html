@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exclusive</title>
+</head>
+<body>
+<!-- Extend the base layout using the correct fragment expression syntax -->
+<div th:replace="~{client/fragments/base :: content}">
+    <div class="container body-content">
+        <!-- Home page specific content goes here -->
+        <h1>Welcome to Electro!</h1>
+        <p>This is the home page.</p>
+    </div>
+</div>
+</body>
+</html>

@@ -2,12 +2,10 @@
 
 import { redirect } from 'next/navigation';
 
-import { promiseTimeout } from '@/utils';
-import { couponSchema } from '@/schemas';
+import { checkoutSchema } from '@/schemas';
 
-export const applyCouponAction = async (data: unknown) => {
-  // server-side validation
-  const result = couponSchema.safeParse(data);
+export const checkoutAction = async (data: unknown) => {
+  const result = checkoutSchema.safeParse(data);
   if (!result.success) {
     let errorMessage = '';
     result.error.issues.forEach((issue) => {
@@ -19,7 +17,5 @@ export const applyCouponAction = async (data: unknown) => {
     };
   }
 
-  await promiseTimeout(3000);
-
-  redirect('/cart');
+  redirect('/');
 };

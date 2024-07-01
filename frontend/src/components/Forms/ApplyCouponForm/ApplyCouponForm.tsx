@@ -4,10 +4,10 @@ import React, { useState } from 'react';
 import { useTranslations } from 'next-intl';
 
 import { Error } from '@/types';
-import { cn, getError } from '@/utils';
 import { applyCouponFormAction } from './action';
 import { SubmitButton } from '@/components/Button';
 import { Input } from '@/components/Inputs';
+import { cn, getError } from '@/lib/utils';
 
 const CouponForm = () => {
   const t = useTranslations('Form');

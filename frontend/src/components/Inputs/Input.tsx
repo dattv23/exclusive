@@ -2,8 +2,8 @@ import React from 'react';
 import { Alert } from 'antd';
 import { useTranslations } from 'next-intl';
 
-import { cn } from '@/utils';
 import { Error } from '@/types';
+import { cn } from '@/lib/utils';
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {

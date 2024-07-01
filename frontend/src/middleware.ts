@@ -1,14 +1,26 @@
-import createMiddleware from 'next-intl/middleware';
+import createIntlMiddleware from 'next-intl/middleware';
+import { NextRequest, NextResponse } from 'next/server';
 
-export default createMiddleware({
-  // A list of all locales that are supported
-  locales: ['en', 'vi'],
+const locales = ['en', 'vi'];
 
-  // Used when no locale matches
-  defaultLocale: 'en',
-});
+export default function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+
+  if (pathname.includes('/admin')) {
+    // For admin routes, just continue without applying internationalization
+    return NextResponse.next();
+  }
+
+  // Apply the internationalization middleware
+  const handleI18nRouting = createIntlMiddleware({
+    locales,
+    defaultLocale: 'en',
+  });
+  const response = handleI18nRouting(request);
+
+  return response;
+}
 
 export const config = {
-  // Match only internationalized pathnames
   matcher: ['/((?!api|_next|_vercel|.*\\..*).*)'],
 };

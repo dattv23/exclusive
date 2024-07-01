@@ -1,11 +1,11 @@
 import { Modal } from 'antd';
-import { useTranslations } from 'next-intl';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
 import { Product } from '@/types';
-import { calculateDiscountedPrice } from '@/utils';
-import { Button } from '@/components/Button';
 import { Link } from '@/navigation';
+import { Button } from '@/components/Button';
+import { calculateDiscountedPrice } from '@/lib/utils';
 
 type ProductDetailModalProps = {
   data: Product;

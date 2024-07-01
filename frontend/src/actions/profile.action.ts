@@ -2,7 +2,6 @@
 
 import { redirect } from 'next/navigation';
 
-import { promiseTimeout } from '@/utils';
 import { editProfileSchema } from '@/schemas';
 
 export const editProfileAction = async (data: unknown) => {
@@ -18,8 +17,6 @@ export const editProfileAction = async (data: unknown) => {
       error: errorMessage,
     };
   }
-
-  await promiseTimeout(3000);
 
   redirect('/');
 };

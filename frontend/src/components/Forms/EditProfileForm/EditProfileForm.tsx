@@ -1,12 +1,13 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
+
 import { Error } from '@/types';
-import { editProfileFormAction } from './action';
-import { cn, getError } from '@/utils';
-import { Button, SubmitButton } from '@/components/Button';
+import { cn, getError } from '@/lib/utils';
 import { Input } from '@/components/Inputs';
+import { editProfileFormAction } from './action';
+import { Button, SubmitButton } from '@/components/Button';
 
 const EditProfileForm = () => {
   const t = useTranslations('Form');

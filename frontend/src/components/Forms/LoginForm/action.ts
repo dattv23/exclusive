@@ -4,7 +4,8 @@ import toast from 'react-hot-toast';
 
 import { loginAction } from '@/actions';
 import { Error } from '@/types';
-import { loginSchema } from '@/schemas';
+import { loginSchema, TLoginResponse } from '@/schemas';
+import { Role } from '@/config';
 
 type TParams = {
   formData: FormData;
@@ -33,4 +34,10 @@ export const loginFormAction = async (params: TParams) => {
   if (res?.error) {
     toast.error(res.error);
   }
+  const { role, token } = res as TLoginResponse;
+  localStorage.setItem('accessToken', token);
+  if (role === Role.ADMIN) {
+    window.location.href = '/admin';
+  }
+  window.location.href = '/';
 };

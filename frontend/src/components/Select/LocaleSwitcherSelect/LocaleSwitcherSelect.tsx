@@ -3,9 +3,9 @@
 import { useParams } from 'next/navigation';
 import React, { ChangeEvent, ReactNode, useTransition } from 'react';
 
-import { cn } from '@/utils';
+import { cn } from '@/lib/utils';
 import { DropdownIcon } from '@/components/Icons';
-import { usePathname, useRouter } from '@/libs/navigation';
+import { usePathname, useRouter } from '@/lib/navigation';
 
 type Props = {
   children: ReactNode;
