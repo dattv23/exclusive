@@ -37,6 +37,7 @@ public class CheckoutController {
         String toEmail = userRepository.findById(new ObjectId(orderDTO.getUserId())).get().getEmail();
         emailService.sendOrderPlacedEmail(toEmail);
 
+        System.out.printf(toEmail);
         return ResponseUtil.success(orderMapper.toOrderDTO(newOrder));
     }
 }
