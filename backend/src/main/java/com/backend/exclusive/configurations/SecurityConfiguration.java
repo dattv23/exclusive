@@ -41,6 +41,11 @@ public class SecurityConfiguration {
             "/swagger-ui/**",
             "/webjars/**",
             "/swagger-ui.html",
+            "/api/v1/admin/**",
+            "/admin/css/**",
+            "/admin/js/**",
+            "/admin/img/**",
+            "/admin/vendor/**"
     };
 
     // Configure the security filter chain
