@@ -4,6 +4,7 @@ import com.backend.exclusive.common.ApiResponse;
 import com.backend.exclusive.common.ResponseUtil;
 import com.backend.exclusive.dtos.CartDTO;
 import com.backend.exclusive.dtos.CartItemDTO;
+import com.backend.exclusive.dtos.CartItemReqDTO;
 import com.backend.exclusive.mappers.CartItemMapper;
 import com.backend.exclusive.mappers.CartMapper;
 import com.backend.exclusive.mappers.UserMapper;
@@ -19,6 +20,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -133,7 +135,7 @@ public class CartController {
     }
 
     @PostMapping
-    public ResponseEntity<ApiResponse<List<CartItemDTO>>> addItem(@RequestBody CartItemDTO cartItemDTO) {
+    public ResponseEntity<ApiResponse<List<CartItemDTO>>> addItem(@RequestBody CartItemReqDTO cartItemReqDTO) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User currentUser = (User) authentication.getPrincipal();
         Optional<Cart> cartOptional = cartService.getCartByUserId(currentUser.getId());
@@ -141,13 +143,16 @@ public class CartController {
             throw new RuntimeException("User don't have any cart");
         }
 
+        CartItemDTO cartItemDTO = new CartItemDTO();
+        cartItemDTO.setProductId(cartItemReqDTO.getProductId());
+        cartItemDTO.setQuantity(cartItemReqDTO.getQuantity());
         Cart cart = cartService.addItemToCart(cartOptional.get().getId(), cartItemDTO);
         List<CartItemDTO> cartItemDTOS = cart.getCartItems().stream().map(cartItemMapper::toCartItemDTO).toList();
         return ResponseUtil.success(cartItemDTOS);
     }
 
     @PutMapping
-    public ResponseEntity<ApiResponse<List<CartItemDTO>>> update(@RequestBody List<CartItemDTO> cartItemDTOS) {
+    public ResponseEntity<ApiResponse<List<CartItemDTO>>> update(@RequestBody List<CartItemReqDTO> cartItemReqDTOS) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User currentUser = (User) authentication.getPrincipal();
         Optional<Cart> cartOptional = cartService.getCartByUserId(currentUser.getId());
@@ -156,9 +161,20 @@ public class CartController {
         }
 
         CartDTO cartDTO = cartMapper.toCartDTO(cartOptional.get());
+        List<CartItemDTO> cartItemDTOS = new ArrayList<>();
+        for (var item : cartItemReqDTOS) {
+            cartItemDTOS.add(mapToCartItemDTO(item));
+        }
         cartDTO.setCartItems(cartItemDTOS);
         Cart cart = cartService.updateCart(new ObjectId(cartDTO.getId()), cartDTO);
 
         return ResponseUtil.success(cartMapper.toCartDTO(cart).getCartItems());
+    }
+
+    public CartItemDTO mapToCartItemDTO(CartItemReqDTO cartItemReqDTO) {
+        CartItemDTO cartItemDTO = new CartItemDTO();
+        cartItemDTO.setProductId(cartItemReqDTO.getProductId());
+        cartItemDTO.setQuantity(cartItemReqDTO.getQuantity());
+        return cartItemDTO;
     }
 }
