@@ -29,6 +29,8 @@ public class Product {
     @NotNull(message = "{category_mandatory}")
     private Category category;
 
+    private String categoryName;
+
     @NotBlank(message = "{name_not_null}")
     private String name;
 
@@ -46,6 +48,13 @@ public class Product {
     private String shortDescription;
 
     private String imageUrl;
+
+    private double rate;
+
+    @Min(value = 0, message = "{numberOfRate_positive}")
+    private int numberOfRate;
+
+    private String status;
 
     @Builder.Default
     private boolean isDeleted = false;

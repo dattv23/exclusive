@@ -20,6 +20,8 @@ public class ProductDTO {
     @NotNull(message = "Category is mandatory")
     private String categoryId;
 
+    private String categoryName;
+
     @NotBlank(message = "Name is mandatory")
     private String name;
 
@@ -34,4 +36,11 @@ public class ProductDTO {
     private String shortDescription;
 
     private String imageUrl;
+
+    private double rate;
+
+    @Min(value = 0, message = "{numberOfRate_positive}")
+    private int numberOfRate;
+
+    private String status;
 }
