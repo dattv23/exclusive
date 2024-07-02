@@ -16,7 +16,7 @@ public interface ProductService {
 
     List<Product> getProductsByCategoryId(ObjectId id);
 
-    List<Product> searchProductsByName(String name);
+    List<Product> findProducts(String name, String categoryName, Integer price);
 
     Product create(ProductDTO product, String imageUrl);
 
