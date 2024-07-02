@@ -133,14 +133,14 @@ public class ProductController {
                                                                  @Validated @ModelAttribute ProductDTO productDetails,
                                                                  @RequestParam("image") MultipartFile image) throws IOException {
         String imageUrl = null;
-        Optional<Product> updatedProduct = Optional.empty();
+        Product updatedProduct = new Product();
         if (image != null && !image.isEmpty()) {
             imageUrl = cloudinaryService.uploadImage(image);
-            productService.update(new ObjectId(id), productDetails, imageUrl);
+            updatedProduct = productService.update(new ObjectId(id), productDetails, imageUrl).get();
         } else {
-            productService.update(new ObjectId(id), productDetails);
+            updatedProduct = productService.update(new ObjectId(id), productDetails).get();
         }
-        return ResponseUtil.success(productMapper.toProductDTO(updatedProduct.get()));
+        return ResponseUtil.success(productMapper.toProductDTO(updatedProduct));
     }
 
     /**

@@ -101,12 +101,6 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Optional<Product> update(ObjectId id, ProductDTO productDetails) {
         return productRepository.findById(id).map(product -> {
-//            product.setCategory(productDetails.getCategoryId());
-//            product.setName(productDetails.getName());
-//            product.setRegularPrice(productDetails.getRegularPrice());
-//            product.setStockQuantity(productDetails.getStockQuantity());
-//            product.setDescription(productDetails.getDescription());
-//            product.setShortDescription(productDetails.getShortDescription());
             product = productMapper.toProduct(productDetails);
             product.setUpdatedAt(new Date());
             return productRepository.save(product);
@@ -116,13 +110,8 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Optional<Product> update(ObjectId id, ProductDTO productDetails, String imageUrl) {
         return productRepository.findById(id).map(product -> {
-//            product.setCategory(productDetails.getCategoryId());
-//            product.setName(productDetails.getName());
-//            product.setRegularPrice(productDetails.getRegularPrice());
-//            product.setStockQuantity(productDetails.getStockQuantity());
-//            product.setDescription(productDetails.getDescription());
-//            product.setShortDescription(productDetails.getShortDescription());
             product = productMapper.toProduct(productDetails);
+            product.setImageUrl(imageUrl);
             product.setUpdatedAt(new Date());
             return productRepository.save(product);
         });
