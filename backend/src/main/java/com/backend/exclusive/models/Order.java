@@ -27,21 +27,21 @@ public class Order {
     private ObjectId id;
 
     @DBRef
-    @NotNull(message = "User is mandatory")
+    @NotNull(message = "{user_not_null}")
     private User user;
 
     @DBRef
     private Coupon coupon;
 
     // Calculate this value
-    @NotNull(message = "Order date is mandatory")
+    @NotNull(message = "{order_date_not_null}")
     private Date orderDate;
 
     // Calculate this value
-    @NotNull(message = "Total amount is mandatory")
+    @NotNull(message = "{total_amount_not_null}")
     private double totalAmount;
 
-    @Pattern(regexp = "^(Pending|Delivering|Completed|Cancelled)$", message = "Invalid status")
+    @Pattern(regexp = "^(Pending|Delivering|Completed|Cancelled)$", message = "{status_pattern}")
     private String status = "Pending";
 
     @DBRef

@@ -30,10 +30,10 @@ public class Payment {
     @DBRef
     private PaymentMethod paymentMethod;
 
-    @Min(value = 0, message = "Amount must be positive")
+    @Min(value = 0, message = "{amount_min}")
     private double amount;
 
-    @Pattern(regexp = "^(Success|Pending|Failed)$", message = "Invalid status")
+    @Pattern(regexp = "^(Success|Pending|Failed)$", message = "{invalid_status}")
     private String status;
 
     private Date dateOfPay;

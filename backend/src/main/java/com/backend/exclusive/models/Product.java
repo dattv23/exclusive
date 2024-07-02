@@ -26,19 +26,19 @@ public class Product {
     private ObjectId id;
 
     @DBRef
-    @NotNull(message = "Category is mandatory")
+    @NotNull(message = "{category_mandatory}")
     private Category category;
 
-    @NotBlank(message = "Name is mandatory")
+    @NotBlank(message = "{name_not_null}")
     private String name;
 
-    @Min(value = 0, message = "Regular price must be positive")
+    @Min(value = 0, message = "{regularPrice_positive}")
     private double regularPrice;
 
-    @Min(value = 0, message = "Discount price must be positive")
+    @Min(value = 0, message = "{discountPrice_positive}")
     private double discountPrice;
 
-    @Min(value = 0, message = "Stock quantity must be positive")
+    @Min(value = 0, message = "{stockQuantity_positive}")
     private int stockQuantity;
 
     private String description;

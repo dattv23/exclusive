@@ -22,9 +22,9 @@ public class CartItem {
     private ObjectId id;
 
     @DBRef
-    @NotNull(message = "Product is mandatory")
+    @NotNull(message = "{product_mandatory}")
     private Product product;
 
-    @Min(value = 1, message = "Quantity must be at least 1")
+    @Min(value = 1, message = "{quantity_least_1}")
     private int quantity;
 }

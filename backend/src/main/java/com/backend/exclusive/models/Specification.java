@@ -20,16 +20,16 @@ public class Specification {
     @Id
     private ObjectId id;
 
-    @Min(value = 0, message = "Width must be positive")
+    @Min(value = 0, message = "{width_positive}")
     private int width;
 
-    @Min(value = 0, message = "Height must be positive")
+    @Min(value = 0, message = "{height_positive}")
     private int height;
 
-    @Min(value = 0, message = "Depth must be positive")
+    @Min(value = 0, message = "{depth_positive}")
     private int depth;
 
-    @Min(value = 0, message = "Weight must be positive")
+    @Min(value = 0, message = "{weight_positive}")
     private int weight;
 
     private boolean qualityChecking;
