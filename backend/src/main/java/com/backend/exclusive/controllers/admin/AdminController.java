@@ -1,12 +1,18 @@
 package com.backend.exclusive.controllers.admin;
 
+import com.backend.exclusive.services.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/api/v1/admin")
 public class AdminController {
+
+    @Autowired
+    private ProductService productService;
 
     @GetMapping
     public String index() {
@@ -19,7 +25,8 @@ public class AdminController {
     }
 
     @GetMapping("/product")
-    public String listProducts() {
+    public String listProducts(Model model) {
+        model.addAttribute("products", productService.getAll());
         return "admin/product/index";
     }
 
