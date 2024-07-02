@@ -8,6 +8,9 @@ import com.backend.exclusive.services.CategoryService;
 import com.backend.exclusive.services.ProductService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -25,6 +28,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private MongoTemplate mongoTemplate;
 
     @Override
     public List<Product> getAll() {
@@ -51,8 +57,22 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> searchProductsByName(String name) {
-        return productRepository.findByNameContainingIgnoreCaseAndIsDeletedFalse(name);
+    public List<Product> findProducts(String name, String categoryName, Integer price) {
+        Query query = new Query();
+
+        if (name != null) {
+            query.addCriteria(Criteria.where("name").regex(name, "i"));
+        }
+        if (categoryName != null) {
+            query.addCriteria(Criteria.where("categoryName").regex(categoryName, "i"));
+        }
+        if (price != null) {
+            query.addCriteria(Criteria.where("regularPrice").is(price));
+        }
+        query.addCriteria(Criteria.where("isDeleted").is(false));
+        System.out.println(query);
+
+        return mongoTemplate.find(query, Product.class);
     }
 
     @Override
@@ -67,6 +87,10 @@ public class ProductServiceImpl implements ProductService {
         newProduct.setDescription(product.getDescription());
         newProduct.setShortDescription(product.getShortDescription());
         newProduct.setImageUrl(imageUrl);
+        newProduct.setCategoryName(newProduct.getCategory().getName());
+        newProduct.setRate(product.getRate());
+        newProduct.setNumberOfRate(product.getNumberOfRate());
+        newProduct.setStatus(product.getStatus());
         newProduct.setDeleted(false);
         newProduct.setCreatedAt(new Date());
 

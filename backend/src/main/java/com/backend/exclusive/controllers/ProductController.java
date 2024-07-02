@@ -74,6 +74,7 @@ public class ProductController {
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse<ProductDTO>> getProductById(@PathVariable String id) {
         Optional<Product> product = productService.getById(new ObjectId(id));
+        System.out.println(product);
         return ResponseUtil.success(productMapper.toProductDTO(product.get()));
     }
 
@@ -156,8 +157,14 @@ public class ProductController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<ApiResponse<List<ProductDTO>>> searchProductsByName(@RequestParam String name) {
-        List<Product> products = productService.searchProductsByName(name);
+    public ResponseEntity<ApiResponse<List<ProductDTO>>> searchProductsByName(
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String category,
+            @RequestParam(required = false) Integer price
+    ) {
+
+        List<Product> products = productService.findProducts(name, category, price);
+        System.out.println(products);
         List<ProductDTO> productDTOList = products.stream().map(productMapper::toProductDTO).collect(Collectors.toList());
         return ResponseUtil.success(productDTOList);
     }

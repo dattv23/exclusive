@@ -104,7 +104,8 @@ public class CartController {
 //        return ResponseUtil.success(cartDTO);
 //    }
 //
-    @PutMapping("/clear")
+
+    @DeleteMapping
     public ResponseEntity<ApiResponse<CartDTO>> removeAllItemsInCart() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User currentUser = (User) authentication.getPrincipal();

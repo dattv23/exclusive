@@ -12,9 +12,11 @@ public interface ProductMapper {
     ProductMapper INSTANCE = Mappers.getMapper(ProductMapper.class);
 
     @Mapping(source = "category.id", target = "categoryId")
+    @Mapping(source = "category.name", target = "categoryName")
     ProductDTO toProductDTO(Product product);
 
     @Mapping(source = "categoryId", target = "category.id")
+    @Mapping(source = "categoryName", target = "category.name")
     Product toProduct(ProductDTO productDTO);
 
     default String map(ObjectId value) {
