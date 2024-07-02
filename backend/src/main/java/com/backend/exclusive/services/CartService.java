@@ -16,7 +16,7 @@ public interface CartService {
 
     Optional<Cart> getCartById(ObjectId id);
 
-    Optional<Cart> updateCart(ObjectId id, CartDTO cartDTO);
+    Cart updateCart(ObjectId id, CartDTO cartDTO);
 
     void deleteCart(ObjectId id);
 
@@ -28,4 +28,6 @@ public interface CartService {
     Cart addItemToCart(ObjectId cartId, CartItemDTO item);
 
     Cart removeItemFromCart(ObjectId cartId, CartItemDTO item);
+
+    void removeAllItems(ObjectId id);
 }

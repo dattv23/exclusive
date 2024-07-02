@@ -31,7 +31,7 @@ public class PaymentController {
      *
      * @return a ResponseEntity containing a list of all PaymentMethods.
      */
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<ApiResponse<List<PaymentMethodDTO>>> getAllPaymentMethods() {
         List<PaymentMethod> paymentMethods = paymentMethodService.getAllPaymentMethods();
 
@@ -84,7 +84,7 @@ public class PaymentController {
      * @param paymentMethodDTO the PaymentMethod to create.
      * @return a ResponseEntity containing the created PaymentMethod.
      */
-    @PostMapping("/add")
+    @PostMapping
     public ResponseEntity<ApiResponse<PaymentMethodDTO>> createPaymentMethod(@Validated @RequestBody PaymentMethodDTO paymentMethodDTO) {
         PaymentMethod createdPaymentMethod = paymentMethodService.createPaymentMethod(paymentMethodDTO);
         return ResponseUtil.success(paymentMethodMapper.toPaymentMethodDTO(createdPaymentMethod));

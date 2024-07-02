@@ -24,7 +24,7 @@ public class ReviewController {
      *
      * @return a ResponseEntity containing a list of all Reviews.
      */
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<Review>> allReviews() {
         List<Review> Reviews = reviewService.getAllReviews();
         return ResponseEntity.ok(Reviews);
@@ -49,7 +49,7 @@ public class ReviewController {
      * @param Review the Review to create.
      * @return a ResponseEntity containing the created Review.
      */
-    @PostMapping("/add")
+    @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Review> createReview(@Validated @RequestBody ReviewDTO Review) {
         Review createdReview = reviewService.createReview(Review);
