@@ -34,7 +34,7 @@ public class CouponController {
      *
      * @return a ResponseEntity containing a list of all coupons.
      */
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<ApiResponse<List<CouponDTO>>> allCoupons() {
         List<Coupon> coupons = couponService.getAllCoupons();
         List<CouponDTO> couponDTOS = coupons.stream()
@@ -65,7 +65,7 @@ public class CouponController {
      * @param couponDTO the coupon to create.
      * @return a ResponseEntity containing the created coupon.
      */
-    @PostMapping("/add")
+    @PostMapping
     public ResponseEntity<ApiResponse<CouponDTO>> createCoupon(@Validated @RequestBody CouponDTO couponDTO) {
         Coupon createdCoupon = couponService.createCoupon(couponDTO);
         return ResponseUtil.success(couponMapper.toCouponDTO(createdCoupon));

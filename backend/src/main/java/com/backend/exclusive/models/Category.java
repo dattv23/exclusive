@@ -24,7 +24,7 @@ public class Category {
 
     private String parentId;
 
-    @NotBlank(message = "Name is mandatory")
+    @NotBlank(message = "{name_mandatory}")
     private String name;
 
     private String description;

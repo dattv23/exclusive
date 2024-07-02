@@ -25,25 +25,25 @@ public class Coupon {
     @Id
     private ObjectId id;
 
-    @NotBlank(message = "Code is mandatory")
+    @NotBlank(message = "{code_not_blank}")
     private String code;
 
     private String description;
 
-    @Min(value = 0, message = "Discount percentage must be positive")
-    @Max(value = 100, message = "Discount percentage must be less than or equal to 100")
+    @Min(value = 0, message = "{discount_percentage_min}")
+    @Max(value = 100, message = "{discount_percentage_max}")
     private double discountPercentage;
 
-    @NotNull(message = "Valid from date is mandatory")
+    @NotNull(message = "{valid_from_not_null}")
     private Date validFrom;
 
-    @NotNull(message = "Valid until date is mandatory")
+    @NotNull(message = "{valid_until_not_null}")
     private Date validUntil;
 
     @Builder.Default
     private boolean isActive = true;
 
-    @Min(value = 0, message = "Minimum order amount must be positive")
+    @Min(value = 0, message = "{min_order_amount_min}")
     private double minimumOrderAmount;
 
     @CreatedDate

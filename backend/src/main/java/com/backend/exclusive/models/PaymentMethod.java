@@ -18,7 +18,7 @@ public class PaymentMethod {
     @Id
     private ObjectId id;
 
-    @NotBlank(message = "Name is mandatory")
+    @NotBlank(message = "{name_not_null}")
     private String name;
 
     private boolean isDeleted;

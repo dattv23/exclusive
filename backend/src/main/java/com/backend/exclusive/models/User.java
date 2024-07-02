@@ -31,20 +31,20 @@ public class User implements UserDetails {
     @Id
     private ObjectId id;
 
-    @NotBlank(message = "Email is mandatory")
-    @Email(message = "Email should be valid")
+    @NotBlank(message = "{email_not_blank}")
+    @Email(message = "{email_is_not_valid}")
     private String email;
 
-    @NotBlank(message = "Password is mandatory")
+    @NotBlank(message = "{password_not_blank}")
     private String password;
 
-    @NotBlank(message = "First name is mandatory")
+    @NotBlank(message = "{first_name_not_blank}")
     private String firstName;
 
-    @NotBlank(message = "Last name is mandatory")
+    @NotBlank(message = "{last_name_not_blank}")
     private String lastName;
 
-    @Pattern(regexp = "^\\d{10}$", message = "Phone number should be valid")
+    @Pattern(regexp = "^\\d{10}$", message = "{phone_number_invalid}")
     private String phoneNumber;
 
     private String address;

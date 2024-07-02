@@ -27,18 +27,18 @@ public class Review {
     private ObjectId id;
 
     @DBRef
-    @NotNull(message = "User is mandatory")
+    @NotNull(message = "{user_not_null}")
     private User user;
 
     @DBRef
-    @NotNull(message = "Product is mandatory")
+    @NotNull(message = "{product_not_null}")
     private Product product;
 
-    @Min(value = 1, message = "Rating must be at least 1")
-    @Max(value = 5, message = "Rating must be at most 5")
+    @Min(value = 1, message = "{rating_min}")
+    @Max(value = 5, message = "{rating_max}")
     private int rating;
 
-    @NotBlank(message = "Comment is mandatory")
+    @NotBlank(message = "{comment_mandatory}")
     private String comment;
 
     @CreatedDate

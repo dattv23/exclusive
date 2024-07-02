@@ -27,12 +27,12 @@ public class OrderItem {
 //    private Order order;
 
     @DBRef
-    @NotNull(message = "Product is mandatory")
+    @NotNull(message = "{product_not_null}")
     private Product product;
 
-    @Min(value = 1, message = "Quantity must be at least 1")
+    @Min(value = 1, message = "{quantity_min}")
     private int quantity;
 
-    @Min(value = 0, message = "Subtotal must be positive")
+    @Min(value = 0, message = "{subtotal_min}")
     private double subtotal;
 }
