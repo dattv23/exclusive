@@ -83,12 +83,12 @@ public class ProductController {
      * @param id the Category id of the product to retrieve.
      * @return a ResponseEntity containing the product, or a 404 status if not found.
      */
-    @GetMapping("/getByCategory/{id}")
-    public ResponseEntity<ApiResponse<List<ProductDTO>>> getProductsByCategoryId(@PathVariable String id) {
-        List<Product> products = productService.getProductsByCategoryId(new ObjectId(id));
-        List<ProductDTO> productDTOList = products.stream().map(productMapper::toProductDTO).collect(Collectors.toList());
-        return ResponseUtil.success(productDTOList);
-    }
+//    @GetMapping("/getByCategory/{id}")
+//    public ResponseEntity<ApiResponse<List<ProductDTO>>> getProductsByCategoryId(@PathVariable String id) {
+//        List<Product> products = productService.getProductsByCategoryId(new ObjectId(id));
+//        List<ProductDTO> productDTOList = products.stream().map(productMapper::toProductDTO).collect(Collectors.toList());
+//        return ResponseUtil.success(productDTOList);
+//    }
 
     /**
      * Create a new product.

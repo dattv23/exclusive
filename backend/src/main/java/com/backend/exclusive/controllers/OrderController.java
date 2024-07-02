@@ -138,6 +138,8 @@ public class OrderController {
         return ResponseUtil.success(items);
     }
 
+
+    // TODO: refactor this logic
     /**
      * Get an Order by user ID.
      *
@@ -155,6 +157,7 @@ public class OrderController {
         }
     }
 
+    // TODO: refactor name
     /**
      * Update status of an order
      *
