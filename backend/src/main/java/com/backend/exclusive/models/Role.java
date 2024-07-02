@@ -22,7 +22,7 @@ public class Role implements GrantedAuthority {
     @Id
     private ObjectId id;
 
-    @NotBlank(message = "Name is required")
+    @NotBlank(message = "{name_required}")
     private String name;
 
     private String description;
