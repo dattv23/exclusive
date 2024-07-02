@@ -46,7 +46,7 @@ public class ProductController {
      *
      * @return a ResponseEntity containing a list of all products.
      */
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<ApiResponse<List<ProductDTO>>> allProducts() {
         List<Product> products = productService.getAll();
         List<ProductDTO> productDTOList = products.stream().map(productMapper::toProductDTO).collect(Collectors.toList());
@@ -96,7 +96,7 @@ public class ProductController {
      * @param product the product to create.
      * @return a ResponseEntity containing the created product.
      */
-    @PostMapping(value = "/add", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<ApiResponse<ProductDTO>>
     createProduct(@Validated @ModelAttribute ProductDTO product,
                   @RequestParam("image") MultipartFile image) throws IOException {

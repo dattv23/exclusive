@@ -44,7 +44,7 @@ public class OrderController {
      *
      * @return a ResponseEntity containing a list of all Orders.
      */
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<ApiResponse<List<OrderDTO>>> getAllOrders() {
         List<Order> orders = orderService.getAllOrders();
         List<OrderDTO> orderDTOS = orders.stream().map(orderMapper::toOrderDTO).collect(Collectors.toList());
@@ -87,7 +87,7 @@ public class OrderController {
      * @param orderDTO the Order to create.
      * @return a ResponseEntity containing the created Order.
      */
-    @PostMapping("/add")
+    @PostMapping
     public ResponseEntity<ApiResponse<OrderDTO>> createOrder(@Validated @RequestBody OrderDTO orderDTO) {
         Order createdOrder = orderService.createOrder(orderDTO);
         return ResponseUtil.success(orderMapper.toOrderDTO(createdOrder));
