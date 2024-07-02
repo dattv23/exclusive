@@ -20,9 +20,8 @@ public class CheckoutServiceImpl implements CheckoutService {
 
     @Override
     public Order processOrder(OrderDTO orderDTO, String paymentMethodId) {
-        // Validate order
-        // Save order to database
         Order newOrder = orderService.createOrder(orderDTO);
+
         // Process payment
         PaymentDTO paymentDTO = new PaymentDTO();
         paymentDTO.setOrderId(newOrder.getId().toHexString());
@@ -30,7 +29,7 @@ public class CheckoutServiceImpl implements CheckoutService {
         paymentDTO.setAmount(newOrder.getTotalAmount());
         paymentDTO.setStatus("Pending");
         paymentService.createPayment(paymentDTO);
-        // Return order confirmation
+
         return newOrder;
     }
 }

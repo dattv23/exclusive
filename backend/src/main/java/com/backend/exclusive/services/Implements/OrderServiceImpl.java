@@ -5,9 +5,11 @@ import com.backend.exclusive.mappers.OrderItemMapper;
 import com.backend.exclusive.mappers.OrderMapper;
 import com.backend.exclusive.models.Order;
 import com.backend.exclusive.models.OrderItem;
+import com.backend.exclusive.models.Payment;
 import com.backend.exclusive.models.Product;
 import com.backend.exclusive.repositories.OrderItemRepository;
 import com.backend.exclusive.repositories.OrderRepository;
+import com.backend.exclusive.repositories.PaymentRepository;
 import com.backend.exclusive.repositories.ProductRepository;
 import com.backend.exclusive.services.OrderService;
 import org.bson.types.ObjectId;
@@ -36,6 +38,9 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    PaymentRepository paymentRepository;
+
     @Override
     public Order createOrder(OrderDTO orderDTO) {
         Order newOrder = orderMapper.toOrder(orderDTO);
@@ -44,14 +49,12 @@ public class OrderServiceImpl implements OrderService {
         // Manually map orderItems
         List<OrderItem> orderItems = orderDTO.getOrderItems().stream().map(orderItemDTO -> {
             OrderItem orderItem = orderItemMapper.toOrderItem(orderItemDTO);
-            orderItem.setId(new ObjectId()); // Set a new ID for each OrderItem
-//            orderItem.setOrder(newOrder); // Set the reference to the new order
+            orderItem.setId(new ObjectId());
             orderItemRepository.save(orderItem);
             return orderItem;
         }).collect(Collectors.toList());
 
         newOrder.setOrderItems(orderItems);
-
         return orderRepository.save(newOrder);
     }
 
@@ -122,5 +125,15 @@ public class OrderServiceImpl implements OrderService {
 
         order.setStatus(status);
         return orderRepository.save(order);
+    }
+
+    @Override
+    public String getPayStatus(ObjectId id) {
+        return paymentRepository.findAll()
+                .stream()
+                .filter(payment -> payment.getOrder().getId().equals(id))
+                .map(Payment::getStatus)
+                .findFirst()
+                .orElse("Payment status not found");
     }
 }

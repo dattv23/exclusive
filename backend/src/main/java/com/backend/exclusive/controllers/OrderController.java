@@ -140,14 +140,15 @@ public class OrderController {
 
 
     // TODO: refactor this logic
+
     /**
      * Get an Order by user ID.
      *
      * @param userId the user ID associated with the Order.
      * @return a ResponseEntity containing the Order, or a 404 status if not found.
      */
-    @GetMapping("/user/{userId}")
-    public ResponseEntity<ApiResponse<OrderDTO>> getOrderByUserId(@PathVariable String userId) {
+    @GetMapping("/{userId}")
+    public ResponseEntity<ApiResponse<OrderDTO>> getOrdersByUserId(@PathVariable String userId) {
         Optional<Order> order = orderService.getOrderByUserId(new ObjectId(userId));
         if (order.isPresent()) {
             OrderDTO orderDTO = orderMapper.toOrderDTO(order.get());
@@ -157,7 +158,6 @@ public class OrderController {
         }
     }
 
-    // TODO: refactor name
     /**
      * Update status of an order
      *
@@ -165,12 +165,16 @@ public class OrderController {
      * @param status the new status
      * @return a ResponseEntity containing the Order
      */
-    @PutMapping("/{id}/status")
+    @PutMapping("/status/{id}")
     public ResponseEntity<ApiResponse<OrderDTO>> updateStatusOrder(@PathVariable String id, @RequestBody String status) {
         Order order = orderService.updateStatus(new ObjectId(id), status);
         OrderDTO orderDTO = orderMapper.toOrderDTO(order);
-        System.out.println("OrderController-updateStatusOrder: " + order);
-        System.out.println("OrderController-updateStatusOrder: " + orderDTO);
         return ResponseUtil.success(orderDTO);
+    }
+
+    @GetMapping("/payStatus/{id}")
+    public ResponseEntity<ApiResponse<String>> getOrderPaymentStatus(@PathVariable String id) {
+        String status = orderService.getPayStatus(new ObjectId(id));
+        return ResponseUtil.success(status);
     }
 }

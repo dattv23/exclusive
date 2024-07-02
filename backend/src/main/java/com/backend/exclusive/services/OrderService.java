@@ -27,4 +27,6 @@ public interface OrderService {
     Optional<Order> getOrderByUserId(ObjectId userId);
 
     Order updateStatus(ObjectId id, String status);
+
+    String getPayStatus(ObjectId id);
 }
