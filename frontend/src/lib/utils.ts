@@ -1,3 +1,4 @@
+import { EXCHANGE_RATE, Locale, Locales } from '@/config';
 import { Error } from '@/types';
 import clsx, { ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -84,4 +85,13 @@ export function vndToUsd(vndAmount: number, exchangeRate: number) {
   return USDollar.format(usdAmount);
 }
 
-export const EXCHANGE_RATE = 23000;
+export const convertPriceByLocale = (price: number, locale: Locale) => {
+  switch (locale) {
+    case Locales.VI:
+      return VND.format(price);
+    case Locales.EN:
+      return vndToUsd(price, EXCHANGE_RATE);
+    default:
+      break;
+  }
+};

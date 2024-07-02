@@ -3,11 +3,11 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 
-import { Cart } from '@/types';
+import { CartItem } from '@/types';
 import { calculateDiscountedPrice } from '@/lib/utils';
 
 type CheckOutTableProps = {
-  data: Cart[];
+  data: CartItem[];
 };
 
 const CheckOutTable: React.FC<CheckOutTableProps> = ({ data }) => {
@@ -22,11 +22,11 @@ const CheckOutTable: React.FC<CheckOutTableProps> = ({ data }) => {
               <table className="min-w-full">
                 <tbody>
                   {cartList.map((item) => (
-                    <tr className="border-b" key={item.id}>
+                    <tr className="border-b" key={item.product.id}>
                       <td className=" flex items-center gap-5 whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">
                         <div className="relative">
                           <Image
-                            src={item.product.image}
+                            src={item.product.imageUrl}
                             alt={item.product.name}
                             width={80}
                             height={80}
@@ -37,8 +37,8 @@ const CheckOutTable: React.FC<CheckOutTableProps> = ({ data }) => {
                       </td>
                       <td className="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-900">
                         {`${calculateDiscountedPrice(
-                          item.product.price,
-                          item.product.discount,
+                          item.product.regularPrice,
+                          item.product?.discount ?? 0,
                         )}$`}
                       </td>
                     </tr>

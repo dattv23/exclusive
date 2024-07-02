@@ -2,10 +2,10 @@ import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 
 import { Product } from '@/types';
-import { Locale, Locales } from '@/config';
+import { Locale } from '@/config';
 import { BuyNowButton } from '@/components';
 import { Delivery1Icon, Return1Icon } from '@/components/Icons';
-import { cn, EXCHANGE_RATE, startScore, VND, vndToUsd } from '@/lib/utils';
+import { cn, convertPriceByLocale, startScore } from '@/lib/utils';
 
 type ProductDetailPageProps = {
   data: Product;
@@ -77,9 +77,7 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = async ({
             </span>
           </div>
           <p className="mb-4 text-2xl font-bold">
-            {locale === Locales.EN
-              ? vndToUsd(data.regularPrice, EXCHANGE_RATE)
-              : VND.format(data.regularPrice)}
+            {convertPriceByLocale(data.regularPrice, locale)}
           </p>
           <p className="text-muted-foreground mb-4">{t('Description')}</p>
           <div className="min-w-full divide-y">

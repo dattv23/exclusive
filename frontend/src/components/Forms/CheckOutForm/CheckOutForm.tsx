@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useTranslations } from 'next-intl';
 
-import { Cart, Error } from '@/types';
+import { CartItem, Error } from '@/types';
 import { Input } from '@/components/Inputs';
 import { checkoutFormAction } from './action';
 import { ApplyCouponForm } from '@/components';
@@ -12,7 +12,7 @@ import { CheckOutTable } from '@/components/Tables';
 import { calculateDiscountedPrice, cn, getError } from '@/lib/utils';
 
 type CheckOutFormProps = {
-  data: Cart[];
+  data: CartItem[];
 };
 
 const CheckOutForm: React.FC<CheckOutFormProps> = ({ data }) => {
@@ -25,7 +25,10 @@ const CheckOutForm: React.FC<CheckOutFormProps> = ({ data }) => {
   const subtotal = data.reduce(
     (pre, cur) =>
       pre +
-      calculateDiscountedPrice(cur.product.price, cur.product.discount) *
+      calculateDiscountedPrice(
+        cur.product.regularPrice,
+        cur.product?.discount ?? 0,
+      ) *
         cur.quantity,
     0,
   );

@@ -14,7 +14,7 @@ type CartProps = {
 
 const Cart: React.FC<CartProps> = ({ params }) => {
   unstable_setRequestLocale(params.locale);
-  return <CartPage />;
+  return <CartPage params={params} />;
 };
 
 export default Cart;

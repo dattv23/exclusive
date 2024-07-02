@@ -12,12 +12,10 @@ import { EyeIcon, HeartSmallIcon } from '@/components/Icons';
 import {
   calculateDiscountedPrice,
   cn,
-  EXCHANGE_RATE,
+  convertPriceByLocale,
   startScore,
-  VND,
-  vndToUsd,
 } from '@/lib/utils';
-import { Locales } from '@/config';
+import { Locale } from '@/config';
 import { useAuthStore, useCartStore } from '@/store';
 import { useRouter } from '@/navigation';
 import { message } from 'antd';
@@ -108,29 +106,16 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
         <div>
           <h4>{data.name}</h4>
           <p className={`${data.discount && 'text-secondary'}`}>
-            {params.locale === Locales.VI && (
-              <>
-                <span>
-                  {`${t('Price')}: ${VND.format(calculateDiscountedPrice(data.regularPrice, data?.discount ?? 0))} `}
-                </span>
-                {data.discount && data?.discount !== 0 && (
-                  <span className="text-[#cccc] line-through">
-                    {VND.format(data.regularPrice)}
-                  </span>
+            <span>
+              {`${t('Price')}: ${convertPriceByLocale(calculateDiscountedPrice(data.regularPrice, data?.discount ?? 0), params.locale as Locale)}`}
+            </span>
+            {data.discount && data?.discount !== 0 && (
+              <span className="text-[#cccc] line-through">
+                {convertPriceByLocale(
+                  data.regularPrice,
+                  params.locale as Locale,
                 )}
-              </>
-            )}
-            {params.locale === Locales.EN && (
-              <>
-                <span>
-                  {`${t('Price')}: ${vndToUsd(calculateDiscountedPrice(data.regularPrice, data?.discount ?? 0), EXCHANGE_RATE)}`}
-                </span>
-                {data.discount && data?.discount !== 0 && (
-                  <span className="text-[#cccc] line-through">
-                    {vndToUsd(data.regularPrice, EXCHANGE_RATE)}
-                  </span>
-                )}
-              </>
+              </span>
             )}
           </p>
           {data.rate && data.number_of_rate && (

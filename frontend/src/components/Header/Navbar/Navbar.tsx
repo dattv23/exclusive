@@ -53,9 +53,9 @@ const Navbar: React.FC = () => {
         />
       </Link>
       <div className="flex h-11 items-center gap-12">
-        {items.map((item) => (
+        {items.map((item, id) => (
           <Link
-            key={item.id}
+            key={id}
             href={item.link}
             className={cn(
               'hover:border-b-2 hover:border-[#727272]',

@@ -42,3 +42,5 @@ export enum Locales {
   VI = 'vi',
   EN = 'en',
 }
+
+export const EXCHANGE_RATE = 23000;

@@ -226,7 +226,8 @@
     "Quantity": "Quantity",
     "Subtotal": "Subtotal",
     "Return To Shop": "Return To Shop",
-    "Update Cart": "Update Cart"
+    "Update Cart": "Update Cart",
+    "Update cart failed": "Update cart failed"
   },
   "CartPage": {
     "Cart Total": "Cart Total",

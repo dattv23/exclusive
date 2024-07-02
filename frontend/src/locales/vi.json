@@ -227,7 +227,8 @@
     "Quantity": "Số lượng",
     "Subtotal": "Tạm tính",
     "Return To Shop": "Quay lại mua sắm",
-    "Update Cart": "Cập nhật giỏ hàng"
+    "Update Cart": "Cập nhật giỏ hàng",
+    "Update cart failed": "Cập nhật giỏ hàng thất bại"
   },
   "CartPage": {
     "Cart Total": "Tổng giỏ hàng",

@@ -33,7 +33,7 @@ const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
       <div className="flex w-full flex-col gap-4 p-5 lg:flex-row">
         <div className="flex flex-[0.5] items-center justify-center">
           <Image
-            src={data.image}
+            src={data.imageUrl}
             alt={`${data.name} Image`}
             width={320}
             height={320}
@@ -45,7 +45,7 @@ const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             <p className="text-base">{data.description}</p>
           </div>
           <div className="flex flex-col gap-2">
-            <h4 className="text-lg font-semibold">{`${t('Price')}: ${calculateDiscountedPrice(data.price, data.discount)}$`}</h4>
+            <h4 className="text-lg font-semibold">{`${t('Price')}: ${calculateDiscountedPrice(data.regularPrice, data?.discount ?? 0)}$`}</h4>
             <Button>
               <Link href={'/cart'} className="text-white hover:text-white">
                 {t('Shop now')}

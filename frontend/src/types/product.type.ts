@@ -7,7 +7,7 @@ export enum PRODUCT_STATUS {
 }
 
 export type Product = {
-  id: number;
+  id: string;
   name: string;
   description: string;
   categoryId: string;

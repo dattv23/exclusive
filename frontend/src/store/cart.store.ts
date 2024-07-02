@@ -1,19 +1,15 @@
 import { create } from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
 
-import { Product } from '@/types';
-
-type CartItem = {
-  quantity: number;
-  product: Product;
-};
+import { CartItem, Product } from '@/types';
 
 type CartStore = {
   cart: CartItem[];
   count: () => number;
   add: (product: Product) => void;
-  remove: (idProduct: number) => void;
+  remove: (idProduct: string) => void;
   removeAll: () => void;
+  update: (data: CartItem[]) => void;
 };
 
 export const useCartStore = create<CartStore>()(
@@ -34,12 +30,13 @@ export const useCartStore = create<CartStore>()(
           const updatedCart = updateCart(product, cart);
           set({ cart: updatedCart });
         },
-        remove: (idProduct: number) => {
+        remove: (idProduct: string) => {
           const { cart } = get();
           const updatedCart = removeCart(idProduct, cart);
           set({ cart: updatedCart });
         },
         removeAll: () => set({ cart: [] }),
+        update: (data: CartItem[]) => set({ cart: data }),
       }),
       {
         name: 'cart',
@@ -49,11 +46,11 @@ export const useCartStore = create<CartStore>()(
 );
 
 function updateCart(product: Product, cart: CartItem[]): CartItem[] {
-  const cartItem: CartItem = { product, quantity: 1 };
-
   const productOnCart = cart
     .map((item) => item.product.id)
     .includes(product.id);
+
+  const cartItem: CartItem = { product, quantity: 1 };
 
   if (!productOnCart) cart.push(cartItem);
   else {
@@ -67,7 +64,7 @@ function updateCart(product: Product, cart: CartItem[]): CartItem[] {
   return cart;
 }
 
-function removeCart(idProduct: number, cart: CartItem[]): CartItem[] {
+function removeCart(idProduct: string, cart: CartItem[]): CartItem[] {
   return cart
     .map((item) => {
       if (item.product.id === idProduct)
