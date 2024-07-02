@@ -17,7 +17,9 @@ import {
   vndToUsd,
 } from '@/lib/utils';
 import { Locales } from '@/config';
-import { useAuthStore } from '@/store';
+import { useAuthStore, useCartStore } from '@/store';
+import { useRouter } from '@/navigation';
+import { message } from 'antd';
 
 interface ProductCardProps {
   data: Product;
@@ -26,9 +28,10 @@ interface ProductCardProps {
 const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
   const params = useParams();
   const t = useTranslations('ProductCard');
-
-  // check user is authenticated
   const { isAuth } = useAuthStore();
+  const { add } = useCartStore();
+  const router = useRouter();
+
   const [isHovered, setIsHovered] = useState<boolean>(false);
   const [isFavorite, setIsFavorite] = useState<boolean>(false);
   const [modalDetailOpen, setModalDetailOpen] = useState<boolean>(false);
@@ -39,6 +42,15 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
 
   const handleMouseLeave = () => {
     setIsHovered(false);
+  };
+
+  const handleAddCart = () => {
+    if (!isAuth) {
+      message.info(t('Please login to add cart'));
+      router.push('/auth/sign-in');
+    }
+    add(data);
+    message.success(t('Added cart successfully'));
   };
 
   return (
@@ -83,7 +95,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
             </Button>
           </div>
           {isHovered && (
-            <Button className="absolute bottom-0 left-0 right-0 bg-black py-2 text-center text-white hover:text-secondary hover:opacity-100">
+            <Button
+              onClick={handleAddCart}
+              className="absolute bottom-0 left-0 right-0 bg-black py-2 text-center text-white hover:text-secondary hover:opacity-100"
+            >
               {t('Add To Cart')}
             </Button>
           )}

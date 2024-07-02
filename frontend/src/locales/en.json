@@ -102,7 +102,9 @@
   "ProductCard": {
     "Add To Cart": "Add To Cart",
     "NEW": "NEW",
-    "Price": "Price"
+    "Price": "Price",
+    "Please login to add cart": "Please login to add cart",
+    "Added cart successfully": "Added cart successfully"
   },
   "CountDown": {
     "Days": "Days",

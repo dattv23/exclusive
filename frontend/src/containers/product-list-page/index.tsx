@@ -3,7 +3,7 @@ import { envServerConfig } from '@/lib/env';
 import React from 'react';
 
 async function getData() {
-  const res = await fetch(`${envServerConfig.DOMAIN_API}/api/v1/products/all`);
+  const res = await fetch(`${envServerConfig.DOMAIN_API}/api/v1/products`);
 
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
@@ -16,7 +16,7 @@ async function getData() {
 const ProductListPage: React.FC = async () => {
   const res = await getData();
   return (
-    <main>
+    <main className="py-8">
       <ProductList data={res.data} />
     </main>
   );

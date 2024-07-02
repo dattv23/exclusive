@@ -33,11 +33,14 @@ export const loginFormAction = async (params: TParams) => {
   const res = await loginAction(result.data);
   if (res?.error) {
     toast.error(res.error);
+    return;
   }
   const { role, token } = res as TLoginResponse;
   localStorage.setItem('accessToken', token);
   if (role === Role.ADMIN) {
     window.location.href = '/admin';
   }
-  window.location.href = '/';
+  if (role === Role.USER) {
+    window.location.href = '/';
+  }
 };

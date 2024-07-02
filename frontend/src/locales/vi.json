@@ -102,7 +102,9 @@
   "ProductCard": {
     "Add To Cart": "Thêm giỏ hàng",
     "NEW": "MỚI",
-    "Price": "Giá"
+    "Price": "Giá",
+    "Please login to add cart": "Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng",
+    "Added cart successfully": "Đã thêm vào giỏ hàng thành công"
   },
   "CountDown": {
     "Days": "Ngày",
