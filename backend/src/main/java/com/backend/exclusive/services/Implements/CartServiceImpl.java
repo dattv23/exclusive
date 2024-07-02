@@ -156,13 +156,12 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public Optional<Cart> updateCart(ObjectId id, CartDTO cartDTO) {
+    public Cart updateCart(ObjectId id, CartDTO cartDTO) {
         return cartRepository.findById(id).map(cart -> {
 
             List<CartItem> cartItems = new ArrayList<>();
             for (CartItemDTO cartItemDTO : cartDTO.getCartItems()) {
                 CartItem cartItem = mapToCartItem(cartItemDTO);
-//                cartItem.setCart(cart);
                 cartItems.add(cartItem);
                 cartItemRepository.save(cartItem);
             }
@@ -170,7 +169,7 @@ public class CartServiceImpl implements CartService {
 
             cart.setUpdatedAt(new Date());
             return cartRepository.save(cart);
-        });
+        }).get();
     }
 
     @Override

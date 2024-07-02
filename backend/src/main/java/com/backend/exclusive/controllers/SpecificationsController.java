@@ -31,7 +31,7 @@ public class SpecificationsController {
      *
      * @return a ResponseEntity containing a list of all specifications.
      */
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<Specification>> allSpecifications() {
         List<Specification> specifications = specificationService.getAll();
         return ResponseEntity.ok(specifications);
@@ -56,7 +56,7 @@ public class SpecificationsController {
      * @param specification the specification to create.
      * @return a ResponseEntity containing the created specification.
      */
-    @PostMapping("/add")
+    @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Specification> createSpecification(@Validated @RequestBody Specification specification) {
         Specification createdSpecification = specificationService.create(specification);

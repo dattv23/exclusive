@@ -25,7 +25,7 @@ public class CategoryController {
     @Autowired
     private CategoryMapper categoryMapper;
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<ApiResponse<List<CategoryDTO>>> allCategories() {
         List<Category> categories = categoryService.getAllCategories();
         List<CategoryDTO> categoryDTOS = categories.stream()
@@ -47,7 +47,7 @@ public class CategoryController {
         return ResponseUtil.success(categoryMapper.toCategoryDTO(category.get()));
     }
 
-    @PostMapping("/add")
+    @PostMapping
     public ResponseEntity<ApiResponse<CategoryDTO>> createCategory(@RequestBody CategoryDTO category) {
         Category createdCategory = categoryService.createCategory(category);
         return ResponseUtil.success(categoryMapper.toCategoryDTO(createdCategory));
