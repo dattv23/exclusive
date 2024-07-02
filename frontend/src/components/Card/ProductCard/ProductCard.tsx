@@ -12,6 +12,7 @@ import { EyeIcon, HeartSmallIcon } from '@/components/Icons';
 import {
   calculateDiscountedPrice,
   cn,
+  EXCHANGE_RATE,
   startScore,
   VND,
   vndToUsd,
@@ -56,9 +57,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
   return (
     <>
       <div
-        className="flex flex-col gap-4 rounded-md"
+        className="flex cursor-pointer flex-col gap-4 rounded-md"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        onClick={() => router.push(`/products/${data.id}`)}
       >
         <div className="relative flex items-center justify-center bg-[#f5f5f5] px-10 py-9">
           <div className="absolute left-2 top-2 flex flex-col gap-2">
@@ -121,11 +123,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
             {params.locale === Locales.EN && (
               <>
                 <span>
-                  {`${t('Price')}: ${vndToUsd(calculateDiscountedPrice(data.regularPrice, data?.discount ?? 0), 23000)}`}
+                  {`${t('Price')}: ${vndToUsd(calculateDiscountedPrice(data.regularPrice, data?.discount ?? 0), EXCHANGE_RATE)}`}
                 </span>
                 {data.discount && data?.discount !== 0 && (
                   <span className="text-[#cccc] line-through">
-                    {vndToUsd(data.regularPrice, 23000)}
+                    {vndToUsd(data.regularPrice, EXCHANGE_RATE)}
                   </span>
                 )}
               </>

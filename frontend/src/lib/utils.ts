@@ -83,3 +83,5 @@ export function vndToUsd(vndAmount: number, exchangeRate: number) {
   const usdAmount = vndAmount / exchangeRate;
   return USDollar.format(usdAmount);
 }
+
+export const EXCHANGE_RATE = 23000;

@@ -44,3 +44,5 @@ export * from './ServicesIcon';
 export * from './ShopIcon';
 export * from './SaleIcon';
 export * from './RemoveIcon';
+export * from './Delivery1Icon';
+export * from './Return1Icon';
