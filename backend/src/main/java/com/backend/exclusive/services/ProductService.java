@@ -10,11 +10,21 @@ import java.util.Optional;
 public interface ProductService {
     List<Product> getAll();
 
+    List<Product> getAllDeleted();
+
     Optional<Product> getById(ObjectId id);
 
-    Product create(Product product);
+    List<Product> getProductsByCategoryId(ObjectId id);
 
-    Product update(ObjectId id, ProductDTO productDetails);
+    List<Product> searchProductsByName(String name);
+
+    Product create(ProductDTO product, String imageUrl);
+
+    Optional<Product> update(ObjectId id, ProductDTO productDetails);
+
+    Optional<Product> update(ObjectId id, ProductDTO productDetails, String imageUrl);
+
+    void updateProductQuantity(ObjectId id, int quantityChange);
 
     void delete(ObjectId id);
 }

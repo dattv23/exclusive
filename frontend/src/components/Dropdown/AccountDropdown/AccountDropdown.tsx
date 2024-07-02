@@ -1,3 +1,5 @@
+'use client';
+
 import { useTranslations } from 'next-intl';
 import React from 'react';
 
@@ -10,9 +12,11 @@ import {
 } from '@/components/Icons';
 import { Link } from '@/navigation';
 import { DropdownItem } from '@/types';
+import { useAuthStore } from '@/store';
 
 const AccountDropdown: React.FC = () => {
   const t = useTranslations('Navbar');
+  const { logout } = useAuthStore();
 
   const items: DropdownItem[] = [
     {
@@ -54,7 +58,13 @@ const AccountDropdown: React.FC = () => {
             <span className="font-semibold">{item.name}</span>
           </Link>
         ))}
-        <button className="flex w-full items-center gap-2 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-100">
+        <button
+          onClick={() => {
+            localStorage.removeItem('accessToken');
+            logout();
+          }}
+          className="flex w-full items-center gap-2 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-100"
+        >
           <LogoutIcon />
           <span>{t('Logout')}</span>
         </button>

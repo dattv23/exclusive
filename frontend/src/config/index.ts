@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Pathnames } from 'next-intl/navigation';
 
 export const isProd = process.env.NODE_ENV === 'production';
@@ -23,3 +24,21 @@ export const pathnames = {
 export const localePrefix = undefined;
 
 export type AppPathnames = keyof typeof pathnames;
+
+const API_VERSION = 'api/v1';
+export const apiEndpoints = {
+  auth: {
+    login: `${API_VERSION}/auth/login`,
+    register: `${API_VERSION}/auth/signup`,
+  },
+};
+
+export enum Role {
+  ADMIN = 'ADMIN',
+  USER = 'USER',
+}
+
+export enum Locales {
+  VI = 'vi',
+  EN = 'en',
+}

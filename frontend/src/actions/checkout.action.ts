@@ -3,7 +3,6 @@
 import { redirect } from 'next/navigation';
 
 import { checkoutSchema } from '@/schemas';
-import { promiseTimeout } from '@/utils';
 
 export const checkoutAction = async (data: unknown) => {
   const result = checkoutSchema.safeParse(data);
@@ -17,8 +16,6 @@ export const checkoutAction = async (data: unknown) => {
       error: errorMessage,
     };
   }
-
-  await promiseTimeout(3000);
 
   redirect('/');
 };

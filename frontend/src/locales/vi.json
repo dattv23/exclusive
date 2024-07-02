@@ -8,6 +8,7 @@
   },
   "Navbar": {
     "Home": "Trang chủ",
+    "Product": "Sản phẩm",
     "Contact": "Liên hệ",
     "About": "Giới thiệu",
     "Sign Up": "Đăng ký",
@@ -100,7 +101,8 @@
   },
   "ProductCard": {
     "Add To Cart": "Thêm giỏ hàng",
-    "NEW": "MỚI"
+    "NEW": "MỚI",
+    "Price": "Giá"
   },
   "CountDown": {
     "Days": "Ngày",
@@ -229,7 +231,7 @@
     "Process to checkout": "Tiến hành thanh toán",
     "Shipping": "Chi phí vận chuyển"
   },
-  "CheckOutPage":{
+  "CheckOutPage": {
     "Billing Details": "Chi tiết hóa đơn"
   },
   "CheckOutForm": {

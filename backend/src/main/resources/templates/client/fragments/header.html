@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<header th:fragment="header">
+  <!-- Top Header -->
+  <div th:replace="client/fragments/top-header :: top-header"></div>
+
+  <!-- Main Header Content -->
+  <div th:replace="client/fragments/main-header-content :: main-header-content"></div>
+</header>
+</body>
+</html>

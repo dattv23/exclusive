@@ -1,14 +1,14 @@
 'use client';
 
-import React, { ChangeEvent, useState } from 'react';
-import { useTranslations } from 'next-intl';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
+import React, { ChangeEvent, useState } from 'react';
 
-import { calculateDiscountedPrice } from '@/utils';
 import { Cart } from '@/types';
 import { Link } from '@/navigation';
 import { Button } from '@/components/Button';
 import { RemoveIcon } from '@/components/Icons';
+import { calculateDiscountedPrice } from '@/lib/utils';
 
 type CartTableProps = {
   data: Cart[];

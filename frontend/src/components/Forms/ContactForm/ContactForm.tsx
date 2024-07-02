@@ -4,9 +4,9 @@ import React, { useState } from 'react';
 import { useTranslations } from 'next-intl';
 
 import { Error } from '@/types';
-import { SubmitButton } from '@/components/Button';
-import { cn, getError } from '@/utils';
+import { cn, getError } from '@/lib/utils';
 import { contactFormAction } from './action';
+import { SubmitButton } from '@/components/Button';
 import { Input, TextArea } from '@/components/Inputs';
 
 const ContactForm = () => {

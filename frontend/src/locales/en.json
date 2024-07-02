@@ -8,6 +8,7 @@
   },
   "Navbar": {
     "Home": "Home",
+    "Product": "Product",
     "Contact": "Contact",
     "About": "About",
     "Sign Up": "Sign Up",
@@ -100,7 +101,8 @@
   },
   "ProductCard": {
     "Add To Cart": "Add To Cart",
-    "NEW": "NEW"
+    "NEW": "NEW",
+    "Price": "Price"
   },
   "CountDown": {
     "Days": "Days",
@@ -229,7 +231,7 @@
     "Process to checkout": "Process to checkout",
     "Shipping": "Shipping"
   },
-  "CheckOutPage":{
+  "CheckOutPage": {
     "Billing Details": "Billing Details"
   },
   "CheckOutForm": {

@@ -1,7 +1,6 @@
 package com.backend.exclusive.configurations;
 
-import com.backend.exclusive.mappers.Implements.UserMapperImpl;
-import com.backend.exclusive.mappers.UserMapper;
+import com.backend.exclusive.mappers.*;
 import com.backend.exclusive.repositories.UserRepository;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
@@ -45,12 +44,51 @@ public class ApplicationConfiguration {
         return new BCryptPasswordEncoder();
     }
 
-    // Bean to provide a mapper for converting between User entities and DTOs
     @Bean
     public UserMapper userMapper() {
         return new UserMapperImpl();
     }
 
+    @Bean
+    public CartMapper cartMapper() {
+        return new CartMapperImpl();
+    }
+
+    @Bean
+    public CartItemMapper cartItemMapper() {
+        return new CartItemMapperImpl();
+    }
+
+    @Bean
+    OrderMapper orderMapper() {
+        return new OrderMapperImpl();
+    }
+
+    @Bean
+    OrderItemMapper orderItemMapper() {
+        return new OrderItemMapperImpl();
+    }
+
+    @Bean
+    PaymentMethodMapper paymentMethodMapper() {
+        return new PaymentMethodMapperImpl();
+    }
+
+    @Bean
+    CouponMapper couponMapper() {
+        return new CouponMapperImpl();
+    }
+
+    @Bean
+    CategoryMapper categoryMapper() {
+        return new CategoryMapperImpl();
+    }
+
+    @Bean
+    ProductMapper productMapper() {
+        return new ProductMapperImpl();
+    }
+    
     // Bean to provide the authentication manager
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {

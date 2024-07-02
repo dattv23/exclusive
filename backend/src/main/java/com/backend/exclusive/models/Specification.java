@@ -33,6 +33,8 @@ public class Specification {
     private int weight;
 
     private boolean qualityChecking;
+
     private int freshnessDuration;
+
     private Date whenPacketing;
 }

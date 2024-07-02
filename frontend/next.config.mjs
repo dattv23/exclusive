@@ -2,7 +2,7 @@ import createNextIntlPlugin from 'next-intl/plugin';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-const withNextIntl = createNextIntlPlugin('./src/libs/i18n.ts');
+const withNextIntl = createNextIntlPlugin('./src/lib/i18n.ts');
 const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
 const __dirname = path.dirname(__filename);
 
@@ -37,6 +37,14 @@ const nextConfig = {
   },
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
+  },
+  experimental: {
+    serverActions: {
+      allowedOrigins: ['localhost:8080', 'https://exclusive-brbv.onrender.com'],
+    },
+  },
+  images: {
+    domains: ['res.cloudinary.com'],
   },
 };
 

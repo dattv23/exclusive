@@ -1,5 +1,6 @@
 package com.backend.exclusive.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,6 +30,7 @@ public class Cart {
     private User user;
 
     @DBRef
+    @JsonManagedReference
     private List<CartItem> cartItems;
 
     @CreatedDate

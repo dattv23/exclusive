@@ -1,5 +1,6 @@
 package com.backend.exclusive.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -23,10 +24,6 @@ public class CartItem {
     @DBRef
     @NotNull(message = "Product is mandatory")
     private Product product;
-
-    @DBRef
-    @NotNull(message = "Cart is mandatory")
-    private Cart cart;
 
     @Min(value = 1, message = "Quantity must be at least 1")
     private int quantity;

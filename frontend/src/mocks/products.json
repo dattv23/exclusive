@@ -2,89 +2,105 @@
   {
     "id": 1,
     "name": "RGB liquid CPU Cooler",
-    "image": "/images/products/volume.png",
-    "price": 170,
+    "description": "High-performance CPU cooler with customizable RGB lighting.",
+    "categoryId": "cooling",
+    "stockQuantity": 100,
+    "imageUrl": "/images/products/volume.png",
+    "regularPrice": 170,
     "discount": 0,
     "rate": 4.5,
     "number_of_rate": 65,
-    "status": "new",
-    "description": "High-performance CPU cooler with customizable RGB lighting."
+    "status": "new"
   },
   {
     "id": 2,
     "name": "HAVIT HV-G92 Gamepad",
-    "image": "/images/products/gamepad.png",
-    "price": 160,
+    "description": "Ergonomic gamepad with dual vibration feedback and precise controls.",
+    "categoryId": "gaming",
+    "stockQuantity": 150,
+    "imageUrl": "/images/products/gamepad.png",
+    "regularPrice": 160,
     "discount": 40,
     "rate": 5,
     "number_of_rate": 88,
-    "status": "new",
-    "description": "Ergonomic gamepad with dual vibration feedback and precise controls."
+    "status": "new"
   },
   {
     "id": 3,
     "name": "AK-900 Wired Keyboard",
-    "image": "/images/products/keyboard.png",
-    "price": 1160,
+    "description": "Durable wired keyboard with mechanical keys for a superior typing experience.",
+    "categoryId": "keyboards",
+    "stockQuantity": 200,
+    "imageUrl": "/images/products/keyboard.png",
+    "regularPrice": 1160,
     "discount": 35,
     "rate": 4,
     "number_of_rate": 75,
-    "status": "available",
-    "description": "Durable wired keyboard with mechanical keys for a superior typing experience."
+    "status": "available"
   },
   {
     "id": 4,
     "name": "IPS LCD Gaming Monitor",
-    "image": "/images/products/screen.png",
-    "price": 400,
+    "description": "27-inch IPS LCD monitor with a 144Hz refresh rate for smooth gaming visuals.",
+    "categoryId": "monitors",
+    "stockQuantity": 80,
+    "imageUrl": "/images/products/screen.png",
+    "regularPrice": 400,
     "discount": 30,
     "rate": 5,
     "number_of_rate": 99,
-    "status": "available",
-    "description": "27-inch IPS LCD monitor with a 144Hz refresh rate for smooth gaming visuals."
+    "status": "available"
   },
   {
     "id": 5,
     "name": "AK-999 Wired Keyboard",
-    "image": "/images/products/keyboard.png",
-    "price": 1160,
+    "description": "Advanced wired keyboard with customizable RGB lighting and programmable keys.",
+    "categoryId": "keyboards",
+    "stockQuantity": 180,
+    "imageUrl": "/images/products/keyboard.png",
+    "regularPrice": 1160,
     "discount": 35,
     "rate": 4,
     "number_of_rate": 75,
-    "status": "available",
-    "description": "Advanced wired keyboard with customizable RGB lighting and programmable keys."
+    "status": "available"
   },
   {
     "id": 6,
     "name": "CANON EOS DSLR Camera",
-    "image": "/images/products/canon.png",
-    "price": 360,
+    "description": "High-resolution DSLR camera with versatile shooting modes and Wi-Fi connectivity.",
+    "categoryId": "cameras",
+    "stockQuantity": 50,
+    "imageUrl": "/images/products/canon.png",
+    "regularPrice": 360,
     "discount": 0,
     "rate": 4,
     "number_of_rate": 95,
-    "status": "available",
-    "description": "High-resolution DSLR camera with versatile shooting modes and Wi-Fi connectivity."
+    "status": "available"
   },
   {
     "id": 7,
     "name": "ASUS FHD Gaming Laptop",
-    "image": "/images/products/asus.png",
-    "price": 700,
+    "description": "Powerful gaming laptop with Full HD display and high-performance components.",
+    "categoryId": "laptops",
+    "stockQuantity": 30,
+    "imageUrl": "/images/products/asus.png",
+    "regularPrice": 700,
     "discount": 0,
     "rate": 5,
     "number_of_rate": 325,
-    "status": "available",
-    "description": "Powerful gaming laptop with Full HD display and high-performance components."
+    "status": "available"
   },
   {
     "id": 8,
     "name": "GP11 Shooter USB Gamepad",
-    "image": "/images/products/fantech.png",
-    "price": 660,
+    "description": "USB gamepad with precise controls and a comfortable grip for extended play sessions.",
+    "categoryId": "gaming",
+    "stockQuantity": 120,
+    "imageUrl": "/images/products/fantech.png",
+    "regularPrice": 660,
     "discount": 0,
     "rate": 4,
     "number_of_rate": 55,
-    "status": "available",
-    "description": "USB gamepad with precise controls and a comfortable grip for extended play sessions."
+    "status": "available"
   }
 ]

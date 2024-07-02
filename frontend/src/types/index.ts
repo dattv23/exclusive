@@ -6,3 +6,4 @@ export * from './error.type';
 export * from './dropdownItem';
 export * from './category.type';
 export * from './cart.type';
+export * from './token.type';

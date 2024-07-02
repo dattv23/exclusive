@@ -1,5 +1,6 @@
 package com.backend.exclusive.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -60,7 +61,8 @@ public class User implements UserDetails {
     private Date updatedAt = new Date();
 
     @Enumerated(EnumType.STRING)
-    private UserRole userRole;
+    @JsonBackReference
+    private UserRole role;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -2,7 +2,6 @@
 
 import { redirect } from 'next/navigation';
 
-import { promiseTimeout } from '@/utils';
 import { contactSchema } from '@/schemas';
 
 export const contactAction = async (data: unknown) => {
@@ -19,7 +18,5 @@ export const contactAction = async (data: unknown) => {
     };
   }
 
-  await promiseTimeout(3000);
-
-  redirect('/');
+  redirect('/contact');
 };

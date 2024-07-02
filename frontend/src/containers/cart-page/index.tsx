@@ -1,11 +1,11 @@
 import { promises as fs } from 'fs';
+import { getTranslations } from 'next-intl/server';
 
 import { Cart } from '@/types';
-import { CartTable } from '@/components/Tables';
-import { ApplyCouponForm, Button } from '@/components';
-import { calculateDiscountedPrice } from '@/utils';
-import { getTranslations } from 'next-intl/server';
 import { Link } from '@/navigation';
+import { CartTable } from '@/components/Tables';
+import { calculateDiscountedPrice } from '@/lib/utils';
+import { ApplyCouponForm, Button } from '@/components';
 
 const CartPage: React.FC = async () => {
   const fileDataCart = await fs.readFile(

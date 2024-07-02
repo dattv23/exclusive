@@ -1,8 +1,9 @@
 'use client';
+
 import { useTranslations } from 'next-intl';
 
+import { cn } from '@/lib/utils';
 import { Link, usePathname } from '@/navigation';
-import { cn } from '@/utils';
 
 const AccountNavbar = () => {
   const t = useTranslations('AccountNavbar');

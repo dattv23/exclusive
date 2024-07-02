@@ -3,22 +3,32 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { useParams } from 'next/navigation';
 
-import { PRODUCT_STATUS, Product } from '@/types';
-import { calculateDiscountedPrice, cn, startScore } from '@/utils';
 import { Button } from '@/components/Button';
-import { EyeIcon, HeartSmallIcon } from '@/components/Icons';
+import { PRODUCT_STATUS, Product } from '@/types';
 import { ProductDetailModal } from '@/components/Modal';
+import { EyeIcon, HeartSmallIcon } from '@/components/Icons';
+import {
+  calculateDiscountedPrice,
+  cn,
+  startScore,
+  VND,
+  vndToUsd,
+} from '@/lib/utils';
+import { Locales } from '@/config';
+import { useAuthStore } from '@/store';
 
 interface ProductCardProps {
   data: Product;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
+  const params = useParams();
   const t = useTranslations('ProductCard');
 
   // check user is authenticated
-  const isAuth = true;
+  const { isAuth } = useAuthStore();
   const [isHovered, setIsHovered] = useState<boolean>(false);
   const [isFavorite, setIsFavorite] = useState<boolean>(false);
   const [modalDetailOpen, setModalDetailOpen] = useState<boolean>(false);
@@ -50,7 +60,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
             )}
           </div>
           <Image
-            src={data.image}
+            src={data.imageUrl}
             width={172}
             height={152}
             alt="product-image"
@@ -81,14 +91,36 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
         <div>
           <h4>{data.name}</h4>
           <p className={`${data.discount && 'text-secondary'}`}>
-            {`${calculateDiscountedPrice(data.price, data.discount)}$ `}
-            {data.discount != 0 && (
-              <span className="text-[#cccc] line-through">{data.price}$</span>
+            {params.locale === Locales.VI && (
+              <>
+                <span>
+                  {`${t('Price')}: ${VND.format(calculateDiscountedPrice(data.regularPrice, data?.discount ?? 0))} `}
+                </span>
+                {data.discount && data?.discount !== 0 && (
+                  <span className="text-[#cccc] line-through">
+                    {VND.format(data.regularPrice)}
+                  </span>
+                )}
+              </>
+            )}
+            {params.locale === Locales.EN && (
+              <>
+                <span>
+                  {`${t('Price')}: ${vndToUsd(calculateDiscountedPrice(data.regularPrice, data?.discount ?? 0), 23000)}`}
+                </span>
+                {data.discount && data?.discount !== 0 && (
+                  <span className="text-[#cccc] line-through">
+                    {vndToUsd(data.regularPrice, 23000)}
+                  </span>
+                )}
+              </>
             )}
           </p>
-          <p>
-            {startScore(data.rate)} ({data.number_of_rate})
-          </p>
+          {data.rate && data.number_of_rate && (
+            <p>
+              {startScore(data.rate)} ({data.number_of_rate})
+            </p>
+          )}
         </div>
       </div>
       <ProductDetailModal

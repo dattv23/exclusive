@@ -1,9 +1,9 @@
 import React from 'react';
 import { Alert } from 'antd';
-
-import { cn } from '@/utils';
-import { Error } from '@/types';
 import { useTranslations } from 'next-intl';
+
+import { Error } from '@/types';
+import { cn } from '@/lib/utils';
 
 export interface TextAreaProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {

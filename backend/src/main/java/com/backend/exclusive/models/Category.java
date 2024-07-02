@@ -12,7 +12,6 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
-import java.util.List;
 
 @Data
 @Builder
@@ -30,8 +29,6 @@ public class Category {
 
     private String description;
 
-    private List<ObjectId> products;
-
     @CreatedDate
     @Builder.Default
     private Date createdAt = new Date();
@@ -41,5 +38,5 @@ public class Category {
     private Date updatedAt = new Date();
 
     @Builder.Default
-    private boolean destroy = false;
+    private boolean isDeleted = false;
 }

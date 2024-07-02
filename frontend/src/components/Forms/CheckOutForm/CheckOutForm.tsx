@@ -4,13 +4,12 @@ import React, { useState } from 'react';
 import { useTranslations } from 'next-intl';
 
 import { Cart, Error } from '@/types';
-import { SubmitButton } from '@/components/Button';
 import { Input } from '@/components/Inputs';
-import { cn, getError } from '@/utils';
 import { checkoutFormAction } from './action';
-import { CheckOutTable } from '@/components/Tables';
 import { ApplyCouponForm } from '@/components';
-import { calculateDiscountedPrice } from '@/utils';
+import { SubmitButton } from '@/components/Button';
+import { CheckOutTable } from '@/components/Tables';
+import { calculateDiscountedPrice, cn, getError } from '@/lib/utils';
 
 type CheckOutFormProps = {
   data: Cart[];

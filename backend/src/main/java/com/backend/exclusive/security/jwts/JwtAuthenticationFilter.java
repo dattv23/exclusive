@@ -23,14 +23,16 @@ import java.io.IOException;
 
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
-    @Autowired
-    private final HandlerExceptionResolver handlerExceptionResolver;
+    private static final Logger logger = LoggerFactory.getLogger(JwtAuthenticationFilter.class);
 
     @Autowired
     private final JwtService jwtService;
 
     @Autowired
     private final UserDetailsService userDetailsService;
+
+    @Autowired
+    private final HandlerExceptionResolver handlerExceptionResolver;
 
     @Autowired
     public JwtAuthenticationFilter(JwtService jwtService, UserDetailsService userDetailsService, HandlerExceptionResolver handlerExceptionResolver) {
@@ -49,7 +51,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         final String authHeader = request.getHeader("Authorization");
 
         // Create a logger for logging messages
-        Logger logger = LoggerFactory.getLogger(JwtAuthenticationFilter.class);
         logger.info("Processing request: {}", request.getRequestURI());
 
         // If the Authorization header is missing or does not start with "Bearer ", skip JWT processing

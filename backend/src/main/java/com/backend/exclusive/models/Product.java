@@ -42,7 +42,10 @@ public class Product {
     private int stockQuantity;
 
     private String description;
+
     private String shortDescription;
+
+    private String imageUrl;
 
     @Builder.Default
     private boolean isDeleted = false;

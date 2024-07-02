@@ -3,8 +3,8 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 
-import { calculateDiscountedPrice } from '@/utils';
 import { Cart } from '@/types';
+import { calculateDiscountedPrice } from '@/lib/utils';
 
 type CheckOutTableProps = {
   data: Cart[];

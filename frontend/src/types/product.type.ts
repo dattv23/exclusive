@@ -10,8 +10,10 @@ export type Product = {
   id: number;
   name: string;
   description: string;
-  image: string;
-  price: number;
+  categoryId: string;
+  stockQuantity: number;
+  imageUrl: string;
+  regularPrice: number;
   discount: number;
   rate: number;
   number_of_rate: number;
