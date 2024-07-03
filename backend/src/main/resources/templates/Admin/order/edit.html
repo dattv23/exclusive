@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/admin/layout}">
+<body>
+<section layout:fragment="content">
+    <h1>Edit Order</h1>
+    <form th:action="@{/api/v1/admin/orders/edit/{id}(id=${order.id})}" th:object="${order}" method="post">
+        <div>
+            <label>UserID</label>
+            <input type="text" th:field="*{userId}"/>
+            <span th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}"></span>
+        </div>
+        <div>
+            <label>CouponId</label>
+            <input type="text" th:field="*{couponId}"/>
+            <span th:if="${#fields.hasErrors('couponId')}" th:errors="*{couponId}"></span>
+        </div>
+        <div>
+            <label>OrderDate</label>
+            <input type="text" th:field="*{orderDate}"/>
+            <span th:if="${#fields.hasErrors('orderDate')}" th:errors="*{orderDate}"></span>
+        </div>
+        <div>
+            <label>TotalAmount</label>
+            <input type="text" th:field="*{totalAmount}"/>
+            <span th:if="${#fields.hasErrors('totalAmount')}" th:errors="*{totalAmount}"></span>
+        </div>
+        <div>
+            <label>Status</label>
+            <input type="text" th:field="*{status}"/>
+            <span th:if="${#fields.hasErrors('status')}" th:errors="*{status}"></span>
+        </div>
+        <div>
+            <label>OrderItems</label>
+            <input type="number" th:field="*{orderItems}"/>
+            <span th:if="${#fields.hasErrors('orderItems')}" th:errors="*{orderItems}"></span>
+        </div>
+        <div>
+            <button type="submit">Update</button>
+        </div>
+    </form>
+</section>
+</body>
+</html>
