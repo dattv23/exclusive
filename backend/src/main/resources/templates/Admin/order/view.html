@@ -1,10 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/admin/layout}">
 <body>
-
+<section layout:fragment="content"
+         style="max-width: 600px; margin: 50px auto; padding: 20px; background-color: #f9f9f9; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+    <div id="orderList">
+        <h1 style="text-align: center; margin-bottom: 20px;">View Order</h1>
+        <div th:each="order : ${orders}">
+            <form th:action="@{/api/v1/admin/orders/view/{id}(id=${order.id})}" th:object="${order}" method="post">
+                <p>
+                    <span><strong>ID:</strong> <span th:text="${order.id}"></span></span><br>
+                    <span><strong>Email:</strong> <span th:text="${order.user.email}"></span></span><br>
+                    <span><strong>Coupon Code:</strong> <span th:text="${order.coupon.code}"></span></span><br>
+                    <span><strong>Order Date:</strong> <span th:text="${order.orderDate}"></span></span><br>
+                    <span><strong>Total Amount:</strong> <span th:text="${order.totalAmount}"></span></span><br>
+                    <span><strong>Status:</strong> <span th:text="${order.status}"></span></span><br>
+                </p>
+                <div style="text-align: center;">
+                    <a th:href="@{/api/v1/admin/order}"
+                       style="padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border: none; border-radius: 4px; cursor: pointer;">
+                        Back Table
+                    </a>
+                </div>
+                <hr>
+            </form>
+        </div>
+    </div>
+</section>
 </body>
 </html>
