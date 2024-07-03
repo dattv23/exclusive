@@ -12,6 +12,8 @@ public interface UserService {
 
     User update(ObjectId id, UserDTO userDetails);
 
+    User getById(ObjectId id);
+
     void delete(ObjectId id);
 
     void assignRole(ObjectId id, UserRole role);

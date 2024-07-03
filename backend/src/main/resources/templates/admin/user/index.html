@@ -1,19 +1,51 @@
 <!DOCTYPE html>
-<html lang="en"
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security5"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{/admin/layout}">
 <body>
 <section layout:fragment="content">
-    <!-- Page Heading -->
+    <h1>User List</h1>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">User</h1>
-        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                class="fas fa-download fa-sm text-white-50"></i> Export Excel</a>
+        <h1 class="h3 mb-0 text-gray-800">Users</h1>
+        <!--        <a th:href="@{/api/v1/admin/users/new}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">-->
+        <!--            <i class="fas fa-plus fa-sm text-white-50"></i> Add New User-->
+        <!--        </a>-->
     </div>
-
-    <!-- Content Row -->
-    <div class="row">
-
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Username</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Phone Number</th>
+                <th>Address</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.email}"></td>
+                <td th:text="${user.username}"></td>
+                <td th:text="${user.firstName}"></td>
+                <td th:text="${user.lastName}"></td>
+                <td th:text="${user.phoneNumber}"></td>
+                <td th:text="${user.address}"></td>
+                <td>
+                    <div sec:authorize="hasAuthority('ADMIN')">
+                        <a th:href="@{/api/v1/admin/users/edit/{id}(id=${user.id})}"
+                           class="btn btn-success btn-sm">Edit</a>
+                        <a th:href="@{/api/v1/admin/users/delete/{id}(id=${user.id})}" class="btn btn-danger btn-sm"
+                           onclick="return confirm('Are you sure?')">Delete</a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </section>
 </body>
