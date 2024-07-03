@@ -3,25 +3,25 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{/admin/layout}">
 <body>
-<section layout:fragment="content">
-    <h1>Edit Category</h1>
+<section layout:fragment="content" style="max-width: 600px; margin: 50px auto; padding: 20px; background-color: #f9f9f9; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+    <h1 style="text-align: center; margin-bottom: 20px;">Edit Category</h1>
     <form th:action="@{/api/v1/admin/categorise/edit/{id}(id=${category.id})}" th:object="${category}" method="post">
-        <div>
-            <label>Name</label>
-            <input type="text" th:field="*{name}"/>
-            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+        <div style="margin-bottom: 15px;">
+            <label for="name" style="display: block; margin-bottom: 5px; font-weight: bold;">Name</label>
+            <input type="text" id="name" th:field="*{name}" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;"/>
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red; font-size: 0.9em;"></span>
         </div>
-        <div>
-            <label>ParentID</label>
-            <input type="number" th:field="*{parentId}"/>
-            <span th:if="${#fields.hasErrors('parentId')}" th:errors="*{parentId}"></span>
+        <div style="margin-bottom: 15px;">
+            <label for="parentId" style="display: block; margin-bottom: 5px; font-weight: bold;">Parent ID</label>
+            <input type="number" id="parentId" th:field="*{parentId}" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;"/>
+            <span th:if="${#fields.hasErrors('parentId')}" th:errors="*{parentId}" style="color: red; font-size: 0.9em;"></span>
         </div>
-        <div>
-            <label>Description</label>
-            <textarea th:field="*{description}"></textarea>
+        <div style="margin-bottom: 15px;">
+            <label for="description" style="display: block; margin-bottom: 5px; font-weight: bold;">Description</label>
+            <textarea id="description" th:field="*{description}" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;"></textarea>
         </div>
-        <div>
-            <button type="submit">Update</button>
+        <div style="text-align: center;">
+            <button type="submit" style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">Update</button>
         </div>
     </form>
 </section>

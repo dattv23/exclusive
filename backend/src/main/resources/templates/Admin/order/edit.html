@@ -3,41 +3,41 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{/admin/layout}">
 <body>
-<section layout:fragment="content">
-    <h1>Edit Order</h1>
+<section layout:fragment="content" style="max-width: 600px; margin: 50px auto; padding: 20px; background-color: #f9f9f9; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+    <h1 style="text-align: center; margin-bottom: 20px;">Edit Order</h1>
     <form th:action="@{/api/v1/admin/orders/edit/{id}(id=${order.id})}" th:object="${order}" method="post">
-        <div>
-            <label>UserID</label>
-            <input type="text" th:field="*{userId}"/>
-            <span th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}"></span>
+        <div style="margin-bottom: 15px;">
+            <label for="userId" style="display: block; margin-bottom: 5px; font-weight: bold;">User ID</label>
+            <input type="text" id="userId" th:field="*{userId}" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;"/>
+            <span th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}" style="color: red; font-size: 0.9em;"></span>
         </div>
-        <div>
-            <label>CouponId</label>
-            <input type="text" th:field="*{couponId}"/>
-            <span th:if="${#fields.hasErrors('couponId')}" th:errors="*{couponId}"></span>
+        <div style="margin-bottom: 15px;">
+            <label for="couponId" style="display: block; margin-bottom: 5px; font-weight: bold;">Coupon ID</label>
+            <input type="text" id="couponId" th:field="*{couponId}" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;"/>
+            <span th:if="${#fields.hasErrors('couponId')}" th:errors="*{couponId}" style="color: red; font-size: 0.9em;"></span>
         </div>
-        <div>
-            <label>OrderDate</label>
-            <input type="text" th:field="*{orderDate}"/>
-            <span th:if="${#fields.hasErrors('orderDate')}" th:errors="*{orderDate}"></span>
+        <div style="margin-bottom: 15px;">
+            <label for="orderDate" style="display: block; margin-bottom: 5px; font-weight: bold;">Order Date</label>
+            <input type="text" id="orderDate" th:field="*{orderDate}" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;"/>
+            <span th:if="${#fields.hasErrors('orderDate')}" th:errors="*{orderDate}" style="color: red; font-size: 0.9em;"></span>
         </div>
-        <div>
-            <label>TotalAmount</label>
-            <input type="text" th:field="*{totalAmount}"/>
-            <span th:if="${#fields.hasErrors('totalAmount')}" th:errors="*{totalAmount}"></span>
+        <div style="margin-bottom: 15px;">
+            <label for="totalAmount" style="display: block; margin-bottom: 5px; font-weight: bold;">Total Amount</label>
+            <input type="text" id="totalAmount" th:field="*{totalAmount}" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;"/>
+            <span th:if="${#fields.hasErrors('totalAmount')}" th:errors="*{totalAmount}" style="color: red; font-size: 0.9em;"></span>
         </div>
-        <div>
-            <label>Status</label>
-            <input type="text" th:field="*{status}"/>
-            <span th:if="${#fields.hasErrors('status')}" th:errors="*{status}"></span>
+        <div style="margin-bottom: 15px;">
+            <label for="status" style="display: block; margin-bottom: 5px; font-weight: bold;">Status</label>
+            <input type="text" id="status" th:field="*{status}" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;"/>
+            <span th:if="${#fields.hasErrors('status')}" th:errors="*{status}" style="color: red; font-size: 0.9em;"></span>
         </div>
-        <div>
-            <label>OrderItems</label>
-            <input type="number" th:field="*{orderItems}"/>
-            <span th:if="${#fields.hasErrors('orderItems')}" th:errors="*{orderItems}"></span>
+        <div style="margin-bottom: 15px;">
+            <label for="orderItems" style="display: block; margin-bottom: 5px; font-weight: bold;">Order Items</label>
+            <input type="number" id="orderItems" th:field="*{orderItems}" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;"/>
+            <span th:if="${#fields.hasErrors('orderItems')}" th:errors="*{orderItems}" style="color: red; font-size: 0.9em;"></span>
         </div>
-        <div>
-            <button type="submit">Update</button>
+        <div style="text-align: center;">
+            <button type="submit" style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">Update</button>
         </div>
     </form>
 </section>
