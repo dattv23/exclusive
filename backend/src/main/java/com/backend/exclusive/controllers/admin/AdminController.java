@@ -66,10 +66,22 @@ public class AdminController {
     private UserService userService;
 
     @Autowired
+    private PaymentService paymentService;
+
+    @Autowired
     private UserMapper userMapper;
 
     @GetMapping
-    public String index() {
+    public String index(Model model) {
+        model.addAttribute("ordersCount", orderService.ordersPending().stream().count());
+        model.addAttribute("categories", categoryService.getAllCategories());
+
+        // Define the color array and add it to the model
+        String[] colors = {"#4e73df", "#1cc88a", "#36b9cc", "#f6c23e", "#e74a3b", "#858796", "#5a5c69", "#f8f9fc"};
+        model.addAttribute("colors", colors);
+
+        model.addAttribute("earningThisMonth", paymentService.getThisMonthEarnings().intValue());
+        model.addAttribute("earningAnnual", paymentService.getAnnualEarnings().intValue());
         return "admin/index";
     }
 

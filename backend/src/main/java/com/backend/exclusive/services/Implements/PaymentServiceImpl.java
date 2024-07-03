@@ -11,9 +11,12 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Service
 public class PaymentServiceImpl implements PaymentService {
@@ -86,5 +89,49 @@ public class PaymentServiceImpl implements PaymentService {
             payment.setDeleted(true);
             paymentRepository.save(payment);
         });
+    }
+
+    @Override
+    public List<Integer> getMonthlyEarnings() {
+        Calendar calendar = Calendar.getInstance();
+        int currentYear = calendar.get(Calendar.YEAR);
+        return IntStream.rangeClosed(1, 12).mapToObj(month -> {
+            calendar.set(currentYear, month - 1, 1, 0, 0, 0);
+            Date startDate = calendar.getTime();
+            calendar.set(currentYear, month, 1, 0, 0, 0);
+            Date endDate = calendar.getTime();
+            List<Payment> payments = paymentRepository.findSuccessfulPaymentsBetweenDates(startDate, endDate);
+            return payments.stream().mapToDouble(Payment::getAmount).sum();
+        }).map(Double::intValue).collect(Collectors.toList());
+    }
+
+    @Override
+    public Double getThisMonthEarnings() {
+        Calendar calendar = Calendar.getInstance();
+
+        // Set start date to the first day of the current month
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        Date startDate = calendar.getTime();
+
+        // Set end date to the first day of the next month
+        calendar.add(Calendar.MONTH, 1);
+        Date endDate = calendar.getTime();
+
+        List<Payment> payments = paymentRepository.findSuccessfulPaymentsBetweenDates(startDate, endDate);
+        return payments.stream().mapToDouble(Payment::getAmount).sum();
+    }
+
+    @Override
+    public Double getAnnualEarnings() {
+        List<Payment> payments = paymentRepository.findByStatus("Success");
+        Double total = 0.0;
+        for (var item : payments) {
+            total += item.getAmount();
+        }
+        return total;
     }
 }

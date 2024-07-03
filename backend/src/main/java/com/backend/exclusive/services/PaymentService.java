@@ -19,4 +19,10 @@ public interface PaymentService {
     Optional<Payment> updatePayment(ObjectId id, PaymentDTO paymentDTO);
 
     void deletePayment(ObjectId id);
+
+    List<Integer> getMonthlyEarnings();
+
+    Double getAnnualEarnings();
+
+    Double getThisMonthEarnings();
 }

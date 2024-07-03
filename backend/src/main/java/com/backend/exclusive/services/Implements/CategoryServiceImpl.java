@@ -1,22 +1,33 @@
 package com.backend.exclusive.services.Implements;
 
 import com.backend.exclusive.dtos.CategoryDTO;
-import com.backend.exclusive.models.Category;
-import com.backend.exclusive.repositories.CategoryRepository;
+import com.backend.exclusive.models.*;
+import com.backend.exclusive.repositories.*;
 import com.backend.exclusive.services.CategoryService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
 
     @Autowired
     private CategoryRepository categoryRepository;
+
+    @Autowired
+    private PaymentRepository paymentRepository;
+
+    @Autowired
+    private OrderRepository orderRepository;
+
+    @Autowired
+    private OrderItemRepository orderItemRepository;
+
+    @Autowired
+    private ProductRepository productRepository;
 
     @Override
     public List<Category> getAllCategories() {
@@ -64,5 +75,31 @@ public class CategoryServiceImpl implements CategoryService {
         } else {
             throw new RuntimeException("Category not found with id " + id);
         }
+    }
+
+    @Override
+    public Map<String, Double> getCategoryRevenueData() {
+        List<Payment> successfulPayments = paymentRepository.findByStatus("Success");
+        Map<String, Double> revenueByCategory = new HashMap<>();
+
+        for (Payment payment : successfulPayments) {
+            Order order = orderRepository.findById(payment.getOrder().getId()).orElse(null);
+            if (order != null) {
+                List<OrderItem> orderItems = orderItemRepository.findAllById(order.getOrderItems().stream().map(OrderItem::getId).collect(Collectors.toList()));
+                for (OrderItem orderItem : orderItems) {
+                    Product product = productRepository.findById(orderItem.getProduct().getId()).orElse(null);
+                    if (product != null) {
+                        Category category = categoryRepository.findById(product.getCategory().getId()).orElse(null);
+                        if (category != null) {
+                            String categoryName = category.getName();
+                            double orderItemTotal = orderItem.getSubtotal();
+                            revenueByCategory.put(categoryName, revenueByCategory.getOrDefault(categoryName, 0.0) + orderItemTotal);
+                        }
+                    }
+                }
+            }
+        }
+        System.out.println(revenueByCategory);
+        return revenueByCategory;
     }
 }

@@ -29,4 +29,6 @@ public interface OrderService {
     Order updateStatus(ObjectId id, String status);
 
     String getPayStatus(ObjectId id);
+
+    List<Order> ordersPending();
 }

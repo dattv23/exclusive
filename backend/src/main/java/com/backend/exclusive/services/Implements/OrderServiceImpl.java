@@ -136,4 +136,11 @@ public class OrderServiceImpl implements OrderService {
                 .findFirst()
                 .orElse("Payment status not found");
     }
+
+    @Override
+    public List<Order> ordersPending() {
+        return orderRepository.findAll()
+                .stream().filter(order -> order.getStatus().equals("Pending"))
+                .toList();
+    }
 }
