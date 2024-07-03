@@ -1,20 +1,20 @@
 package com.backend.exclusive.controllers.admin;
 
 import com.backend.exclusive.dtos.CategoryDTO;
-import com.backend.exclusive.dtos.ProductDTO;
 import com.backend.exclusive.dtos.OrderDTO;
+import com.backend.exclusive.dtos.ProductDTO;
+import com.backend.exclusive.mappers.CategoryMapper;
+import com.backend.exclusive.mappers.OrderMapper;
 import com.backend.exclusive.mappers.ProductMapper;
+import com.backend.exclusive.models.OrderItem;
 import com.backend.exclusive.models.Product;
+import com.backend.exclusive.repositories.CategoryRepository;
+import com.backend.exclusive.repositories.OrderRepository;
 import com.backend.exclusive.repositories.ProductRepository;
 import com.backend.exclusive.services.CategoryService;
 import com.backend.exclusive.services.CloudinaryService;
-import com.backend.exclusive.services.ProductService;
-import com.backend.exclusive.mappers.CategoryMapper;
-import com.backend.exclusive.repositories.CategoryRepository;
-import com.backend.exclusive.services.CategoryService;
-import com.backend.exclusive.mappers.OrderMapper;
-import com.backend.exclusive.repositories.OrderRepository;
 import com.backend.exclusive.services.OrderService;
+import com.backend.exclusive.services.ProductService;
 import jakarta.validation.Valid;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 @RequestMapping("/api/v1/admin")
@@ -59,6 +60,7 @@ public class AdminController {
 
     @Autowired
     private OrderRepository orderRepository;
+
     @GetMapping
     public String index() {
         return "admin/index";
@@ -146,10 +148,12 @@ public class AdminController {
     //    category part
     @GetMapping("/category")
     public String listCategories(Model model) {
-        model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("categorise", categoryService.getAllCategories());
+        System.out.println(categoryService.getAllCategories());
         return "admin/category/index";
     }
 
+    // create
     @GetMapping("/categories/new")
     public String showCreateCategoryForm(Model model) {
         model.addAttribute("category", new CategoryDTO());
@@ -158,6 +162,7 @@ public class AdminController {
 
     @PostMapping("/categories")
     public String createCategory(@ModelAttribute("category") @Valid CategoryDTO categoryDTO, BindingResult result, Model model) {
+        System.out.println(result);
         if (result.hasErrors()) {
             return "admin/category/create";
         }
@@ -165,6 +170,7 @@ public class AdminController {
         return "redirect:/api/v1/admin/category";
     }
 
+    // edit
     @GetMapping("/categories/edit/{id}")
     public String showUpdateCategoryForm(@PathVariable("id") String id, Model model) {
         CategoryDTO categoryDTO = categoryMapper.toCategoryDTO(categoryService.getCategoryById(new ObjectId(id)).get());
@@ -181,6 +187,7 @@ public class AdminController {
         return "redirect:/api/v1/admin/category";
     }
 
+    // delete
     @GetMapping("/categories/delete/{id}")
     public String deleteCategory(@PathVariable("id") String id) {
         categoryService.deleteCategory(new ObjectId(id));
@@ -194,6 +201,15 @@ public class AdminController {
         return "admin/order/index";
     }
 
+    // show items
+    @GetMapping("/orders/view")
+    public String showOrderItems(@PathVariable("id") String id, Model model) {
+        List<OrderItem> orderItemDTOList = orderService.getAllItemsInOrder(new ObjectId(id));
+        model.addAttribute("orderItems", orderItemDTOList);
+        return "admin/order/view";
+    }
+
+    // create
     @GetMapping("/orders/new")
     public String showCreateOrderForm(Model model) {
         model.addAttribute("order", new OrderDTO());
@@ -209,22 +225,22 @@ public class AdminController {
         return "redirect:/api/v1/admin/order";
     }
 
+    // edit
     @GetMapping("/orders/edit/{id}")
     public String showUpdateOrderForm(@PathVariable("id") String id, Model model) {
         OrderDTO orderDTO = orderMapper.toOrderDTO(orderService.getOrderById(new ObjectId(id)).get());
         model.addAttribute("order", orderDTO);
+        model.addAttribute("status", new String[]{"Pending", "Delivering", "Completed", "Cancelled"});
         return "admin/order/edit";
     }
 
     @PostMapping("/orders/edit/{id}")
     public String updateOrder(@PathVariable("id") String id, @ModelAttribute("order") @Valid OrderDTO orderDTO, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            return "admin/order/edit";
-        }
-        orderService.updateOrder(new ObjectId(id), orderDTO);
+        orderService.updateStatus(new ObjectId(id), orderDTO.getStatus());
         return "redirect:/api/v1/admin/order";
     }
 
+    // delete
     @GetMapping("/orders/delete/{id}")
     public String deleteOrder(@PathVariable("id") String id) {
         orderService.deleteOrder(new ObjectId(id));

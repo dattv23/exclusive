@@ -8,8 +8,8 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Order</h1>
-        <a th:href="@{/api/v1/admin/orders/new}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                class="fas fa-plus fa-sm text-white-50"></i> Add New Order</a>
+        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                class="fas fa-plus fa-sm text-white-50"></i> Export Excel</a>
     </div>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -22,24 +22,22 @@
                     <thead>
                     <tr>
                         <th>ID</th>
-                        <th>UserID</th>
-                        <th>CouponId</th>
-                        <th>OrderDate</th>
-                        <th>TotalAmount</th>
+                        <th>User Email</th>
+                        <th>Coupon</th>
+                        <th>Order Date</th>
+                        <th>Total Amount</th>
                         <th>Status</th>
-                        <th>OrderItems</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
                     <tfoot>
                     <tr>
                         <th>ID</th>
-                        <th>UserID</th>
-                        <th>CouponId</th>
-                        <th>OrderDate</th>
-                        <th>TotalAmount</th>
+                        <th>User Email</th>
+                        <th>Coupon</th>
+                        <th>Order Date</th>
+                        <th>Total Amount</th>
                         <th>Status</th>
-                        <th>OrderItems</th>
                         <th>Actions</th>
 
                     </tr>
@@ -47,18 +45,19 @@
                     <tbody id="orderList">
                     <tr th:each="order : ${orders}">
                         <td th:text="${order.id}"></td>
-                        <td th:text="${order.userId}"></td>
-                        <td th:text="${order.couponId}"></td>
+                        <td th:text="${order.user.email}"></td>
+                        <td th:text="${order.coupon.code}"></td>
                         <td th:text="${order.orderDate}"></td>
                         <td th:text="${order.totalAmount}"></td>
                         <td th:text="${order.status}"></td>
-                        <td th:text="${order.orderItems}"></td>
                         <td>
                             <div sec:authorize="hasAuthority('ADMIN')">
                                 <a th:href="@{/api/v1/admin/orders/edit/{id}(id=${order.id})}"
                                    class="btn btn-success btn-sm">Edit</a>
                                 <a th:href="@{/api/v1/admin/orders/delete/{id}(id=${order.id})}"
                                    class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</a>
+                                <a th:href="@{/api/v1/admin/orders/view/{id}(id=${order.id})}"
+                                   class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">View</a>
                             </div>
                         </td>
                     </tr>
