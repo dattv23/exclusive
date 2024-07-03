@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImpl implements ProductService {
+
     @Autowired
     private ProductRepository productRepository;
 
@@ -155,6 +156,61 @@ public class ProductServiceImpl implements ProductService {
             productRepository.save(product);
         } else {
             throw new RuntimeException("Product not found with id " + id);
+        }
+    }
+
+    @Override
+    public List<Product> getProductsByCategoryName(String category) {
+        return productRepository.findAll().stream()
+                .filter(product -> product.getCategory().getName().equals(category)
+                        && !product.isDeleted())
+                .toList();
+    }
+
+    @Override
+    public List<Product> getProductsByStatus(String status) {
+        return productRepository.findAll().stream()
+                .filter(product -> product.getStatus().equals(status) && !product.isDeleted())
+                .toList();
+    }
+
+    @Override
+    public List<Product> getProductsByCategoryNameAndStatus(String category, String status) {
+        return productRepository.findAll().stream()
+                .filter(product -> product.getCategoryName().equals(category)
+                        && product.getStatus().equals(status)
+                        && !product.isDeleted())
+                .toList();
+    }
+
+    @Override
+    public void setDiscountForCategoryName(String category, double discountPercent) {
+        List<Product> products = getProductsByCategoryName(category);
+        applyDiscount(products, discountPercent);
+    }
+
+    @Override
+    public void setDiscountForStatus(String status, double discountPercent) {
+        List<Product> products = getProductsByStatus(status);
+        applyDiscount(products, discountPercent);
+    }
+
+    @Override
+    public void setDiscountForCategoryNameAndStatus(String category, String status, double discountPercent) {
+        List<Product> products = getProductsByCategoryNameAndStatus(category, status);
+        applyDiscount(products, discountPercent);
+    }
+
+    @Override
+    public void setDiscountAll(double discountPercent) {
+        List<Product> products = this.getAll();
+        applyDiscount(products, discountPercent);
+    }
+
+    private void applyDiscount(List<Product> products, double discountPercent) {
+        for (Product product : products) {
+            product.setDiscountPercent(discountPercent);
+            productRepository.save(product);
         }
     }
 }

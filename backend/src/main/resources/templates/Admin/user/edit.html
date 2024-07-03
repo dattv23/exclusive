@@ -3,46 +3,46 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{/admin/layout}">
 <body>
-<section layout:fragment="content">
-    <h1>Edit User</h1>
+<section layout:fragment="content" style="max-width: 600px; margin: 50px auto; padding: 20px; background-color: #f9f9f9; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+    <h1 style="text-align: center; margin-bottom: 20px;">Edit User</h1>
     <form th:action="@{/api/v1/admin/users/edit/{id}(id=${user.id})}" th:object="${user}" method="post">
-        <div>
-            <label>Email</label>
-            <input type="email" th:field="*{email}"/>
-            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+        <div style="margin-bottom: 15px;">
+            <label for="email" style="display: block; margin-bottom: 5px; font-weight: bold;">Email</label>
+            <input type="email" id="email" th:field="*{email}" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;"/>
+            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color: red; font-size: 0.9em;"></span>
         </div>
-        <div>
-            <label>Username</label>
-            <input type="text" th:field="*{username}"/>
-            <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+        <div style="margin-bottom: 15px;">
+            <label for="username" style="display: block; margin-bottom: 5px; font-weight: bold;">Username</label>
+            <input type="text" id="username" th:field="*{username}" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;"/>
+            <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}" style="color: red; font-size: 0.9em;"></span>
         </div>
-        <div>
-            <label>First Name</label>
-            <input type="text" th:field="*{firstName}"/>
-            <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+        <div style="margin-bottom: 15px;">
+            <label for="firstName" style="display: block; margin-bottom: 5px; font-weight: bold;">First Name</label>
+            <input type="text" id="firstName" th:field="*{firstName}" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;"/>
+            <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" style="color: red; font-size: 0.9em;"></span>
         </div>
-        <div>
-            <label>Last Name</label>
-            <input type="text" th:field="*{lastName}"/>
-            <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+        <div style="margin-bottom: 15px;">
+            <label for="lastName" style="display: block; margin-bottom: 5px; font-weight: bold;">Last Name</label>
+            <input type="text" id="lastName" th:field="*{lastName}" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;"/>
+            <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" style="color: red; font-size: 0.9em;"></span>
         </div>
-        <div>
-            <label>Phone Number</label>
-            <input type="text" th:field="*{phoneNumber}"/>
-            <span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></span>
+        <div style="margin-bottom: 15px;">
+            <label for="phoneNumber" style="display: block; margin-bottom: 5px; font-weight: bold;">Phone Number</label>
+            <input type="text" id="phoneNumber" th:field="*{phoneNumber}" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;"/>
+            <span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" style="color: red; font-size: 0.9em;"></span>
         </div>
-        <div>
-            <label>Address</label>
-            <input type="text" th:field="*{address}"/>
+        <div style="margin-bottom: 15px;">
+            <label for="address" style="display: block; margin-bottom: 5px; font-weight: bold;">Address</label>
+            <input type="text" id="address" th:field="*{address}" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;"/>
         </div>
-        <div>
-            <label>Role</label>
-            <select name="role">
+        <div style="margin-bottom: 15px;">
+            <label for="role" style="display: block; margin-bottom: 5px; font-weight: bold;">Role</label>
+            <select id="role" name="role" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
                 <option th:each="role : ${roles}" th:value="${role}" th:text="${role}"></option>
             </select>
         </div>
-        <div>
-            <button type="submit">Update</button>
+        <div style="text-align: center;">
+            <button type="submit" style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">Update</button>
         </div>
     </form>
 </section>

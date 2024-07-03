@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/admin/layout}">
+<body>
+<section layout:fragment="content" style="max-width: 600px; margin: 50px auto; padding: 20px; background-color: #f9f9f9; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800" style="text-align: center; margin-bottom: 20px;">Set Discount For Product</h1>
+    </div>
+
+    <form th:action="@{/api/v1/admin/products/discount}" method="post">
+        <div style="margin-bottom: 15px;">
+            <label for="category" style="display: block; margin-bottom: 5px; font-weight: bold;">Category:</label>
+            <select id="category" name="category" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+                <option value="">All Categories</option>
+                <option th:each="category : ${categories}" th:value="${category.name}" th:text="${category.name}"></option>
+            </select>
+        </div>
+        <div style="margin-bottom: 15px;">
+            <label for="status" style="display: block; margin-bottom: 5px; font-weight: bold;">Status:</label>
+            <select id="status" name="status" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+                <option value="">All Statuses</option>
+                <option value="new">New</option>
+                <option value="old">Old</option>
+            </select>
+        </div>
+        <div style="margin-bottom: 15px;">
+            <label for="discount" style="display: block; margin-bottom: 5px; font-weight: bold;">Discount Percentage:</label>
+            <input type="number" id="discount" name="discount" min="0" max="100" step="0.01" required
+                   style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+        </div>
+        <div style="text-align: center;">
+            <button type="submit" style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">Set Discount</button>
+        </div>
+    </form>
+</section>
+</body>
+</html>
