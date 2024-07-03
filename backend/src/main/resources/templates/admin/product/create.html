@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/admin/layout}">
+<body>
+<section layout:fragment="content" style="max-width: 600px; margin: 50px auto; padding: 20px; background-color: #f9f9f9; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+    <h1 style="text-align: center; margin-bottom: 20px;">Create New Product</h1>
+    <form th:action="@{/api/v1/admin/products}" th:object="${product}" method="post" enctype="multipart/form-data">
+        <div style="margin-bottom: 15px;">
+            <label for="name" style="display: block; margin-bottom: 5px; font-weight: bold;">Name</label>
+            <input type="text" id="name" th:field="*{name}" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;"/>
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red; font-size: 0.9em;"></span>
+        </div>
+        <div style="margin-bottom: 15px;">
+            <label for="regularPrice" style="display: block; margin-bottom: 5px; font-weight: bold;">Regular Price</label>
+            <input type="number" id="regularPrice" th:field="*{regularPrice}" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;"/>
+            <span th:if="${#fields.hasErrors('regularPrice')}" th:errors="*{regularPrice}" style="color: red; font-size: 0.9em;"></span>
+        </div>
+        <div style="margin-bottom: 15px;">
+            <label for="stockQuantity" style="display: block; margin-bottom: 5px; font-weight: bold;">Stock Quantity</label>
+            <input type="number" id="stockQuantity" th:field="*{stockQuantity}" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;"/>
+            <span th:if="${#fields.hasErrors('stockQuantity')}" th:errors="*{stockQuantity}" style="color: red; font-size: 0.9em;"></span>
+        </div>
+        <div style="margin-bottom: 15px;">
+            <label for="description" style="display: block; margin-bottom: 5px; font-weight: bold;">Description</label>
+            <textarea id="description" th:field="*{description}" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;"></textarea>
+        </div>
+        <div style="margin-bottom: 15px;">
+            <label for="shortDescription" style="display: block; margin-bottom: 5px; font-weight: bold;">Short Description</label>
+            <textarea id="shortDescription" th:field="*{shortDescription}" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;"></textarea>
+        </div>
+        <div style="margin-bottom: 15px;">
+            <label style="display: block; margin-bottom: 5px; font-weight: bold;">Image URL</label>
+            <input type="file" name="imageFile" accept="image/*" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;"/>
+        </div>
+        <div style="margin-bottom: 15px;">
+            <label for="rate" style="display: block; margin-bottom: 5px; font-weight: bold;">Rate</label>
+            <input type="number" id="rate" th:field="*{rate}" step="0.01" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;"/>
+        </div>
+        <div style="margin-bottom: 15px;">
+            <label for="numberOfRate" style="display: block; margin-bottom: 5px; font-weight: bold;">Number of Rates</label>
+            <input type="number" id="numberOfRate" th:field="*{numberOfRate}" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;"/>
+        </div>
+        <div style="margin-bottom: 15px;">
+            <label for="status" style="display: block; margin-bottom: 5px; font-weight: bold;">Status</label>
+            <input type="text" id="status" th:field="*{status}" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;"/>
+        </div>
+        <div class="mb-3">
+            <label for="categoryId" class="form-label">Category:</label>
+            <select th:field="*{categoryId}" class="form-control" id="categoryId">
+                <option th:each="category : ${categories}" th:value="${category.id}"
+                        th:text="${category.name}">
+                </option>
+            </select>
+        </div>
+        <div>
+            <button type="submit" style="width: 100%; padding: 10px; background-color: #28a745; border: none; border-radius: 4px; color: white; font-size: 1em; cursor: pointer;">Create</button>
+        </div>
+    </form>
+</section>
+</body>
+</html>

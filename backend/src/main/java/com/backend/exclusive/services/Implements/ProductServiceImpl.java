@@ -101,7 +101,17 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Optional<Product> update(ObjectId id, ProductDTO productDetails) {
         return productRepository.findById(id).map(product -> {
-            product = productMapper.toProduct(productDetails);
+            product.setCategory(categoryService.getCategoryById(new ObjectId(productDetails.getCategoryId())).get());
+            product.setCategoryName(categoryService.getCategoryById(new ObjectId(productDetails.getCategoryId())).get().getName());
+            product.setName(productDetails.getName());
+            product.setRegularPrice(productDetails.getRegularPrice());
+            product.setStockQuantity(productDetails.getStockQuantity());
+            product.setDescription(productDetails.getDescription());
+            product.setShortDescription(productDetails.getShortDescription());
+            product.setRate(productDetails.getRate());
+            product.setNumberOfRate(productDetails.getNumberOfRate());
+            product.setStatus(productDetails.getStatus());
+            product.setCategoryName(productDetails.getCategoryName());
             product.setUpdatedAt(new Date());
             return productRepository.save(product);
         });
@@ -110,8 +120,18 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Optional<Product> update(ObjectId id, ProductDTO productDetails, String imageUrl) {
         return productRepository.findById(id).map(product -> {
-            product = productMapper.toProduct(productDetails);
+            product.setCategory(categoryService.getCategoryById(new ObjectId(productDetails.getCategoryId())).get());
+            product.setCategoryName(categoryService.getCategoryById(new ObjectId(productDetails.getCategoryId())).get().getName());
+            product.setName(productDetails.getName());
+            product.setRegularPrice(productDetails.getRegularPrice());
+            product.setStockQuantity(productDetails.getStockQuantity());
+            product.setDescription(productDetails.getDescription());
+            product.setShortDescription(productDetails.getShortDescription());
             product.setImageUrl(imageUrl);
+            product.setRate(productDetails.getRate());
+            product.setNumberOfRate(productDetails.getNumberOfRate());
+            product.setStatus(productDetails.getStatus());
+            product.setCategoryName(productDetails.getCategoryName());
             product.setUpdatedAt(new Date());
             return productRepository.save(product);
         });
