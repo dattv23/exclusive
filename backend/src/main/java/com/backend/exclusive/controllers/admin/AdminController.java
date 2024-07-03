@@ -197,6 +197,34 @@ public class AdminController {
         return "redirect:/api/v1/admin/product";
     }
 
+    // set discount
+    @GetMapping("/products/discount")
+    public String discountProducts(Model model) {
+        model.addAttribute("categories", categoryService.getAllCategories());
+        return "admin/product/discount";
+    }
+
+    @PostMapping("/products/discount")
+    public String discountProducts(@RequestParam(required = false) String category,
+                                   @RequestParam(required = false) String status,
+                                   @RequestParam double discount) {
+        System.out.println(category + status + discount);
+        if (category.isEmpty() && status.isEmpty()) {
+            System.out.println(1);
+            productService.setDiscountAll(discount);
+        } else if (category.isEmpty()) {
+            System.out.println(2);
+            productService.setDiscountForStatus(status, discount);
+        } else if (status.isEmpty()) {
+            System.out.println(3);
+            productService.setDiscountForCategoryName(category, discount);
+        } else {
+            System.out.println(4);
+            productService.setDiscountForCategoryNameAndStatus(category, status, discount);
+        }
+        return "redirect:/api/v1/admin/product";
+    }
+
     //    category part
     @GetMapping("/category")
     public String listCategories(Model model) {
@@ -254,7 +282,7 @@ public class AdminController {
     }
 
     // show items
-    @GetMapping("/orders/view")
+    @GetMapping("/orders/view/{id}")
     public String showOrderItems(@PathVariable("id") String id, Model model) {
         List<OrderItem> orderItemDTOList = orderService.getAllItemsInOrder(new ObjectId(id));
         model.addAttribute("orderItems", orderItemDTOList);

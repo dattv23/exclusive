@@ -27,4 +27,18 @@ public interface ProductService {
     void updateProductQuantity(ObjectId id, int quantityChange);
 
     void delete(ObjectId id);
+
+    List<Product> getProductsByCategoryName(String category);
+
+    List<Product> getProductsByStatus(String status);
+
+    List<Product> getProductsByCategoryNameAndStatus(String category, String status);
+
+    void setDiscountForCategoryName(String category, double discountPercent);
+
+    void setDiscountForStatus(String status, double discountPercent);
+
+    void setDiscountForCategoryNameAndStatus(String category, String status, double discountPercent);
+
+    void setDiscountAll(double discountPercent);
 }

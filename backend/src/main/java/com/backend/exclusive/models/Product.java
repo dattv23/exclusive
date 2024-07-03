@@ -38,7 +38,7 @@ public class Product {
     private double regularPrice;
 
     @Min(value = 0, message = "{discountPrice_positive}")
-    private double discountPrice;
+    private double discountPercent;
 
     @Min(value = 0, message = "{stockQuantity_positive}")
     private int stockQuantity;
