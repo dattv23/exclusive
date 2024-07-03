@@ -49,7 +49,8 @@ public class SecurityConfiguration {
             "/admin/css/**",
             "/admin/js/**",
             "/admin/img/**",
-            "/admin/vendor/**"
+            "/admin/vendor/**",
+            "/api/v1/dashboard/**"
     };
 
     // Configure the security filter chain
