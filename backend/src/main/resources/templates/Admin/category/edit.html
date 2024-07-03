@@ -5,7 +5,7 @@
 <body>
 <section layout:fragment="content" style="max-width: 600px; margin: 50px auto; padding: 20px; background-color: #f9f9f9; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
     <h1 style="text-align: center; margin-bottom: 20px;">Edit Category</h1>
-    <form th:action="@{/api/v1/admin/categorise/edit/{id}(id=${category.id})}" th:object="${category}" method="post">
+    <form th:action="@{/api/v1/admin/categorise/edit/{id}(id=${category.id})}" th:object="${category}" method="post" enctype="multipart/form-data">
         <div style="margin-bottom: 15px;">
             <label for="name" style="display: block; margin-bottom: 5px; font-weight: bold;">Name</label>
             <input type="text" id="name" th:field="*{name}" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;"/>

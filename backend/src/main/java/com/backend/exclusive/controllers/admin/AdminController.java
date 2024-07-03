@@ -46,9 +46,6 @@ public class AdminController {
     private ProductRepository productRepository;
 
     @Autowired
-    private CategoryService categoryService;
-
-    @Autowired
     private CategoryMapper categoryMapper;
 
     @Autowired
