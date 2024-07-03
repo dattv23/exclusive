@@ -7,19 +7,27 @@ import { useTranslations } from 'next-intl';
 import { CartIcon, HeartSmallIcon, UserIcon } from '@/components/Icons';
 import { SearchInput } from '@/components/Inputs';
 import { AccountDropdown } from '@/components/Dropdown';
-import { Link } from '@/navigation';
+import { Link, usePathname } from '@/navigation';
 import { NavItem } from '@/types';
-import { useAuthStore } from '@/store';
+import { useAuthStore, useCartStore } from '@/store';
+import { cn } from '@/lib/utils';
 
 const Navbar: React.FC = () => {
   const t = useTranslations('Navbar');
   const { isAuth } = useAuthStore();
+  const { count } = useCartStore();
+  const pathName = usePathname();
 
   const items: NavItem[] = [
     {
       id: 0,
       name: t('Home'),
       link: `/`,
+    },
+    {
+      id: 0,
+      name: t('Product'),
+      link: `/products`,
     },
     {
       id: 1,
@@ -45,11 +53,14 @@ const Navbar: React.FC = () => {
         />
       </Link>
       <div className="flex h-11 items-center gap-12">
-        {items.map((item) => (
+        {items.map((item, id) => (
           <Link
-            key={item.id}
+            key={id}
             href={item.link}
-            className="hover:border-b-2 hover:border-[#727272]"
+            className={cn(
+              'hover:border-b-2 hover:border-[#727272]',
+              pathName === item.link && 'text-secondary hover:border-secondary',
+            )}
           >
             {item.name}
           </Link>
@@ -58,13 +69,21 @@ const Navbar: React.FC = () => {
           <>
             <Link
               href="/auth/sign-up"
-              className="hover:border-b-2 hover:border-[#727272]"
+              className={cn(
+                'hover:border-b-2 hover:border-[#727272]',
+                pathName === '/auth/sign-up' &&
+                  'text-secondary hover:border-secondary',
+              )}
             >
               {t('Sign Up')}
             </Link>
             <Link
               href="/auth/sign-in"
-              className="hover:border-b-2 hover:border-[#727272]"
+              className={cn(
+                'hover:border-b-2 hover:border-[#727272]',
+                pathName === '/auth/sign-in' &&
+                  'text-secondary hover:border-secondary',
+              )}
             >
               {t('Sign In')}
             </Link>
@@ -77,8 +96,13 @@ const Navbar: React.FC = () => {
           <Link href={`/wishlist`} className="px-4 py-2">
             <HeartSmallIcon />
           </Link>
-          <Link href={`/cart`} className="px-4 py-2">
+          <Link href={`/cart`} className="relative px-4 py-2">
             <CartIcon />
+            {count() > 0 && (
+              <span className="absolute -top-1 right-0 flex h-6 w-6 items-center justify-center rounded-full bg-secondary">
+                {count()}
+              </span>
+            )}
           </Link>
           <div className="relative inline-flex text-left">
             <div className="group">

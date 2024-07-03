@@ -1,15 +1,36 @@
 import React, { FC } from 'react';
+import { notFound } from 'next/navigation';
 
-type ProductDetailPageProps = {
-  params: { id: string };
+import { Product } from '@/types';
+import { Locale } from '@/config';
+import { envServerConfig } from '@/lib/env';
+import ProductDetailPage from '@/containers/product-detail-page';
+
+type ProductDetailProps = {
+  params: { id: string; locale: Locale };
 };
 
-const ProductDetailPage: FC<ProductDetailPageProps> = ({ params }) => {
-  return (
-    <main>
-      <h1 className="text-4xl font-bold text-black">{`Detail id:${params.id}`}</h1>
-    </main>
+export async function generateStaticParams() {
+  const res = await fetch(`${envServerConfig.DOMAIN_API}/api/v1/products`).then(
+    (res) => res.json(),
   );
+
+  return res.data.map((product: Product) => ({
+    id: product.id,
+  }));
+}
+
+const getData = async (id: string) => {
+  const res = await fetch(
+    `${envServerConfig.DOMAIN_API}/api/v1/products/${id}`,
+  ).then((res) => res.json());
+  if (res.status !== 200) return notFound();
+  return res.data as Product;
 };
 
-export default ProductDetailPage;
+const ProductDetail: FC<ProductDetailProps> = async ({ params }) => {
+  const product: Product = await getData(params.id);
+  return <ProductDetailPage data={product} params={params} />;
+};
+
+export default ProductDetail;

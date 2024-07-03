@@ -8,6 +8,7 @@
   },
   "Navbar": {
     "Home": "Home",
+    "Product": "Product",
     "Contact": "Contact",
     "About": "About",
     "Sign Up": "Sign Up",
@@ -100,7 +101,10 @@
   },
   "ProductCard": {
     "Add To Cart": "Add To Cart",
-    "NEW": "NEW"
+    "NEW": "NEW",
+    "Price": "Price",
+    "Please login to add cart": "Please login to add cart",
+    "Added cart successfully": "Added cart successfully"
   },
   "CountDown": {
     "Days": "Days",
@@ -203,7 +207,8 @@
       "sendMessage": "Send Message",
       "cancel": "Cancel",
       "save": "Save Changes",
-      "applyCoupon": "Apply Coupon"
+      "applyCoupon": "Apply Coupon",
+      "buyNow": "Buy Now"
     },
     "links": {
       "forgotPassword": "Forgot Password"
@@ -221,7 +226,8 @@
     "Quantity": "Quantity",
     "Subtotal": "Subtotal",
     "Return To Shop": "Return To Shop",
-    "Update Cart": "Update Cart"
+    "Update Cart": "Update Cart",
+    "Update cart failed": "Update cart failed"
   },
   "CartPage": {
     "Cart Total": "Cart Total",
@@ -230,7 +236,7 @@
     "Process to checkout": "Process to checkout",
     "Shipping": "Shipping"
   },
-  "CheckOutPage":{
+  "CheckOutPage": {
     "Billing Details": "Billing Details"
   },
   "CheckOutForm": {
@@ -248,5 +254,19 @@
     "Email": "Email",
     "PhoneNumber": "Phone Number",
     "OrderPlacedSuccessfully": "OrderPlacedSuccessfully"
+  },
+  "ProductDetailPage": {
+    "In Stock": "In Stock",
+    "Sold Out": "Sold Out",
+    "Description": "PlayStation 5 Controller Skin High quality vinyl with air channel adhesive for easy bubble free install & mess free removal Pressure sensitive.",
+    "Related Item": "Related Item",
+    "Buy Now": "Buy Now",
+    "Colours": "Colours",
+    "Size": "Size",
+    "Free Delivery": "Free Delivery",
+    "Enter your postal code for Delivery Availability": "Enter your postal code for Delivery Availability",
+    "Return Delivery": "Return Delivery",
+    "Free 30 Days Delivery Returns Details": "Free 30 Days Delivery Returns Details",
+    "Reviews": "Reviews"
   }
 }

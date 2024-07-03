@@ -1,30 +1,61 @@
-import { promises as fs } from 'fs';
+import { cookies } from 'next/headers';
 import { getTranslations } from 'next-intl/server';
 
-import { Cart } from '@/types';
-import { Link } from '@/navigation';
+import { Link, redirect } from '@/navigation';
 import { CartTable } from '@/components/Tables';
-import { calculateDiscountedPrice } from '@/lib/utils';
 import { ApplyCouponForm, Button } from '@/components';
+import { envServerConfig } from '@/lib/env';
+import { CartItem } from '@/types';
+import { calculateDiscountedPrice, convertPriceByLocale } from '@/lib/utils';
+import { Locale } from '@/config';
 
-const CartPage: React.FC = async () => {
-  const fileDataCart = await fs.readFile(
-    process.cwd() + '/src/mocks/cart.json',
-    'utf8',
-  );
-  const itemsList: Cart[] = JSON.parse(fileDataCart);
+async function getData() {
+  const cookieStore = cookies();
+  const token = cookieStore.get('accessToken')?.value;
+  if (!token) {
+    redirect('/auth/sign-in');
+  }
+  const res = await fetch(`${envServerConfig.DOMAIN_API}/api/v1/carts`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error('Failed to fetch data');
+  }
+
+  return res.json();
+}
+
+type CartPageProps = {
+  params: {
+    locale: Locale;
+  };
+};
+
+const CartPage: React.FC<CartPageProps> = async ({ params }) => {
+  const res = await getData();
+  const cart: CartItem[] = res.data;
   const t = await getTranslations('CartPage');
-  const subtotal = itemsList.reduce(
+
+  const total = cart.reduce(
     (pre, cur) =>
       pre +
-      calculateDiscountedPrice(cur.product.price, cur.product.discount) *
+      calculateDiscountedPrice(
+        cur.product.regularPrice,
+        cur.product?.discount ?? 0,
+      ) *
         cur.quantity,
     0,
   );
 
   return (
     <main className="py-10">
-      <CartTable data={itemsList} />
+      <CartTable data={cart} />
       <div className="mt-8 flex flex-1 justify-between">
         <div className="flex-[0.4]">
           <ApplyCouponForm />
@@ -34,17 +65,17 @@ const CartPage: React.FC = async () => {
           <div className="flex flex-col gap-4">
             <div className="flex justify-between">
               <p>{t('Subtotal')}</p>
-              <p>{`${subtotal}$`}</p>
+              <p>{convertPriceByLocale(total, params.locale)}</p>
             </div>
             <hr />
             <div className="flex justify-between">
               <p>{t('Shipping')}</p>
-              <p>FREE</p>
+              <p></p>
             </div>
             <hr />
             <div className="flex justify-between">
               <p>{t('Total')}</p>
-              <p>{`${subtotal}$`}</p>
+              <p>{convertPriceByLocale(total, params.locale)}</p>
             </div>
           </div>
           <div className="flex justify-center">

@@ -1,8 +1,8 @@
-import dynamic from 'next/dynamic';
 import React from 'react';
-import { promises as fs } from 'fs';
+import dynamic from 'next/dynamic';
 
 import { Product } from '@/types';
+import { envServerConfig } from '@/lib/env';
 
 const BannerSection = dynamic(
   () => import('@/containers/home-page/banner-section'),
@@ -28,12 +28,20 @@ const ServicesSection = dynamic(
   () => import('@/containers/home-page/services-section'),
 );
 
+async function getData() {
+  const res = await fetch(`${envServerConfig.DOMAIN_API}/api/v1/products`);
+
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error('Failed to fetch data');
+  }
+
+  return res.json();
+}
+
 const HomePage: React.FC = async () => {
-  const fileDataProduct = await fs.readFile(
-    process.cwd() + '/src/mocks/products.json',
-    'utf8',
-  );
-  const products: Product[] = JSON.parse(fileDataProduct);
+  const res = await getData();
+  const products: Product[] = res.data;
 
   return (
     <main>

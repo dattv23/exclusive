@@ -12,7 +12,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import static org.springframework.security.config.Customizer.withDefaults;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Configuration
@@ -55,6 +57,7 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .cors(withDefaults())
                 // Disable CSRF protection as it is not required for stateless APIs
                 .csrf(csrf -> csrf.disable())
 
@@ -82,28 +85,15 @@ public class SecurityConfiguration {
     // Configure CORS settings
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-
-        // Set allowed origins (can be expanded as needed)
-        configuration.setAllowedOrigins(List.of("http://localhost:8080", "http://localhost:3000", "https://exclusive-brbv.onrender.com"));
-
-        // Set allowed HTTP methods
-        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-
-        // Set allowed headers for CORS requests
-        configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
-
-        // Allow credentials (cookies, authorization headers, etc.)
+        final CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000", "https://exclusive-ochre.vercel.app"));
+        configuration.setAllowedMethods(Arrays.asList("HEAD",
+                "GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
         configuration.setAllowCredentials(true);
-
-        // Expose specific headers in the response
-        configuration.setExposedHeaders(List.of("Authorization"));
-
-        // Register the CORS configuration for all paths
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        configuration.setAllowedHeaders(Arrays.asList("Content-Type", "X-Auth-Token","Authorization","Access-Control-Allow-Origin","Access-Control-Allow-Credentials"));
+        configuration.setExposedHeaders(Arrays.asList("Content-Type", "X-Auth-Token","Authorization","Access-Control-Allow-Origin","Access-Control-Allow-Credentials"));
+        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
-
-        // Return the configured CORS source
         return source;
     }
 }

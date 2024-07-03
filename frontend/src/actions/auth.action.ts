@@ -41,7 +41,7 @@ export const loginAction = async (data: unknown) => {
     httpOnly: true,
     sameSite: 'lax',
     secure: true,
-    expires: expiresIn,
+    expires: Date.now() + expiresIn,
   });
 
   return loginRes.data;

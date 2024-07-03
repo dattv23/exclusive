@@ -8,6 +8,7 @@
   },
   "Navbar": {
     "Home": "Trang chủ",
+    "Product": "Sản phẩm",
     "Contact": "Liên hệ",
     "About": "Giới thiệu",
     "Sign Up": "Đăng ký",
@@ -100,7 +101,10 @@
   },
   "ProductCard": {
     "Add To Cart": "Thêm giỏ hàng",
-    "NEW": "MỚI"
+    "NEW": "MỚI",
+    "Price": "Giá",
+    "Please login to add cart": "Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng",
+    "Added cart successfully": "Đã thêm vào giỏ hàng thành công"
   },
   "CountDown": {
     "Days": "Ngày",
@@ -204,7 +208,8 @@
       "cancel": "Hủy",
       "save": "Lưu thay đổi",
       "applyCoupon": "Áp dụng mã",
-      "PlaceOrder": "Đặt hàng"
+      "PlaceOrder": "Đặt hàng",
+      "buyNow": "Mua ngay"
     },
     "links": {
       "forgotPassword": "Quên mật khẩu"
@@ -222,7 +227,8 @@
     "Quantity": "Số lượng",
     "Subtotal": "Tạm tính",
     "Return To Shop": "Quay lại mua sắm",
-    "Update Cart": "Cập nhật giỏ hàng"
+    "Update Cart": "Cập nhật giỏ hàng",
+    "Update cart failed": "Cập nhật giỏ hàng thất bại"
   },
   "CartPage": {
     "Cart Total": "Tổng giỏ hàng",
@@ -231,7 +237,7 @@
     "Process to checkout": "Tiến hành thanh toán",
     "Shipping": "Chi phí vận chuyển"
   },
-  "CheckOutPage":{
+  "CheckOutPage": {
     "Billing Details": "Chi tiết hóa đơn"
   },
   "CheckOutForm": {
@@ -249,5 +255,19 @@
     "Email": "Email",
     "PhoneNumber": "Số điện thoại",
     "OrderPlacedSuccessfully": "Đặt hàng thành công"
+  },
+  "ProductDetailPage": {
+    "In Stock": "Còn hàng",
+    "Sold Out": "Hết hàng",
+    "Description": "Vỏ bọc tay cầm PlayStation 5 Chất liệu vinyl chất lượng cao với keo dính có kênh không khí giúp lắp đặt dễ dàng không bong bóng và tháo gỡ không để lại vết. Nhạy cảm với áp lực.",
+    "Related Item": "Sản phẩm liên quan",
+    "Colours": "Màu sắc",
+    "Size": "Kích thước",
+    "Buy Now": "Mua ngay",
+    "Free Delivery": "Giao hàng miễn phí",
+    "Enter your postal code for Delivery Availability": "Nhập mã bưu điện của bạn để kiểm tra tình trạng giao hàng",
+    "Return Delivery": "Hoàn trả hàng",
+    "Free 30 Days Delivery Returns Details": "Miễn phí hoàn trả trong vòng 30 ngày. Chi tiết",
+    "Reviews": "Đánh giá"
   }
 }

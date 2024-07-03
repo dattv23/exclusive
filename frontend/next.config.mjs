@@ -43,6 +43,9 @@ const nextConfig = {
       allowedOrigins: ['localhost:8080', 'https://exclusive-brbv.onrender.com'],
     },
   },
+  images: {
+    domains: ['res.cloudinary.com'],
+  },
 };
 
 export default withNextIntl(nextConfig);

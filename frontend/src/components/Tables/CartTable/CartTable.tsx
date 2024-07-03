@@ -2,36 +2,83 @@
 
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
-import React, { ChangeEvent, useState } from 'react';
+import { useParams } from 'next/navigation';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 
-import { Cart } from '@/types';
-import { Link } from '@/navigation';
+import { Locale } from '@/config';
+import { CartItem, mapCartToMappedCartItem } from '@/types';
+import { Link, useRouter } from '@/navigation';
+import { useCartStore } from '@/store';
 import { Button } from '@/components/Button';
 import { RemoveIcon } from '@/components/Icons';
-import { calculateDiscountedPrice } from '@/lib/utils';
+import { calculateDiscountedPrice, convertPriceByLocale } from '@/lib/utils';
+import toast from 'react-hot-toast';
 
 type CartTableProps = {
-  data: Cart[];
+  data: CartItem[];
 };
 
 const CartTable: React.FC<CartTableProps> = ({ data }) => {
-  const [cartList, setCartList] = useState(data);
+  const { cart, update } = useCartStore();
   const t = useTranslations('CartTable');
-  const [hoveredItemId, setHoveredItemId] = useState<number | null>(null);
+  const params = useParams();
+  const router = useRouter();
+
+  const [hoveredItemId, setHoveredItemId] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (data) {
+      update(data);
+    }
+  }, []);
 
   const handleChangeQuantity = (
-    id: number,
+    id: string,
     event: ChangeEvent<HTMLInputElement>,
   ) => {
     const quantity = parseInt(event.target.value);
-    setCartList((prevCartList) =>
-      prevCartList.map((item) =>
-        item.id === id
+    update(
+      cart.map((item) =>
+        item.product.id === id
           ? { ...item, quantity: isNaN(quantity) ? 1 : quantity }
           : item,
       ),
     );
   };
+
+  const handleUpdateCart = async () => {
+    try {
+      const token = localStorage.getItem('accessToken');
+      if (!token) {
+        router.push('/auth/sign-in');
+      }
+      const res = await fetch(`https://exclusive-brbv.onrender.com`, {
+        method: 'PUT',
+        body: JSON.stringify(mapCartToMappedCartItem(cart)),
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+          accept: '*/*',
+        },
+      });
+      const data = await res.json();
+      console.log('====================================');
+      console.log(data);
+      console.log('====================================');
+    } catch (error) {
+      console.log('====================================');
+      console.log(error);
+      console.log('====================================');
+      toast.error(t('Update cart failed'));
+    }
+  };
+
+  const cols = [
+    { name: t('Product') },
+    { name: t('Product') },
+    { name: t('Quantity') },
+    { name: t('Subtotal') },
+  ];
 
   return (
     <>
@@ -42,49 +89,34 @@ const CartTable: React.FC<CartTableProps> = ({ data }) => {
               <table className="min-w-full">
                 <thead className="border-b">
                   <tr>
-                    <th
-                      scope="col"
-                      className="px-6 py-4 text-left text-sm font-medium text-gray-900"
-                    >
-                      {t('Product')}
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-6 py-4 text-left text-sm font-medium text-gray-900"
-                    >
-                      {t('Price')}
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-6 py-4 text-left text-sm font-medium text-gray-900"
-                    >
-                      {t('Quantity')}
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-6 py-4 text-left text-sm font-medium text-gray-900"
-                    >
-                      {t('Subtotal')}
-                    </th>
+                    {cols.map((col, id) => (
+                      <th
+                        key={id}
+                        scope="col"
+                        className="px-6 py-4 text-left text-sm font-medium text-gray-900"
+                      >
+                        {col.name}
+                      </th>
+                    ))}
                   </tr>
                 </thead>
                 <tbody>
-                  {cartList.map((item) => (
-                    <tr className="border-b" key={item.id}>
+                  {cart.map((item) => (
+                    <tr className="border-b" key={item.product.id}>
                       <td
                         className=" flex items-center gap-5 whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900"
-                        onMouseEnter={() => setHoveredItemId(item.id)}
+                        onMouseEnter={() => setHoveredItemId(item.product.id)}
                         onMouseLeave={() => setHoveredItemId(null)}
                       >
                         <div className="relative">
                           <Image
-                            src={item.product.image}
+                            src={item.product.imageUrl}
                             alt={item.product.name}
                             width={80}
                             height={80}
                             className="h-[80px] w-[80px]"
                           />
-                          {hoveredItemId === item.id && (
+                          {hoveredItemId === item.product.id && (
                             <button className="absolute left-1 top-1">
                               <RemoveIcon />
                             </button>
@@ -93,10 +125,13 @@ const CartTable: React.FC<CartTableProps> = ({ data }) => {
                         <p>{item.product.name}</p>
                       </td>
                       <td className="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-900">
-                        {`${calculateDiscountedPrice(
-                          item.product.price,
-                          item.product.discount,
-                        )}$`}
+                        {convertPriceByLocale(
+                          calculateDiscountedPrice(
+                            item.product.regularPrice,
+                            item.product?.discount ?? 0,
+                          ),
+                          params.locale as Locale,
+                        )}
                       </td>
                       <td className="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-900">
                         <input
@@ -105,17 +140,20 @@ const CartTable: React.FC<CartTableProps> = ({ data }) => {
                           placeholder={item.quantity.toString()}
                           min={1}
                           max={100}
-                          onChange={(e) => handleChangeQuantity(item.id, e)}
+                          onChange={(e) =>
+                            handleChangeQuantity(item.product.id, e)
+                          }
                           className="flex w-16 items-center justify-center gap-4 rounded-md border p-2"
                         />
                       </td>
                       <td className="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-900">
-                        {`${
+                        {convertPriceByLocale(
                           calculateDiscountedPrice(
-                            item.product.price,
-                            item.product.discount,
-                          ) * item.quantity
-                        }$`}
+                            item.product.regularPrice,
+                            item.product?.discount ?? 0,
+                          ) * item.quantity,
+                          params.locale as Locale,
+                        )}
                       </td>
                     </tr>
                   ))}
@@ -125,11 +163,11 @@ const CartTable: React.FC<CartTableProps> = ({ data }) => {
           </div>
         </div>
       </div>
-      <div className="flex justify-between">
+      <div className="mt-6 flex justify-between">
         <Button variant={'secondary'} className="hover:text-primary">
           <Link href={'/products'}>{t('Return To Shop')}</Link>
         </Button>
-        <Button>
+        <Button onClick={handleUpdateCart}>
           <Link href={'/cart'}>{t('Update Cart')}</Link>
         </Button>
       </div>

@@ -1,3 +1,4 @@
+import { EXCHANGE_RATE, Locale, Locales } from '@/config';
 import { Error } from '@/types';
 import clsx, { ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -56,4 +57,41 @@ export const calculateDiscountedPrice = (
   discount: number,
 ): number => {
   return price - price * (discount / 100);
+};
+
+export const formatPrice = (num: number) => {
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+};
+
+export const VND = new Intl.NumberFormat('vi-VN', {
+  style: 'currency',
+  currency: 'VND',
+  maximumFractionDigits: 0,
+});
+
+export const USDollar = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+});
+
+// Conversion functions
+export function usdToVnd(usdAmount: number, exchangeRate: number) {
+  const vndAmount = usdAmount * exchangeRate;
+  return VND.format(Math.round(vndAmount));
+}
+
+export function vndToUsd(vndAmount: number, exchangeRate: number) {
+  const usdAmount = vndAmount / exchangeRate;
+  return USDollar.format(usdAmount);
+}
+
+export const convertPriceByLocale = (price: number, locale: Locale) => {
+  switch (locale) {
+    case Locales.VI:
+      return VND.format(price);
+    case Locales.EN:
+      return vndToUsd(price, EXCHANGE_RATE);
+    default:
+      break;
+  }
 };
