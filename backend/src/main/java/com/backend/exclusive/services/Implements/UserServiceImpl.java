@@ -7,8 +7,6 @@ import com.backend.exclusive.repositories.UserRepository;
 import com.backend.exclusive.services.UserService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -18,8 +16,14 @@ import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
+
     @Autowired
     private UserRepository userRepository;
+
+    @Override
+    public User getById(ObjectId id) {
+        return userRepository.findById(id).get();
+    }
 
     @Override
     public List<User> getAll() {

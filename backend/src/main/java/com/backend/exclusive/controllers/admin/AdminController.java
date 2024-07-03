@@ -3,18 +3,19 @@ package com.backend.exclusive.controllers.admin;
 import com.backend.exclusive.dtos.CategoryDTO;
 import com.backend.exclusive.dtos.OrderDTO;
 import com.backend.exclusive.dtos.ProductDTO;
+import com.backend.exclusive.dtos.UserDTO;
 import com.backend.exclusive.mappers.CategoryMapper;
 import com.backend.exclusive.mappers.OrderMapper;
 import com.backend.exclusive.mappers.ProductMapper;
+import com.backend.exclusive.mappers.UserMapper;
 import com.backend.exclusive.models.OrderItem;
 import com.backend.exclusive.models.Product;
+import com.backend.exclusive.models.User;
+import com.backend.exclusive.models.UserRole;
 import com.backend.exclusive.repositories.CategoryRepository;
 import com.backend.exclusive.repositories.OrderRepository;
 import com.backend.exclusive.repositories.ProductRepository;
-import com.backend.exclusive.services.CategoryService;
-import com.backend.exclusive.services.CloudinaryService;
-import com.backend.exclusive.services.OrderService;
-import com.backend.exclusive.services.ProductService;
+import com.backend.exclusive.services.*;
 import jakarta.validation.Valid;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +62,12 @@ public class AdminController {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private UserMapper userMapper;
+
     @GetMapping
     public String index() {
         return "admin/index";
@@ -68,8 +75,53 @@ public class AdminController {
 
     //    user part
     @GetMapping("/user")
-    public String listUsers() {
+    public String listUsers(Model model) {
+        model.addAttribute("users", userService.getAll());
         return "admin/user/index";
+    }
+
+//    @GetMapping("/users/new")
+//    public String showCreateUserForm(Model model) {
+//        model.addAttribute("user", new UserDTO());
+//        return "admin/user/create";
+//    }
+//
+//    @PostMapping("/users")
+//    public String createUser(@ModelAttribute("user") @Valid UserDTO userDTO, BindingResult result) {
+//        if (result.hasErrors()) {
+//            return "admin/user/create";
+//        }
+//        userService.create(userDTO);
+//        return "redirect:/api/v1/admin/user";
+//    }
+
+    @GetMapping("/users/edit/{id}")
+    public String showUpdateUserForm(@PathVariable("id") String id, Model model) {
+        User user = userService.getById(new ObjectId(id));
+        UserDTO userDTO = userMapper.convertToUserDto(user);
+        model.addAttribute("user", userDTO);
+
+        model.addAttribute("roles", new String[]{"USER", "ADMIN"});
+        return "admin/user/edit";
+    }
+
+
+    @PostMapping("/users/edit/{id}")
+    public String updateUser(@PathVariable("id") String id,
+                             @ModelAttribute("user") @Valid UserDTO userDTO,
+                             BindingResult result,
+                             @RequestParam("role") String role) {
+        UserRole userRole = UserRole.valueOf(role.toUpperCase());
+
+        userService.update(new ObjectId(id), userDTO);
+        userService.assignRole(new ObjectId(id), userRole);
+        return "redirect:/api/v1/admin/user";
+    }
+
+    @GetMapping("/users/delete/{id}")
+    public String deleteUser(@PathVariable("id") String id) {
+        userService.delete(new ObjectId(id));
+        return "redirect:/api/v1/admin/user";
     }
 
     //    product part
