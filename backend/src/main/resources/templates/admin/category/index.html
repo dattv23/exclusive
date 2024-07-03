@@ -8,7 +8,7 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Category</h1>
-        <a th:href="@{/api/v1/admin/categorise/new}"
+        <a th:href="@{/api/v1/admin/categories/new}"
            class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                 class="fas fa-plus fa-sm text-white-50"></i> Add New Category</a>
     </div>
@@ -24,7 +24,6 @@
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
-                        <th>ParentID</th>
                         <th>Description</th>
                         <th>Actions</th>
                     </tr>
@@ -33,7 +32,6 @@
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
-                        <th>ParentID</th>
                         <th>Description</th>
                         <th>Actions</th>
                     </tr>
@@ -41,14 +39,13 @@
                     <tbody id="categoryList">
                     <tr th:each="category : ${categorise}">
                         <td th:text="${category.id}"></td>
-                        <td th:text="${category.parentId}"></td>
                         <td th:text="${category.name}"></td>
                         <td th:text="${category.description}"></td>
                         <td>
                             <div sec:authorize="hasAuthority('ADMIN')">
-                                <a th:href="@{/api/v1/admin/categorise/edit/{id}(id=${category.id})}"
+                                <a th:href="@{/api/v1/admin/categories/edit/{id}(id=${category.id})}"
                                    class="btn btn-success btn-sm">Edit</a>
-                                <a th:href="@{/api/v1/admin/categorise/delete/{id}(id=${category.id})}"
+                                <a th:href="@{/api/v1/admin/categories/delete/{id}(id=${category.id})}"
                                    class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</a>
                             </div>
                         </td>
