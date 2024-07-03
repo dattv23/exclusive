@@ -5,7 +5,7 @@
 <body>
 <section layout:fragment="content">
     <h1>Create New Product</h1>
-    <form th:action="@{/api/v1/admin/products}" th:object="${product}" method="post">
+    <form th:action="@{/api/v1/admin/products}" th:object="${product}" method="post" enctype="multipart/form-data">
         <div>
             <label>Name</label>
             <input type="text" th:field="*{name}"/>
@@ -30,12 +30,12 @@
             <textarea th:field="*{shortDescription}"></textarea>
         </div>
         <div>
-            <label>Image URL</label>
-            <input type="text" th:field="*{imageUrl}"/>
+            <label>Image</label>
+            <input type="file" name="imageFile" accept="image/*" required/>
         </div>
         <div>
             <label>Rate</label>
-            <input type="number" th:field="*{rate}" step="0.01"/>
+            <input type="number" th:field="*{rate}" step="0.5"/>
         </div>
         <div>
             <label>Number of Rates</label>
@@ -45,9 +45,13 @@
             <label>Status</label>
             <input type="text" th:field="*{status}"/>
         </div>
-        <div>
-            <label>Category</label>
-            <input type="text" th:field="*{categoryName}"/>
+        <div class="mb-3">
+            <label for="categoryId" class="form-label">Category:</label>
+            <select th:field="*{categoryId}" class="form-control" id="categoryId">
+                <option th:each="category : ${categories}" th:value="${category.id}"
+                        th:text="${category.name}">
+                </option>
+            </select>
         </div>
         <div>
             <button type="submit">Create</button>
