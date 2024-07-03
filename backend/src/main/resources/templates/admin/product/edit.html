@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/admin/layout}">
+<body>
+<section layout:fragment="content">
+    <h1>Edit Product</h1>
+    <form th:action="@{/api/v1/admin/products/edit/{id}(id=${product.id})}" th:object="${product}" method="post">
+        <div>
+            <label>Name</label>
+            <input type="text" th:field="*{name}"/>
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+        </div>
+        <div>
+            <label>Regular Price</label>
+            <input type="number" th:field="*{regularPrice}"/>
+            <span th:if="${#fields.hasErrors('regularPrice')}" th:errors="*{regularPrice}"></span>
+        </div>
+        <div>
+            <label>Stock Quantity</label>
+            <input type="number" th:field="*{stockQuantity}"/>
+            <span th:if="${#fields.hasErrors('stockQuantity')}" th:errors="*{stockQuantity}"></span>
+        </div>
+        <div>
+            <label>Description</label>
+            <textarea th:field="*{description}"></textarea>
+        </div>
+        <div>
+            <label>Short Description</label>
+            <textarea th:field="*{shortDescription}"></textarea>
+        </div>
+        <div>
+            <label>Image URL</label>
+            <input type="text" th:field="*{imageUrl}"/>
+        </div>
+        <div>
+            <label>Rate</label>
+            <input type="number" th:field="*{rate}" step="0.01"/>
+        </div>
+        <div>
+            <label>Number of Rates</label>
+            <input type="number" th:field="*{numberOfRate}"/>
+        </div>
+        <div>
+            <label>Status</label>
+            <input type="text" th:field="*{status}"/>
+        </div>
+        <div>
+            <label>Category</label>
+            <input type="text" th:field="*{categoryName}"/>
+        </div>
+        <div>
+            <button type="submit">Update</button>
+        </div>
+    </form>
+</section>
+</body>
+</html>

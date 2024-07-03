@@ -8,15 +8,13 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Product</h1>
-        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                class="fas fa-download fa-sm text-white-50"></i> Export Excel</a>
+        <a th:href="@{/api/v1/admin/products/new}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                class="fas fa-plus fa-sm text-white-50"></i> Add New Product</a>
     </div>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
-            <a onclick="loadProducts()" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Refresh
-                Products</a>
+            <h6 class="m-0 font-weight-bold text-primary">Product List</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -70,10 +68,10 @@
                         <td th:text="${product.categoryName}"></td>
                         <td>
                             <div sec:authorize="hasAuthority('ADMIN')">
-                                <a th:href="@{/products/edit/{id}(id=${product.id})}"
-                                   class="btn btn-success btn-sm">Sửa</a>
-                                <a th:href="@{/products/delete/{id}(id=${product.id})}"
-                                   class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc không?')">Xóa</a>
+                                <a th:href="@{/api/v1/admin/products/edit/{id}(id=${product.id})}"
+                                   class="btn btn-success btn-sm">Edit</a>
+                                <a th:href="@{/api/v1/admin/products/delete/{id}(id=${product.id})}"
+                                   class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</a>
                             </div>
                         </td>
                     </tr>
