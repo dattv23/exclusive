@@ -202,7 +202,7 @@ public class AdminController {
     }
 
     // show items
-    @GetMapping("/orders/view")
+    @GetMapping("/orders/view/{id}")
     public String showOrderItems(@PathVariable("id") String id, Model model) {
         List<OrderItem> orderItemDTOList = orderService.getAllItemsInOrder(new ObjectId(id));
         model.addAttribute("orderItems", orderItemDTOList);
