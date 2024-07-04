@@ -68,6 +68,7 @@ public class AuthController {
         loginResponse.setExpiresIn(jwtService.getExpirationTime());
         loginResponse.setRole(authenticatedUser.getRole());
 
+        System.out.println(loginResponse);
         return ResponseUtil.success(loginResponse);
     }
 }

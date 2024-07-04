@@ -44,19 +44,15 @@ public class SecurityConfiguration {
             "/configuration/security",
             "/swagger-ui/**",
             "/webjars/**",
-            "/swagger-ui.html"
-    };
-
-    // Define a list of URLs that should be accessible without authentication
-    private static final String[] ADMIN_LIST_URL = {
-            "/api/v1/admin/**",
+            "/swagger-ui.html",
             "/admin/css/**",
             "/admin/js/**",
             "/admin/img/**",
+            "/api/v1/admin/**",
             "/admin/vendor/**",
             "/api/v1/dashboard/**"
     };
-
+    
     // Configure the security filter chain
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -69,7 +65,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(authorize -> authorize
                         // Allow access to URLs in the white list without authentication
                         .requestMatchers(WHITE_LIST_URL).permitAll()
-                        .requestMatchers(ADMIN_LIST_URL).hasAnyAuthority("ADMIN")
+
                         // Require authentication for all other requests
                         .anyRequest().authenticated())
 
