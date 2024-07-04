@@ -1,6 +1,7 @@
 package com.backend.exclusive.models;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
@@ -47,6 +48,29 @@ public class Order {
     @DBRef
     @JsonManagedReference
     private List<OrderItem> orderItems;
+
+    @NotNull(message = "Recipient last name is mandatory")
+    private String recipientLastName;
+
+    @NotNull(message = "Recipient first name is mandatory")
+    private String recipientFirstName;
+
+    @NotNull(message = "Recipient address is mandatory")
+    private String recipientCity;
+
+    @NotNull(message = "Recipient address is mandatory")
+    private String recipientDistrict;
+
+    @NotNull(message = "Recipient address is mandatory")
+    private String recipientAddress;
+
+    @NotNull(message = "Recipient email is mandatory")
+    @Email(message = "Invalid email format")
+    private String recipientEmail;
+
+    @NotNull(message = "Recipient phone number is mandatory")
+    @Pattern(regexp = "^\\+?[0-9. ()-]{7,25}$", message = "Invalid phone number")
+    private String recipientPhone;
 
     @Builder.Default
     private boolean isDeleted = false;

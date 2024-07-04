@@ -7,10 +7,7 @@ import com.backend.exclusive.models.Order;
 import com.backend.exclusive.models.OrderItem;
 import com.backend.exclusive.models.Payment;
 import com.backend.exclusive.models.Product;
-import com.backend.exclusive.repositories.OrderItemRepository;
-import com.backend.exclusive.repositories.OrderRepository;
-import com.backend.exclusive.repositories.PaymentRepository;
-import com.backend.exclusive.repositories.ProductRepository;
+import com.backend.exclusive.repositories.*;
 import com.backend.exclusive.services.OrderService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,13 +36,34 @@ public class OrderServiceImpl implements OrderService {
     private ProductRepository productRepository;
 
     @Autowired
-    PaymentRepository paymentRepository;
+    private PaymentRepository paymentRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private CouponRepository couponRepository;
 
     @Override
     public Order createOrder(OrderDTO orderDTO) {
-        Order newOrder = orderMapper.toOrder(orderDTO);
+        Order newOrder = new Order();
+        newOrder.setUser(userRepository.findById(new ObjectId(orderDTO.getUserId())).get());
+        if (orderDTO.getCouponId() == null) {
+            newOrder.setCoupon(null);
+        } else {
+            newOrder.setCoupon(couponRepository.findById(new ObjectId(orderDTO.getCouponId())).get());
+        }
+        newOrder.setOrderDate(orderDTO.getOrderDate());
+        newOrder.setTotalAmount(orderDTO.getTotalAmount());
+        newOrder.setStatus(orderDTO.getStatus());
         newOrder.setId(new ObjectId());
-
+        newOrder.setRecipientFirstName(orderDTO.getRecipientFirstName());
+        newOrder.setRecipientLastName(orderDTO.getRecipientLastName());
+        newOrder.setRecipientAddress(orderDTO.getRecipientAddress());
+        newOrder.setRecipientEmail(orderDTO.getRecipientEmail());
+        newOrder.setRecipientPhone(orderDTO.getRecipientPhone());
+        newOrder.setRecipientCity(orderDTO.getRecipientCity());
+        newOrder.setRecipientDistrict(orderDTO.getRecipientDistrict());
         // Manually map orderItems
         List<OrderItem> orderItems = orderDTO.getOrderItems().stream().map(orderItemDTO -> {
             OrderItem orderItem = orderItemMapper.toOrderItem(orderItemDTO);
@@ -55,6 +73,7 @@ public class OrderServiceImpl implements OrderService {
         }).collect(Collectors.toList());
 
         newOrder.setOrderItems(orderItems);
+        System.out.println("5" + newOrder);
         return orderRepository.save(newOrder);
     }
 
@@ -135,5 +154,12 @@ public class OrderServiceImpl implements OrderService {
                 .map(Payment::getStatus)
                 .findFirst()
                 .orElse("Payment status not found");
+    }
+
+    @Override
+    public List<Order> ordersPending() {
+        return orderRepository.findAll()
+                .stream().filter(order -> order.getStatus().equals("Pending"))
+                .toList();
     }
 }

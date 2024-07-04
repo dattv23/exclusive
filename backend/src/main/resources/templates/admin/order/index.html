@@ -46,7 +46,8 @@
                     <tr th:each="order : ${orders}">
                         <td th:text="${order.id}"></td>
                         <td th:text="${order.user.email}"></td>
-                        <td th:text="${order.coupon.code}"></td>
+                        <td th:if="${order.coupon != null}" th:text="${order.coupon.code}"></td>
+                        <td th:unless="${order.coupon != null}">No Coupon Applied</td>
                         <td th:text="${order.orderDate}"></td>
                         <td th:text="${order.totalAmount}"></td>
                         <td th:text="${order.status}"></td>

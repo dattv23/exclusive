@@ -41,20 +41,20 @@ public class CheckoutController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User currentUser = (User) authentication.getPrincipal();
 
-        // init data order
         orderDTO.setUserId(currentUser.getId().toString());
         orderDTO.setOrderDate(new Date());
 
         List<OrderItemDTO> orderItemDTOS = orderDTO.getOrderItems();
-        double total = orderItemDTOS.stream()
-                .mapToDouble(OrderItemDTO::getSubtotal)
-                .sum();
-        orderDTO.setTotalAmount(total);
+
+//        double total = orderItemDTOS.stream()
+//                .mapToDouble(OrderItemDTO::getSubtotal)
+//                .sum();
+//        orderDTO.setTotalAmount(total);
 
         orderDTO.setStatus("Pending");
+        System.out.println("1" + orderDTO);
         Order newOrder = checkoutService.processOrder(orderDTO, paymentMethodId);
-
-        // Send order placed email
+        System.out.println("2" + newOrder);
         String toEmail = userRepository.findById(new ObjectId(orderDTO.getUserId())).get().getEmail();
         emailService.sendOrderPlacedEmail(toEmail);
 
