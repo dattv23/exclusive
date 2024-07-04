@@ -1,5 +1,5 @@
 import { ProductList } from '@/components';
-import { envServerConfig } from '@/lib/env';
+import { envServerConfig } from '@/lib/envServer';
 import React from 'react';
 
 async function getData() {

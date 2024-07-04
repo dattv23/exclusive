@@ -4,7 +4,7 @@ import { getTranslations } from 'next-intl/server';
 import { Link, redirect } from '@/navigation';
 import { CartTable } from '@/components/Tables';
 import { ApplyCouponForm, Button } from '@/components';
-import { envServerConfig } from '@/lib/env';
+import { envServerConfig } from '@/lib/envServer';
 import { CartItem } from '@/types';
 import { calculateDiscountedPrice, convertPriceByLocale } from '@/lib/utils';
 import { Locale } from '@/config';
@@ -21,6 +21,7 @@ async function getData() {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     },
+    cache: 'no-cache',
   });
 
   if (!res.ok) {

@@ -1,121 +1,140 @@
 'use client';
 
-import React, { useState } from 'react';
+import toast from 'react-hot-toast';
 import { useTranslations } from 'next-intl';
+import { useParams } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
 
-import { CartItem, Error } from '@/types';
+import { Error as TError } from '@/types';
 import { Input } from '@/components/Inputs';
 import { checkoutFormAction } from './action';
 import { ApplyCouponForm } from '@/components';
 import { SubmitButton } from '@/components/Button';
 import { CheckOutTable } from '@/components/Tables';
-import { calculateDiscountedPrice, cn, getError } from '@/lib/utils';
+import {
+  cn,
+  getError,
+  convertPriceByLocale,
+  calculateTotalPriceCart,
+  calculateShippingFee,
+} from '@/lib/utils';
+import { useCartStore } from '@/store';
+import { Locale } from '@/config';
+import { useDebounce } from '@/hooks/useDebounce';
+import { useRouter } from '@/navigation';
 
-type CheckOutFormProps = {
-  data: CartItem[];
-};
-
-const CheckOutForm: React.FC<CheckOutFormProps> = ({ data }) => {
+const CheckOutForm: React.FC = () => {
+  const params = useParams();
+  const { cart, removeAll } = useCartStore();
   const t = useTranslations('CheckOutForm');
-  const [errors, setErrors] = useState<Error[]>([]);
+  const router = useRouter();
+
+  const [errors, setErrors] = useState<TError[]>([]);
+  const [shipping, setShipping] = useState<number>(0);
+  const [province, setProvince] = useState('');
+  const [district, setDistrict] = useState('');
+  const [address, setAddress] = useState('');
+
+  const debouncedProvince = useDebounce(province, 500);
+  const debouncedDistrict = useDebounce(district, 500);
+  const debouncedAddress = useDebounce(address, 500);
+
+  useEffect(() => {
+    const calculateShipping = async () => {
+      if (debouncedProvince && debouncedDistrict && debouncedAddress) {
+        const fee = await calculateShippingFee(
+          debouncedProvince,
+          debouncedDistrict,
+          debouncedAddress,
+          cart,
+        );
+        setShipping(Number(fee ?? 0));
+      }
+    };
+
+    calculateShipping();
+  }, [debouncedProvince, debouncedDistrict, debouncedAddress]);
 
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setErrors(errors.filter((error) => error.key != e.target.name));
+    const { name, value } = e.target;
+    setErrors(errors.filter((error) => error.key != name));
+
+    switch (name) {
+      case 'recipientCity':
+        setProvince(value);
+        break;
+      case 'recipientDistrict':
+        setDistrict(value);
+        break;
+      case 'recipientAddress':
+        setAddress(value);
+        break;
+    }
   };
-  const subtotal = data.reduce(
-    (pre, cur) =>
-      pre +
-      calculateDiscountedPrice(
-        cur.product.regularPrice,
-        cur.product?.discount ?? 0,
-      ) *
-        cur.quantity,
-    0,
-  );
+
+  const inputs = [
+    { name: 'recipientFirstName', type: 'text' },
+    { name: 'recipientLastName', type: 'text' },
+    { name: 'recipientCity', type: 'text' },
+    { name: 'recipientDistrict', type: 'text' },
+    { name: 'recipientAddress', type: 'text' },
+    { name: 'recipientEmail', type: 'email' },
+    { name: 'recipientPhone', type: 'text' },
+  ];
+
   return (
     <div className="w-full rounded-lg p-6 ">
       <form
-        action={(formData) =>
-          checkoutFormAction({ formData, onChangeErrors: setErrors })
-        }
+        action={async (formData) => {
+          const result = await checkoutFormAction({
+            formData,
+            onChangeErrors: setErrors,
+            totalAmount: calculateTotalPriceCart(cart) + shipping,
+            cart,
+          });
+          if (result?.isSuccess) {
+            removeAll();
+            router.push('/');
+            toast.success('Place order successful');
+          } else {
+            toast.success('Place order failed');
+          }
+        }}
         className={cn('flex w-full flex-col gap-2', errors && 'gap-3')}
       >
         <div className="flex justify-between ">
           <div className="w-full max-w-md space-y-4">
-            <Input
-              type="text"
-              name="firstName"
-              id="firstName"
-              label={t('FirstName')}
-              onChange={(e) => handleChangeInput(e)}
-              error={getError(errors, 'firstName')}
-            />
-            <Input
-              type="text"
-              name="lastName"
-              id="lastName"
-              label={t('LastName')}
-              onChange={(e) => handleChangeInput(e)}
-              error={getError(errors, 'lastName')}
-            />
-            <Input
-              type="text"
-              name="streetAddress"
-              id="streetAddress"
-              label={t('StreetAddress')}
-              onChange={(e) => handleChangeInput(e)}
-              error={getError(errors, 'streetAddress')}
-            />
-            <Input
-              type="text"
-              name="city"
-              id="city"
-              label={t('City')}
-              onChange={(e) => handleChangeInput(e)}
-              error={getError(errors, 'city')}
-            />
-            <Input
-              type="text"
-              name="apartment"
-              id="apartment"
-              label={t('Apartment')}
-              onChange={(e) => handleChangeInput(e)}
-              error={getError(errors, 'apartment')}
-            />
-            <Input
-              type="text"
-              name="email"
-              id="email"
-              label={t('Email')}
-              onChange={(e) => handleChangeInput(e)}
-              error={getError(errors, 'email')}
-            />
-            <Input
-              type="text"
-              name="yourPhone"
-              id="yourPhone"
-              label={t('PhoneNumber')}
-              onChange={(e) => handleChangeInput(e)}
-              error={getError(errors, 'yourPhone')}
-            />
+            {inputs.map((item, id) => (
+              <Input
+                key={id}
+                type={item.name}
+                name={item.name}
+                id={item.name}
+                label={t(item.name)}
+                onChange={(e) => handleChangeInput(e)}
+                error={getError(errors, item.name)}
+              />
+            ))}
           </div>
           <div className="w-full max-w-md">
-            <CheckOutTable data={data} />
+            <CheckOutTable />
             <div className="mt-6">
               <div className=" flex flex-col gap-4">
                 <div className="flex justify-between">
                   <p>{t('Subtotal')}</p>
-                  <p>{`${subtotal}$`}</p>
+                  <p>{`${convertPriceByLocale(calculateTotalPriceCart(cart), params.locale as Locale)}`}</p>
                 </div>
                 <hr />
                 <div className="flex justify-between">
                   <p>{t('Shipping')}</p>
-                  <p>FREE</p>
+                  <p>
+                    {convertPriceByLocale(shipping, params.locale as Locale)}
+                  </p>
                 </div>
                 <hr />
                 <div className="flex justify-between">
                   <p>{t('Total')}</p>
-                  <p>{`${subtotal}$`}</p>
+                  <p>{`${convertPriceByLocale(calculateTotalPriceCart(cart) + shipping, params.locale as Locale)}`}</p>
                 </div>
               </div>
               <div className="mt-8">
@@ -156,7 +175,7 @@ const CheckOutForm: React.FC<CheckOutFormProps> = ({ data }) => {
           </div>
         </div>
       </form>
-      <div className="w-full max-w-md">
+      <div className="mt-1 w-full max-w-md">
         <ApplyCouponForm />
       </div>
     </div>

@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 
 import { Product } from '@/types';
 import { Locale } from '@/config';
-import { envServerConfig } from '@/lib/env';
+import { envServerConfig } from '@/lib/envServer';
 import ProductDetailPage from '@/containers/product-detail-page';
 
 type ProductDetailProps = {

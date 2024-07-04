@@ -2,7 +2,7 @@ import React from 'react';
 import dynamic from 'next/dynamic';
 
 import { Product } from '@/types';
-import { envServerConfig } from '@/lib/env';
+import { envServerConfig } from '@/lib/envServer';
 
 const BannerSection = dynamic(
   () => import('@/containers/home-page/banner-section'),

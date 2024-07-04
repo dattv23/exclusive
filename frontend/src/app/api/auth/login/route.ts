@@ -1,5 +1,5 @@
 import { apiEndpoints } from '@/config';
-import { envServerConfig } from '@/lib/env';
+import { envServerConfig } from '@/lib/envServer';
 import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {

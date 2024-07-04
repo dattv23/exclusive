@@ -228,7 +228,8 @@
     "Subtotal": "Tạm tính",
     "Return To Shop": "Quay lại mua sắm",
     "Update Cart": "Cập nhật giỏ hàng",
-    "Update cart failed": "Cập nhật giỏ hàng thất bại"
+    "Update cart failed": "Cập nhật giỏ hàng thất bại",
+    "Update cart success": "Cập nhật giỏ hàng thành công"
   },
   "CartPage": {
     "Cart Total": "Tổng giỏ hàng",
@@ -247,13 +248,13 @@
     "Shipping": "Chi phí vận chuyển",
     "Bank": "Ngân hàng",
     "Cash on delivery": "Thanh toán khi giao hàng",
-    "FirstName": "Họ và tên lót",
-    "LastName": "Tên ",
-    "StreetAddress": "Địa chỉ",
-    "City": "Thành phố",
-    "Apartment": "Căn hộ",
-    "Email": "Email",
-    "PhoneNumber": "Số điện thoại",
+    "recipientFirstName": "Họ và chữ lót",
+    "recipientLastName": "Tên",
+    "recipientCity": "Tỉnh / Thành phố",
+    "recipientDistrict": "Quận / Huyện",
+    "recipientAddress": "Địa chỉ",
+    "recipientEmail": "Email",
+    "recipientPhone": "Số điện thoại",
     "OrderPlacedSuccessfully": "Đặt hàng thành công"
   },
   "ProductDetailPage": {

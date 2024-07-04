@@ -44,3 +44,6 @@ export enum Locales {
 }
 
 export const EXCHANGE_RATE = 23000;
+
+export const PICK_PROVINCE = 'Hồ Chí Minh';
+export const PICK_DISTRICT = 'Thủ Đức';

@@ -1,18 +1,19 @@
 'use client';
 
 import Image from 'next/image';
+import toast from 'react-hot-toast';
 import { useTranslations } from 'next-intl';
 import { useParams } from 'next/navigation';
 import React, { ChangeEvent, useEffect, useState } from 'react';
 
 import { Locale } from '@/config';
-import { CartItem, mapCartToMappedCartItem } from '@/types';
-import { Link, useRouter } from '@/navigation';
 import { useCartStore } from '@/store';
 import { Button } from '@/components/Button';
+import { Link, useRouter } from '@/navigation';
 import { RemoveIcon } from '@/components/Icons';
+import { CartItem, mapCartToMappedCartItem, Product } from '@/types';
 import { calculateDiscountedPrice, convertPriceByLocale } from '@/lib/utils';
-import toast from 'react-hot-toast';
+import { message } from 'antd';
 
 type CartTableProps = {
   data: CartItem[];
@@ -24,11 +25,13 @@ const CartTable: React.FC<CartTableProps> = ({ data }) => {
   const params = useParams();
   const router = useRouter();
 
+  const [cartClone, setCartClone] = useState<CartItem[]>(cart);
   const [hoveredItemId, setHoveredItemId] = useState<string | null>(null);
 
   useEffect(() => {
     if (data) {
       update(data);
+      setCartClone(data);
     }
   }, []);
 
@@ -37,8 +40,8 @@ const CartTable: React.FC<CartTableProps> = ({ data }) => {
     event: ChangeEvent<HTMLInputElement>,
   ) => {
     const quantity = parseInt(event.target.value);
-    update(
-      cart.map((item) =>
+    setCartClone(
+      cartClone.map((item) =>
         item.product.id === id
           ? { ...item, quantity: isNaN(quantity) ? 1 : quantity }
           : item,
@@ -52,25 +55,34 @@ const CartTable: React.FC<CartTableProps> = ({ data }) => {
       if (!token) {
         router.push('/auth/sign-in');
       }
-      const res = await fetch(`https://exclusive-brbv.onrender.com`, {
-        method: 'PUT',
-        body: JSON.stringify(mapCartToMappedCartItem(cart)),
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-          accept: '*/*',
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_CLIENT_DOMAIN_API}/api/v1/carts`,
+        {
+          method: 'PUT',
+          body: JSON.stringify(mapCartToMappedCartItem(cartClone)),
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+            accept: '*/*',
+          },
+          cache: 'no-cache',
         },
-      });
-      const data = await res.json();
-      console.log('====================================');
-      console.log(data);
-      console.log('====================================');
+      );
+      const responseData = await res.json();
+      if (responseData.status === 200) {
+        update(cartClone);
+        router.refresh();
+        message.success(t('Update cart success'));
+      }
     } catch (error) {
-      console.log('====================================');
-      console.log(error);
-      console.log('====================================');
       toast.error(t('Update cart failed'));
     }
+  };
+
+  const handleRemoveItem = async (item: Product) => {
+    setCartClone(
+      cartClone.filter((cartItem) => cartItem.product.id !== item.id),
+    );
   };
 
   const cols = [
@@ -101,7 +113,7 @@ const CartTable: React.FC<CartTableProps> = ({ data }) => {
                   </tr>
                 </thead>
                 <tbody>
-                  {cart.map((item) => (
+                  {cartClone.map((item) => (
                     <tr className="border-b" key={item.product.id}>
                       <td
                         className=" flex items-center gap-5 whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900"
@@ -117,7 +129,10 @@ const CartTable: React.FC<CartTableProps> = ({ data }) => {
                             className="h-[80px] w-[80px]"
                           />
                           {hoveredItemId === item.product.id && (
-                            <button className="absolute left-1 top-1">
+                            <button
+                              className="absolute left-1 top-1"
+                              onClick={() => handleRemoveItem(item.product)}
+                            >
                               <RemoveIcon />
                             </button>
                           )}

@@ -3,25 +3,28 @@
 import toast from 'react-hot-toast';
 
 import { checkoutAction } from '@/actions';
-import { Error } from '@/types';
 import { checkoutSchema } from '@/schemas';
+import { CartItem, Error, mapCartToMappedCartItem } from '@/types';
 
 type TParams = {
   formData: FormData;
   onChangeErrors: React.Dispatch<React.SetStateAction<Error[]>>;
+  cart: CartItem[];
+  totalAmount: number;
 };
 
 export const checkoutFormAction = async (params: TParams) => {
-  const { formData, onChangeErrors } = params;
+  const { formData, onChangeErrors, totalAmount, cart } = params;
 
   const data = {
-    firstName: formData.get('firstName'),
-    lastName: formData.get('lastName'),
-    streetAddress: formData.get('streetAddress'),
-    city: formData.get('city'),
-    apartment: formData.get('apartment'),
-    email: formData.get('email'),
-    yourPhone: formData.get('yourPhone'),
+    recipientFirstName: formData.get('recipientFirstName'),
+    recipientLastName: formData.get('recipientLastName'),
+    recipientCity: formData.get('recipientCity'),
+    recipientDistrict: formData.get('recipientDistrict'),
+    recipientAddress: formData.get('recipientAddress'),
+    recipientEmail: formData.get('recipientEmail'),
+    recipientPhone: formData.get('recipientPhone'),
+    totalAmount,
   };
 
   const result = checkoutSchema.safeParse(data);
@@ -33,9 +36,9 @@ export const checkoutFormAction = async (params: TParams) => {
     onChangeErrors(newErrors);
     return;
   }
-  const res = await checkoutAction(result.data);
+
+  const res = await checkoutAction(data, mapCartToMappedCartItem(cart));
   if (res?.error) {
     toast.error(res.error);
-  }
-  toast.success('Place order successful');
+  } else return { isSuccess: true };
 };

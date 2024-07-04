@@ -227,7 +227,8 @@
     "Subtotal": "Subtotal",
     "Return To Shop": "Return To Shop",
     "Update Cart": "Update Cart",
-    "Update cart failed": "Update cart failed"
+    "Update cart failed": "Update cart failed",
+    "Update cart success": "Update cart success"
   },
   "CartPage": {
     "Cart Total": "Cart Total",
@@ -246,13 +247,15 @@
     "Shipping": "Shipping",
     "Bank": "Bank",
     "Cash on delivery": "Cash on delivery",
-    "FirstName": "First Name",
-    "LastName": "Last Name",
-    "StreetAddress": "Street Address",
-    "City": "City",
-    "Apartment": "Apartment",
-    "Email": "Email",
-    "PhoneNumber": "Phone Number",
+    "recipientFirstName": "First Name",
+    "recipientLastName": "Last Name",
+    "recipientCity": "City",
+    "recipientDistrict": "District",
+    "recipientAddress": "Address",
+    "recipientEmail": "Email",
+    "recipientPhone": "Phone",
+    "email": "Email",
+    "phone": "Phone Number",
     "OrderPlacedSuccessfully": "OrderPlacedSuccessfully"
   },
   "ProductDetailPage": {

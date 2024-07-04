@@ -1,7 +1,14 @@
-import { EXCHANGE_RATE, Locale, Locales } from '@/config';
-import { Error } from '@/types';
 import clsx, { ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+
+import {
+  EXCHANGE_RATE,
+  Locale,
+  Locales,
+  PICK_DISTRICT,
+  PICK_PROVINCE,
+} from '@/config';
+import { CartItem, Error as TError } from '@/types';
 
 /** Merge classes with tailwind-merge with clsx full feature */
 export function cn(...inputs: ClassValue[]) {
@@ -48,7 +55,7 @@ export const startScore = (rate: number) => {
 export const promiseTimeout = (ms: number) =>
   new Promise((resolve) => setTimeout(resolve, ms));
 
-export const getError = (errors: Error[], field: string) => {
+export const getError = (errors: TError[], field: string) => {
   return errors.find((item) => item.key == field);
 };
 
@@ -93,5 +100,59 @@ export const convertPriceByLocale = (price: number, locale: Locale) => {
       return vndToUsd(price, EXCHANGE_RATE);
     default:
       break;
+  }
+};
+
+export const calculateTotalPriceCart = (cart: CartItem[]) => {
+  return cart.reduce(
+    (pre, cur) =>
+      pre +
+      calculateDiscountedPrice(
+        cur.product.regularPrice,
+        cur.product?.discount ?? 0,
+      ) *
+        cur.quantity,
+    0,
+  );
+};
+
+export const calculateShippingFee = async (
+  province: string,
+  district: string,
+  address: string,
+  cart: CartItem[],
+) => {
+  try {
+    const token = localStorage.getItem('accessToken');
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_CLIENT_DOMAIN_API}/api/v1/shipping/fee`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          pick_province: PICK_PROVINCE,
+          pick_district: PICK_DISTRICT,
+          province,
+          district,
+          address,
+          weight: 10000,
+          value: calculateTotalPriceCart(cart),
+          transport: 'road',
+        }),
+      },
+    );
+
+    if (!response.ok) {
+      throw new Error('Failed to calculate shipping fee');
+    }
+
+    const res = await response.json();
+    return res.data;
+  } catch (error) {
+    // console.error('Error calculating shipping fee:', error);
+    return 0;
   }
 };

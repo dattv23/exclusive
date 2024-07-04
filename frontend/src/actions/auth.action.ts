@@ -3,7 +3,7 @@
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
-import { envServerConfig } from '@/lib/env';
+import { envServerConfig } from '@/lib/envServer';
 import { loginSchema, registerSchema, TLoginResponse } from '@/schemas';
 
 export const loginAction = async (data: unknown) => {

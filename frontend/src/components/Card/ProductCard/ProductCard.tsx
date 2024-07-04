@@ -1,5 +1,6 @@
 'use client';
 
+import { message } from 'antd';
 import Image from 'next/image';
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
@@ -13,12 +14,10 @@ import {
   calculateDiscountedPrice,
   cn,
   convertPriceByLocale,
-  startScore,
 } from '@/lib/utils';
 import { Locale } from '@/config';
 import { useAuthStore, useCartStore } from '@/store';
 import { useRouter } from '@/navigation';
-import { message } from 'antd';
 
 interface ProductCardProps {
   data: Product;
@@ -43,10 +42,30 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
     setIsHovered(false);
   };
 
-  const handleAddCart = () => {
+  const handleAddCart = async () => {
     if (!isAuth) {
       message.info(t('Please login to add cart'));
       router.push('/auth/sign-in');
+    }
+    const token = localStorage.getItem('accessToken');
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_CLIENT_DOMAIN_API}/api/v1/carts`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          productId: data.id,
+          quantity: 1,
+        }),
+      },
+    );
+    if (res.status !== 200) {
+      return {
+        error: 'Add cart failed',
+      };
     }
     add(data);
     message.success(t('Added cart successfully'));
@@ -118,11 +137,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
               </span>
             )}
           </p>
-          {data.rate && data.number_of_rate && (
+          {/* {data.rate && data.number_of_rate !== 0 && (
             <p>
               {startScore(data.rate)} ({data.number_of_rate})
             </p>
-          )}
+          )} */}
         </div>
       </div>
       <ProductDetailModal
