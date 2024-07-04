@@ -8,7 +8,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import org.mapstruct.factory.Mappers;
 
-@Mapper(uses = {OrderItemMapper.class})
+@Mapper(uses = {OrderItemMapper.class}, componentModel = "spring")
 public interface OrderMapper {
     OrderMapper INSTANCE = Mappers.getMapper(OrderMapper.class);
 
