@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet"> <!-- Include your CSS file if you have one -->
+</head>
+<body>
+<div class="login-container">
+    <form id="loginForm">
+        <h2>Login</h2>
+        <div>
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" required>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit">Login</button>
+    </form>
+</div>
+</body>
+<script>
+    document.getElementById('loginForm').addEventListener('submit', async function(event) {
+        event.preventDefault();
+
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        const response = await fetch('/api/v1/auth/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, password })
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            const { token, expiresIn, role } = data.data;
+
+            // Handle successful login
+            localStorage.setItem('token', token);
+
+            // Redirect to the admin page
+            window.location.href = '/api/v1/admin';
+        } else {
+            // Handle login failure
+            alert('Login failed! Please check your credentials.');
+        }
+    });
+</script>
+</html>

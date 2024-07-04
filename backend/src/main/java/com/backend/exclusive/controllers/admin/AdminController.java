@@ -92,6 +92,11 @@ public class AdminController {
         return "admin/user/index";
     }
 
+    @GetMapping("/login")
+    public String login() {
+        return "admin/login";
+    }
+
 //    @GetMapping("/users/new")
 //    public String showCreateUserForm(Model model) {
 //        model.addAttribute("user", new UserDTO());
