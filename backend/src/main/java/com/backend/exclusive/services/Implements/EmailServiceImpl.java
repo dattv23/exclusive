@@ -1,9 +1,13 @@
 package com.backend.exclusive.services.Implements;
 
 
+import com.backend.exclusive.models.Order;
+import com.backend.exclusive.models.OrderItem;
+import com.backend.exclusive.repositories.OrderRepository;
 import com.backend.exclusive.services.EmailService;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -14,6 +18,9 @@ public class EmailServiceImpl implements EmailService {
 
     @Autowired
     private JavaMailSender mailSender;
+
+    @Autowired
+    private OrderRepository orderRepository;
 
     @Override
     public void sendSignupSuccessEmail(String toEmail) {
@@ -58,71 +65,58 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    public void sendOrderPlacedEmail(String toEmail) {
+    public void sendOrderPlacedEmail(String toEmail, ObjectId orderId) {
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         try {
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
             helper.setTo(toEmail);
             helper.setSubject("Your order is placed");
 
+            // Fetch order details
+            Order order = orderRepository.findById(orderId).orElse(null);
+            if (order == null) {
+                throw new IllegalArgumentException("Order not found");
+            }
+
             StringBuilder html = new StringBuilder();
             html.append("<div style=\"font-family: Helvetica, Arial, sans-serif; min-width: 1000px; overflow: auto; line-height: 2; text-align: center;\">\n");
             html.append("    <div style=\"margin: 50px auto; width: 70%; padding: 20px 0;\">\n");
             html.append("        <div style=\"border-bottom: 1px solid #eee; text-align: center;\">\n");
-            html.append("            <a href=\"\" style=\"font-size: 1.4em; color: #00466a; text-decoration: none; font-weight: 600;\">Exclusive Welcome</a>\n");
+            html.append("            <a href=\"\" style=\"font-size: 1.4em; color: #00466a; text-decoration: none; font-weight: 600;\">Exclusive Mail</a>\n");
             html.append("        </div>\n");
-            html.append("        <p style=\"font-size: 1.1em; color: black;\">Hi, {toEmail}</p>\n");
+            html.append("        <p style=\"font-size: 1.1em; color: black;\">Hi, ").append(toEmail).append("</p>\n");
             html.append("        <p style=\"color: black;\">Your order is placed!</p>\n");
             html.append("        <div class=\"order_box\" style=\"font-size: 1.1em; color: #333; text-align: left; display: inline-block;\">\n");
             html.append("            <h2 style=\"border-bottom: 1px solid #eee; padding-bottom: 10px;\">Your Order</h2>\n");
             html.append("            <ul class=\"list\" style=\"list-style: none; padding: 0; margin: 20px 0;\">\n");
-            html.append("                <li style=\"padding: 10px 0; border-bottom: 1px solid #eee;\">\n");
-            html.append("                    <a href=\"#\" style=\"text-decoration: none; color: #333;\">\n");
-            html.append("                        Product <span style=\"float: right;\">Total</span>\n");
-            html.append("                    </a>\n");
-            html.append("                </li>\n");
-            html.append("                <li style=\"padding: 10px 0; border-bottom: 1px solid #eee;\">\n");
-            html.append("                    <a href=\"#\" style=\"text-decoration: none; color: #333;\">\n");
-            html.append("                        Fresh Blackberry\n");
-            html.append("                        <span style=\"float: right;\">\n");
-            html.append("                            <span style=\"margin-right: 20px;\">x 02</span>\n");
-            html.append("                            <span>$720.00</span>\n");
-            html.append("                        </span>\n");
-            html.append("                    </a>\n");
-            html.append("                </li>\n");
-            html.append("                <li style=\"padding: 10px 0; border-bottom: 1px solid #eee;\">\n");
-            html.append("                    <a href=\"#\" style=\"text-decoration: none; color: #333;\">\n");
-            html.append("                        Fresh Tomatoes\n");
-            html.append("                        <span style=\"float: right;\">\n");
-            html.append("                            <span style=\"margin-right: 20px;\">x 02</span>\n");
-            html.append("                            <span>$720.00</span>\n");
-            html.append("                        </span>\n");
-            html.append("                    </a>\n");
-            html.append("                </li>\n");
-            html.append("                <li style=\"padding: 10px 0; border-bottom: 1px solid #eee;\">\n");
-            html.append("                    <a href=\"#\" style=\"text-decoration: none; color: #333;\">\n");
-            html.append("                        Fresh Broccoli\n");
-            html.append("                        <span style=\"float: right;\">\n");
-            html.append("                            <span style=\"margin-right: 20px;\">x 02</span>\n");
-            html.append("                            <span>$720.00</span>\n");
-            html.append("                        </span>\n");
-            html.append("                    </a>\n");
-            html.append("                </li>\n");
+
+            double subtotal = 0;
+
+            for (OrderItem item : order.getOrderItems()) {
+                html.append("                <li style=\"padding: 10px 0; border-bottom: 1px solid #eee;\">\n");
+                html.append("                    <a href=\"#\" style=\"text-decoration: none; color: #333;\">\n");
+                html.append("                        ").append(item.getProduct().getName()).append("\n");
+                html.append("                        <span style=\"float: right;\">\n");
+                html.append("                            <span style=\"margin-right: 20px;\">x ").append(item.getQuantity()).append("</span>\n");
+                html.append("                            <span>đ").append((int) item.getSubtotal()).append("</span>\n");
+                html.append("                        </span>\n");
+                html.append("                    </a>\n");
+                html.append("                </li>\n");
+                subtotal += item.getSubtotal();
+            }
+
+            double total = subtotal;
+
             html.append("            </ul>\n");
             html.append("            <ul class=\"list list_2\" style=\"list-style: none; padding: 0; margin: 20px 0;\">\n");
             html.append("                <li style=\"padding: 10px 0; border-bottom: 1px solid #eee;\">\n");
             html.append("                    <a href=\"#\" style=\"text-decoration: none; color: #333;\">\n");
-            html.append("                        Subtotal <span style=\"float: right;\">$2160.00</span>\n");
-            html.append("                    </a>\n");
-            html.append("                </li>\n");
-            html.append("                <li style=\"padding: 10px 0; border-bottom: 1px solid #eee;\">\n");
-            html.append("                    <a href=\"#\" style=\"text-decoration: none; color: #333;\">\n");
-            html.append("                        Shipping <span style=\"float: right;\">Flat rate: $50.00</span>\n");
+            html.append("                        Subtotal <span style=\"float: right;\">đ").append((int) subtotal).append("</span>\n");
             html.append("                    </a>\n");
             html.append("                </li>\n");
             html.append("                <li style=\"padding: 10px 0;\">\n");
             html.append("                    <a href=\"#\" style=\"text-decoration: none; color: #333;\">\n");
-            html.append("                        Total <span style=\"float: right; font-weight: bold;\">$2210.00</span>\n");
+            html.append("                        Total <span style=\"float: right; font-weight: bold;\">đ").append((int) total).append("</span>\n");
             html.append("                    </a>\n");
             html.append("                </li>\n");
             html.append("            </ul>\n");
@@ -137,12 +131,12 @@ public class EmailServiceImpl implements EmailService {
             html.append("    </div>\n");
             html.append("</div>");
 
-            String htmlContent = html.toString().replace("{toEmail}", toEmail);
-            helper.setText(htmlContent, true);  // `true` indicates HTML content
+            helper.setText(html.toString(), true);  // `true` indicates HTML content
 
             mailSender.send(mimeMessage);
         } catch (MessagingException e) {
             e.printStackTrace();
         }
     }
+
 }

@@ -49,7 +49,7 @@
                         <td th:if="${order.coupon != null}" th:text="${order.coupon.code}"></td>
                         <td th:unless="${order.coupon != null}">No Coupon Applied</td>
                         <td th:text="${order.orderDate}"></td>
-                        <td th:text="${order.totalAmount}"></td>
+                        <td th:text="${#numbers.formatDecimal(order.totalAmount, 0, 0)}"></td>
                         <td th:text="${order.status}"></td>
                         <td>
                             <div sec:authorize="hasAuthority('ADMIN')">

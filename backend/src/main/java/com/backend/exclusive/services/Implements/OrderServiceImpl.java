@@ -134,6 +134,9 @@ public class OrderServiceImpl implements OrderService {
                 product.setStockQuantity(product.getStockQuantity() - orderItem.getQuantity());
                 productRepository.save(product);
             });
+            Payment payment = paymentRepository.findAll().stream().filter(item -> item.getOrder().getId().equals(order.getId())).findFirst().get();
+            payment.setStatus("Success");
+            paymentRepository.save(payment);
         } else if ("Cancelled".equals(status) && !"Cancelled".equals(order.getStatus())) {
             order.getOrderItems().forEach(orderItem -> {
                 Product product = orderItem.getProduct();

@@ -52,11 +52,11 @@ public class CheckoutController {
 //        orderDTO.setTotalAmount(total);
 
         orderDTO.setStatus("Pending");
-        System.out.println("1" + orderDTO);
         Order newOrder = checkoutService.processOrder(orderDTO, paymentMethodId);
-        System.out.println("2" + newOrder);
+
+        System.out.println(newOrder);
         String toEmail = userRepository.findById(new ObjectId(orderDTO.getUserId())).get().getEmail();
-        emailService.sendOrderPlacedEmail(toEmail);
+        emailService.sendOrderPlacedEmail(toEmail, newOrder.getId());
 
         return ResponseUtil.success(orderMapper.toOrderDTO(newOrder));
     }
