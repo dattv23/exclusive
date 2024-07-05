@@ -53,6 +53,8 @@ public class CheckoutController {
 
         orderDTO.setStatus("Pending");
         Order newOrder = checkoutService.processOrder(orderDTO, paymentMethodId);
+
+        System.out.println(newOrder);
         String toEmail = userRepository.findById(new ObjectId(orderDTO.getUserId())).get().getEmail();
         emailService.sendOrderPlacedEmail(toEmail, newOrder.getId());
 
