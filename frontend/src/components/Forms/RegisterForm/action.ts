@@ -2,8 +2,8 @@
 
 import toast from 'react-hot-toast';
 
-import { registerAction } from '@/actions';
 import { Error } from '@/types';
+import { registerAction } from '@/actions';
 import { registerSchema } from '@/schemas';
 
 type TParams = {
@@ -15,9 +15,10 @@ export const registerFormAction = async (params: TParams) => {
   const { formData, onChangeErrors } = params;
 
   const data = {
-    name: formData.get('name'),
-    email: formData.get('email'),
+    firstName: formData.get('firstName'),
+    lastName: formData.get('lastName'),
     password: formData.get('password'),
+    email: formData.get('email'),
   };
 
   // client-side validation
@@ -33,5 +34,8 @@ export const registerFormAction = async (params: TParams) => {
   const res = await registerAction(result.data);
   if (res?.error) {
     toast.error(res.error);
+  }
+  if (res.isSuccess) {
+    toast.success('Register success');
   }
 };
