@@ -68,7 +68,7 @@
                         <td>
                             <img th:src="@{${product.imageUrl}}" alt="Product image" height="100px"/>
                         </td>
-                        <td th:text="${product.regularPrice}"></td>
+                        <td th:text="${#numbers.formatDecimal(product.regularPrice, 0, 0)}"></td>
                         <td th:text="${product.discountPercent}"></td>
                         <td th:text="${product.stockQuantity}"></td>
                         <td th:text="${product.description}"></td>
