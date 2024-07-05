@@ -5,11 +5,13 @@ import { useTranslations } from 'next-intl';
 import { Product } from '@/types';
 import { Link } from '@/navigation';
 import { Button } from '@/components/Button';
-import { calculateDiscountedPrice } from '@/lib/utils';
+import { calculateDiscountedPrice, convertPriceByLocale } from '@/lib/utils';
+import { Locale } from '@/config';
 
 type ProductDetailModalProps = {
   data: Product;
   isOpen: boolean;
+  locale: Locale;
   onClose: () => void;
 };
 
@@ -17,6 +19,7 @@ const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
   isOpen,
   onClose,
   data,
+  locale,
 }) => {
   const t = useTranslations('ProductDetailModal');
   return (
@@ -45,7 +48,7 @@ const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             <p className="text-base">{data.description}</p>
           </div>
           <div className="flex flex-col gap-2">
-            <h4 className="text-lg font-semibold">{`${t('Price')}: ${calculateDiscountedPrice(data.regularPrice, data?.discount ?? 0)}$`}</h4>
+            <h4 className="text-lg font-semibold">{`${t('Price')}: ${convertPriceByLocale(calculateDiscountedPrice(data.regularPrice, data?.discount ?? 0), locale)}`}</h4>
             <Button>
               <Link href={'/cart'} className="text-white hover:text-white">
                 {t('Shop now')}

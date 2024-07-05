@@ -77,7 +77,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
         className="flex cursor-pointer flex-col gap-4 rounded-md"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        onClick={() => router.push(`/products/${data.id}`)}
       >
         <div className="relative flex items-center justify-center bg-[#f5f5f5] px-10 py-9">
           <div className="absolute left-2 top-2 flex flex-col gap-2">
@@ -96,6 +95,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
             height={152}
             alt="product-image"
             className="h-[152px] w-auto"
+            onClick={() => router.push(`/products/${data.id}`)}
           />
           <div className="absolute right-2 top-2 flex flex-col gap-2">
             {isAuth && (
@@ -149,6 +149,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
         data={data}
         isOpen={modalDetailOpen}
         onClose={() => setModalDetailOpen(false)}
+        locale={params.locale as Locale}
       />
     </>
   );
