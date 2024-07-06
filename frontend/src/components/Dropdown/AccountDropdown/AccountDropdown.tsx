@@ -1,7 +1,6 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import React from 'react';
 
 import {
   BoxIcon,
@@ -13,6 +12,7 @@ import {
 import { Link } from '@/navigation';
 import { DropdownItem } from '@/types';
 import { useAuthStore } from '@/store';
+import { envClientConfig } from '@/lib/envClient';
 
 const AccountDropdown: React.FC = () => {
   const t = useTranslations('Navbar');
@@ -45,6 +45,14 @@ const AccountDropdown: React.FC = () => {
     },
   ];
 
+  const handleLogout = async () => {
+    await fetch(`${envClientConfig.NEXT_PUBLIC_APP_URL}/api/auth/logout`, {
+      cache: 'no-cache',
+    });
+    localStorage.removeItem('accessToken');
+    logout();
+  };
+
   return (
     <div className="invisible absolute right-0 z-50 -mt-1 w-64 origin-top-left divide-y divide-gray-100 rounded-md bg-white opacity-0 shadow-lg transition duration-300 group-hover:visible group-hover:opacity-100">
       <div className="py-1">
@@ -59,10 +67,7 @@ const AccountDropdown: React.FC = () => {
           </Link>
         ))}
         <button
-          onClick={() => {
-            localStorage.removeItem('accessToken');
-            logout();
-          }}
+          onClick={handleLogout}
           className="flex w-full items-center gap-2 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-100"
         >
           <LogoutIcon />

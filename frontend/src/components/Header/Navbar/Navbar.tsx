@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import React from 'react';
 import { useTranslations } from 'next-intl';
 
 import { CartIcon, HeartSmallIcon, UserIcon } from '@/components/Icons';
