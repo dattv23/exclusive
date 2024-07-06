@@ -1,6 +1,6 @@
 import { ProductList } from '@/components';
 import { envServerConfig } from '@/lib/envServer';
-import React from 'react';
+import CategoriesSection from './category-section';
 
 async function getData() {
   const res = await fetch(`${envServerConfig.DOMAIN_API}/api/v1/products`);
@@ -16,7 +16,8 @@ async function getData() {
 const ProductListPage: React.FC = async () => {
   const res = await getData();
   return (
-    <main className="py-8">
+    <main className="flex gap-10 py-8">
+      <CategoriesSection />
       <ProductList data={res.data} />
     </main>
   );
