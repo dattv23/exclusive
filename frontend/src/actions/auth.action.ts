@@ -25,6 +25,7 @@ export const loginAction = async (data: unknown) => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(result.data),
+    cache: 'no-cache',
   });
   const loginRes = await res.json();
   if (loginRes.status !== 200) {
@@ -66,6 +67,7 @@ export const registerAction = async (data: unknown) => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(result.data),
+    cache: 'no-cache',
   });
   const registerRes = await res.json();
   if (registerRes.status !== 200) {
