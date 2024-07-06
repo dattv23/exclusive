@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl';
 
-import { Button, ProductList } from '@/components';
+import { Button, ProductCard } from '@/components';
 import { Link } from '@/navigation';
 import { Product } from '@/types';
 
@@ -25,8 +25,10 @@ const BestSellerSection = (props: BestSellerSectionProps) => {
           <Link href={'/products'}>{t('View All')}</Link>
         </Button>
       </div>
-      <div>
-        <ProductList data={data} />
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-8 xl:grid-cols-4">
+        {data.slice(0, 8).map((product) => (
+          <ProductCard key={product.id} data={product} />
+        ))}
       </div>
     </section>
   );

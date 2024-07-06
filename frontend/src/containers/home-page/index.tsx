@@ -50,7 +50,7 @@ const HomePage: React.FC = async () => {
       <hr />
       <CategoriesSection />
       <hr />
-      <BestSellerSection data={products.slice(0, 4)} />
+      <BestSellerSection data={products} />
       <AdsSection />
       <OurProductSection data={products} />
       <NewArrivalSection />
