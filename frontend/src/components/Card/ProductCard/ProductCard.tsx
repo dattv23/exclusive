@@ -18,6 +18,7 @@ import {
 import { Locale } from '@/config';
 import { useAuthStore, useCartStore } from '@/store';
 import { useRouter } from '@/navigation';
+import { useWishListStore } from '@/store/wishList.store';
 
 interface ProductCardProps {
   data: Product;
@@ -27,11 +28,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
   const params = useParams();
   const t = useTranslations('ProductCard');
   const { isAuth } = useAuthStore();
-  const { add } = useCartStore();
+  const { add: addCart } = useCartStore();
+  const { wishList, add: addWishList, remove, find } = useWishListStore();
   const router = useRouter();
 
   const [isHovered, setIsHovered] = useState<boolean>(false);
-  const [isFavorite, setIsFavorite] = useState<boolean>(false);
   const [modalDetailOpen, setModalDetailOpen] = useState<boolean>(false);
 
   const handleMouseEnter = () => {
@@ -67,7 +68,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
         error: 'Add cart failed',
       };
     }
-    add(data);
+    addCart(data);
     message.success(t('Added cart successfully'));
   };
 
@@ -101,9 +102,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
             {isAuth && (
               <Button
                 className={cn('rounded-full bg-white p-2 hover:bg-secondary')}
-                onClick={() => setIsFavorite(!isFavorite)}
+                onClick={() =>
+                  find(data.id, wishList) ? remove(data.id) : addWishList(data)
+                }
               >
-                <HeartSmallIcon color={`${isFavorite ? 'red' : 'white'}`} />
+                <HeartSmallIcon
+                  color={`${find(data.id, wishList) ? 'red' : 'white'}`}
+                />
               </Button>
             )}
             <Button

@@ -270,5 +270,9 @@
     "Return Delivery": "Hoàn trả hàng",
     "Free 30 Days Delivery Returns Details": "Miễn phí hoàn trả trong vòng 30 ngày. Chi tiết",
     "Reviews": "Đánh giá"
+  },
+  "WishListSection": {
+    "Wishlist": "Danh sách yêu thích",
+    "Move all to cart": "Di chuyển tất cả tới giỏ hàng"
   }
 }

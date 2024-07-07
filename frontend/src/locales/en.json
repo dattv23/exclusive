@@ -271,5 +271,9 @@
     "Return Delivery": "Return Delivery",
     "Free 30 Days Delivery Returns Details": "Free 30 Days Delivery Returns Details",
     "Reviews": "Reviews"
+  },
+  "WishListSection": {
+    "Wishlist": "Wishlist",
+    "Move all to cart": "Move all to cart"
   }
 }

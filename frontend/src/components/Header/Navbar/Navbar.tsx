@@ -3,19 +3,22 @@
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 
-import { CartIcon, HeartSmallIcon, UserIcon } from '@/components/Icons';
+import { cn } from '@/lib/utils';
+import { NavItem } from '@/types';
+import useCart from '@/hooks/useCart';
+import { useAuthStore } from '@/store';
+import { Link, usePathname } from '@/navigation';
 import { SearchInput } from '@/components/Inputs';
 import { AccountDropdown } from '@/components/Dropdown';
-import { Link, usePathname } from '@/navigation';
-import { NavItem } from '@/types';
-import { useAuthStore, useCartStore } from '@/store';
-import { cn } from '@/lib/utils';
+import { useWishListStore } from '@/store/wishList.store';
+import { CartIcon, HeartSmallIcon, UserIcon } from '@/components/Icons';
 
 const Navbar: React.FC = () => {
   const t = useTranslations('Navbar');
   const { isAuth } = useAuthStore();
-  const { count } = useCartStore();
   const pathName = usePathname();
+  const { wishList } = useWishListStore();
+  const { cart } = useCart();
 
   const items: NavItem[] = [
     {
@@ -92,14 +95,19 @@ const Navbar: React.FC = () => {
       <SearchInput />
       {isAuth && (
         <div className="flex items-center">
-          <Link href={`/wishlist`} className="px-4 py-2">
+          <Link href={`/wishlist`} className="relative px-4 py-2">
             <HeartSmallIcon />
+            {wishList.length > 0 && (
+              <span className="absolute -top-1 right-0 flex h-6 w-6 items-center justify-center rounded-full bg-secondary">
+                {wishList.length}
+              </span>
+            )}
           </Link>
           <Link href={`/cart`} className="relative px-4 py-2">
             <CartIcon />
-            {count() > 0 && (
+            {cart.length > 0 && (
               <span className="absolute -top-1 right-0 flex h-6 w-6 items-center justify-center rounded-full bg-secondary">
-                {count()}
+                {cart.length}
               </span>
             )}
           </Link>
