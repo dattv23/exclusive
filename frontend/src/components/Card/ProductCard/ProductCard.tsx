@@ -16,8 +16,8 @@ import {
   convertPriceByLocale,
 } from '@/lib/utils';
 import { Locale } from '@/config';
-import { useAuthStore, useCartStore } from '@/store';
 import { useRouter } from '@/navigation';
+import { useAuthStore, useCartStore } from '@/store';
 import { useWishListStore } from '@/store/wishList.store';
 
 interface ProductCardProps {

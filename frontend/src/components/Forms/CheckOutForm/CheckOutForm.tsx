@@ -53,7 +53,7 @@ const CheckOutForm: React.FC = () => {
     };
 
     calculateShipping();
-  }, [debouncedProvince, debouncedDistrict, debouncedAddress]);
+  }, [debouncedProvince, debouncedDistrict, debouncedAddress, cart]);
 
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
