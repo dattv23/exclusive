@@ -30,6 +30,13 @@ public class CategoryServiceImpl implements CategoryService {
     private ProductRepository productRepository;
 
     @Override
+    public Category searchCategoryBySlug(String slug) {
+        return categoryRepository.findAll().stream()
+                .filter(category -> category.getSlug().equals(slug) && !category.isDeleted())
+                .findFirst().get();
+    }
+
+    @Override
     public List<Category> getAllCategories() {
         return categoryRepository.findByIsDeletedFalse();
     }

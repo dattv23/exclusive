@@ -28,6 +28,8 @@ public interface ProductService {
 
     void delete(ObjectId id);
 
+    List<Product> getProductByCategoryId(ObjectId id);
+
     List<Product> getProductsByCategoryName(String category);
 
     List<Product> getProductsByStatus(String status);
