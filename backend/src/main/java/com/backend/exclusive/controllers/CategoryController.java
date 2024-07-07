@@ -41,6 +41,9 @@ public class CategoryController {
         List<Category> categories = categoryService.getAllCategories();
         List<CategoryDTO> categoryDTOS = categories.stream()
                 .map(categoryMapper::toCategoryDTO).collect(Collectors.toList());
+        for (var item : categoryDTOS) {
+            item.setProducts(getProductDTOsByCategoryId(item.getId()));
+        }
         return ResponseUtil.success(categoryDTOS);
     }
 
@@ -58,7 +61,7 @@ public class CategoryController {
         CategoryDTO categoryDTO = categoryMapper.toCategoryDTO(category);
         // get products by category's id and pass it to categoryDTO.productDTOList
         List<ProductDTO> productDTOList = getProductDTOsByCategoryId(id);
-        categoryDTO.setProductDTOList(productDTOList);
+        categoryDTO.setProducts(productDTOList);
 
         return ResponseUtil.success(categoryDTO);
     }
@@ -102,7 +105,7 @@ public class CategoryController {
         CategoryDTO categoryDTO = categoryMapper.toCategoryDTO(category);
         // get products by category's id and pass it to categoryDTO.productDTOList
         List<ProductDTO> productDTOList = getProductDTOsByCategoryId(category.getId().toHexString());
-        categoryDTO.setProductDTOList(productDTOList);
+        categoryDTO.setProducts(productDTOList);
         return ResponseUtil.success(categoryDTO);
     }
 }

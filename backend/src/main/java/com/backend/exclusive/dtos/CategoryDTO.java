@@ -26,5 +26,5 @@ public class CategoryDTO {
 
     private String slug;
 
-    private List<ProductDTO> productDTOList;
+    private List<ProductDTO> products;
 }
