@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -21,4 +23,8 @@ public class CategoryDTO {
     private String name;
 
     private String description;
+
+    private String slug;
+
+    private List<ProductDTO> products;
 }

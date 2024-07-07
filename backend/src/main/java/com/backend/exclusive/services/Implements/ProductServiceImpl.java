@@ -34,6 +34,12 @@ public class ProductServiceImpl implements ProductService {
     private MongoTemplate mongoTemplate;
 
     @Override
+    public List<Product> getProductByCategoryId(ObjectId id) {
+        return productRepository.findAll().stream()
+                .filter(product -> product.getCategory().getId().equals(id)).toList();
+    }
+
+    @Override
     public List<Product> getAll() {
         return productRepository.findByIsDeletedFalse();
     }

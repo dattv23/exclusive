@@ -6,7 +6,9 @@ import com.backend.exclusive.dtos.OrderDTO;
 import com.backend.exclusive.dtos.OrderItemDTO;
 import com.backend.exclusive.mappers.OrderMapper;
 import com.backend.exclusive.models.Order;
+import com.backend.exclusive.models.Product;
 import com.backend.exclusive.models.User;
+import com.backend.exclusive.repositories.ProductRepository;
 import com.backend.exclusive.repositories.UserRepository;
 import com.backend.exclusive.services.CheckoutService;
 import com.backend.exclusive.services.EmailService;
@@ -36,6 +38,9 @@ public class CheckoutController {
     @Autowired
     private EmailService emailService;
 
+    @Autowired
+    private ProductRepository productRepository;
+
     @PostMapping
     public ResponseEntity<ApiResponse<OrderDTO>> checkout(@RequestBody OrderDTO orderDTO, @RequestParam String paymentMethodId) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -46,15 +51,23 @@ public class CheckoutController {
 
         List<OrderItemDTO> orderItemDTOS = orderDTO.getOrderItems();
 
-//        double total = orderItemDTOS.stream()
-//                .mapToDouble(OrderItemDTO::getSubtotal)
-//                .sum();
-//        orderDTO.setTotalAmount(total);
+        System.out.println("checkout" + orderItemDTOS);
+
+        for (var item : orderItemDTOS) {
+            Product product = productRepository.findById(new ObjectId(item.getProductId())).get();
+            item.setSubtotal(product.getRegularPrice() * item.getQuantity());
+        }
+
+        double total = orderItemDTOS.stream()
+                .mapToDouble(OrderItemDTO::getSubtotal)
+                .sum();
+
+        orderDTO.setTotalAmount(total);
 
         orderDTO.setStatus("Pending");
         Order newOrder = checkoutService.processOrder(orderDTO, paymentMethodId);
 
-        System.out.println(newOrder);
+        System.out.println("checkout" + newOrder);
         String toEmail = userRepository.findById(new ObjectId(orderDTO.getUserId())).get().getEmail();
         emailService.sendOrderPlacedEmail(toEmail, newOrder.getId());
 
