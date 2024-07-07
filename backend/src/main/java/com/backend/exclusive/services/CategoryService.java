@@ -22,4 +22,6 @@ public interface CategoryService {
     void deleteCategory(ObjectId id);
 
     Map<String, Double> getCategoryRevenueData();
+
+    Category searchCategoryBySlug(String slug);
 }

@@ -3,14 +3,19 @@ package com.backend.exclusive.controllers;
 import com.backend.exclusive.common.ApiResponse;
 import com.backend.exclusive.common.ResponseUtil;
 import com.backend.exclusive.dtos.CategoryDTO;
+import com.backend.exclusive.dtos.ProductDTO;
 import com.backend.exclusive.mappers.CategoryMapper;
+import com.backend.exclusive.mappers.ProductMapper;
 import com.backend.exclusive.models.Category;
+import com.backend.exclusive.models.Product;
 import com.backend.exclusive.services.CategoryService;
+import com.backend.exclusive.services.ProductService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -24,6 +29,12 @@ public class CategoryController {
 
     @Autowired
     private CategoryMapper categoryMapper;
+
+    @Autowired
+    private ProductService productService;
+
+    @Autowired
+    private ProductMapper productMapper;
 
     @GetMapping
     public ResponseEntity<ApiResponse<List<CategoryDTO>>> allCategories() {
@@ -43,9 +54,24 @@ public class CategoryController {
 
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse<CategoryDTO>> getCategoryById(@PathVariable String id) {
-        Optional<Category> category = categoryService.getCategoryById(new ObjectId(id));
-        return ResponseUtil.success(categoryMapper.toCategoryDTO(category.get()));
+        Category category = categoryService.getCategoryById(new ObjectId(id)).get();
+        CategoryDTO categoryDTO = categoryMapper.toCategoryDTO(category);
+        // get products by category's id and pass it to categoryDTO.productDTOList
+        List<ProductDTO> productDTOList = getProductDTOsByCategoryId(id);
+        categoryDTO.setProductDTOList(productDTOList);
+
+        return ResponseUtil.success(categoryDTO);
     }
+
+    private List<ProductDTO> getProductDTOsByCategoryId(String categoryId) {
+        List<ProductDTO> productDTOList = new ArrayList<>();
+        List<Product> products = productService.getProductsByCategoryId(new ObjectId(categoryId));
+        for (var item : products) {
+            productDTOList.add(productMapper.toProductDTO(item));
+        }
+        return productDTOList;
+    }
+
 
     @PostMapping
     public ResponseEntity<ApiResponse<CategoryDTO>> createCategory(@RequestBody CategoryDTO category) {
@@ -67,5 +93,16 @@ public class CategoryController {
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<ApiResponse<CategoryDTO>> searchCategoryBySlug(@RequestParam String slug) {
+
+        Category category = categoryService.searchCategoryBySlug(slug);
+        CategoryDTO categoryDTO = categoryMapper.toCategoryDTO(category);
+        // get products by category's id and pass it to categoryDTO.productDTOList
+        List<ProductDTO> productDTOList = getProductDTOsByCategoryId(category.getId().toHexString());
+        categoryDTO.setProductDTOList(productDTOList);
+        return ResponseUtil.success(categoryDTO);
     }
 }

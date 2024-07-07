@@ -29,6 +29,8 @@ public class Category {
 
     private String description;
 
+    private String slug;
+
     @CreatedDate
     @Builder.Default
     private Date createdAt = new Date();
