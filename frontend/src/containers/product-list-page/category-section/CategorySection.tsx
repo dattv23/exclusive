@@ -1,6 +1,7 @@
+'use client';
+
 import { useTranslations } from 'next-intl';
 
-import { Category } from '@/types';
 import {
   CameraIcon,
   CellPhoneIcon,
@@ -9,14 +10,16 @@ import {
   HeadphoneIcon,
   SmartWatchIcon,
 } from '@/components/Icons';
-import { Link } from '@/navigation';
+import { Link, usePathname } from '@/navigation';
+import { cn } from '@/lib/utils';
 
 interface CategoriesSectionProps {}
 
 const CategoriesSection: React.FC<CategoriesSectionProps> = () => {
   const t = useTranslations('CategorySection');
+  const pathName = usePathname();
 
-  const listCategory: Category[] = [
+  const listCategory = [
     { id: 1, name: t('Phone'), slug: 'phone', icon: <CellPhoneIcon /> },
     {
       id: 2,
@@ -40,8 +43,11 @@ const CategoriesSection: React.FC<CategoriesSectionProps> = () => {
       {listCategory.map((item) => (
         <Link
           key={item.id}
-          href={`categories/${item.slug}`}
-          className="hover:text-primary"
+          href={`/categories/${item.slug}`}
+          className={cn(
+            'hover:text-primary',
+            pathName.includes(item.slug) && 'text-secondary',
+          )}
         >
           {item.name}
         </Link>
