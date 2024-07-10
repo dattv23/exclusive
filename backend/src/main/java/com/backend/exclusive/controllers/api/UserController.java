@@ -1,4 +1,4 @@
-package com.backend.exclusive.controllers;
+package com.backend.exclusive.controllers.api;
 
 import com.backend.exclusive.common.ApiResponse;
 import com.backend.exclusive.common.ResponseUtil;

@@ -1,4 +1,4 @@
-package com.backend.exclusive.controllers;
+package com.backend.exclusive.controllers.api;
 
 import com.backend.exclusive.common.ApiResponse;
 import com.backend.exclusive.common.ResponseUtil;
@@ -41,9 +41,6 @@ public class CategoryController {
         List<Category> categories = categoryService.getAllCategories();
         List<CategoryDTO> categoryDTOS = categories.stream()
                 .map(categoryMapper::toCategoryDTO).collect(Collectors.toList());
-        for (var item : categoryDTOS) {
-            item.setProducts(getProductDTOsByCategoryId(item.getId()));
-        }
         return ResponseUtil.success(categoryDTOS);
     }
 
