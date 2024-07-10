@@ -1,7 +1,5 @@
 import LoadingPage from '@/containers/loading-page';
 
-function loading() {
+export default function Loading() {
   return <LoadingPage />;
 }
-
-export default loading;

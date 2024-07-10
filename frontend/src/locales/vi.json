@@ -186,8 +186,8 @@
   },
   "Form": {
     "fields": {
-      "firstName": "Tên",
-      "lastName": "Họ",
+      "firstName": "Họ",
+      "lastName": "Tên",
       "email": "Email",
       "address": "Địa chỉ",
       "password": "Mật khẩu",
