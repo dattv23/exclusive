@@ -1,21 +1,16 @@
+import { useTranslations } from 'next-intl';
+import React from 'react';
+
 import {
   CustomerServiceIcon,
   DeliveryIcon,
   SecureIcon,
 } from '@/components/Icons';
-import { useTranslations } from 'next-intl';
-import React from 'react';
-
-type Service = {
-  id: number;
-  name: string;
-  description: string;
-  icon: React.ReactNode;
-};
+import { Service } from '@/types';
 
 const ServiceList = () => {
   const t = useTranslations('ServicesSection');
-  const listService: Service[] = [
+  const services: Service[] = [
     {
       id: 1,
       name: t('FREE AND FAST DELIVERY'),
@@ -37,7 +32,7 @@ const ServiceList = () => {
   ];
   return (
     <div className="flex justify-center gap-20">
-      {listService.map((item) => (
+      {services.map((item) => (
         <div className="flex flex-col items-center gap-6" key={item.id}>
           <div className="flex h-20 w-20 items-center justify-center rounded-full bg-[#c1c1c1]">
             <div className="flex h-16 w-16 items-center justify-center rounded-full bg-black">

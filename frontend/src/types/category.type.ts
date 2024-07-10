@@ -5,6 +5,6 @@ export type Category = {
   name: string;
   description: string;
   slug: string;
-  icon: React.ReactElement;
+  icon?: React.ReactElement;
   products: Product[];
 };

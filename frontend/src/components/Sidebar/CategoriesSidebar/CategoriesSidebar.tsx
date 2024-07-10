@@ -10,16 +10,14 @@ import {
   HeadphoneIcon,
   SmartWatchIcon,
 } from '@/components/Icons';
-import { Link, usePathname } from '@/navigation';
 import { cn } from '@/lib/utils';
+import { Link, usePathname } from '@/navigation';
 
-interface CategoriesSectionProps {}
-
-const CategoriesSection: React.FC<CategoriesSectionProps> = () => {
+const CategoriesSidebar: React.FC = () => {
   const t = useTranslations('CategorySection');
   const pathName = usePathname();
 
-  const listCategory = [
+  const categories = [
     { id: 1, name: t('Phone'), slug: 'phone', icon: <CellPhoneIcon /> },
     {
       id: 2,
@@ -40,7 +38,7 @@ const CategoriesSection: React.FC<CategoriesSectionProps> = () => {
 
   return (
     <section className="flex w-fit flex-col gap-4">
-      {listCategory.map((item) => (
+      {categories.map((item) => (
         <Link
           key={item.id}
           href={`/categories/${item.slug}`}
@@ -56,4 +54,4 @@ const CategoriesSection: React.FC<CategoriesSectionProps> = () => {
   );
 };
 
-export default CategoriesSection;
+export default CategoriesSidebar;

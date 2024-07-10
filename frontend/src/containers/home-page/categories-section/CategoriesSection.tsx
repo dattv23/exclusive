@@ -16,7 +16,7 @@ interface CategoriesSectionProps {}
 const CategoriesSection: React.FC<CategoriesSectionProps> = () => {
   const t = useTranslations('CategorySection');
 
-  const listCategory: Category[] = [
+  const listCategory = [
     { id: 1, name: t('Phone'), slug: 'phone', icon: <CellPhoneIcon /> },
     {
       id: 2,
@@ -49,7 +49,7 @@ const CategoriesSection: React.FC<CategoriesSectionProps> = () => {
         </div>
       </div>
       <div className="flex gap-4">
-        <CategoryList data={listCategory} />
+        <CategoryList data={listCategory as Category[]} />
       </div>
     </section>
   );

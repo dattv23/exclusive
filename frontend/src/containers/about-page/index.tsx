@@ -1,5 +1,5 @@
-import { useTranslations } from 'next-intl';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
 import {
   InstagramIcon,
@@ -12,12 +12,10 @@ import {
 } from '@/components/Icons';
 import { ServiceList } from '@/components';
 
-interface AboutPageProps {}
-
-const AboutPage: React.FC<AboutPageProps> = () => {
+const AboutPage: React.FC = () => {
   const t = useTranslations('AboutPage');
 
-  const memberList = [
+  const members = [
     {
       id: 1,
       avatar: '/images/about-us/Tom Cruise.png',
@@ -38,7 +36,7 @@ const AboutPage: React.FC<AboutPageProps> = () => {
     },
   ];
 
-  const statisticsList = [
+  const statistics = [
     { icon: <ShopIcon />, data: 10.5, name: t('Sellers active our site') },
     { icon: <SaleIcon />, data: 33, name: t('Monthly Product Sale') },
     {
@@ -71,7 +69,7 @@ const AboutPage: React.FC<AboutPageProps> = () => {
         </div>
       </div>
       <div className="mb-32 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {statisticsList.map((statistic, id) => (
+        {statistics.map((statistic, id) => (
           <div
             key={id}
             className="flex flex-col items-center gap-6 rounded-lg border p-8 hover:border-none hover:bg-secondary hover:text-white"
@@ -89,7 +87,7 @@ const AboutPage: React.FC<AboutPageProps> = () => {
         ))}
       </div>
       <div className="mb-32 grid grid-cols-1 gap-8 lg:grid-cols-3">
-        {memberList.map((member) => (
+        {members.map((member) => (
           <div key={member.id} className="flex flex-col items-center">
             <div className="flex w-full justify-center rounded-sm bg-[#f5f5f5] pt-9">
               <Image

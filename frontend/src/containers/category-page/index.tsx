@@ -1,9 +1,9 @@
 import { notFound } from 'next/navigation';
 
 import { Category } from '@/types';
-import { envServerConfig } from '@/lib/envServer';
 import { ProductList } from '@/components';
-import CategoriesSection from '@/containers/product-list-page/category-section';
+import { envServerConfig } from '@/lib/envServer';
+import { CategoriesSidebar } from '@/components/Sidebar';
 
 type CategoryPageProps = {
   slug: string;
@@ -22,7 +22,7 @@ const CategoryPage: React.FC<CategoryPageProps> = async ({ slug }) => {
 
   return (
     <main className="flex gap-10 py-8">
-      <CategoriesSection />
+      <CategoriesSidebar />
       <ProductList data={products} />
     </main>
   );

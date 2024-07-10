@@ -1,8 +1,5 @@
 import dynamic from 'next/dynamic';
 
-import { envServerConfig } from '@/lib/envServer';
-import { Category as TCategory } from '@/types';
-
 const CategoryPage = dynamic(() => import('@/containers/category-page'));
 
 type CategoryProps = {
@@ -10,12 +7,17 @@ type CategoryProps = {
 };
 
 export async function generateStaticParams() {
-  const res = await fetch(
-    `${envServerConfig.DOMAIN_API}/api/v1/categories`,
-  ).then((res) => res.json());
+  const slugs = [
+    'phone',
+    'smart-watch',
+    'camera',
+    'game-pad',
+    'head-phone',
+    'computer',
+  ];
 
-  return res.data.map((category: TCategory) => ({
-    slug: category.slug,
+  return slugs.map((slug: string) => ({
+    slug,
   }));
 }
 

@@ -7,3 +7,4 @@ export * from './dropdownItem';
 export * from './category.type';
 export * from './cart.type';
 export * from './token.type';
+export * from './service.type';

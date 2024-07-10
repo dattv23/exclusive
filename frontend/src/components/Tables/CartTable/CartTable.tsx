@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { message } from 'antd';
 import toast from 'react-hot-toast';
 import { useTranslations } from 'next-intl';
 import { useParams } from 'next/navigation';
@@ -13,7 +14,6 @@ import { Link, useRouter } from '@/navigation';
 import { RemoveIcon } from '@/components/Icons';
 import { CartItem, mapCartToMappedCartItem, Product } from '@/types';
 import { calculateDiscountedPrice, convertPriceByLocale } from '@/lib/utils';
-import { message } from 'antd';
 
 type CartTableProps = {
   data: CartItem[];
@@ -33,7 +33,7 @@ const CartTable: React.FC<CartTableProps> = ({ data }) => {
       update(data);
       setCartClone(data);
     }
-  }, []);
+  }, [data, update]);
 
   const handleChangeQuantity = (
     id: string,
