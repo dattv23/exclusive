@@ -17,6 +17,7 @@ const SignUpPage: React.FC = () => {
           alt="shopping"
           width={919}
           height={800}
+          loading="lazy"
           className="h-auto w-min object-cover"
         />
       </div>

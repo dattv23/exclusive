@@ -1,14 +1,14 @@
 import type { Metadata } from 'next';
-import { AntdRegistry } from '@ant-design/nextjs-registry';
-import { NextIntlClientProvider } from 'next-intl';
-import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
 import { Inter } from 'next/font/google';
 import { Toaster } from 'react-hot-toast';
+import { NextIntlClientProvider } from 'next-intl';
+import { AntdRegistry } from '@ant-design/nextjs-registry';
+import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
 
-import { i18n, Locale } from '@/config';
-import { Container, Footer, Header } from '@/components';
 import '@/styles/globals.scss';
+import { i18n, Locale } from '@/config';
 import { AuthProvider } from '@/context/AuthContext';
+import { Container, Footer, Header } from '@/components';
 
 const inter = Inter({ subsets: ['latin'] });
 

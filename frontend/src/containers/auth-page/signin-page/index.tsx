@@ -1,12 +1,13 @@
-import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import React from 'react';
+import { useTranslations } from 'next-intl';
+import dynamic from 'next/dynamic';
+import { Suspense } from 'react';
 
-import { LoginForm } from '@/components/Forms';
+const LoginForm = dynamic(() => import('@/components/Forms/LoginForm'), {
+  ssr: false,
+});
 
-interface SignInPageProps {}
-
-const SignInPage: React.FC<SignInPageProps> = () => {
+const SignInPage: React.FC = () => {
   const t = useTranslations('SignInPage');
   return (
     <main className="flex gap-10 py-2 lg:py-14">
@@ -21,7 +22,9 @@ const SignInPage: React.FC<SignInPageProps> = () => {
       <div className="flex flex-1 flex-col gap-4 py-2 lg:flex-[0.4] lg:py-20">
         <h3>{t('Log in to Exclusive')}</h3>
         <p>{t('Enter your details below')}</p>
-        <LoginForm />
+        <Suspense fallback={<p>Loading...</p>}>
+          <LoginForm />
+        </Suspense>
       </div>
     </main>
   );
