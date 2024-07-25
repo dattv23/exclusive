@@ -32,6 +32,12 @@ export default async function RootLayout({
   const messages = await getMessages();
   return (
     <html lang={locale}>
+      <head>
+        <meta
+          name="google-site-verification"
+          content="RE6vLde58z4wXgl3SA1Ei3d_Gs4E2zQsQi8ofXS4Mp8"
+        />
+      </head>
       <body className={inter.className} suppressHydrationWarning={true}>
         <NextIntlClientProvider messages={messages}>
           <AuthProvider>
